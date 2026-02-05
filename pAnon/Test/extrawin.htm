@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+  <script>
+    var gsWebPathFile = location.pathname.replace("\\", "/");
+    console.log('gsWebPathFile: ' + gsWebPathFile);
+    var fnpos = gsWebPathFile.lastIndexOf("/") + 1;
+    var gsWebFile = gsWebPathFile.substring(
+      fnpos, gsWebPathFile.length);
+    console.log('gsWebFile: ' + gsWebFile);
+    var gsWebAbsPath = location.protocol + "//" + location.hostname
+      + gsWebPathFile.substring(0, fnpos);
+    console.log('gsWebAbsPath: ' + gsWebAbsPath);
+    function WebAccess(pf){
+      document.write('<a href="'+gsWebAbsPath+pf+'">❐</a>');
+    }
+  </script>
+
+  <style>
+    .SVGUse_ExtraWin {
+      stroke: #00f;
+      stroke-width: 0.0625rem;
+    }
+
+    .SVG_ExtraWin_1 {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .SVGUse_ExtraWin_fill {
+      stroke: #00f;
+      fill: #00f;
+      stroke-width: 0.0625rem;
+    }
+
+    .SVGUse_BGC {
+      background-color: aquamarine;
+    }
+
+  </style>
+</head>
+
+<svg display="none">
+  <defs>
+    <symbol id="idSVG_ExtraWin_001" viewbox="0 0, 16 16">
+      <g>
+        <path stroke-linecap="round" stroke-linejoin="round" 
+        d="M 3,6 3,3 15,3 15,12 12,15 12,3 3,3 Z" />
+        <path stroke-linejoin="round" 
+        d="M 12,12 12,14 1,14 1,5 3,5" />
+      </g>
+    </symbol>
+
+    <symbol id="idSVG_ExtraWin_003" viewbox="0 0, 16 16">
+      <g>
+        <path stroke-linecap="round" stroke-linejoin="round"
+        fill="none"  
+        d="M 4,3 15,3 15,11 4,11 Z" />
+        <path stroke-linejoin="round" 
+        fill="none"  
+        d="M 4,6 1,6 1,14 12,14 12,11 " />
+      </g>
+    </symbol>
+  </defs>
+</svg>
+<!-- ❏❐ -->
+
+<body>
+
+  <svg class="SVG_ExtraWin_1">
+    <use class="SVGUse_ExtraWin_fill" xlink:href="#idSVG_ExtraWin_001"></use>
+  </svg>
+
+  <svg class="SVG_ExtraWin_1">
+    <use class="SVGUse_ExtraWin" xlink:href="#idSVG_ExtraWin_003"></use>
+  </svg>
+
+  <div class="SVGUse_BGC">
+    <svg>
+      <use class="SVGUse_ExtraWin_fill" xlink:href="#idSVG_ExtraWin_001"></use>
+    </svg>
+
+    <svg>
+      <use class="SVGUse_ExtraWin" xlink:href="#idSVG_ExtraWin_002"></use>
+    </svg>
+
+    <svg>
+      <use class="SVGUse_ExtraWin" xlink:href="#idSVG_ExtraWin_003"></use>
+    </svg>
+
+  </div>
+
+</body>
+</html>

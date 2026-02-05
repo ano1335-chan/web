@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  .Flex-Box_001 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 1vw;
+  }
+
+  .Flex-Box_001>img {
+    width: 16%;
+  }
+
+  .Flex-Box_001>img:nth-child(n+1):nth-child(-n+3) {
+    width: 33%;
+  }
+
+</style>
+<body>
+  <div class="Flex-Box_001">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+    <img src="hoge.png">
+  </div>
+</body>
+</html>

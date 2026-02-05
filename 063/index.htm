@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    font-size: 1.5vw;
+  }
+
+  .Grid_Stage {
+    width: 15vw;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+  }
+
+  .Grid_Stage>div {
+    border: thin solid black;
+    white-space: nowrap
+  }
+
+</style>
+<body>
+
+  <div class="Grid_Stage ">
+    <div>
+      ※1
+    </div>
+    <div>
+      あいうえお<br>
+      かきくけこ<br>
+      さしすせそ<br>
+    </div>
+
+    <div>
+      ※99
+    </div>
+    <div>
+      あいうえお<br>
+      かきくけこ<br>
+      さしすせそ<br>
+    </div>
+  </div>
+
+</body>
+</html>

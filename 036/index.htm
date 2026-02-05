@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+  metaタグでcharsetをUTF-8に設定しています。
+  (モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+  -->
+  <title></title>
+  <style>
+    .SVG_Aliasing {
+      shape-rendering: crispEdges;
+      /*エイリアシング：アンチエイリアシングOFF*/
+    }
+
+    .SVGUse_Heart {
+      fill: #f00;
+      stroke: #000;
+    }
+
+    .SVG_Heart_1 {
+      width: 110px;
+      height: 100px;
+    }
+
+    .SVG_Heart_2 {
+      width: 300px;
+      height: 200px;
+    }
+
+  </style>
+</head>
+
+<svg display="none">
+  <defs>
+    <symbol id="idSVGSymbol_Heart" viewBox="-55, 0  110, 100.5">
+      <g>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M 0,13.50
+             C -22.00, -5.00 -39.50,  3.00 -48.00, 18.00
+               -58.00, 33.00 -39.50, 77.50   0.00,100.00
+                 0.00,100.00   0.00,100.00   0.00,100.00
+                39.50, 77.50  58.00, 33.00  48.00, 18.00
+                39.50,  3.00  22.00, -5.00   0.00, 13.50 Z" />
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<body>
+  アンチエイリアシングON<br>
+  <svg class="SVG_Heart_1">
+    <use class="SVGUse_Heart" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+  <br>
+
+  アンチエイリアシングOFF<br>
+  <svg class="SVG_Heart_2">
+    <use class="SVGUse_Heart SVG_Aliasing" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+</body>
+</html>

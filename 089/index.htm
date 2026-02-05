@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+</head>
+<style>
+  /*PC Screen*/
+  /*Media Query：Default*/
+  .Border {
+    border: thin solid black;
+  }
+
+  .Clear-Both {
+    clear: both;
+  }
+
+  header,
+  footer,
+  .Float-Box_000 {
+    padding: 0.5%;
+    height: 150px;
+  }
+
+  header,
+  nav,
+  footer,
+  aside,
+  .Float-Box_000,
+  .Float-Box_000>* {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .Float-Box_000>* {
+    height: 100%;
+  }
+
+  nav,
+  aside,
+  main,
+  main>*,
+  footer {
+    margin-top: 5px;
+  }
+
+  nav {
+    float: left;
+  }
+
+  aside {
+    float: right;
+    float: none;
+    display: inline-block;
+  }
+
+  footer {}
+
+  nav,
+  aside {
+    width: 15%;
+    height: 615px;
+  }
+
+  .LefWing {}
+
+  .MidWing {
+    float: left;
+    width: 69%;
+    margin: 0 0.5%;
+    margin-top: 5px;
+  }
+
+  main {}
+
+  main>*:first-child {
+    margin-top: 0px;
+  }
+
+  .Box_Item-Group_001 {
+    display: block;
+  }
+
+  .Box_Item-Group_001>* {
+    float: left;
+    display: inline-block;
+    width: 25%;
+    background-color: #00ffff;
+  }
+
+  .Box_Item-Group_002 {
+    display: block;
+  }
+
+  .Box_Item-Group_002>* {
+    float: left;
+    display: inline-block;
+    width: 33.333%;
+    background-color: #88df7a;
+  }
+
+  .Box_Item-Group_003 {
+    display: block;
+  }
+
+  .Box_Item-Group_003>* {
+    float: left;
+    display: inline-block;
+    width: 50%;
+    background-color: #da8bb1;
+  }
+
+  .Box_Item-Group_004 {
+    display: block;
+  }
+
+  .Box_Item-Group_004>* {
+    float: left;
+    display: inline-block;
+    width: 16.666%;
+    background-color: #94b7e5;
+  }
+
+  /*Smartphone Screen*/
+  /*Media Query：576px未満＝575px以下*/
+  @media screen and (max-width:575px) {
+    .LefWing {}
+
+    .Float-Box_000 {
+      height: auto;
+    }
+
+    header,
+    nav,
+    footer {
+      height: 80px;
+    }
+
+    header,
+    nav,
+    footer,
+    .Float-Box_000 {
+      box-sizing: border-box;
+      border: thin solid black;
+      padding: 0.5%;
+    }
+
+    aside,
+    .Float-Box_000>* {
+      box-sizing: border-box;
+      border: thin solid black;
+      height: 80px;
+    }
+
+    aside {
+      display: block;
+      margin-top: 5px;
+    }
+
+    .MidWing {
+      margin: 0 0;
+      margin-top: 5px;
+    }
+
+    nav,
+    aside,
+    .MidWing {
+      float: none;
+      display: block;
+      width: 100%;
+    }
+
+    .Box_Item-Group_001>*,
+    .Box_Item-Group_002>*,
+    .Box_Item-Group_003>*,
+    .Box_Item-Group_004>* {
+      float: none;
+      display: block;
+      width: 100%;
+      background-color: #00ffff;
+    }
+  }
+
+</style>
+<body>
+  <div class="">
+    <header class="">
+      ヘッダー
+    </header>
+    <nav class="">
+      メニュー
+    </nav>
+    <main class="MidWing">
+      <div class=" Float-Box_000 Box_Item-Group_001 Box_BackColor_001">
+        <div>1段目</div>
+        <div>1段目</div>
+        <div>1段目</div>
+        <div>1段目</div>
+      </div>
+      <div class="Float-Box_000 Box_Item-Group_002 Box_BackColor_002">
+        <div>2段目</div>
+        <div>2段目</div>
+        <div>2段目</div>
+      </div>
+      <div class="Float-Box_000 Box_Item-Group_003 Box_BackColor_003">
+        <div>3段目</div>
+        <div>3段目</div>
+      </div>
+      <div class="Float-Box_000 Box_Item-Group_004 Box_BackColor_004">
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+      </div>
+    </main>
+  </div>
+  <aside>
+    サイド
+  </aside>
+  <footer class="">
+    フッター
+  </footer>
+</body>
+</html>

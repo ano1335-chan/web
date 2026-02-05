@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* スクロールバーが表示されないように */
+  }
+
+  .frog {
+    position: absolute;
+    top: 50%;
+    /* 縦中央に配置 */
+    left: 100%;
+    /* 画面の右端からスタート */
+    transform: translateY(-50%);
+    /* 真ん中に配置 */
+    width: 100px;
+    height: 100px;
+    background-color: #0f0;
+    animation: hop 2s ease-in-out infinite, move 4s linear infinite;
+  }
+
+  @keyframes hop {
+
+    0%,
+    100% {
+      transform: translateY(0);
+      /* 跳ねない */
+    }
+
+    50% {
+      transform: translateY(-100px);
+      /* 上に跳ねる */
+    }
+  }
+
+  @keyframes move {
+    0% {
+      left: 100%;
+      /* 画面の右端から */
+    }
+
+    50% {
+      left: 50%;
+      /* 画面中央 */
+    }
+
+    100% {
+      left: -100px;
+      /* 画面の左端を越えて */
+    }
+  }
+
+</style>
+<body>
+  <div class="frog">
+  </div>
+</body>
+</html>

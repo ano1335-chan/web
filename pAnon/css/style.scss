@@ -1,0 +1,164 @@
+:root {
+  /* スクロールバーの比率 */
+  /* 8：Firefoxのスクロールバーのthin時のサイズ */
+  /* 800：一般的に販売されているPC用モニタ－の最小･解像度(横サイズ) */
+  --ScrollbarRatio: calc(8 / 800);
+  /* ブレイクポイント：Firefox：スクロールバー･サイズ：Auto用 */
+  /* 17：FirefoxのスクロールバーのAuto時のサイズ */
+  /* --BreakPoint_Firefox_ScrollbarWeight_Auto: 1700px */
+  --BreakPoint_Firefox_ScrollbarWeight_Auto: calc(1px * 17 / var(--ScrollbarRatio));
+  /* スクロールバーの幅 */
+  --ScrollbarWeight: calc(100vw * var(--ScrollbarRatio));
+  /*Firefox スクロールバーのつまみの部分*/
+  /*#cdcdcd #999*/
+  --ScrollbarThumbColor: #999;
+  /*スクロールバーのつまみの部分*/
+  /*#ccc #888 #808080*/
+  --ScrollbarThumbGradient1: #ccc;
+  --ScrollbarThumbGradient2: #808080;
+  /*スクロールバーの軌道*/
+  --ScrollbarTrackColor: #f0f0f0;
+  --Image_Size_Normal: 64vmin;
+  --Image_Size_Large: 125vmin;
+  --Image_Bottom: 2.5vw;
+}
+
+* {
+  overflow-wrap: break-word;
+}
+
+body {
+  margin: 0.5vw;
+}
+
+html {
+  /* 強制的に縦スクロールバーを表示。 */
+  overflow-y: scroll;
+}
+* {
+  /* Firefoxのスクロールバーの設定 */
+  scrollbar-width: thin; /*細さ*/
+  scrollbar-color: var(--ScrollbarThumbColor) var(--ScrollbarTrackColor); /*「つまみの色」「軌道の色」*/
+}
+/* --BreakPoint_Firefox_ScrollbarWeight_Auto */
+@media screen and (min-width: 1700px) {
+  /* Firefoxのスクロールバーの設定 */
+  * {
+    scrollbar-width: auto; /*細さ*/
+  }
+}
+::-webkit-scrollbar {
+  /*縦方向スクロールバーの幅*/
+  width: var(--ScrollbarWeight);
+}
+::-webkit-scrollbar:horizontal {
+  /*横方向スクロールバーの高さ*/
+  height: var(--ScrollbarWeight);
+}
+::-webkit-scrollbar-track {
+  /*スクロールバーの軌道*/
+  background: var(--ScrollbarTrackColor);
+}
+::-webkit-scrollbar-thumb {
+  /*スクロールバーの つまみの部分*/
+  border-radius: calc(var(--ScrollbarWeight) / 2);
+  background: linear-gradient(90deg, var(--ScrollbarThumbGradient1), var(--ScrollbarThumbGradient2));
+}
+
+rt,
+rp {
+  font-size: 67%;
+}
+
+body {
+  background-color: #bfc7ef;
+}
+
+.Border {
+  border: solid thin #000;
+}
+
+.BoxSizing_BorderBox {
+  box-sizing: border-box;
+}
+
+.Nowrap {
+  white-space: nowrap;
+}
+
+.UserSelect_None {
+  user-select: none;
+}
+
+.Flex_Wrap_Center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.GridWrap_SpaceAround {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, var(--Image_Size_Normal));
+  grid-template-rows: var(--Image_Size_Normal);
+  justify-content: space-around;
+  gap: 2vw 0;
+}
+
+.GridWrap_SpaceAround img {
+  display: inline-block;
+  box-sizing: border-box;
+  border: solid thin #000;
+  background: #d3e7cb;
+  width: var(--Image_Size_Normal);
+  height: var(--Image_Size_Normal);
+  object-fit: contain;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.Visibility_Hidden {
+  visibility: hidden;
+}
+
+.GridWrap_SpaceAround input:checked + .Display_Filter {
+  display: inline-block;
+}
+
+.GridWrap_SpaceAround input:checked + .Display_Filter + * > img {
+  width: var(--Image_Size_Large);
+  height: var(--Image_Size_Large);
+  border: none 0 #000;
+  background-color: transparent;
+}
+
+.GridWrap_SpaceAround input:checked + .Display_Filter + .Image_Box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  /* z-indexの最大値：2147483647 */
+  width: var(--Image_Size_Large);
+  height: calc(var(--Image_Size_Large) + var(--Image_Bottom));
+}
+
+.Display_Filter {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150vw;
+  height: 150vh;
+  z-index: 2147483647;
+  /* z-indexの最大値：2147483647 */
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.Image_Box {
+}
+
+.GridWrap_SpaceAround input[type="checkbox"] {
+  display: none;
+}

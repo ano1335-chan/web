@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+
+  <link href="../ext/style.css" rel="stylesheet">
+
+  <link rel="preload" href="../../b4link1.gif" as="image">
+  <link rel="preload" href="../../b4link0.gif" as="image">
+  <link rel="preload" href="../../b4link6.gif" as="image">
+  
+</head>
+
+<script>
+  var gsWebPathFile = location.pathname.replace("\\", "/");
+  gsWebPathFile = gsWebPathFile.substring(1);
+  console.log('gsWebPathFile: ' + gsWebPathFile);
+  var fnpos = gsWebPathFile.lastIndexOf("/") + 1;
+  var gsWebFile = gsWebPathFile.substring(
+    fnpos, gsWebPathFile.length);
+  console.log('gsWebFile: ' + gsWebFile);
+  var gsWebPath = gsWebPathFile.substring(0, fnpos);
+  console.log('gsWebPath: ' + gsWebPath);
+  var port = location.port;
+  port = port ? ':' + port : "";
+  var gsWebAbsRoot = location.protocol + "//" + location.hostname
+    + port + '/';
+  console.log('gsWebAbsRoot: ' + gsWebAbsRoot);
+  var gsWebAbsCurr = gsWebAbsRoot + gsWebPath;
+  console.log('gsWebAbsCurr: ' + gsWebAbsCurr);
+  var gsWebAbsFull = gsWebAbsRoot + gsWebPathFile;
+  console.log('gsWebAbsFull: ' + gsWebAbsFull);
+
+  function GetWebFile(url) {
+    console.log('GetWebFile()');
+    var p, res;
+    url = url.replace("\\", "/");
+    // console.log('url: ' + url);
+    p = url.lastIndexOf("#");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("?");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("/");
+    if (0 <= p) {
+      url = url.substring(p + 1);
+      // console.log('url: ' + url);
+    }
+    res = "";
+    if (url.match(".")) {
+      res = url;
+    }
+    console.log('res: ' + res);
+    return res;
+  }
+
+  window.onload = function () {
+    var cancel = { };
+    var change = { 
+      "nstrdm1.htm": "../Nstrdm1/index.htm",
+      "revela1.htm": "../Revela/index.htm",
+    };
+    var tag = ["a", "img",];
+    var prop = ["href", "src",];
+    for (var j = 0; j < tag.length; j++) {
+      var element = document.getElementsByTagName(tag[j]);
+      for (var i = 0; i < element.length; i++) {
+        var e = element[i];
+        var pattern = new RegExp("^" + gsWebAbsCurr, 'g');
+        var url, rep, wf;
+        if (e[prop[j]]) {
+          url = e[prop[j]];
+          wf = GetWebFile(url);
+          if(change[wf]){
+            console.log('if(change[wf])');
+            console.log('wf: '+wf);
+            console.log('change[wf]: '+change[wf]);
+            pattern = new RegExp(wf);
+            url = url.replace(pattern, change[wf]);
+            e[prop[j]] = url;
+          }else if (!cancel[wf]) {
+            url = url.replace(pattern, gsWebAbsRoot);
+            e[prop[j]] = url;
+          }
+        }
+        url = e[prop[j]];
+        console.log('url: ' + url);
+      }
+    }
+  }
+</script>
+
+<body text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff">
+
+  ※このページは「Edge、Chrome」などでは正常に表示されない場合が有るので、Firefoxを推奨します。<br>
+
+  <div align="center">
+    <h2>
+      <nobr>近未来</nobr><wbr>
+      <nobr>ビジョン</nobr><br>
+    </h2>
+    <br>
+  </div>
+
+  ★ リンク に ジャンプ する場合に少々 タイム･ラグ が<ruby><rb>生</rb><rp>(</rp><rt>しょう</rt><rp>)</rp></ruby>じる事も有るので ご注意 下さい．<br>
+  この ページ･<ruby><rb>内</rb><rp>(</rp><rt>ない</rt><rp>)</rp></ruby>に有る リンク を別･ウィンドウ で開けば現在の ページ と比較しながら読む事が できます．<br>
+  <br>
+  ◆【近未来･ビジョン】<br>
+  <br>
+  ■《近未来･トレンド》<br>
+  ＊これは予言から<ruby><rb>推測</rb><rp>(</rp><rt>すいそく</rt><rp>)</rp></ruby>できる近未来のシナリオを予測したものです，ここに<ruby><rb>記述</rb><rp>(</rp><rt>きじゅつ</rt><rp>)</rp></ruby>されている "<ruby><rb>事象</rb><rp>(</rp><rt>じしょう</rt><rp>)</rp></ruby>"(イベント)の発生･順序は前後したり<ruby><rb>重</rb><rp>(</rp><rt>かさ</rt><rp>)</rp></ruby>なったりする事もあるでしょうが おおよその "<ruby><rb>流</rb><rp>(</rp><rt>なが</rt><rp>)</rp></ruby>れ"(トレンド)としては このような<ruby><rb>形</rb><rp>(</rp><rt>かた</rt><rp>)</rp></ruby>ちに なると思われます．<br>
+  ▼「日本，アメリカ」で「病原体･テロ<ruby><rb>？；寺院</rb><rp>(</rp><rt>じいん</rt><rp>)</rp></ruby>の破壊」が発生すると思われる．<br>
+  これは "300人･委員会"による テロ の可能性が有ると思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/5-37">
+    第5巻 37番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-98">
+    第6巻 98番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-74">
+    第8巻 74番
+  </a>
+  」などに関連していると思われる．<br>
+  △「<ruby><rb>寺院</rb><rp>(</rp><rt>じいん</rt><rp>)</rp></ruby>の破壊」は次の予言とも関連していると思われる．<br>
+  ▽<ruby><rb>日月神示</rb><rp>(</rp><rt>ひつきしんじ</rt><rp>)</rp></ruby> ：<br>
+  『…(神が<ruby><rb>宿</rb><rp>(</rp><rt>やど</rt><rp>)</rp></ruby>る)お<ruby><rb>宮</rb><rp>(</rp><rt>みや</rt><rp>)</rp></ruby>も 一時は無くなるようになるから、その時は、(<ruby><rb>身魂</rb><rp>(</rp><rt>みたま</rt><rp>)</rp></ruby>の)<ruby><rb>磨</rb><rp>(</rp><rt>みが</rt><rp>)</rp></ruby>けた人が神の お<ruby><rb>宮</rb><rp>(</rp><rt>みや</rt><rp>)</rp></ruby>ぞ。<ruby><rb>早</rb><rp>(</rp><rt>はよ</rt><rp>)</rp></ruby>う<ruby><rb>身魂</rb><rp>(</rp><rt>みたま</rt><rp>)</rp></ruby> <ruby><rb>磨</rb><rp>(</rp><rt>みが</rt><rp>)</rp></ruby>いておけよ、お<ruby><rb>宮</rb><rp>(</rp><rt>みや</rt><rp>)</rp></ruby>まで外国の悪に<ruby><rb>壊</rb><rp>(</rp><rt>こわ</rt><rp>)</rp></ruby>されるようになるぞ。早くせねば<ruby><rb>間</rb><rp>(</rp><rt>ま</rt><rp>)</rp></ruby>に合わん事ぞ』<br>
+  ＊これは神が<ruby><rb>宿</rb><rp>(</rp><rt>やど</rt><rp>)</rp></ruby>る日本の<ruby><rb>寺院</rb><rp>(</rp><rt>じいん</rt><rp>)</rp></ruby>が<ruby><rb>破壊</rb><rp>(</rp><rt>はかい</rt><rp>)</rp></ruby>され，日本に "霊的な<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>"が おとずれるのだと思われる．<br>
+  この結果，神の<ruby><rb>宿</rb><rp>(</rp><rt>やど</rt><rp>)</rp></ruby>れない<ruby><rb>身魂</rb><rp>(</rp><rt>みたま</rt><rp>)</rp></ruby>の<ruby><rb>穢</rb><rp>(</rp><rt>けが</rt><rp>)</rp></ruby>れた人にとっては 非常に<ruby><rb>厳</rb><rp>(</rp><rt>きび</rt><rp>)</rp></ruby>しい<ruby><rb>事態</rb><rp>(</rp><rt>じたい</rt><rp>)</rp></ruby>になるのだと思われます．<br>
+  ▼カタストロフィが<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こる前に<ruby><rb>予兆</rb><rp>(</rp><rt>よちょう</rt><rp>)</rp></ruby>が現われるのだと思われる．<br>
+  ◎ある霊能者によって，地上に<ruby><rb>異変</rb><rp>(</rp><rt>いへん</rt><rp>)</rp></ruby>が<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こる前に富士山に十字形の雲が現われると予言されている．この"十字形の雲"は地震雲のようなものかも しれない．<br>
+  ◎「日本，ローマ，フランス」に＜大いなる<ruby><rb>炎</rb><rp>(</rp><rt>ほのお</rt><rp>)</rp></ruby>＞(オーロラ？)が天から<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>りそそぐのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-46">
+    第1巻 46番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/8-2">
+    第8巻 2番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-44">
+    第9巻 44番
+  </a>
+  」などに関連していると思われる．<br>
+  ◎世界の いたるところに聖母マリアが出現する可能性が有ると思われる．<br>
+  △ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『…戦争の きざしが<ruby><rb>頻発</rb><rp>(</rp><rt>ひんぱつ</rt><rp>)</rp></ruby>し，各国は<ruby><rb>震撼</rb><rp>(</rp><rt>しんかん</rt><rp>)</rp></ruby>するだろう．<br>
+  ＜いにしえの女＞(聖母マリア？)は いたるところで平和を<ruby><rb>嘆願</rb><rp>(</rp><rt>たんがん</rt><rp>)</rp></ruby>し，<ruby><rb>群衆</rb><rp>(</rp><rt>ぐんしゅう</rt><rp>)</rp></ruby>は<ruby><rb>畏怖</rb><rp>(</rp><rt>いふ</rt><rp>)</rp></ruby>する．<br>
+  ＜Anoh(アノー)＞(Noah(ノア)の箱船)は<ruby><rb>無為</rb><rp>(</rp><rt>むい</rt><rp>)</rp></ruby>に水平線を<ruby><rb>探</rb><rp>(</rp><rt>さが</rt><rp>)</rp></ruby>す』
+  <a href="nstrdm1.htm#Queen/Maria">
+    参照
+  </a>
+  ．<br>
+  ◎ "霊的なラッパ"が いく<ruby><rb>度</rb><rp>(</rp><rt>たび</rt><rp>)</rp></ruby>も<ruby><rb>鳴</rb><rp>(</rp><rt>な</rt><rp>)</rp></ruby>ると思われる．<br>
+  ☆この "霊的なラッパ"は "霊的な<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>"に なってから その期間の あいだに いく<ruby><rb>度</rb><rp>(</rp><rt>たび</rt><rp>)</rp></ruby>も<ruby><rb>鳴</rb><rp>(</rp><rt>な</rt><rp>)</rp></ruby>ると思われ，その "霊的なラッパ"が<ruby><rb>合図</rb><rp>(</rp><rt>あいず</rt><rp>)</rp></ruby>となり それが<ruby><rb>鳴</rb><rp>(</rp><rt>な</rt><rp>)</rp></ruby>る<ruby><rb>度</rb><rp>(</rp><rt>たび</rt><rp>)</rp></ruby>に<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>いが もたらされるのだと思われる．<br>
+  ただし その時期は日本と世界では別々に なると思われ，それは人間に<ruby><rb>聞</rb><rp>(</rp><rt>き</rt><rp>)</rp></ruby>こえる可能性も有るかも しれない．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-57">
+    第1巻 57番
+  </a>
+  」などに関連していると思われる．<br>
+  △世界の "霊的なラッパ"に関しては下記の予言と関連していると思われる．<br>
+  ▽新約聖書"ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>"「
+  <a href="revela1.htm?A0801~1119#8-1">
+    第8章 第1節～第11章 第19節
+  </a>
+  」の「7つのラッパの<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>い」．<br>
+  ▼全世界的な超国家組織のテロリスト集団の"300人委員会"により日本とアメリカでサリンに代表される毒ガス兵器テロが起こり，そのために「日本；アメリカ」の経済が荒廃するのだと思われる．<br>
+  その後 このテロが世界の<ruby><rb>広範</rb><rp>(</rp><rt>こうはん</rt><rp>)</rp></ruby>な地域に<ruby><rb>広</rb><rp>(</rp><rt>ひろ</rt><rp>)</rp></ruby>がるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/5-32">
+    第5巻 32番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-37">
+    第5巻 37番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-5">
+    第6巻 5番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-74">
+    第8巻 74番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼現在，「
+  <a href="pandor/000000p.htm"">
+         <img src=" b4link0.gif" border="0" alt="">
+    "首都圏"地震災害</a>
+  ，ニューヨーク周辺の直下型･地震」などの危険度は非常に高いようだ．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-87">
+    第1巻 87番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-32">
+    第5巻 32番
+  </a>
+  」に関連していると思われる．<br>
+  断定はで きないが それらの地震とノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/10-67">
+    第10巻 67番
+  </a>
+  」は関連している可能性も有るかも しれない．<br>
+  ▼ニューヨーク上空に"エイリアン"達の<ruby><rb>無数</rb><rp>(</rp><rt>むすう</rt><rp>)</rp></ruby>のUFOが おとずれ，<ruby><rb>公然</rb><rp>(</rp><rt>こうぜん</rt><rp>)</rp></ruby>と我々 人類の<ruby><rb>眼前</rb><rp>(</rp><rt>がんぜん</rt><rp>)</rp></ruby>に その存在を現わすのだと思われるが，これは下記の2つの予言と関連していると思われる．<br>
+  △ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『＜(金属製の)サルヴァー(＝<ruby><rb>盆</rb><rp>(</rp><rt>ぼん</rt><rp>)</rp></ruby>)＞(UFO)が飛び，＜新しい都＞(ニューヨーク)へ休息に やって来る．<br>
+  内部の存在に憎しみが燃えさかり，<ruby><rb>戦線</rb><rp>(</rp><rt>せんせん</rt><rp>)</rp></ruby>が<ruby><rb>形造</rb><rp>(</rp><rt>かたづく</rt><rp>)</rp></ruby>られ，＜3人＞(3人，6人，9人，12人，15人？)の指導者が偽の<ruby><rb>脅威</rb><rp>(</rp><rt>きょうい</rt><rp>)</rp></ruby>に ひそかに<ruby><rb>団結</rb><rp>(</rp><rt>だんけつ</rt><rp>)</rp></ruby>する．<br>
+  <ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>の恐怖が真実を<ruby><rb>覆</rb><rp>(</rp><rt>おお</rt><rp>)</rp></ruby>い<ruby><rb>隠</rb><rp>(</rp><rt>かく</rt><rp>)</rp></ruby>す時に』
+  <a href="nstrdm1.htm#Queen/Salver">
+    参照
+  </a>
+  ．<br>
+  ＊断定は できないが，この "<ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>"は ネクロノミコン <ruby><rb>暗黒･予言</rb><rp>(</rp><rt>あんこく･よげん</rt><rp>)</rp></ruby> 「
+  <a href="nstrdm1.htm#Necro/7-3-1">
+    第7巻 第3章 第1節
+  </a>
+  」の＜<ruby><rb>忘</rb><rp>(</rp><rt>わす</rt><rp>)</rp></ruby>れられし黒き<ruby><rb>病</rb><rp>(</rp><rt>やまい</rt><rp>)</rp></ruby>＞("<ruby><rb>黒死病</rb><rp>(</rp><rt>こくしびょう</rt><rp>)</rp></ruby>"(＝ペスト))の事のように思われる．<br>
+  その場合，ニューヨーク･上空 に<ruby><rb>無数</rb><rp>(</rp><rt>むすう</rt><rp>)</rp></ruby>の UFO が現れる前後ぐらいに"<ruby><rb>黒死病</rb><rp>(</rp><rt>こくしびょう</rt><rp>)</rp></ruby>"(＝ペスト)が世界的に<ruby><rb>散発</rb><rp>(</rp><rt>さんぱつ</rt><rp>)</rp></ruby>するのだと思われる．<br>
+  △ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『＜<ruby><rb>尾</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>の ない<ruby><rb>彗星</rb><rp>(</rp><rt>すいせい</rt><rp>)</rp></ruby>＞(UFO)の<ruby><rb>群</rb><rp>(</rp><rt>む</rt><rp>)</rp></ruby>れが<ruby><rb>天空</rb><rp>(</rp><rt>てんくう</rt><rp>)</rp></ruby>に<ruby><rb>満</rb><rp>(</rp><rt>み</rt><rp>)</rp></ruby>ち，音も なく飛ぶ．<br>
+  <ruby><rb>頻発</rb><rp>(</rp><rt>ひんぱつ</rt><rp>)</rp></ruby>するパニック，<ruby><rb>申</rb><rp>(</rp><rt>もう</rt><rp>)</rp></ruby>し出が はねつけられ，＜<ruby><rb>尾</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>のある<ruby><rb>彗星</rb><rp>(</rp><rt>すいせい</rt><rp>)</rp></ruby>＞(戦闘機？)が，＜ミツバチ達＞(ミサイル？)を<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>えて飛び，死に，<ruby><rb>国家元首</rb><rp>(</rp><rt>こっかげんしゅ</rt><rp>)</rp></ruby>達は，<ruby><rb>途方</rb><rp>(</rp><rt>とほう</rt><rp>)</rp></ruby>にくれ，＜砂のサイン＞(ナスカの地上絵？)は だれからも<ruby><rb>顧</rb><rp>(</rp><rt>かえり</rt><rp>)</rp></ruby>みられない』
+  <a href="nstrdm1.htm#Queen/Comet">
+    参照
+  </a>
+  ．<br>
+  ▼アメリカ･軍部によってアメリカ･大統領が<ruby><rb>暗殺</rb><rp>(</rp><rt>あんさつ</rt><rp>)</rp></ruby>され， アメリカ は軍部による独裁･国家へと<ruby><rb>変貌</rb><rp>(</rp><rt>へんぼう</rt><rp>)</rp></ruby>する可能性が有ると思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-26">
+    第1巻 26番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-95">
+    第3巻 95番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-97">
+    第3巻 97番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼全世界的な超国家組織のテロリスト集団の"300人委員会"による核爆発テロによって北半球が放射能･汚染されるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/6-5">
+    第6巻 5番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-97">
+    第6巻 97番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/10-70">
+    第10巻 70番
+  </a>
+  」などに関連していると思われる．<br>
+  △これは下記の予言と関連していると思われる．<br>
+  ▽ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『＜Pacific(パシフィック)<ruby><rb>岸辺</rb><rp>(</rp><rt>きしべ</rt><rp>)</rp></ruby>＞(パシフィック･オーシャン(＝<ruby><rb>太平洋</rb><rp>(</rp><rt>たいへいよう</rt><rp>)</rp></ruby>)) 近く．<br>
+  ＜世界の<ruby><rb>庭園</rb><rp>(</rp><rt>ていえん</rt><rp>)</rp></ruby>＞(アメリカ？)にある＜Fault(フォールト)＞(<ruby><rb>断層</rb><rp>(</rp><rt>だんそう</rt><rp>)</rp></ruby>)山の<ruby><rb>小径</rb><rp>(</rp><rt>しょうけい</rt><rp>)</rp></ruby>の，巨大な＜水オケ＞(<ruby><rb>湖</rb><rp>(</rp><rt>みずうみ</rt><rp>)</rp></ruby>)に(放射性･物質が) ＜投げ込まれ＞(天より おとずれ)，<ruby><rb>大衆</rb><rp>(</rp><rt>たいしゅう</rt><rp>)</rp></ruby>は気分を悪くする．<br>
+  ＜イオウの<ruby><rb>毒水</rb><rp>(</rp><rt>どくみず</rt><rp>)</rp></ruby>＞(放射能に汚染された水？)を<ruby><rb>無理矢理</rb><rp>(</rp><rt>むりやり</rt><rp>)</rp></ruby> 飲まされるせいで』
+  <a href="nstrdm1.htm#Queen/Pacific">
+    参照
+  </a>
+  ．<br>
+  ☆ "300人･委員会"は
+  <a href="nstrdm1.htm#Necro">
+    "ネクロノミコン"
+  </a>
+  の予言を<ruby><rb>狂信的</rb><rp>(</rp><rt>きょうしんてき</rt><rp>)</rp></ruby>に<ruby><rb>信奉</rb><rp>(</rp><rt>しんぽう</rt><rp>)</rp></ruby>しており，地球外･知的･生命体が地球を支配すると考えている．<br>
+  そして地球外･知的･生命体が地球を支配する時に そなえ，"300人･委員会"は できるだけ高い地位を<ruby><rb>得</rb><rp>(</rp><rt>え</rt><rp>)</rp></ruby>るための<ruby><rb>交渉</rb><rp>(</rp><rt>こうしょう</rt><rp>)</rp></ruby>の切り札として この核爆発･テロ を実行し，自分達の<ruby><rb>力</rb><rp>(</rp><rt>ちから</rt><rp>)</rp></ruby>を<ruby><rb>誇示</rb><rp>(</rp><rt>こじ</rt><rp>)</rp></ruby>するのだと思われる．<br>
+  ▼「<ruby><rb>放射性･疾患</rb><rp>(</rp><rt>ほうしゃせい･しっかん</rt><rp>)</rp></ruby>，ペスト，身の毛もよだつ未知の病原体，スーパー･エイズ」などのような<ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>･死病の世界の<ruby><rb>広範</rb><rp>(</rp><rt>こうはん</rt><rp>)</rp></ruby>な地域への<ruby><rb>拡散</rb><rp>(</rp><rt>かくさん</rt><rp>)</rp></ruby>の<ruby><rb>序章</rb><rp>(</rp><rt>じょしょう</rt><rp>)</rp></ruby>がスタートする．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-62">
+    第2巻 62番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-5">
+    第6巻 5番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-55">
+    第9巻 55番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-91">
+    第9巻 91番
+  </a>
+  」に関連していると思われる．<br>
+  △これは "ネクロノミコン"<ruby><rb>暗黒･予言</rb><rp>(</rp><rt>あんこく･よげん</rt><rp>)</rp></ruby>「
+  <a href="nstrdm1.htm#Necro/7-3-1">
+    第7巻 第3章 第1節
+  </a>
+  」などとも関連していると思われる．<br>
+  ☆これらの予言の<ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>･死病は<ruby><rb>必</rb><rp>(</rp><rt>かなら</rt><rp>)</rp></ruby>ずしも同時に世界の<ruby><rb>広範</rb><rp>(</rp><rt>こうはん</rt><rp>)</rp></ruby>な地域に<ruby><rb>拡散</rb><rp>(</rp><rt>かくさん</rt><rp>)</rp></ruby>する わけでは無く，<ruby><rb>数年･程度</rb><rp>(</rp><rt>すうねん･ていど</rt><rp>)</rp></ruby>の あいだに<ruby><rb>順次</rb><rp>(</rp><rt>じゅんじ</rt><rp>)</rp></ruby> <ruby><rb>出現</rb><rp>(</rp><rt>しゅつげん</rt><rp>)</rp></ruby>してくると思われる．<br>
+  ▼トルコがわのアララト山 付近で<ruby><rb>発掘</rb><rp>(</rp><rt>はっくつ</rt><rp>)</rp></ruby>されたノアの箱船が<ruby><rb>公表</rb><rp>(</rp><rt>こうひょう</rt><rp>)</rp></ruby>されるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/3-65">
+    第3巻 65番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-7">
+    第5巻 7番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/9-84">
+    第9巻 84番
+  </a>
+  」などに関連していると思われる．<br>
+  ☆"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"と"神を けがす名を持つ<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"達の<ruby><rb>意向</rb><rp>(</rp><rt>いこう</rt><rp>)</rp></ruby>を受けたアメリカ軍部によって"本物"の"地球外 知的･生命体"の<ruby><rb>痕跡</rb><rp>(</rp><rt>こんせき</rt><rp>)</rp></ruby>がノアの箱船に運び込まれたようだ．<br>
+  そして"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"又は"神を けがす名を持つ<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"がキリスト教と"地球外 知的･生命体"を<ruby><rb>融合</rb><rp>(</rp><rt>ゆうごう</rt><rp>)</rp></ruby>した海の名を持つ<ruby><rb>新</rb><rp>(</rp><rt>あたら</rt><rp>)</rp></ruby>しい<ruby><rb>宗派</rb><rp>(</rp><rt>しゅうは</rt><rp>)</rp></ruby>を<ruby><rb>創始</rb><rp>(</rp><rt>そうし</rt><rp>)</rp></ruby>し，その<ruby><rb>教祖</rb><rp>(</rp><rt>きょうそ</rt><rp>)</rp></ruby>として<ruby><rb>崇</rb><rp>(</rp><rt>あが</rt><rp>)</rp></ruby>められ<ruby><rb>君臨</rb><rp>(</rp><rt>くんりん</rt><rp>)</rp></ruby>する事に なるだろう．<br>
+  ※「海の名を持つ宗教」に<ruby><rb>関</rb><rp>(</rp><rt>かん</rt><rp>)</rp></ruby>してはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/10-96">
+    第10巻 96番
+  </a>
+  」に予言されている．<br>
+  ▼"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する「"オリーブの栄光"と呼ばれる ローマ･法王」(＝"神を けがす名を持つ<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")が<ruby><rb>偽</rb><rp>(</rp><rt>にせ</rt><rp>)</rp></ruby>メシア として メディア を利用して メジャー な活動を開始するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-28">
+    第1巻 28番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-58">
+    第1巻 58番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-18">
+    第3巻 18番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/3-65">
+    第3巻 65番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-90">
+    第3巻 90番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-3">
+    第9巻 3番
+  </a>
+  」に関連していると思われる．<br>
+  ※この"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する「"オリーブの栄光"と呼ばれる ローマ･法王」は新約聖書 "ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>"「
+  <a href="revela1.htm?A1301~1305#13-1">
+    第13章 第1～5節
+  </a>
+  」によって預言されている"神を けがす名を持つ<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"の事だと思われる．<br>
+  ◎"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する者達に関連する予言を次に<ruby><rb>記</rb><rp>(</rp><rt>しる</rt><rp>)</rp></ruby>す．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-45">
+    第1巻 45番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-55">
+    第1巻 55番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-64">
+    第1巻 64番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/3-26">
+    第3巻 26番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-44">
+    第9巻 44番
+  </a>
+  」などに関連していると思われる．<br>
+  ○"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"ヘンリー･C"(＝"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")は<ruby><rb>策略</rb><rp>(</rp><rt>さくりゃく</rt><rp>)</rp></ruby>を<ruby><rb>弄</rb><rp>(</rp><rt>ろう</rt><rp>)</rp></ruby>し，<ruby><rb>口先</rb><rp>(</rp><rt>くちさき</rt><rp>)</rp></ruby>だけで人々を<ruby><rb>欺</rb><rp>(</rp><rt>あざむ</rt><rp>)</rp></ruby>き最後に その<ruby><rb>本性</rb><rp>(</rp><rt>ほんしょう</rt><rp>)</rp></ruby>を あらわし全世界を支配するヒットラー のような独裁者に成るのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-28">
+    第1巻 28番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-58">
+    第1巻 58番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-80">
+    第1巻 80番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-45">
+    第2巻 45番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-70">
+    2巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-79">
+    第2巻 79番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-90">
+    第3巻 90番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-70">
+    第6巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-77">
+    第8巻 77番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-72">
+    第10巻 72番
+  </a>
+  」などに関連していると思われる．<br>
+  ※この"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"ヘンリー･C"は新約聖書 "ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>"「
+  <a href="revela1.htm?A1311~1318#13-11">
+    第13章 第11～18節
+  </a>
+  」によって預言されている"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"の事だと思われる．<br>
+  ○"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する日本の"<ruby><rb>偽</rb><rp>(</rp><rt>にせ</rt><rp>)</rp></ruby>メシア"に関連する予言を次に<ruby><rb>記</rb><rp>(</rp><rt>しる</rt><rp>)</rp></ruby>す．<br>
+  ※彼は「"オリーブの栄光"と呼ばれる ローマ･法王」(＝"神を けがす名を持つ<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")が メジャー な活動を開始する以前に ローマ の バチカン で火を使った<ruby><rb>奇跡</rb><rp>(</rp><rt>きせき</rt><rp>)</rp></ruby>を おこない， メディア を利用して <ruby><rb>偶像神</rb><rp>(</rp><rt>アイドル</rt><rp>)</rp></ruby>的な<ruby><rb>権威</rb><rp>(</rp><rt>けんい</rt><rp>)</rp></ruby>を<ruby><rb>獲得</rb><rp>(</rp><rt>かくとく</rt><rp>)</rp></ruby>し メジャー な活動を開始するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/3-18">
+    第3巻 18番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-35">
+    第3巻 35番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-86">
+    第4巻 86番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-3">
+    第9巻 3番
+  </a>
+  」などに関連していると思われる．<br>
+  ○"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する日本の"独裁者と成る者"に関連する予言を次に<ruby><rb>記</rb><rp>(</rp><rt>しる</rt><rp>)</rp></ruby>す．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-45">
+    第2巻 45番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-34">
+    第3巻 34番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-86">
+    第4巻 86番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-72">
+    第10巻 72番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼アラブ(又は イスラム教国)側の軍勢がトルコ 又は イスラエルの方へ侵攻するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-34">
+    2巻 34番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-97">
+    第3巻 97番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-25">
+    第5巻 25番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-27">
+    第5巻 27番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-58">
+    第8巻 58番
+  </a>
+  」などに関連していると思われる．<br>
+  ◎アラブ(又は イスラム教国)側の軍勢がトルコ 又は イスラエルの方へ侵攻する時，日本に経済の<ruby><rb>蝕</rb><rp>(</rp><rt>しょく</rt><rp>)</rp></ruby>が もたれされるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/3-34">
+    第3巻 34番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-29">
+    第4巻 29番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-30">
+    第4巻 30番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-58">
+    第6巻 58番
+  </a>
+  」などに関連していると思われる．<br>
+  ☆もし，アラブ(又は イスラム教国)側の軍勢がトルコ 又は イスラエルの方へ侵攻する事に なればアメリカはPKFのための<ruby><rb>戦費</rb><rp>(</rp><rt>せんぴ</rt><rp>)</rp></ruby>を<ruby><rb>稼</rb><rp>(</rp><rt>かせ</rt><rp>)</rp></ruby>ぐために<ruby><rb>為替</rb><rp>(</rp><rt>かわせ</rt><rp>)</rp></ruby>を<ruby><rb>操作</rb><rp>(</rp><rt>そうさ</rt><rp>)</rp></ruby>するだろう．<br>
+  これにより日本･経済の破局の<ruby><rb>序章</rb><rp>(</rp><rt>じょしょう</rt><rp>)</rp></ruby>が おとずれるだろう．<br>
+  ◎アラブ(又は イスラム教国)側の軍勢がイスラエルの方へ侵攻する事に なれば，アメリカの圧力と国連やマスメディアの<ruby><rb>扇動</rb><rp>(</rp><rt>せんどう</rt><rp>)</rp></ruby>によって日本も(国連･安全保障･常任理事国に成れば必ず)イスラエル救援のためにPKO部隊 又は PKF部隊を派兵されられる はめに なるのだと思われる．<br>
+  そして日本の部隊が戦闘に巻き込まれ，結果的に平和憲法を破るかたちに なるだろう．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/4-26">
+    第4巻 26番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-19">
+    第5巻 19番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-25">
+    第5巻 25番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-27">
+    第5巻 27番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-91">
+    第5巻 91番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/9-43">
+    第9巻 43番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-86">
+    第10巻 86番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼日本の"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"独裁者と成る者"が メディア を利用して メジャー な活動を開始するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-45">
+    第2巻 45番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-34">
+    第3巻 34番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-86">
+    第4巻 86番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼西ヨーロッパ連合軍の総司令官として ローマ から"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"ヘンリー･C"(＝"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")が メディア を利用して メジャー な活動を開始するのだと思われる．<br>
+  ◎この"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"ヘンリー･C"(＝"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")は<ruby><rb>策略</rb><rp>(</rp><rt>さくりゃく</rt><rp>)</rp></ruby>を<ruby><rb>弄</rb><rp>(</rp><rt>ろう</rt><rp>)</rp></ruby>し，<ruby><rb>口先</rb><rp>(</rp><rt>くちさき</rt><rp>)</rp></ruby>だけで人々を<ruby><rb>欺</rb><rp>(</rp><rt>あざむ</rt><rp>)</rp></ruby>き最後に その<ruby><rb>本性</rb><rp>(</rp><rt>ほんしょう</rt><rp>)</rp></ruby>を あらわし全世界を支配する ヒットラー のような独裁者に成るのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-70">
+    2巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-79">
+    第2巻 79番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-90">
+    第3巻 90番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-70">
+    第6巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-72">
+    第10巻 72番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼ヨーロッパに<ruby><rb>激</rb><rp>(</rp><rt>はげ</rt><rp>)</rp></ruby>しい「疫病と洪水」が<ruby><rb>襲</rb><rp>(</rp><rt>おそ</rt><rp>)</rp></ruby>うのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/9-82">
+    第9巻 82番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-6">
+    第10巻 6番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼おびただしい数のアブとバッタ(又はイナゴ)が発生し，それらは世界中に<ruby><rb>飛来</rb><rp>(</rp><rt>ひらい</rt><rp>)</rp></ruby>し，これらによって病原体が<ruby><rb>媒介</rb><rp>(</rp><rt>ばいかい</rt><rp>)</rp></ruby>され世界中に<ruby><rb>大悪疫</rb><rp>(</rp><rt>だいあくえき</rt><rp>)</rp></ruby>が<ruby><rb>蔓延</rb><rp>(</rp><rt>まんえん</rt><rp>)</rp></ruby>するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/4-48">
+    第4巻 48番
+  </a>
+  」などに関連していると思われる．<br>
+  ☆この"<ruby><rb>大悪疫</rb><rp>(</rp><rt>だいあくえき</rt><rp>)</rp></ruby>"とは"ウイルス･ハンター"によって もたらされる未知の病原体の事かも しれない．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/9-91">
+    第9巻 91番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼日本がイスラエル救援のために派兵した部隊が平和憲法を破った事を理由にしてアメリカが言いがかりを付け，日本･政府の<ruby><rb>総理</rb><rp>(</rp><rt>そうり</rt><rp>)</rp></ruby>･大臣と<ruby><rb>閣僚</rb><rp>(</rp><rt>かくりょう</rt><rp>)</rp></ruby>達？がアメリカに<ruby><rb>留置</rb><rp>(</rp><rt>りゅうち</rt><rp>)</rp></ruby>される事に なると思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/4-26">
+    第4巻 26番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-63">
+    第5巻 63番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-91">
+    第5巻 91番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-61">
+    第9巻 61番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-65">
+    第9巻 65番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼イスラエル救援のために軍備が手薄に なったヨーロッパに「｛ソ連･CIS 又は ロシア｝，｛アラブ 又は イスラム教国｝」の軍勢が侵攻し，この時 ｛ソ連･CIS 又は ロシア｝の軍勢は日本にも侵攻するのだと思われる．<br>
+  しかし，「｛ソ連･CIS 又は ロシア｝，｛アラブ 又は イスラム教国｝」の(北緯 又は 東経)｛40度～48度｝へ核･攻撃され，彼らの軍勢は<ruby><rb>撤退</rb><rp>(</rp><rt>てったい</rt><rp>)</rp></ruby>を<ruby><rb>余儀</rb><rp>(</rp><rt>よぎ</rt><rp>)</rp></ruby>なくされるだろう．<br>
+  △これは次の番号のノストラダムス "諸世紀"に関連していると思われる．<br>
+  ▽「
+  <a href="nstrdm1.htm#Propheties/1-24">
+    第1巻 24番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-32">
+    第1巻 32番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-33">
+    第1巻 33番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-45">
+    第1巻 45番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-55">
+    第1巻 55番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-18">
+    第2巻 18番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-19">
+    第2巻 19番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-25">
+    第2巻 25番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-35">
+    第2巻 35番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-70">
+    第2巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-91">
+    第2巻 91番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-97">
+    第2巻 97番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-99">
+    第2巻 99番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-88">
+    第3巻 88番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-89">
+    第3巻 89番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-90">
+    第3巻 90番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-95">
+    第3巻 95番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-22">
+    第4巻 22番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-33">
+    第4巻 33番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/4-58">
+    第4巻 58番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-35">
+    第5巻 35番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-44">
+    第5巻 44番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-54">
+    第5巻 54番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-55">
+    第5巻 55番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-68">
+    第5巻 68番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-85">
+    第5巻 85番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-91">
+    第5巻 91番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-98">
+    第5巻 98番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-58">
+    第6巻 58番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-58">
+    第8巻 58番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/9-82">
+    第9巻 82番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/10-70">
+    第10巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-87">
+    第10巻 87番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-88">
+    第10巻 88番
+  </a>
+  」．<br>
+  ☆この日本への｛ソ連･CIS 又は ロシア｝の<ruby><rb>奇襲･攻撃</rb><rp>(</rp><rt>きしゅう･こうげき</rt><rp>)</rp></ruby>によって "神の計画"が スタート し，それは<ruby><rb>回避</rb><rp>(</rp><rt>かいひ</rt><rp>)</rp></ruby> 不可能であり もう<ruby><rb>後戻</rb><rp>(</rp><rt>あともど</rt><rp>)</rp></ruby>りする事は できなく なるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/5-35">
+    第5巻 35番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼人間の顔を持つ<ruby><rb>甲殻類</rb><rp>(</rp><rt>こうかくるい</rt><rp>)</rp></ruby>のような<ruby><rb>水生･生物</rb><rp>(</rp><rt>すいせい･せいぶつ</rt><rp>)</rp></ruby>が<ruby><rb>捕</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>らえられるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/3-21">
+    第3巻 21番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-85">
+    第5巻 85番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼日本に欧米･諸国の<ruby><rb>負債</rb><rp>(</rp><rt>ふさい</rt><rp>)</rp></ruby>が<ruby><rb>負</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>わされ，その結果 日本の<ruby><rb>貨幣</rb><rp>(</rp><rt>かへい</rt><rp>)</rp></ruby>･経済が<ruby><rb>崩壊</rb><rp>(</rp><rt>ほうかい</rt><rp>)</rp></ruby>し，<ruby><rb>￥</rb><rp>(</rp><rt>エン</rt><rp>)</rp></ruby>が 紙クズ<ruby><rb>同然</rb><rp>(</rp><rt>どうぜん</rt><rp>)</rp></ruby>に なるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/2-38">
+    第2巻 38番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する日本の「"独裁者と成る者"と"<ruby><rb>偽</rb><rp>(</rp><rt>にせ</rt><rp>)</rp></ruby>メシア"」の仮面が はがされ その<ruby><rb>本性</rb><rp>(</rp><rt>ほんしょう</rt><rp>)</rp></ruby>を現わすのだと思われる．<br>
+  ◎日本がイスラエル救援のために派兵した部隊が平和憲法を破った事を理由にして｛国連 又は アメリカ｝が言いがかりを付け，｛西側･陣営 又は アメリカ｝の大軍勢が日本に侵攻するのだと思われる．その｛西側･陣営 又は アメリカ｝の大軍勢は"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する者達に<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>い日本を支配するために<ruby><rb>協力</rb><rp>(</rp><rt>きょうりょく</rt><rp>)</rp></ruby>するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-31">
+    第1巻 31番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-64">
+    第1巻 64番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-22">
+    第2巻 22番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-26">
+    第4巻 26番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-63">
+    第5巻 63番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/5-81">
+    第5巻 81番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/6-19">
+    第6巻 19番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/10-65">
+    第10巻 65番
+  </a>
+  」などに関連していると思われる．<br>
+  △これは下記の予言などとも関連していると思われる．<br>
+  ▽<ruby><rb>日月神示</rb><rp>(</rp><rt>ひつきしんじ</rt><rp>)</rp></ruby>：<br>
+  『＜富士＞(東京)を目ざして<ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>め<ruby><rb>寄</rb><rp>(</rp><rt>よ</rt><rp>)</rp></ruby>する、大船 小船 ＜<ruby><rb>天</rb><rp>(</rp><rt>あめ</rt><rp>)</rp></ruby>の船＞(航空機)、<br>
+  赤鬼 青鬼 黒鬼や、＜<ruby><rb>大蛇</rb><rp>(</rp><rt>オロチ</rt><rp>)</rp></ruby>＞(ロシアの事を霊的に あらわした表現) ＜<ruby><rb>悪狐</rb><rp>(</rp><rt>あくこ</rt><rp>)</rp></ruby>＞(<ruby><rb>金毛･九尾･白面</rb><rp>(</rp><rt>きんもう･きゅうび･しらおもて</rt><rp>)</rp></ruby>のキツネ→西側陣営の事を霊的に あらわした表現)を<ruby><rb>先陣</rb><rp>(</rp><rt>せんじん</rt><rp>)</rp></ruby>に、<ruby><rb>寄</rb><rp>(</rp><rt>よ</rt><rp>)</rp></ruby>せ来る敵は<ruby><rb>空</rb><rp>(</rp><rt>そら</rt><rp>)</rp></ruby>おおひ、海を<ruby><rb>埋</rb><rp>(</rp><rt>うず</rt><rp>)</rp></ruby>めて<ruby><rb>忽</rb><rp>(</rp><rt>たちま</rt><rp>)</rp></ruby>ちに、<br>
+  <ruby><rb>天日</rb><rp>(</rp><rt>てんじつ</rt><rp>)</rp></ruby> 暗くなりにけり、<ruby><rb>折</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>りしも あれや＜日の国＞(日本)に、＜一つの光り＞(ニセ救世主)現われぬ、これこそ<ruby><rb>救</rb><rp>(</rp><rt>すく</rt><rp>)</rp></ruby>ひの<ruby><rb>大神</rb><rp>(</rp><rt>おおかみ</rt><rp>)</rp></ruby>と、<ruby><rb>救</rb><rp>(</rp><rt>すく</rt><rp>)</rp></ruby>ひ<ruby><rb>求</rb><rp>(</rp><rt>もと</rt><rp>)</rp></ruby>むる人々の、目に<ruby><rb>映</rb><rp>(</rp><rt>うつ</rt><rp>)</rp></ruby>れるは<ruby><rb>何事</rb><rp>(</rp><rt>なにごと</rt><rp>)</rp></ruby>ぞ、<br>
+  <ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>め来る敵の大将の、大き光りと<ruby><rb>呼応</rb><rp>(</rp><rt>こおう</rt><rp>)</rp></ruby>して、一度にドッと(火の)雨 <ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>らす』<br>
+  ▼核の冬か，<ruby><rb>気象</rb><rp>(</rp><rt>きしょう</rt><rp>)</rp></ruby>の<ruby><rb>異変</rb><rp>(</rp><rt>いへん</rt><rp>)</rp></ruby>か，なにかの自然現象か？，その<ruby><rb>原因</rb><rp>(</rp><rt>げんいん</rt><rp>)</rp></ruby>は<ruby><rb>判</rb><rp>(</rp><rt>わか</rt><rp>)</rp></ruby>らないが太陽の<ruby><rb>輝</rb><rp>(</rp><rt>かがや</rt><rp>)</rp></ruby>きが暗くなるのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-84">
+    第1巻 84番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/4-48">
+    第4巻 48番
+  </a>
+  」，新約聖書 マタイによる福音書「
+  <a href="bible0.htm#Gospel/Mti/24-29">
+    第24章 第29～31節
+  </a>
+  」，新約聖書 ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>「
+  <a href="revela1.htm?A0612~0614#6-12">
+    第6章 第12～14節
+  </a>
+  」などに関連していると思われる．<br>
+  ▼大洪水からの生存者のいる都市に小天体が<ruby><rb>激突</rb><rp>(</rp><rt>げきとつ</rt><rp>)</rp></ruby>する可能性が有ると思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-81">
+    第2巻 81番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼<ruby><rb>惑星</rb><rp>(</rp><rt>わくせい</rt><rp>)</rp></ruby>サイズの天体コード･ネーム"ケツァルコアトル"のニアミスによって地球がポール･シフトを<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こす可能性があると思われる．<br>
+  △これは下記の2つの予言と関連していると思われる．<br>
+  ▽ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『…戦争と自然は手を<ruby><rb>結</rb><rp>(</rp><rt>むす</rt><rp>)</rp></ruby>んで，平和に<ruby><rb>敵対</rb><rp>(</rp><rt>てきたい</rt><rp>)</rp></ruby>し，その(戦争による兵器と そして自然の災害とによる)天からのホロコーストによって血を岩に雨と<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>らし，我らの顔が切り<ruby><rb>裂</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>かれる．<br>
+  <ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>が<ruby><rb>降</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>りる，大いなる<ruby><rb>蝕</rb><rp>(</rp><rt>しょく</rt><rp>)</rp></ruby>，北と南が<ruby><rb>替</rb><rp>(</rp><rt>か</rt><rp>)</rp></ruby>わるだろう』
+  <a href="nstrdm1.htm#Queen/PoleShift">
+    参照
+  </a>
+  ．<br>
+  ▽エドガー･ケイシー：<br>
+  『＜<ruby><rb>両極</rb><rp>(</rp><rt>りょうきょく</rt><rp>)</rp></ruby>の移動＞(ポール･シフト)が<ruby><rb>生</rb><rp>(</rp><rt>しょう</rt><rp>)</rp></ruby>じ，その結果 <ruby><rb>寒帯</rb><rp>(</rp><rt>かんたい</rt><rp>)</rp></ruby>･<ruby><rb>亜熱帯</rb><rp>(</rp><rt>あねったい</rt><rp>)</rp></ruby>であった地域が，<ruby><rb>熱帯</rb><rp>(</rp><rt>ねったい</rt><rp>)</rp></ruby>化し<ruby><rb>始</rb><rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>め，コケ類やシダ類が<ruby><rb>生育</rb><rp>(</rp><rt>せいいく</rt><rp>)</rp></ruby>するだろう』
+  <a href="nstrdm1.htm#EdgarCayce">
+    参照
+  </a>
+  ．<br>
+  ▼小天体の<ruby><rb>激突</rb><rp>(</rp><rt>げきとつ</rt><rp>)</rp></ruby>によって(<ruby><rb>南極</rb><rp>(</rp><rt>なんきょく</rt><rp>)</rp></ruby> 又は <ruby><rb>北極</rb><rp>(</rp><rt>ほっきょく</rt><rp>)</rp></ruby>の)<ruby><rb>極地</rb><rp>(</rp><rt>きょくち</rt><rp>)</rp></ruby>の<ruby><rb>穴</rb><rp>(</rp><rt>あな</rt><rp>)</rp></ruby>が<ruby><rb>開</rb><rp>(</rp><rt>ひら</rt><rp>)</rp></ruby>き，その<ruby><rb>穴</rb><rp>(</rp><rt>あな</rt><rp>)</rp></ruby>からサソリ のような<ruby><rb>力</rb><rp>(</rp><rt>ちから</rt><rp>)</rp></ruby>を持つ イナゴのような生物が<ruby><rb>出現</rb><rp>(</rp><rt>しゅつげん</rt><rp>)</rp></ruby>し，人間を殺さずに5ヵ月の<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby> 苦しめるのだと思われる．<br>
+  △これは新約聖書"ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>"「
+  <a href="revela1.htm?A0901~0908#9-1">
+    第9章 第1～8節
+  </a>
+  」などに関連していると思われる．<br>
+  ☆この『小天体』とはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-81">
+    第2巻 81番
+  </a>
+  」に予言されている"ファエトン"の事だろうか？．<br>
+  ☆この『サソリ のような<ruby><rb>力</rb><rp>(</rp><rt>ちから</rt><rp>)</rp></ruby>』とは木星への"シューメーカー･レビー第9<ruby><rb>彗星</rb><rp>(</rp><rt>すいせい</rt><rp>)</rp></ruby>"の<ruby><rb>激突</rb><rp>(</rp><rt>げきとつ</rt><rp>)</rp></ruby>によって地球に<ruby><rb>襲来</rb><rp>(</rp><rt>しゅうらい</rt><rp>)</rp></ruby>する宇宙･病原体の事かも しれない．<br>
+  △これは「木星へ<ruby><rb>激突</rb><rp>(</rp><rt>げきとつ</rt><rp>)</rp></ruby>した"SL9"によって，天から地に もたらされる"<ruby><rb>恐怖</rb><rp>(</rp><rt>きょうふ</rt><rp>)</rp></ruby>"のシナリオ」
+  <a href="nstrdm1.htm#SL9">
+    参照
+  </a>
+  ．<br>
+  ▼中国(又は 中国の同盟国･連合)の軍勢がヨーロッパに<ruby><rb>侵攻</rb><rp>(</rp><rt>しんこう</rt><rp>)</rp></ruby>する．<br>
+  △これはノストラダムス"諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-29">
+    第1巻 29番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-30">
+    第1巻 30番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-31">
+    第1巻 31番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-45">
+    第1巻 45番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-77">
+    第1巻 77番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-29">
+    第2巻 29番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/2-33">
+    第2巻 33番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-41">
+    第2巻 41番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-59">
+    第2巻 59番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/4-37">
+    第4巻 37番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/5-20">
+    第5巻 20番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/5-61">
+    第5巻 61番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/6-80">
+    第6巻 80番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/7-30">
+    第7巻 30番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/9-42">
+    第9巻 42番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"ヘンリー･C"(＝"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>")は<ruby><rb>策略</rb><rp>(</rp><rt>さくりゃく</rt><rp>)</rp></ruby>を<ruby><rb>弄</rb><rp>(</rp><rt>ろう</rt><rp>)</rp></ruby>し，<ruby><rb>口先</rb><rp>(</rp><rt>くちさき</rt><rp>)</rp></ruby>だけで人々を<ruby><rb>欺</rb><rp>(</rp><rt>あざむ</rt><rp>)</rp></ruby>，中国(又は 中国の同盟国･連合)の軍勢を<ruby><rb>撃退</rb><rp>(</rp><rt>げきたい</rt><rp>)</rp></ruby>すると言う<ruby><rb>口実</rb><rp>(</rp><rt>こうじつ</rt><rp>)</rp></ruby>で世界を<ruby><rb>統治</rb><rp>(</rp><rt>とうち</rt><rp>)</rp></ruby>する<ruby><rb>皇帝</rb><rp>(</rp><rt>エンペラー</rt><rp>)</rp></ruby>に<ruby><rb>選出</rb><rp>(</rp><rt>せんしゅつ</rt><rp>)</rp></ruby>される．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-28">
+    第1巻 28番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/1-58">
+    第1巻 58番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/1-80">
+    第1巻 80番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-45">
+    第2巻 45番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-70">
+    2巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/6-70">
+    第6巻 70番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/8-77">
+    第8巻 77番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-72">
+    第10巻 72番
+  </a>
+  」などに関連していると思われる．<br>
+  △これは下記の予言と関連していると思われる．<br>
+  ▽ノストラダムス「白い箱の女王」"諸世紀"未収録･予言詩「第12巻 ナンバー不明」：<br>
+  『＜アンチ･キリスト＞("大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する"666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>"(＝ "ヘンリー･C"))は<ruby><rb>歓喜</rb><rp>(</rp><rt>かんき</rt><rp>)</rp></ruby>し，<ruby><rb>群衆</rb><rp>(</rp><rt>ぐんしゅう</rt><rp>)</rp></ruby>はクセルクセスを<ruby><rb>求</rb><rp>(</rp><rt>もと</rt><rp>)</rp></ruby>めて<ruby><rb>叫</rb><rp>(</rp><rt>さけ</rt><rp>)</rp></ruby>び，20足す7年の あいだ，(その＜アンチ･キリスト＞の)大いなる帝国が統治する．<br>
+  飢餓，疫病，流血，涙，戦争，混乱する世界で，<ruby><rb>万人</rb><rp>(</rp><rt>ばんにん</rt><rp>)</rp></ruby>が<ruby><rb>制圧</rb><rp>(</rp><rt>せいあつ</rt><rp>)</rp></ruby>を受ける』
+  <a href="nstrdm2.htm#Queen/AntiChrist">
+    参照
+  </a>
+  ．<br>
+  ▼中国(又は 中国の同盟国･連合)の軍勢がイスラエルに<ruby><rb>侵攻</rb><rp>(</rp><rt>しんこう</rt><rp>)</rp></ruby>する．<br>
+  △これはノストラダムス"諸世紀"「
+  <a href="nstrdm1.htm#Propheties/3-6">
+    第3巻 6番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼中国とヨーロッパが核戦争を おこない，中国がアメリカに核兵器などで攻撃され，中国が敗戦する．<br>
+  △これはノストラダムス"諸世紀"「
+  <a href="nstrdm1.htm#Propheties/2-3">
+    第2巻 3番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/2-47">
+    第2巻 47番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/2-48">
+    第2巻 48番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-59">
+    第2巻 59番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/2-61">
+    第2巻 61番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-70">
+    第2巻 70番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/2-78">
+    第2巻 78番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/5-62">
+    第5巻 62番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/8-6">
+    第8巻 6番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼ "光りの存在の組織"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する2人の預言者が ハルマゲドン(地名)に<ruby><rb>集結</rb><rp>(</rp><rt>しゅうけつ</rt><rp>)</rp></ruby>した国連･多国籍軍に大いなる奇跡の<ruby><rb>技</rb><rp>(</rp><rt>わざ</rt><rp>)</rp></ruby>を もって<ruby><rb>挑</rb><rp>(</rp><rt>いど</rt><rp>)</rp></ruby>み，全人類に "光りの存在"に ついて最後の<ruby><rb>証</rb><rp>(</rp><rt>あかし</rt><rp>)</rp></ruby>を するのだと思われる．<br>
+  △この2人の預言者は，新約聖書 "ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>"「
+  <a href="revela1.htm?A1103~1112#11-3">
+    第11章 第3～12節
+  </a>
+  」に預言されている2人の<ruby><rb>証人</rb><rp>(</rp><rt>しょうにん</rt><rp>)</rp></ruby>の事だと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/3-61">
+    第3巻 61番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼ホピ族に<ruby><rb>伝承</rb><rp>(</rp><rt>でんしょう</rt><rp>)</rp></ruby>される "メーハー"の預言には次のように<ruby><rb>記</rb><rp>(</rp><rt>しる</rt><rp>)</rp></ruby>されている．<br>
+  『白人である パハナ が混乱を起こし，それを浄化するために(<ruby><rb>卍</rb><rp>(</rp><rt>まんじ</rt><rp>)</rp></ruby>が変形した シンボル で現わされる)「赤い "メーハー"(太陽の シンボル)」が世界を滅ぼす．<br>
+  その "赤い光り"(メーハー)は<ruby><rb>四方</rb><rp>(</rp><rt>しほう</rt><rp>)</rp></ruby>を動き回る．<br>
+  それ(メーハー)が天に現われた時，今の世界が赤く燃え上がる．』<br>
+  サイエンス･エンターテイナー の "飛鳥昭雄"さんは，この "メーハー"を(エイリアン によって建造された)「(天空の城 "ラピュタ"の モデル となった)"エノク"の街」＝「聖書に預言されている，天から降りてくる "新エルサレム"」＝「ホピ族に伝承されている "大地の母"」だと推定している．<br>
+  それは長さ，幅，高さが ともに1万2千スタディオン(約2220km)の大きさで日本列島(北海道から沖縄まで)を<ruby><rb>呑</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>み込むほどの巨大･階段ピラミッド構造体だと思われる．<br>
+  ▼ "大いなる光りの存在"(＝霊的･高次元の絶対的･エネルギー)によって<ruby><rb>焼</rb><rp>(</rp><rt>や</rt><rp>)</rp></ruby>かれ，その瞬間 地球は溶鉱炉の中のような状態になるのだと思われる．<br>
+  △これは旧約聖書
+  <a href="revela1.htm?B0000~#SolEnergy">
+    "ゼカリヤ"
+  </a>
+  「13章 8～9節」などに関連していると思われる．<br>
+  <br>
+  ■《<ruby><rb>重要</rb><rp>(</rp><rt>じゅうよう</rt><rp>)</rp></ruby>･イベント》<br>
+  ＊これは『近未来･トレンド』のような "<ruby><rb>流</rb><rp>(</rp><rt>なが</rt><rp>)</rp></ruby>れ"(トレンド)では なく，『近未来･トレンド』に<ruby><rb>収</rb><rp>(</rp><rt>おさ</rt><rp>)</rp></ruby>められなかった，<ruby><rb>重要</rb><rp>(</rp><rt>じゅうよう</rt><rp>)</rp></ruby>と思われる "<ruby><rb>事象</rb><rp>(</rp><rt>じしょう</rt><rp>)</rp></ruby>"(イベント)的な ものです．<br>
+  ▼日本に "大いなるメシアの法"が<ruby><rb>誕生</rb><rp>(</rp><rt>たんじょう</rt><rp>)</rp></ruby>し，それを<ruby><rb>保</rb><rp>(</rp><rt>たも</rt><rp>)</rp></ruby>つのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/5-53">
+    第5巻 53番
+  </a>
+  」と関連していると思われる．<br>
+  ▼日本が<ruby><rb>沈降</rb><rp>(</rp><rt>ちんこう</rt><rp>)</rp></ruby>を始めるのだと思われる．<br>
+  △これは下記の予言と関連していると思われる．<br>
+  ▽エドガー･ケイシー：<br>
+  『地上は あちこちで<ruby><rb>破</rb><rp>(</rp><rt>やぶ</rt><rp>)</rp></ruby>れるだろう．初期にはアメリカ西部の海岸の物理的･変化が<ruby><rb>認</rb><rp>(</rp><rt>みと</rt><rp>)</rp></ruby>められるだろう．グリーンランド北部には海面が<ruby><rb>開</rb><rp>(</rp><rt>ひら</rt><rp>)</rp></ruby>ける．<br>
+  カリブ海の外に新しい陸地が見られ<ruby><rb>乾</rb><rp>(</rp><rt>かわ</rt><rp>)</rp></ruby>いた土地が出現するだろう…南アメリカは頭から<ruby><rb>尻尾</rb><rp>(</rp><rt>しっぽ</rt><rp>)</rp></ruby>の<ruby><rb>先</rb><rp>(</rp><rt>さき</rt><rp>)</rp></ruby>まで<ruby><rb>揺</rb><rp>(</rp><rt>ゆ</rt><rp>)</rp></ruby>さぶられ，フェゴ諸島 沖の<ruby><rb>南氷洋</rb><rp>(</rp><rt>なんぴょうよう</rt><rp>)</rp></ruby>に陸地と水の<ruby><rb>逆巻</rb><rp>(</rp><rt>さかま</rt><rp>)</rp></ruby>く<ruby><rb>海峡</rb><rp>(</rp><rt>かいきょう</rt><rp>)</rp></ruby>が出現するだろう．<br>
+  物理的な変化について ふたたび<ruby><rb>語</rb><rp>(</rp><rt>かた</rt><rp>)</rp></ruby>ろう．地上は，アメリカ西部で<ruby><rb>裂</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>けるだろう．日本の<ruby><rb>大半</rb><rp>(</rp><rt>たいはん</rt><rp>)</rp></ruby>が<ruby><rb>沈降</rb><rp>(</rp><rt>ちんこう</rt><rp>)</rp></ruby>を始めるだろう．ヨーロッパ北部は<ruby><rb>瞬</rb><rp>(</rp><rt>またた</rt><rp>)</rp></ruby>く間に<ruby><rb>様相</rb><rp>(</rp><rt>ようそう</rt><rp>)</rp></ruby>が変化するだろう．アメリカ東部の<ruby><rb>近海</rb><rp>(</rp><rt>きんかい</rt><rp>)</rp></ruby>に陸地が現われるだろう．<br>
+  北極圏･南極圏に大変動が<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こり，これにより<ruby><rb>熱帯</rb><rp>(</rp><rt>ねったい</rt><rp>)</rp></ruby>地域での火山の<ruby><rb>噴火</rb><rp>(</rp><rt>ふんか</rt><rp>)</rp></ruby>を<ruby><rb>助長</rb><rp>(</rp><rt>じょちょう</rt><rp>)</rp></ruby>するだろう』
+  <a href="nstrdm1.htm#EdgarCayce">
+    参照
+  </a>
+  ．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/8-16">
+    第8巻 16番
+  </a>
+  」などとも関連していると思われる．<br>
+  ▼『＜恐怖の大王＞(｛核兵器，プラズマ兵器｝などのような<ruby><rb>大量･殺戮</rb><rp>(</rp><rt>たいりょう･さつりく</rt><rp>)</rp></ruby>･兵器による攻撃，放射能･汚染，小惑星(隕石)又は<ruby><rb>彗星</rb><rp>(</rp><rt>すいせい</rt><rp>)</rp></ruby>などの小天体の<ruby><rb>激突</rb><rp>(</rp><rt>げきとつ</rt><rp>)</rp></ruby>，<ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>や，自然･災害など)が天より おとずれる』が オープニング して来るのでは ないかと思われます．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/10-72">
+    第10巻 72番
+  </a>
+  」などに関連していると思われる．<br>
+  ▼日本の"大いなる<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>の存在"に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する者達は，彼の<ruby><rb>像</rb><rp>(</rp><rt>ぞう</rt><rp>)</rp></ruby>を<ruby><rb>造</rb><rp>(</rp><rt>つく</rt><rp>)</rp></ruby>るように人々に命じ，その<ruby><rb>像</rb><rp>(</rp><rt>ぞう</rt><rp>)</rp></ruby>を<ruby><rb>拝</rb><rp>(</rp><rt>おが</rt><rp>)</rp></ruby>まない者を みな殺させ，また彼らは「666の<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>を持っている者以外は，<ruby><rb>誰</rb><rp>(</rp><rt>だれ</rt><rp>)</rp></ruby>も買うことも，売ることも できないようにせよ」と命じるのだと思われる．<br>
+  ※この「666の<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>」とは バー･コードが<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>されたカードのような物かもしれない，バー･コードは 「666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の名の数字」を参考に造られたもののようだ．<br>
+  △これは新約聖書 ヨハネの<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>「
+  <a href="revela1.htm?A1311~1318#13-11">
+    第13章 第11～18節
+  </a>
+  」と関連していると思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm2.htm#Propheties/3-26">
+    第3巻 26番
+  </a>
+  」などとも関連していると思われる．<br>
+  ▼｛西側･陣営 又は アメリカ｝の大軍勢に日本が攻撃された後(約4ヵ月～10ヵ月 後？)，日本と最終決戦を するために西側･陣営の多国籍軍が日本に<ruby><rb>侵攻</rb><rp>(</rp><rt>しんこう</rt><rp>)</rp></ruby>するのだと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/5-81">
+    第5巻 81番
+  </a>
+  」と関連していると思われる．<br>
+  △これは下記の予言などとも関連していると思われる．<br>
+  ▽<ruby><rb>日月神示</rb><rp>(</rp><rt>ひつきしんじ</rt><rp>)</rp></ruby>：<br>
+  『天も地も 一つに まぜし<ruby><rb>大嵐</rb><rp>(</rp><rt>おおあらし</rt><rp>)</rp></ruby>、<ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>め来る敵は＜<ruby><rb>駿河灘</rb><rp>(</rp><rt>するがなだ</rt><rp>)</rp></ruby>＞、富士を<ruby><rb>境</rb><rp>(</rp><rt>さかい</rt><rp>)</rp></ruby>に<ruby><rb>真二</rb><rp>(</rp><rt>まっぷた</rt><rp>)</rp></ruby>つ、<ruby><rb>先</rb><rp>(</rp><rt>ま</rt><rp>)</rp></ruby>づ切り取りて<ruby><rb>残</rb><rp>(</rp><rt>のこ</rt><rp>)</rp></ruby>るもの、＜七つに<ruby><rb>裂</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>かん＞(八つ<ruby><rb>裂</rb><rp>(</rp><rt>ざ</rt><rp>)</rp></ruby>きにする)仕組なり』<br>
+  ※この"<ruby><rb>駿河灘</rb><rp>(</rp><rt>するがなだ</rt><rp>)</rp></ruby>"とは<ruby><rb>駿河</rb><rp>(</rp><rt>するが</rt><rp>)</rp></ruby>･トラフの事だと思われる．<br>
+  つまり これは <ruby><rb>駿河</rb><rp>(</rp><rt>するが</rt><rp>)</rp></ruby>･トラフ 方面から西側･陣営の多国籍軍の艦隊が<ruby><rb>侵攻</rb><rp>(</rp><rt>しんこう</rt><rp>)</rp></ruby>し日本に上陸するのだと思われる．<br>
+  ▼地球外･知的･生命体が我々の世界を<ruby><rb>支配</rb><rp>(</rp><rt>しはい</rt><rp>)</rp></ruby>するのかも しれない．<br>
+  △ラヴクラフト自身が自分の<ruby><rb>著作</rb><rp>(</rp><rt>ちょさく</rt><rp>)</rp></ruby>の中で公表し "ネクロノミコン"の一節：<br>
+  『人間こそ<ruby><rb>最古</rb><rp>(</rp><rt>さいこ</rt><rp>)</rp></ruby> あるいは最後の<ruby><rb>支配者</rb><rp>(</rp><rt>しはいしゃ</rt><rp>)</rp></ruby>なりと思うべからず．<br>
+  「旧･支配者」が かつて存在し，いま存在し，将来も存在すればなり．<br>
+  人が いま支配せし所は かつて「旧･支配者」の支配せし所なれば，「旧･支配者」は ほどなく人の いま支配せる所を<ruby><rb>再</rb><rp>(</rp><rt>ふたた</rt><rp>)</rp></ruby>び支配いたさん』<br>
+  ☆人類が<ruby><rb>誕生</rb><rp>(</rp><rt>たんじょう</rt><rp>)</rp></ruby>する以前からの「旧･支配者」とは地球外･知的･生命体の事だろうか？．<br>
+  つまり彼ら(地球外･知的･生命体)が ふたたび地球に すがたを現わし，我々の世界を<ruby><rb>支配</rb><rp>(</rp><rt>しはい</rt><rp>)</rp></ruby>すると予言されているのかも しれない．<br>
+  ▼救世主が｛誕生 又は 出現｝するのだと思われる．<br>
+  ※救世主が｛誕生 又は 出現｝した場合には聖書に書かれている<ruby><rb>徴</rb><rp>(</rp><rt>しるし</rt><rp>)</rp></ruby>が<ruby><rb>顕</rb><rp>(</rp><rt>あら</rt><rp>)</rp></ruby>われるのでは ないかと思われる．<br>
+  △これはノストラダムス "諸世紀"「
+  <a href="nstrdm1.htm#Propheties/1-16">
+    第1巻 16番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/2-41">
+    第2巻 41番
+  </a>
+  ，
+  <a href="nstrdm2.htm#Propheties/3-91">
+    第3巻 91番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/3-97">
+    第3巻 97番
+  </a>
+  ，
+  <a href="nstrdm1.htm#Propheties/10-75">
+    第10巻 75番
+  </a>
+  」と関連していると思われる．<br>
+  <br>
+  <a name="Remark"></a>
+  ■《備考》<br>
+  <br>
+  ●《<ruby><rb>空中･携挙</rb><rp>(</rp><rt>くうちゅう･けいきょ</rt><rp>)</rp></ruby>》<br>
+  ◇キリスト教には "<ruby><rb>空中･携挙</rb><rp>(</rp><rt>くうちゅう･けいきょ</rt><rp>)</rp></ruby>"と言う<ruby><rb>概念</rb><rp>(</rp><rt>がいねん</rt><rp>)</rp></ruby>が あり，神の<ruby><rb>審判</rb><rp>(</rp><rt>しんぱん</rt><rp>)</rp></ruby>による カタストロフィから キリスト教徒だけは天に引き<ruby><rb>上</rb><rp>(</rp><rt>あ</rt><rp>)</rp></ruby>げられて<ruby><rb>救</rb><rp>(</rp><rt>すく</rt><rp>)</rp></ruby>われると考えられている．<br>
+  ◇又 日本の<ruby><rb>神典類</rb><rp>(</rp><rt>しんてんるい</rt><rp>)</rp></ruby>には＜<ruby><rb>天浮船</rb><rp>(</rp><rt>アマノウキフネ</rt><rp>)</rp></ruby>＞(＝UFO？)に<ruby><rb>乗</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>って地球･規模の カタストロフィから<ruby><rb>逃</rb><rp>(</rp><rt>のが</rt><rp>)</rp></ruby>れたと言う<ruby><rb>記述</rb><rp>(</rp><rt>きじゅつ</rt><rp>)</rp></ruby>が ある．<br>
+  <ruby><rb>例</rb><rp>(</rp><rt>たと</rt><rp>)</rp></ruby>えば<ruby><rb>天御中主天皇</rb><rp>(</rp><rt>アメノミナカヌシスメラミコト</rt><rp>)</rp></ruby>の<ruby><rb>治世</rb><rp>(</rp><rt>ちせい</rt><rp>)</rp></ruby>に『地球 全てに大変動 <ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こりて，世界中 <ruby><rb>泥</rb><rp>(</rp><rt>どろ</rt><rp>)</rp></ruby>の海となり，<ruby><rb>万国･万物</rb><rp>(</rp><rt>ばんこく･ばんぶつ</rt><rp>)</rp></ruby> <ruby><rb>全滅</rb><rp>(</rp><rt>ぜんめつ</rt><rp>)</rp></ruby>し，木に<ruby><rb>餅</rb><rp>(</rp><rt>もち</rt><rp>)</rp></ruby>がなり，太平洋の中の2大陸「ヒアケ，ヒガシ」「ヒタツ，ヒイタ」一夜にして<ruby><rb>陥没</rb><rp>(</rp><rt>かんぼつ</rt><rp>)</rp></ruby>す』と言うような地球･規模の カタストロフィが<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こったと<ruby><rb>記述</rb><rp>(</rp><rt>きじゅつ</rt><rp>)</rp></ruby>されており．<br>
+  △そして この時『天皇は皇族 数百名を<ruby><rb>率</rb><rp>(</rp><rt>ひき</rt><rp>)</rp></ruby>いて＜<ruby><rb>天浮船</rb><rp>(</rp><rt>アマノウキフネ</rt><rp>)</rp></ruby>＞(＝UFO？)に<ruby><rb>乗</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>り，＜<ruby><rb>天日球</rb><rp>(</rp><rt>アマツヒダマ</rt><rp>)</rp></ruby>の国＞(月 又は 太陽か？)に<ruby><rb>登</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>られ<ruby><rb>大難</rb><rp>(</rp><rt>だいなん</rt><rp>)</rp></ruby>から<ruby><rb>逃</rb><rp>(</rp><rt>のが</rt><rp>)</rp></ruby>れ<ruby><rb>給</rb><rp>(</rp><rt>たま</rt><rp>)</rp></ruby>う』と言う<ruby><rb>記述</rb><rp>(</rp><rt>きじゅつ</rt><rp>)</rp></ruby>が ある．<br>
+  ☆上記の "木に<ruby><rb>餅</rb><rp>(</rp><rt>もち</rt><rp>)</rp></ruby>がなり"とは なにかの植物の<ruby><rb>異変</rb><rp>(</rp><rt>いへん</rt><rp>)</rp></ruby>だと思われる．<br>
+  ◇このような「 "<ruby><rb>空中･携挙</rb><rp>(</rp><rt>くうちゅう･けいきょ</rt><rp>)</rp></ruby>"やUFO」によって地球･規模の カタストロフィから<ruby><rb>逃</rb><rp>(</rp><rt>のが</rt><rp>)</rp></ruby>れると言うと まるで<ruby><rb>寓話</rb><rp>(</rp><rt>ぐうわ</rt><rp>)</rp></ruby>のように<ruby><rb>聞</rb><rp>(</rp><rt>き</rt><rp>)</rp></ruby>こえるかも しれないが，「 "エイリアン"や "光りの存在の組織"」によって"<ruby><rb>空中･携挙</rb><rp>(</rp><rt>くうちゅう･けいきょ</rt><rp>)</rp></ruby>"される可能性が あると思われる．<br>
+
+  <!-- Begin Eeent39 // -->
+
+  ☆近い将来， "光りの存在の組織"から "月のような存在"と呼ばれる<ruby><rb>人物</rb><rp>(</rp><rt>じんぶつ</rt><rp>)</rp></ruby>が やって来って，我々に対して "ある場所に集まれ"と言うメッセージを伝える事に なるでしょう．<br>
+  そのメッセージに<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>って "光りの存在の組織"と ともに逃げれば救われるでしょう，しかし その時に彼らのメッセージに<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>わなければ，"光りの存在の組織"は 2度と救いの手を差し<ruby><rb>伸</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>べる事は ありません．<br>
+  又，(超古代の地球に現代の人類･文明を はるかに超えた文明を持ち，そして この地上から別の場所に<ruby><rb>移住</rb><rp>(</rp><rt>いじゅう</rt><rp>)</rp></ruby>し現在も その文明を受け<ruby><rb>継</rb><rp>(</rp><rt>つ</rt><rp>)</rp></ruby>いでいる人々)通称 "エイリアン"と呼ばれる人々が この "光りの存在の組織"を バックアップ していると思われます．<br>
+  つまり "光りの存在の組織"と ともに逃げると言う事は この地上とは別のところに逃げる事に なるかもしれません．<br>
+  ＊この "光りの存在の組織"とは旧約聖書の "ノアの洪水"の時にノア達を<ruby><rb>援助</rb><rp>(</rp><rt>えんじょ</rt><rp>)</rp></ruby>した(ノアの<ruby><rb>箱船</rb><rp>(</rp><rt>はこぶね</rt><rp>)</rp></ruby>に<ruby><rb>乗</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>せる動物達を<ruby><rb>集</rb><rp>(</rp><rt>あつ</rt><rp>)</rp></ruby>めるのを<ruby><rb>手伝</rb><rp>(</rp><rt>てつだ</rt><rp>)</rp></ruby>ったのかも しれない)ようだ．<br>
+
+  <!-- End Eeent39 // -->
+
+  <!-- Begin Eeent3a // --
+
+      <a href="sol1.htm"> 
+         <img border="0" src="b4link0.gif" alt="約9KByte">
+ "光りの存在の組織"(Model 1 Version 2 Release 1)．</a><br>
+
+-- End Eeent3a // -->
+
+  <br>
+  <a name="Survival"></a>
+  ●《 "光りの存在の組織"と<ruby><rb>一緒</rb><rp>(</rp><rt>いっしょ</rt><rp>)</rp></ruby>に逃げずに<ruby><rb>残</rb><rp>(</rp><rt>のこ</rt><rp>)</rp></ruby>る場合の注意》<br>
+  近い将来，「霊的な<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>、放射能･汚染、<ruby><rb>黒死病</rb><rp>(</rp><rt>ペスト</rt><rp>)</rp></ruby>、未知の病原体、スーパー･エイズ」などの大いなる<ruby><rb>禍</rb><rp>(</rp><rt>わざわい</rt><rp>)</rp></ruby>が<ruby><rb>訪</rb><rp>(</rp><rt>おとず</rt><rp>)</rp></ruby>れるて来ると思われます．<br>
+  <!--
+この "霊的な<ruby><rb>闇</rb><rp>(</rp><rt>やみ</rt><rp>)</rp></ruby>"に なったら<ruby><rb>身魂</rb><rp>(</rp><rt>みたま</rt><rp>)</rp></ruby>が<ruby><rb>穢</rb><rp>(</rp><rt>けが</rt><rp>)</rp></ruby>れて神の<ruby><rb>宿</rb><rp>(</rp><rt>やど</rt><rp>)</rp></ruby>れない人にとっては非常に<ruby><rb>厳</rb><rp>(</rp><rt>きび</rt><rp>)</rp></ruby>しい<ruby><rb>事態</rb><rp>(</rp><rt>じたい</rt><rp>)</rp></ruby>になるのだと思われます．<br>
+-->
+  あと，断定は できませんが アメリカ によって日本が「 "プラズナー"，核兵器」などで攻撃される可能性も有ります．<br>
+  又，ホピ族に<ruby><rb>伝承</rb><rp>(</rp><rt>でんしょう</rt><rp>)</rp></ruby>される "メーハー"の預言には次のように<ruby><rb>記</rb><rp>(</rp><rt>しる</rt><rp>)</rp></ruby>されている．<br>
+  『白人である パハナ が混乱を起こし，それを浄化するために(<ruby><rb>卍</rb><rp>(</rp><rt>まんじ</rt><rp>)</rp></ruby>が変形した シンボル で現わされる)「赤い "メーハー"(太陽の シンボル)」が世界を滅ぼす．<br>
+  その "赤い光り"(メーハー)は<ruby><rb>四方</rb><rp>(</rp><rt>しほう</rt><rp>)</rp></ruby>を動き回る．<br>
+  それ(メーハー)が天に現われた時，今の世界が赤く燃え上がる．』<br>
+  サイエンス･エンターテイナー の "飛鳥昭雄"さんは，この "メーハー"を(エイリアン によって建造された)「(天空の城 "ラピュタ"の モデル となった)"エノク"の街」＝「聖書に預言されている，天から降りてくる "新エルサレム"」＝「ホピ族に伝承されている "大地の母"」だと推定している．<br>
+  それは長さ，幅，高さが ともに1万2千スタディオン(約2220km)の大きさで日本列島(北海道から沖縄まで)を<ruby><rb>呑</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>み込むほどの巨大･階段ピラミッド構造体だと思われる．<br>
+  そして最後に"大いなる光りの存在"(＝霊的･高次元の絶対的･エネルギー)によって人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の2が<ruby><rb>焼</rb><rp>(</rp><rt>や</rt><rp>)</rp></ruby>きつくされ，人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1しか<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き<ruby><rb>残</rb><rp>(</rp><rt>のこ</rt><rp>)</rp></ruby>れない可能性が有ります．<br>
+  ですから どうしても日本に残って何かを しなければ ならないと言うのでなければ "光りの存在の組織"と<ruby><rb>一緒</rb><rp>(</rp><rt>いっしょ</rt><rp>)</rp></ruby>に逃げるべきです．<br>
+  <br>
+  ●《水や食料の汚染に関する注意･事項》<br>
+  ★もし水源が有害･物質で汚染された場合，水源→川→海，川→農作物，川･海→魚介類･海藻類と言うように汚染され，又 有害･物質で汚染された水や農作物で家畜が飼育されれば食肉類，タマゴ，乳製品(アイス･クリーム，ミルク，牛乳，バター，チーズなど)も汚染される可能性も有り得る．<br>
+  又 水道の水源が汚染される<ruby><rb>事態</rb><rp>(</rp><rt>じたい</rt><rp>)</rp></ruby>も<ruby><rb>考慮</rb><rp>(</rp><rt>こうりょ</rt><rp>)</rp></ruby>しておく必要がある，つまり全ての食品類や水道水に注意が必要となる．<br>
+  もし，この有害･物質が科学･兵器の場合は皮膚から体内に<ruby><rb>侵入</rb><rp>(</rp><rt>しんにゅう</rt><rp>)</rp></ruby>する物もある，又 放射性･物質の場合は体に<ruby><rb>接触</rb><rp>(</rp><rt>せっしょく</rt><rp>)</rp></ruby>しなくとも<ruby><rb>近距離</rb><rp>(</rp><rt>きんきょり</rt><rp>)</rp></ruby>に<ruby><rb>在</rb><rp>(</rp><rt>あ</rt><rp>)</rp></ruby>れば放射線によって<ruby><rb>被爆</rb><rp>(</rp><rt>ひばく</rt><rp>)</rp></ruby>します．<br>
+  ですから このような有害･物質で汚染されている水で「手を洗う，うがいを する，フロ(シャワー)に入る，コメを<ruby><rb>研</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>ぐ，<ruby><rb>衣類</rb><rp>(</rp><rt>いるい</rt><rp>)</rp></ruby>を洗濯して その服を着る」のは非常に危険な事になる．<br>
+  又 放射能の有る雨によって汚染され場合，その雨が やんだ<ruby><rb>後</rb><rp>(</rp><rt>あと</rt><rp>)</rp></ruby> 地面が<ruby><rb>乾</rb><rp>(</rp><rt>かわ</rt><rp>)</rp></ruby>くと放射能に汚染された<ruby><rb>塵</rb><rp>(</rp><rt>ちり</rt><rp>)</rp></ruby>などが空気中に<ruby><rb>浮遊</rb><rp>(</rp><rt>ふゆう</rt><rp>)</rp></ruby>して空気も汚染されます．<br>
+  空気が放射能･汚染された場合，完全に<ruby><rb>戸締</rb><rp>(</rp><rt>とじま</rt><rp>)</rp></ruby>りをして家の中に<ruby><rb>閉</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>じこもっていても一般的な<ruby><rb>家屋</rb><rp>(</rp><rt>かおく</rt><rp>)</rp></ruby>は けっこう<ruby><rb>隙間</rb><rp>(</rp><rt>すきま</rt><rp>)</rp></ruby>が有るので多少の<ruby><rb>被爆</rb><rp>(</rp><rt>ひばく</rt><rp>)</rp></ruby>は<ruby><rb>避</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>けられません．<br>
+  <ruby><rb>逆</rb><rp>(</rp><rt>ぎゃく</rt><rp>)</rp></ruby>に<ruby><rb>隙間</rb><rp>(</rp><rt>すきま</rt><rp>)</rp></ruby>が無ければ<ruby><rb>酸欠</rb><rp>(</rp><rt>さんけつ</rt><rp>)</rp></ruby>に なってしまうので注意が必要です．<br>
+  ★ "光りの存在の組織"と<ruby><rb>一緒</rb><rp>(</rp><rt>いっしょ</rt><rp>)</rp></ruby>に逃げずに<ruby><rb>残</rb><rp>(</rp><rt>のこ</rt><rp>)</rp></ruby>る場合は<ruby><rb>下記</rb><rp>(</rp><rt>かき</rt><rp>)</rp></ruby>のような6ヵ月分 程度の<ruby><rb>生活･必需品</rb><rp>(</rp><rt>せいかつ･ひつじゅひん</rt><rp>)</rp></ruby>を買いだめして おいたほうが 良いかも しれません．<br>
+  ◎放射能･汚染されたら空気も放射能･汚染されるので フトン も<ruby><rb>干</rb><rp>(</rp><rt>ほ</rt><rp>)</rp></ruby>せなくなりますから フトン･<ruby><rb>乾燥機</rb><rp>(</rp><rt>かんそうき</rt><rp>)</rp></ruby>も有ったほうが良いと思います．<br>
+  又，<ruby><rb>断定</rb><rp>(</rp><rt>だんてい</rt><rp>)</rp></ruby>は できませんが「<ruby><rb>防塵</rb><rp>(</rp><rt>ぼうじん</rt><rp>)</rp></ruby>･マスク<ruby><rb>；花粉症</rb><rp>(</rp><rt>かふんしょう</rt><rp>)</rp></ruby>用･メガネ」で多少は「<ruby><rb>肺</rb><rp>(</rp><rt>はい</rt><rp>)</rp></ruby><ruby><rb>；眼</rb><rp>(</rp><rt>め</rt><rp>)</rp></ruby>」の<ruby><rb>被爆</rb><rp>(</rp><rt>ひばく</rt><rp>)</rp></ruby>を<ruby><rb>軽減</rb><rp>(</rp><rt>けいげん</rt><rp>)</rp></ruby>できるかも しれません．<br>
+  ◎ミネラル･ウオーター の Vittel(ヴィッテル)は賞味･期間が3年間ある(ただし<ruby><rb>類似</rb><rp>(</rp><rt>るいじ</rt><rp>)</rp></ruby>･商品もあるので注意が必要)，それ以外のミネラル･ウオーターの賞味･期間は ほとんどが約1～2ヵ月 程度なので長期保存には不適切と言える．<br>
+  成人の場合 1日の水の<ruby><rb>必要･消費量</rb><rp>(</rp><rt>ひつよう･しょうひりょう</rt><rp>)</rp></ruby>は約2～3リットルになる，つまり成人 一人で6ヵ月 約360～540リットル必要となる，ただし歯磨きや米を研ぐ事も想定した場合は1人に対して この倍の約720～1080リットルの水が有ったほうが良いかも しれません．<br>
+  ◎保存･可能な食品類(ただし「コメ，<ruby><rb>乾麺</rb><rp>(</rp><rt>かんめん</rt><rp>)</rp></ruby>など」のような水を<ruby><rb>浪費</rb><rp>(</rp><rt>ろうひ</rt><rp>)</rp></ruby>する物は<ruby><rb>不適切</rb><rp>(</rp><rt>ふてきせつ</rt><rp>)</rp></ruby>だと言える，ただし「無洗米，インスタント･ラーメン，カップ･メン」のように｛水，お湯｝を<ruby><rb>廃棄</rb><rp>(</rp><rt>はいき</rt><rp>)</rp></ruby>せずに作れる物は有ったほうが良いでしょう)．<br>
+  しかし，コメ が日本人の主食である以上は，それ(無洗米で無い通常の コメ)を排除する わけにも いかないので，(無洗米で無い)コメ を<ruby><rb>研</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>ぐ場合は<ruby><rb>細心</rb><rp>(</rp><rt>さいしん</rt><rp>)</rp></ruby>の注意を<ruby><rb>払</rb><rp>(</rp><rt>はら</rt><rp>)</rp></ruby>って最小限の水で<ruby><rb>研</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>ぐように心がけるようにして下さい(コメ を 一人で1日2合 <ruby><rb>消費</rb><rp>(</rp><rt>しょうひ</rt><rp>)</rp></ruby>する場合，6ヵ月で約70kg<ruby><rb>程度</rb><rp>(</rp><rt>ていど</rt><rp>)</rp></ruby> 必要となる)．<br>
+  ただし，<ruby><rb>暖</rb><rp>(</rp><rt>あった</rt><rp>)</rp></ruby>かい所で コメ を保存していると虫が わく事も有るので注意が必要です．<br>
+  又 調味料「砂糖，塩，酢，<ruby><rb>醤油</rb><rp>(</rp><rt>しょうゆ</rt><rp>)</rp></ruby>，<ruby><rb>味噌</rb><rp>(</rp><rt>みそ</rt><rp>)</rp></ruby>」なども必要でしょうし，<ruby><rb>油</rb><rp>(</rp><rt>あぶら</rt><rp>)</rp></ruby>は<ruby><rb>燃料</rb><rp>(</rp><rt>ねんりょう</rt><rp>)</rp></ruby>としても使えるので 10リットル 程度は用意しておいた方が良いかもしれません．<br>
+  ◎トイレット･ペーパー(たとえば 一人で1日 1ロール<ruby><rb>消費</rb><rp>(</rp><rt>しょうひ</rt><rp>)</rp></ruby>する場合，6ヵ月で約180ロール <ruby><rb>程度</rb><rp>(</rp><rt>ていど</rt><rp>)</rp></ruby> 必要となる)，又 通称"おしぼりウエッティー"のような物も在れば非常に便利だろう．<br>
+  ◎<ruby><rb>衣類</rb><rp>(</rp><rt>いるい</rt><rp>)</rp></ruby>，とくに<ruby><rb>下着</rb><rp>(</rp><rt>したぎ</rt><rp>)</rp></ruby>，<ruby><rb>靴下</rb><rp>(</rp><rt>くつした</rt><rp>)</rp></ruby>，<ruby><rb>寝間着</rb><rp>(</rp><rt>ねまき</rt><rp>)</rp></ruby>，ワイシャツ，ズボンなど(たとえば一人で「1枚の<ruby><rb>下着</rb><rp>(</rp><rt>したぎ</rt><rp>)</rp></ruby>，1<ruby><rb>足</rb><rp>(</rp><rt>そく</rt><rp>)</rp></ruby>の<ruby><rb>靴下</rb><rp>(</rp><rt>くつした</rt><rp>)</rp></ruby>」を3日間，1枚の「<ruby><rb>寝間着</rb><rp>(</rp><rt>ねまき</rt><rp>)</rp></ruby>，ワイシャツ，ズボン」などを1週間 着た場合，6ヵ月で <ruby><rb>下着</rb><rp>(</rp><rt>したぎ</rt><rp>)</rp></ruby>が約60枚，<ruby><rb>靴下</rb><rp>(</rp><rt>くつした</rt><rp>)</rp></ruby>が約60<ruby><rb>足</rb><rp>(</rp><rt>そく</rt><rp>)</rp></ruby>，「<ruby><rb>寝間着</rb><rp>(</rp><rt>ねまき</rt><rp>)</rp></ruby>，ワイシャツ，ズボン」などが約26枚づつ 必要となる)．<br>
+  又 <ruby><rb>枕</rb><rp>(</rp><rt>まくら</rt><rp>)</rp></ruby>カバー(たとえば一人で1枚を3日間 使用すると6ヵ月で60枚 必要となる)，もし <ruby><rb>枕</rb><rp>(</rp><rt>まくら</rt><rp>)</rp></ruby>カバーが無ければタオルなどでも代用できるだろう．<br>
+  ◎薬品類「カゼ薬，熱さまし，キズ薬，胃腸薬(下痢止めなど)，皮膚病の薬(<ruby><rb>軽度</rb><rp>(</rp><rt>けいど</rt><rp>)</rp></ruby>の皮膚病の場合，皮膚の菌を酢で殺菌できる場合もあるようだ)など」，又 ビタミン剤なども必要だと思われる．<br>
+  ◎｛歯磨き粉；( "GUM"のような)液体･歯磨き｝などや予備の歯ブラシ も買い溜めしておく必要が有るでしょう，ただし( "GUM"のような)液体･歯磨は非常に お<ruby><rb>手軽</rb><rp>(</rp><rt>てがる</rt><rp>)</rp></ruby>な イメージ が有りますが，実際は<ruby><rb>毎食後</rb><rp>(</rp><rt>まいしょくご</rt><rp>)</rp></ruby>に液体･歯磨きで数十秒間 すすいでから吐き出して歯ブラシ で磨かなければ ならないので それほど お<ruby><rb>手軽</rb><rp>(</rp><rt>てがる</rt><rp>)</rp></ruby>と言う わけでは有りません．<br>
+  たとえば一人で歯磨き粉の場合1日2回使うと6ヵ月で約500g程度， "GUM"の場合1日3回使うと，6ヵ月で約11<ruby><rb>本程度</rb><rp>(</rp><rt>ていど</rt><rp>)</rp></ruby> 必要となる．なお歯を磨いた<ruby><rb>後</rb><rp>(</rp><rt>あと</rt><rp>)</rp></ruby>，水で うがいをする場合にも<ruby><rb>細心</rb><rp>(</rp><rt>さいしん</rt><rp>)</rp></ruby>の注意を<ruby><rb>払</rb><rp>(</rp><rt>はら</rt><rp>)</rp></ruby>って最小限の水で うがいをして下さい．<br>
+  もし，歯を磨く物が無くなったら塩で磨けば多少は<ruby><rb>口腔</rb><rp>(</rp><rt>こうくう</rt><rp>)</rp></ruby>内の衛生に<ruby><rb>役立</rb><rp>(</rp><rt>やくだ</rt><rp>)</rp></ruby>つと思われます．<br>
+  ◎フロの保温･器具，通称"24時間･風呂"なども<ruby><rb>必須</rb><rp>(</rp><rt>ひっす</rt><rp>)</rp></ruby>であり，水が汚染される前からフロを保温しておくべきだろう．<br>
+  <ruby><rb>石鹸</rb><rp>(</rp><rt>せっけん</rt><rp>)</rp></ruby>やシャンプーなども ある程度よういしておく必要が有り，又 タオルなど(たとえば一人の場合，3日に1回 フロに入るとしてタオルなどを4枚使用すると6ヵ月で240枚 必要となる)．<br>
+  ◎<ruby><rb>停電</rb><rp>(</rp><rt>ていでん</rt><rp>)</rp></ruby>の時のために「ラジオ，<ruby><rb>懐中電灯</rb><rp>(</rp><rt>かいちゅうでんとう</rt><rp>)</rp></ruby>」なども有ったほうが良いかもしれません．ただし，<ruby><rb>電池</rb><rp>(</rp><rt>でんち</rt><rp>)</rp></ruby>は長期間 保存すると<ruby><rb>液漏</rb><rp>(</rp><rt>えきも</rt><rp>)</rp></ruby>れする製品も有りますので<ruby><rb>電池</rb><rp>(</rp><rt>でんち</rt><rp>)</rp></ruby>を買いだめする場合には注意が必要です．<br>
+  ◎ ガス が<ruby><rb>止</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>まる可能性も有るので，携帯用･ガス･コンロ も有ったほうが<ruby><rb>便利</rb><rp>(</rp><rt>べんり</rt><rp>)</rp></ruby>でしょう(ただし携帯用･ガス･ボンベ を どのぐらい買えば良いのかは ちょっと わかりません)．<br>
+  又は(<ruby><rb>屋台</rb><rp>(</rp><rt>やたい</rt><rp>)</rp></ruby>などで)業務用として使われている ガス･ボンベ を買いだめして置くと言う手も有るでしょう．ただし，その場合は，ガス･コンロ も プロパン･ガス で使える物が必要になります．<br>
+  ◎世界的に病原体が<ruby><rb>蔓延</rb><rp>(</rp><rt>まんえん</rt><rp>)</rp></ruby>すると思われるので イオン によって空気中の｛ウイルス，病原菌｝を<ruby><rb>退治</rb><rp>(</rp><rt>たいじ</rt><rp>)</rp></ruby>する シャープ の除菌イオン空気清浄機も有ったほうが良いと思われます．<br>
+  詳しくは<br>
+  <a target="_blank" href="http://www.sharp.co.jp/products/fur60ch/text/point01.html">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.sharp.co.jp/products/fur60ch/text/point01.html<br>
+  </a>
+  <a target="_blank" href="http://www.sharp.co.jp/products/fur60ch/text/point02.html">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.sharp.co.jp/products/fur60ch/text/point02.html<br>
+  </a>
+  <a target="_blank" href="http://www.sharp.co.jp/kuusei/fu/point/">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.sharp.co.jp/kuusei/fu/point/<br>
+  </a>
+  <a target="_blank" href="http://www.sharp.co.jp/kuusei/kc/ion/">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.sharp.co.jp/kuusei/kc/ion/<br>
+  </a>
+  <a target="_blank" href="http://www.sharp.co.jp/products/living/air_con/func01/">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.sharp.co.jp/products/living/air_con/func01/<br>
+  </a>
+  を参照して下さい．<br>
+  ただし，停電になったら なんの意味もないので発電機や その燃料も買いだめしておいたほうが良いと思われます．<br>
+  ◎ "ピアミニ"は希塩酸水溶液を電気分解して殺菌効果のある安全な水(微酸性次亜塩素酸水)が生成できるようです．<br>
+  この "微酸性次亜塩素酸水"は あらゆる細菌を殺菌する効果が有るようですが，残念ながら ウイスル に対する殺菌効果は無いようです，ただし ウイスル に対する失活効果は有ると言う事です．<br>
+  なお，体内に侵入した｛細菌，ウイスル｝に対しては なんの効果も有りません．<br>
+  ＜商品名＞：ピアミニ；＜価格＞：￥7万4,000円；＜発売日＞：2003年4月発売予定<br>
+  ＜会社名＞：ホクティ<br>
+  ＜住所＞：神奈川県大和市深見東1-5-11<br>
+  ＜電話＞：046-265-6320<br>
+  ＜URL＞：
+  <a target="_blank" href="http://www.hokuty.co.jp">
+    <img border="0" src="b4link1.gif" alt="">
+    http://www.hokuty.co.jp<br>
+  </a>
+  ※｛食品，食器，調理器具，居室，トイレ，玩具｝などの洗浄殺菌が可能で有り，又 肌に触れたり誤って飲込んだ場合でも危害を及ぼすことは無いと言う事です．<br>
+  なお，一部の地域では水質によって所定の ph(ペーハー)値が得られない場合が有りますが，地域に適合した専用アンプルが用意して有るそうですので，販売店に ご相談 下さい．<br>
+  ★ただし，<ruby><rb>住居</rb><rp>(</rp><rt>じゅうきょ</rt><rp>)</rp></ruby>が<ruby><rb>被災</rb><rp>(</rp><rt>ひさい</rt><rp>)</rp></ruby>すれば いくら<ruby><rb>完璧</rb><rp>(</rp><rt>かんぺき</rt><rp>)</rp></ruby>に買いだめして有っても なんの意味も無くなる事も有ると言う事は しっかりと<ruby><rb>肝</rb><rp>(</rp><rt>きも</rt><rp>)</rp></ruby>に<ruby><rb>命</rb><rp>(</rp><rt>めい</rt><rp>)</rp></ruby>じて おいたほうが良いでしょう．<br>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  タイトル：<br>
+  <input type="text" id="Inp_Title"><br>
+  説明：<br>
+  <input type="text" id="Inp_Explanation"><br>
+  <br>
+  <button onclick="Ddisplay();">確定</button><br>
+  <br>
+  商品名は<span id="Out_Title"></span>です<br>
+  商品の説明<br>
+  <span id="Out_Explanation"></span><br>
+</body>
+<script>
+  var wInp_Title = document.getElementById('Inp_Title');
+  var wInp_Explanation = document.getElementById('Inp_Explanation');
+  var wOut_Title = document.getElementById('Out_Title');
+  var wOut_Explanation = document.getElementById('Out_Explanation');
+  function Ddisplay() {
+    console.log(`function Ddisplay()`);
+    wOut_Title.innerText = wInp_Title.value;
+    wOut_Explanation.innerText = wInp_Explanation.value;
+  }
+</script>
+</html>

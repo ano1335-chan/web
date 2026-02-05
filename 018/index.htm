@@ -1,0 +1,34 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  #readtitle_area {
+    width: 100%;
+    /* 親要素の幅 */
+  }
+
+  #readtitle_area>div {
+    padding-right: 10px;
+    /* 要素間の間隔を設定 */
+  }
+
+  #readtitle_area>.LeftWing {
+    float: left;
+  }
+
+  #readtitle_area>.RightWing {
+    padding-right: 0;
+    /* 最後の要素に余白を設定しない */
+    float: right;
+  }
+
+</style>
+<body>
+  <div id="readtitle_area">
+    <div class="LeftWing">タイトル</div>
+    <div class="RightWing"><input type="button" id="read_updatebtn" value="更新"></div>
+  </div>
+</body>
+</html>

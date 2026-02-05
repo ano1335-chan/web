@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+
+  <link href="../css/style.css" rel="stylesheet">
+
+  <link rel="preload" href="" as="image">
+
+  <title></title>
+</head>
+
+<script>
+  var gsWebPathFile = location.pathname.replace("\\", "/");
+  gsWebPathFile = gsWebPathFile.substring(1);
+  console.log('gsWebPathFile: ' + gsWebPathFile);
+  var fnpos = gsWebPathFile.lastIndexOf("/") + 1;
+  var gsWebFile = gsWebPathFile.substring(
+    fnpos, gsWebPathFile.length);
+  console.log('gsWebFile: ' + gsWebFile);
+  var gsWebPath = gsWebPathFile.substring(0, fnpos);
+  console.log('gsWebPath: ' + gsWebPath);
+  var port = location.port;
+  port = port ? ':' + port : "";
+  var gsWebAbsRoot = location.protocol + "//" + location.hostname
+    + port + '/';
+  console.log('gsWebAbsRoot: ' + gsWebAbsRoot);
+  var gsWebAbsCurr = gsWebAbsRoot + gsWebPath;
+  console.log('gsWebAbsCurr: ' + gsWebAbsCurr);
+  var gsWebAbsFull = gsWebAbsRoot + gsWebPathFile;
+  console.log('gsWebAbsFull: ' + gsWebAbsFull);
+
+  function GetWebFile(url) {
+    console.log('GetWebFile()');
+    var p, res;
+    url = url.replace("\\", "/");
+    // console.log('url: ' + url);
+    p = url.lastIndexOf("#");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("?");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("/");
+    if (0 <= p) {
+      url = url.substring(p + 1);
+      // console.log('url: ' + url);
+    }
+    res = "";
+    if (url.match(".")) {
+      res = url;
+    }
+    console.log('res: ' + res);
+    return res;
+  }
+
+  window.onload = function () {
+    var cancel = { };
+    var change = { 
+      "nstrdm1.htm": "../Nstrdm1/index.htm",
+      "revela1.htm": "../Revela/index.htm",
+    };
+    var tag = ["a", "img",];
+    var prop = ["href", "src",];
+    for (var j = 0; j < tag.length; j++) {
+      var element = document.getElementsByTagName(tag[j]);
+      for (var i = 0; i < element.length; i++) {
+        var e = element[i];
+        var pattern = new RegExp("^" + gsWebAbsCurr, 'g');
+        var url, rep, wf;
+        if (e[prop[j]]) {
+          url = e[prop[j]];
+          wf = GetWebFile(url);
+          if(change[wf]){
+            console.log('if(change[wf])');
+            console.log('wf: '+wf);
+            console.log('change[wf]: '+change[wf]);
+            pattern = new RegExp(wf);
+            url = url.replace(pattern, change[wf]);
+            e[prop[j]] = url;
+          }else if (!cancel[wf]) {
+            url = url.replace(pattern, gsWebAbsRoot);
+            e[prop[j]] = url;
+          }
+        }
+        url = e[prop[j]];
+        console.log('url: ' + url);
+      }
+    }
+  }
+</script>
+
+<body text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff">
+
+  ※このページは「Edge、Chrome」などでは正常に表示されない場合が有るので、Firefoxを推奨します。<br>
+
+  <div align="left">
+    <a href="index.htm" target="_top">
+      <img src="b4link6.gif" border="0" alt="トップ･ページの表示"></a>
+  </div>
+  <div align="center">
+    <h2>
+      <nobr>ノストラダムス</nobr><br>
+      <nobr>”諸世紀”</nobr><wbr>
+      <nobr>Part １</nobr><br>
+    </h2>
+    <br>
+  </div>
+  <a target="_blank" href="pandor/000000j.htm?qwerty#Propheties">❐</a>
+
+  <a href="nstrdm2.htm?qwerty#Propheties/8-2">
+    第8巻 2番
+  </a>
+
+  <a href="nstrdm1.htm?qwerty#Propheties/8-2">
+    第8巻 2番
+  </a>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .Container {
+    display: flex;
+    gap: 5px;
+  }
+
+  main {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px 5px;
+  }
+
+  nav {
+    width: 15%;
+  }
+
+  aside {
+    width: 15%;
+  }
+
+  header,
+  footer,
+  .Flex-Box_000 {
+    height: 150px;
+  }
+
+  header,
+  nav,
+  footer,
+  aside,
+  .Flex-Box_000>* {
+    border: thin solid black;
+  }
+
+  .Flex-Box_000 {
+    display: flex;
+    gap: 5px;
+  }
+
+  .Flex-Box_000>* {
+    flex-grow: 1;
+  }
+
+  .Box_BackColor_001>* {
+    background-color: #00ffff;
+  }
+
+  .Box_BackColor_003>* {
+    background-color: #da8bb1;
+  }
+
+  .Box_BackColor_004>* {
+    background-color: #94b7e5;
+  }
+
+  .Box_BackColor_002>* {
+    background-color: #88df7a;
+  }
+
+</style>
+<body>
+  <header>
+    ヘッダー
+  </header>
+  <div class="Container">
+    <nav>
+      メニュー
+    </nav>
+    <main>
+      <div class="Flex-Box_000 Box_BackColor_001">
+        <div>1段目</div>
+        <div>1段目</div>
+        <div>1段目</div>
+        <div>1段目</div>
+      </div>
+      <div class="Flex-Box_000 Box_BackColor_002">
+        <div>2段目</div>
+        <div>2段目</div>
+        <div>2段目</div>
+      </div>
+      <div class="Flex-Box_000 Box_BackColor_003">
+        <div>3段目</div>
+        <div>3段目</div>
+      </div>
+      <div class="Flex-Box_000 Box_BackColor_004">
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+        <div>4段目</div>
+      </div>
+    </main>
+    <aside>
+      サイド
+    </aside>
+  </div>
+  <footer>
+    フッター
+  </footer>
+</body>
+</html>

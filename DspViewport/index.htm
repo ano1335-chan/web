@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>DspViewport</title>
+</head>
+<body>
+  <h1>Viewportサイズ</h1>
+  <div id="DspViewport">—</div>
+
+  <script>
+    const eDspViewport = document.getElementById('DspViewport');
+
+    function update() {
+      if (window.visualViewport) {
+        const w = Math.round(window.visualViewport.width);
+        const h = Math.round(window.visualViewport.height);
+        eDspViewport.textContent = `${w} × ${h}`;
+      } else {
+        eDspViewport.textContent = "visualViewport not supported";
+      }
+    }
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', update);
+      window.visualViewport.addEventListener('scroll', update);
+    }
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+
+    update(); // 初期表示
+  </script>
+</body>
+</html>

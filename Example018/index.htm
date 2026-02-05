@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    background-color: aqua;
+  }
+
+  header {
+    background-color: white;
+    height: 10vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .Header-Ins001-Sub {
+    height: 10vw;
+    flex-grow: 1;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .Header-Ins001-Sub>div {
+    box-sizing: border-box;
+    border: thin solid black;
+    position: relative;
+    height: 4.5vw;
+  }
+
+  .Header-Ins001-Sub>div:nth-child(1) {}
+
+  .Header-Ins001-Sub span {
+    display: inline-block;
+  }
+
+  .Header-Ins001-Sub>div {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .Header-Ins002-SubL001>span,
+  .Header-Ins002-SubR001>span {
+    box-sizing: border-box;
+    border: thin solid black;
+    font-size: 1vw;
+    font-weight: 900;
+  }
+
+  .Header-Ins002-SubL001 {
+    justify-content: flex-start;
+  }
+
+  .Header-Ins002-SubR001 {
+    justify-content: flex-end;
+  }
+
+  .Header-Ins002-SubL001>span {
+    margin-left: 1.5vw;
+  }
+
+  .Header-Ins002-SubR001>span {
+    margin-right: 2vw;
+  }
+
+  .Header-Ins002-SubL002,
+  .Header-Ins002-SubR002 {
+    justify-content: center;
+  }
+
+  .Header-Ins002-SubL002>span,
+  .Header-Ins002-SubR002>span {
+    display: inline-block;
+    padding: 0 1vw;
+    border-left: thin solid black;
+    font-size: 1.2vw;
+    font-weight: 900;
+  }
+
+  .Header-Ins002-SubL002>span:nth-child(1),
+  .Header-Ins002-SubR002>span:nth-child(1) {
+    border-left: 0 none;
+  }
+
+  .Logo-Box {
+    width: 23vw;
+    height: 23vw;
+    margin-top: -7vw;
+    border-radius: 50%;
+    background-color: white;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Logo-Ins001-Sub {
+    display: inline-block;
+    height: 4vw;
+  }
+
+  .Logo-Ins001-Text {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .Logo-Ins001-Text>span:nth-child(1) {
+    font-size: 1.5vw;
+    font-weight: 900;
+  }
+
+  .Logo-Box>img {
+    width: 7vw;
+    height: 7vw;
+    background-color: #777;
+  }
+
+</style>
+<body>
+  <header class="header">
+    <div class="Header-Ins001-Sub">
+      <div class="Header-Ins002-SubL001">
+        <span>■ 買物ガイド</span>
+      </div>
+      <div class="Header-Ins002-SubL002">
+        <span>プルワリーについて</span>
+        <span>商品一覧</span>
+        <span>お知らせ</span>
+      </div>
+    </div>
+    <div class="Logo-Box">
+      <div class="Logo-Ins001-Sub"></div>
+      <img src="Logo.png">
+      <div class="Logo-Ins001-Sub Logo-Ins001-Text">
+        <span>ＴＯＳＡＣＯ</span>
+      </div>
+    </div>
+    <div class="Header-Ins001-Sub">
+      <div class="Header-Ins002-SubR001">
+        <span>マイページ／ログイン</span>
+      </div>
+      <div class="Header-Ins002-SubR002">
+        <span>買える店・飲める</span>
+        <span>ピアスタンド</span>
+        <span>お問い合わせ</span>
+      </div>
+    </div>
+  </header>
+  <span></span>
+</body>
+</html>

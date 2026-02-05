@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .GridBox1 {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    height: 100vh;
+  }
+
+  .GridBox1>.B {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+  }
+
+  .GridBox1>* {
+    border: thin solid black;
+  }
+
+</style>
+<body>
+  <div class="GridBox1">
+    <div>A</div>
+    <div class="B">B</div>
+    <div>C</div>
+  </div>
+</body>
+</html>

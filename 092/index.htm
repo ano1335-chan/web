@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+</head>
+<style>
+  /*PC Screen*/
+  /*Media Query：Default*/
+  .Hoge {
+    display: none;
+  }
+
+  /*Smartphone Screen*/
+  /*Media Query：576px未満＝575px以下*/
+  @media screen and (max-width:575px) {
+    .Hoge {
+      display: inline-block;
+    }
+  }
+
+</style>
+<body>
+  テスト<br>
+  <div class="Hoge">オンラインストア</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    .tab-wrap {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .tab-label {
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin: 0.1em 0.3em 0.1em 0em;
+      padding: 0.2em 1em;
+      order: -1;
+    }
+
+    .tab-label:hover {
+      font-weight: bold;
+      color: #777;
+      background: #0ee;
+    }
+
+    .tab-content {
+      width: 100%;
+      display: none;
+    }
+
+    .tab-switch:checked+.tab-label {
+      font-weight: bold;
+      color: #777;
+      background: #0f7;
+    }
+
+    .tab-switch:checked+.tab-label+.tab-content {
+      display: block;
+    }
+
+    .tab-wrap>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="tab-wrap">
+
+    <input id="TAB-001-001UNIT" type="radio" name="TAB-001" class="tab-switch" checked>
+    <label class="tab-label" for="TAB-001-001UNIT">通知から</label>
+    <div class="tab-content">
+      通知から～<br>
+    </div>
+
+    <input id="TAB-001-002UNIT" type="radio" name="TAB-001" class="tab-switch">
+    <label class="tab-label" for="TAB-001-002UNIT">アプリから</label>
+    <div class="tab-content">
+      アプリから～<br>
+    </div>
+
+  </div>
+  <br>
+</body>
+</html>

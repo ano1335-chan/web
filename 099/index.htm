@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .Move-ISwitch-Style {
+    background-color: #0ff;
+    border-radius: 0.5rem;
+    border: thin solid black;
+  }
+
+  .Target-Style-001 {
+    width: 5vw;
+    height: 5vw;
+    background-color: #f00;
+  }
+
+  .Target-Default-001 {
+    display: none;
+    position: absolute;
+    top: 50vh;
+    left: 0vw;
+  }
+
+  .Target-Style-002 {
+    width: 5vw;
+    height: 5vw;
+    background-color: #0f0;
+    border-radius: 50%;
+  }
+
+  .Target-Default-002 {
+    display: none;
+    position: absolute;
+    top: 75vh;
+    left: 90vw;
+  }
+
+  #MoveR-ISwitch:checked+* {
+    display: block;
+    animation: MoveR-Keyframes 5s linear infinite;
+  }
+
+  #MoveL-ISwitch:checked+* {
+    display: block;
+    animation: MoveL-Keyframes 5s linear infinite;
+  }
+
+  input[class="Move-ISwitch"] {
+    display: none;
+  }
+
+  @keyframes MoveR-Keyframes {
+    0% {
+      left: 0vw;
+    }
+
+    100% {
+      left: 95vw;
+    }
+  }
+
+  @keyframes MoveL-Keyframes {
+    0% {
+      left: 95vw;
+    }
+
+    100% {
+      left: 0vw;
+    }
+  }
+
+</style>
+<body>
+  <label name="Move-LSwitch" for="MoveR-ISwitch" class="Move-ISwitch-Style">Move-LSwitchR</label>　
+  <label name="Move-LSwitch" for="MoveL-ISwitch" class="Move-ISwitch-Style">MoveL-ISwitch</label>　
+  <input type="checkbox" id="MoveR-ISwitch" class="Move-ISwitch">
+  <div class="Target-Default-001 Target-Style-001 Animation-MoveR"></div>
+  <input type="checkbox" id="MoveL-ISwitch" class="Move-ISwitch">
+  <div class="Target-Default-002 Target-Style-002 MoveL-Animation"></div>
+</body>
+</html>

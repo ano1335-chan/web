@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  .Border {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .Space-W10per{
+    width: 10%;
+  }
+  .Space-W40per{
+    width: 40%;
+  }
+
+  .FlexBox-001 {
+    display: flex;
+  }
+
+  .FlexBox-Center {
+    display:inline-flex;
+    justify-content: center;
+  }
+
+  .Img-W50per{
+    width: 50%;
+  }
+
+</style>
+<body>
+  <div class="FlexBox-001">
+    <div class="Space-W10per"></div>
+    <div class="Space-W40per Border FlexBox-Center">
+      <div class="Border">bbbbbbbbbbbb</div>
+    </div>
+    <div class="Space-W40per Border FlexBox-Center">
+      <img src="Blue-Sky.png" class="Img-W50per">
+    </div>
+    <div class="Space-W10per"></div>
+  </div>
+</body>
+</html>

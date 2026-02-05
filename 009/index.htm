@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  /*PC Screen*/
+  /*Media Query：Default*/
+  .FlexBox-001 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .FlexBox-001>a {
+    box-sizing: border-box;
+    border: thin solid black;
+    display: inline-block;
+  }
+
+  .FlexBox-001>a {
+    width: 20%;
+  }
+
+  /*Mobile Screen*/
+  /*Media Query：700px以下*/
+  @media screen and (max-width:700px) {
+    .FlexBox-001>a {
+      width: 50%;
+    }
+  }
+
+</style>
+<body>
+  <div class="FlexBox-001">
+    <a href="#">01</a>
+    <a href="#">02</a>
+    <a href="#">03</a>
+    <a href="#">04</a>
+    <a href="#">05</a>
+    <a href="#">06</a>
+    <a href="#">07</a>
+    <a href="#">08</a>
+    <a href="#">09</a>
+    <a href="#">10</a>
+  </div>
+</body>
+</html>

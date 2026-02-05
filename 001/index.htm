@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  .Size {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .Bias {
+    left: 3vw;
+    top: 3vw;
+  }
+
+  .Relative {
+    position: relative;
+  }
+
+  .Absolute {
+    position: absolute;
+  }
+
+</style>
+<body>
+  <div class="Size Border Relative ">
+    <div class="Size Border Absolute Bias">
+      <div class="Size Relative">
+        <div class="Size Border Absolute Bias"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

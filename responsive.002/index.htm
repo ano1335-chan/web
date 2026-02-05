@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    /*Smartphone Resolution*/
+    /*Media Query：(576px未満)*/
+    body {
+      position: relative;
+      margin: 0.5vw;
+      margin-right: 0;
+      font-size: 4.5vw;
+    }
+
+    .Flexbox001 {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      gap: 3vw 3vw;
+      width: 97vw;
+      /*↑「3vw*1+47vw*2=97vw」*/
+      height: 247vw;
+      /*↑「3vw*4+47vw*5=130.5vw」*/
+    }
+
+    .Flexbox001 img {
+      width: 47vw;
+      height: 47vw;
+    }
+
+    .DummyBox {
+      display: none;
+    }
+
+    /*Tablet Resolution*/
+    /*Media Query：576px以上(992px未満)*/
+    @media screen and (min-width:576px) {
+      .Global {
+        transform: translate(0%, -16.6666%) scale(0.66666);
+      }
+    }
+
+    /*PC Resolution*/
+    /*Media Query：992px以上*/
+    @media screen and (min-width:992px) {
+      .Global {
+        transform: translate(0%, -33.333%) scale(0.33333);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Global">
+    <div class="Flexbox001">
+      <div class="DummyBox"></div>
+      <img src="img001.jpg">
+      <img src="img002.jpg">
+      <img src="img003.jpg">
+      <img src="img004.jpg">
+      <img src="img005.jpg">
+      <img src="img006.jpg">
+      <img src="img007.jpg">
+      <div class="DummyBox"></div>
+      <img src="img008.jpg">
+      <img src="img009.jpg">
+      <img src="img010.jpg">
+    </div>
+    <br>
+    DummyBoxは画像(要素)を半分ずらすための余白用のCSSで、「img、gap」のサイズから「DummyBox」のサイズを算出する。<br>
+    DummyBoxのサイズはDB、imgのサイズはIMG、gapのサイズはGAP、とする。<br>
+    この場合だと、PC画面は横方向のサイズだけ計算すればおｋで、タブレット画面は縦方向のサイズだけ計算すればおｋです。<br>
+    この場合だと(「PC画面、タブレット画面」の両方で)下記の式が成立する。<br>
+    <br>
+    DB+GAP+IMG/2 = IMG+GAP/2<br>
+    <br>
+    その式からDBのサイズを算出するために、その式を変形して単純化する。<br>
+    <br>
+    DB = IMG+GAP/2-(GAP+IMG/2)<br>
+    DB = IMG/2-GAP/2<br>
+    DB = (IMG-GAP)/2<br>
+    <br>
+    PC画面の場合、横方向のサイズは「img: 20vw、gap: 5.5vw」なので、それを代するとDummyBoxのwidthは下記のようになる。<br>
+    DB = (20vw-5.5vw)/2 = 7.25vw<br>
+    <br>
+    タブレット画面の場合、縦方向のサイズは「img: 30vw、gap: 3.5vw」なので、それを代するとDummyBoxのheightは下記のようになる。<br>
+    DB = (30vw-3.5vw)/2 = 13.25vw<br>
+    <br>
+  </div>
+</body>
+</html>

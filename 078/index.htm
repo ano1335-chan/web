@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<script>
+  new Promise((seikou, sippai) => {
+    if (Math.random() < 0.5) {
+      // Promiseインスタンスに"成功"状態を与える
+      seikou("成功です");
+    } else {
+      // Promiseインスタンスに"失敗"状態を与える
+      sippai("失敗です");
+    }
+  })
+    .then((v) => console.log(this))
+    .catch((v) => console.error(this));
+</script>
+</html>

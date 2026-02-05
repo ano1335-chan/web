@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="preload" href="22543062.png" as="image">
+  <meta charset="UTF-8">
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* スクロールバーが表示されないように */
+  }
+
+  .Size-10vw {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .Frog {
+    position: absolute;
+    top: 50vh;
+    left: 90vw;
+    animation: Frog-Hop 2s ease-in-out infinite, Frog-Move 4s linear infinite;
+  }
+
+  @keyframes Frog-Hop {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-15vw);
+      /* 上に跳ねる */
+    }
+  }
+
+  @keyframes Frog-Move {
+    0% {
+      left: 90vw;
+    }
+
+    50% {
+      left: 45vw;
+    }
+
+    100% {
+      left: 0vw;
+    }
+  }
+
+</style>
+<body>
+  これは「ChatGPT-4o」に聞いたコードを修正したコードです。<br>
+  <img class="Frog Size-10vw" src="22543062.png">
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <style>
+:root {
+  /* スクロールバーの比率 */ 
+  /* 8：Firefoxのスクロールバーのthin時のサイズ */ 
+  /* 800：一般的に販売されているPC用モニタ－の最小･解像度(横サイズ) */ 
+  --ScrollbarRatio: calc(8 / 800);
+  /* ブレイクポイント：Firefox：スクロールバー･サイズ：Auto用 */ 
+  /* 17：FirefoxのスクロールバーのAuto時のサイズ */
+  /* --BreakPoint_Firefox_ScrollbarWeight_Auto: 1700px */
+  --BreakPoint_Firefox_ScrollbarWeight_Auto: calc(1px * 17 / var(--ScrollbarRatio));
+  /* スクロールバーの幅 */ 
+  --ScrollbarWeight: calc(100vw * var(--ScrollbarRatio)); 
+  /*Firefox スクロールバーのつまみの部分*/
+  /*#cdcdcd #999*/
+  --ScrollbarThumbColor: #999;
+  /*スクロールバーのつまみの部分*/
+  /*#ccc #888 #808080*/
+  --ScrollbarThumbGradient1: #ccc;
+  --ScrollbarThumbGradient2: #808080;
+  /*スクロールバーの軌道*/
+  --ScrollbarTrackColor: #f0f0f0;
+}
+html {
+  /* 強制的に縦スクロールバーを表示。 */ 
+  overflow-y: scroll;
+}
+* { /* Firefoxのスクロールバーの設定 */
+    scrollbar-width: thin;/*細さ*/
+    scrollbar-color: var(--ScrollbarThumbColor) var(--ScrollbarTrackColor);/*つまみの色 軌道の色*/
+}
+/* --BreakPoint_Firefox_ScrollbarWeight_Auto */
+@media screen and (min-width: 1700px) {
+  /* Firefoxのスクロールバーの設定 */
+  * {
+      scrollbar-width: auto;/*細さ*/
+  }
+}
+::-webkit-scrollbar {/*縦方向スクロールバーの幅*/
+    width: var(--ScrollbarWeight);
+}
+::-webkit-scrollbar:horizontal {/*横方向スクロールバーの高さ*/
+    height: var(--ScrollbarWeight);
+}
+::-webkit-scrollbar-track {/*スクロールバーの軌道*/
+    background: var(--ScrollbarTrackColor);
+}
+::-webkit-scrollbar-thumb {/*つまみの部分*/
+    border-radius: calc(var(--ScrollbarWeight) / 2);
+    background: linear-gradient(90deg,var(--ScrollbarThumbGradient1),var(--ScrollbarThumbGradient2));
+  }
+    </style>
+  </head>
+  <body>
+Hello World!
+  </body>
+</html>

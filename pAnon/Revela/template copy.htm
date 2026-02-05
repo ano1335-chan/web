@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+
+  <script charset="Shift_JIS" src="../../common0.js"></script>
+  <script charset="Shift_JIS" src="../common0.js"></script>
+  <link href="../css/style.css" rel="stylesheet">
+  
+  <link rel="preload" href="../../b4link1.gif" as="image">
+  <link rel="preload" href="../../b4link0.gif" as="image">
+  <link rel="preload" href="../../b4link6.gif" as="image">
+  
+  <title>新約聖書 &quot;ヨハネの黙示録&quot;</title>
+</head>
+
+<script>
+  var gsWebPathFile = location.pathname.replace("\\", "/");
+  gsWebPathFile = gsWebPathFile.substring(1);
+  console.log('gsWebPathFile: ' + gsWebPathFile);
+  var fnpos = gsWebPathFile.lastIndexOf("/") + 1;
+  var gsWebFile = gsWebPathFile.substring(
+    fnpos, gsWebPathFile.length);
+  console.log('gsWebFile: ' + gsWebFile);
+  var gsWebPath = gsWebPathFile.substring(0, fnpos);
+  console.log('gsWebPath: ' + gsWebPath);
+  var port = location.port;
+  port = port ? ':' + port : "";
+  var gsWebAbsRoot = location.protocol + "//" + location.hostname
+    + port + '/';
+  console.log('gsWebAbsRoot: ' + gsWebAbsRoot);
+  var gsWebAbsCurr = gsWebAbsRoot + gsWebPath;
+  console.log('gsWebAbsCurr: ' + gsWebAbsCurr);
+  var gsWebAbsFull = gsWebAbsRoot + gsWebPathFile;
+  console.log('gsWebAbsFull: ' + gsWebAbsFull);
+
+  function GetWebFile(url) {
+    console.log('GetWebFile()');
+    var p, res;
+    url = url.replace("\\", "/");
+    // console.log('url: ' + url);
+    p = url.lastIndexOf("#");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("?");
+    if (0 <= p) {
+      url = url.substring(0, p);
+      // console.log('url: ' + url);
+    }
+    p = url.lastIndexOf("/");
+    if (0 <= p) {
+      url = url.substring(p + 1);
+      // console.log('url: ' + url);
+    }
+    res = "";
+    if (url.match(".")) {
+      res = url;
+    }
+    console.log('res: ' + res);
+    return res;
+  }
+
+  window.onload = function () {
+    var cancel = { };
+    var change = { 
+      "nstrdm1.htm": "../Nstrdm1/index.htm",
+      "revela1.htm": "../Revela/index.htm",
+    };
+    var tag = ["a", "img",];
+    var prop = ["href", "src",];
+    for (var j = 0; j < tag.length; j++) {
+      var element = document.getElementsByTagName(tag[j]);
+      for (var i = 0; i < element.length; i++) {
+        var e = element[i];
+        var pattern = new RegExp("^" + gsWebAbsCurr, 'g');
+        var url, rep, wf;
+        if (e[prop[j]]) {
+          url = e[prop[j]];
+          wf = GetWebFile(url);
+          if(change[wf]){
+            console.log('if(change[wf])');
+            console.log('wf: '+wf);
+            console.log('change[wf]: '+change[wf]);
+            pattern = new RegExp(wf);
+            url = url.replace(pattern, change[wf]);
+            e[prop[j]] = url;
+          }else if (!cancel[wf]) {
+            url = url.replace(pattern, gsWebAbsRoot);
+            e[prop[j]] = url;
+          }
+        }
+        url = e[prop[j]];
+        console.log('url: ' + url);
+      }
+    }
+  }
+</script>
+
+<body text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff">
+
+  <script language="JavaScript">
+    document.write("<style type='text/css'>");
+
+    document.write("a:hover { color: #ffff00 }");
+
+    if (location.search <= "?" || location.search == "?B0000~") {
+
+      document.write("body {");
+      document.write("background-color: #bfc7ef");
+      document.write("}");
+
+    }
+    else {
+
+      document.write("body {");
+      document.write("background-color: #8f9fff");
+      document.write("}");
+
+    }
+
+    document.write("</style>");
+
+    document.write("");
+  </script>
+
+  <script language="JavaScript">
+    Initialize();
+
+    function Initialize() {
+
+      InitViewBoundary();
+
+    }
+
+    function Finalize() { }
+
+    function BodyLoad() { }
+
+    // window.onload = BodyLoad;
+  </script>
+
+  <script language="JavaScript">
+    //
+    //Document Begin.
+    //
+    var sHLA = "On";
+    var sHLA0612 = "";
+    var sHLA0702 = "";
+    var sHLA0801 = "";
+    var sHLA0901 = "";
+    var sHLA0912 = "";
+    var sHLA1103 = "";
+    var sHLA1114 = "";
+    var sHLA1301 = "";
+    var sHLA1311 = "";
+    var sHLA1602 = "";
+    var sHLB = "On";
+
+    function Line(Qnt) {
+      for (Cnt = 1; Cnt <= Qnt; Cnt++) {
+        document.write("<br>");
+      }
+    }
+    "               "
+    function Header() {
+      document.write(
+        " ※このページは「Edge、Chrome」などでは正常に表示されない場合が有るので、Firefoxを推奨します。<br>"
+      );
+      document.write(
+        "<div align='left'><a href='index.htm' target='_top'><img src='b4link6.gif' border='0' alt='トップ･ページの表示'></a></div>"
+      );
+    }
+    function Headline() {
+      document.write(
+        "<div align='center'><h2><nobr>新約聖書</nobr><br><nobr>&quot;ヨハネ の</nobr><wbr><nobr>黙示録&quot;</nobr><br></h2><br></div>"
+      );
+    }
+    function TitleA() {
+      document.write(
+        "◆【新約聖書 &quot;ヨハネ の<ruby><rb>黙示録</rb><rp>(</rp><rt>もくしろく</rt><rp>)</rp></ruby>&quot;】<br>"
+      );
+    }
+    function A0406() {
+      document.write(
+        "◇(第4章 第6～7節)：…<ruby><rb>御座</rb><rp>(</rp><rt>みざ</rt><rp>)</rp></ruby>の中央と<ruby><rb>御座</rb><rp>(</rp><rt>みざ</rt><rp>)</rp></ruby>の回りに，<ruby><rb>前</rb><rp>(</rp><rt>まえ</rt><rp>)</rp></ruby>も<ruby><rb>後</rb><rp>(</rp><rt>うし</rt><rp>)</rp></ruby>ろも目で<ruby><rb>満</rb><rp>(</rp><rt>み</rt><rp>)</rp></ruby>ちた4つの<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物が いた．<br>第1の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物は，<ruby><rb>獅子</rb><rp>(</rp><rt>しし</rt><rp>)</rp></ruby>のようであり，第2の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物は<ruby><rb>雄牛</rb><rp>(</rp><rt>おうし</rt><rp>)</rp></ruby>のようであり，第3の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物は人間のような顔を持ち，第4の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物は<ruby><rb>空</rb><rp>(</rp><rt>そら</rt><rp>)</rp></ruby> 飛ぶ<ruby><rb>鷲</rb><rp>(</rp><rt>わし</rt><rp>)</rp></ruby>のようであった．<br>"
+      );
+    }
+    function A0501() {
+      document.write(
+        "◇(第5章 第1～7節)：…<ruby><rb>御座</rb><rp>(</rp><rt>みざ</rt><rp>)</rp></ruby>に すわっておられる方(神)の右手に<ruby><rb>巻物</rb><rp>(</rp><rt>まきもの</rt><rp>)</rp></ruby>が あるのを見た．それは内側にも外側にも文字が書きしるされ，7つの<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>で<ruby><rb>封</rb><rp>(</rp><rt>ふう</rt><rp>)</rp></ruby>じられていた．…<br>…「…見よ．ユダ族から出た<ruby><rb>獅子</rb><rp>(</rp><rt>しし</rt><rp>)</rp></ruby>，ダビデの＜ひこばえ＞(切り株から出た芽)が勝利を得たので，七つの<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いて，その<ruby><rb>巻物</rb><rp>(</rp><rt>まきもの</rt><rp>)</rp></ruby>を<ruby><rb>開</rb><rp>(</rp><rt>ひら</rt><rp>)</rp></ruby>く事ができる．」<br<ruby><rb>>小羊</rb><rp>(</rp><rt>キリスト</rt><rp>)</rp></ruby>は 進み出て，<ruby><rb>玉座</rb><rp>(</rp><rt>ぎょくざ</rt><rp>)</rp></ruby>に<ruby><rb>座</rb><rp>(</rp><rt>すわ</rt><rp>)</rp></ruby>っておられる方(神)の右の手から，<ruby><rb>巻物</rb><rp>(</rp><rt>まきもの</rt><rp>)</rp></ruby>を受け取った．<br>☆つまり これは，キリスト自身が この<ruby><rb>巻物</rb><rp>(</rp><rt>まきもの</rt><rp>)</rp></ruby>の7つの<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>くと言う事．<br>又，この7つの<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>のうち，第1～5の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>は すでに<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>かれているようだ．<br>"
+      );
+    }
+    function A0601() {
+      document.write(
+        "◇(第6章 第1～2節)：<ruby><rb>小羊</rb><rp>(</rp><rt>キリスト</rt><rp>)</rp></ruby>が その7つの<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>の1つを<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>が見ていると，4つの<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の1つ(<ruby><rb>獅子</rb><rp>(</rp><rt>しし</rt><rp>)</rp></ruby>？)が，<ruby><rb>雷</rb><rp>(</rp><rt>かみなり</rt><rp>)</rp></ruby>のような声で「きたれ」と呼ぶのを聞いた．<br>そして見ていると，見よ，白い馬が出て来た．そして，それに乗っている者は，<ruby><rb>弓</rb><rp>(</rp><rt>ゆみ</rt><rp>)</rp></ruby>を手に持っており，また<ruby><rb>冠</rb><rp>(</rp><rt>かんむり</rt><rp>)</rp></ruby>を与えられて，勝利の<ruby><rb>上</rb><rp>(</rp><rt>うえ</rt><rp>)</rp></ruby>にも なお勝利を<ruby><rb>得</rb><rp>(</rp><rt>え</rt><rp>)</rp></ruby>ようとして出かけた．<br>☆(第1の封印＜1897年＞)：この「白い馬」とは＜シオニズム＞(イスラエル再建運動)を<ruby><rb>指</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>す．<br>＜テオドール･ヘルツル＞(第1の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の<ruby><rb>獅子</rb><rp>(</rp><rt>しし</rt><rp>)</rp></ruby>？)が＜シオニスト＞(イスラエル再建運動 推進者)達の指導者となり，＜1897年＞に開かれた第1回シオニスト会議により本格的に＜シオニズム＞(イスラエル再建運動)が<ruby><rb>推進</rb><rp>(</rp><rt>すいしん</rt><rp>)</rp></ruby>される事になる．<br>そしてイスラエル再建の実現のために彼らは欧米の政財界の権力者に対し＜シオニズム＞(イスラエル再建運動)を<ruby><rb>推進</rb><rp>(</rp><rt>すいしん</rt><rp>)</rp></ruby>して行き，次々と成功(勝利)を<ruby><rb>収</rb><rp>(</rp><rt>おさ</rt><rp>)</rp></ruby>めて行き，そして1948年には ついにイスラエルの再建に成功する事になる．<br>※1897年に第1回シオニスト会議がバーゼルで開催され，その あとでテオドール･ヘルツルは日記に次のような事を書いている．<br>「バーゼルに私はユダヤ人国家の基礎を すえた．私が もし大声で そう叫んだとしたら，世界中の人達が私を笑い者にするだろう．しかし おそらく5年後，確実なところでは50年後，世界は その事実を知る事になる」．<br>だがテオドール･ヘルツルは44歳の若さで世を去る事になる，しかしテオドール･ヘルツルの意志はユダヤ人国家･再建と言う熱烈な希望を<ruby><rb>抱</rb><rp>(</rp><rt>いだ</rt><rp>)</rp></ruby>く シオニスト達によって受け継がれて行く事になる．<br>そして その1897年の第1回シオニスト会議から ちょうど50年後，ユダヤ人国家･イスラエルを再建する事を国連が1947年11月に可決し，ついに1948年にユダヤ人国家としてイスラエルが建国された．<br>"
+      );
+    }
+    function A0603() {
+      document.write(
+        "◇(第6章 第3～4節)：<ruby><rb>小羊</rb><rp>(</rp><rt>キリスト</rt><rp>)</rp></ruby>が第2の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，第2の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物(<ruby><rb>雄牛</rb><rp>(</rp><rt>おうし</rt><rp>)</rp></ruby>？)が「きたれ」と言うのを，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は聞いた．すると今度は，赤い馬が出て来た．<br>☆(第2の封印＜1917年＞)：この「赤い馬」とは ソビエト共産主義体制を<ruby><rb>指</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>す．<br>＜レ-ニン＞(第2の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の<ruby><rb>雄牛</rb><rp>(</rp><rt>おうし</rt><rp>)</rp></ruby>？)により＜1917年＞のロシア10月革命が成功しソビエトは共産主義体制になる．<br>"
+      );
+    }
+    function A0605() {
+      document.write(
+        "◇(第6章 第5～6節)：第3の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，第3の(人間のような顔の)<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物が「きたれ」と言うのを，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は聞いた．<br>そこで見ていると，見よ，黒い馬が出て来た．そして，それに乗っている者は，はかりを手に持っていた．<br>すると，私は4つの<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby>から出て来ると思われる声が，こう言うのを聞いた，「小麦1マスは1デナリ．大麦3マスも1デナリ．オリ-ブ油とブドウ酒とを，そこなうな」．<br>☆(第3の封印＜1937年＞)：この「黒い馬」とは，<ruby><rb>力</rb><rp>(</rp><rt>ちから</rt><rp>)</rp></ruby>による世界政府の<ruby><rb>樹立</rb><rp>(</rp><rt>じゅりつ</rt><rp>)</rp></ruby>を めざす秘密結社 &quot;<ruby><rb>円卓会議</rb><rp>(</rp><rt>えんたくかいぎ</rt><rp>)</rp></ruby>&quot;を<ruby><rb>指</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>す．<br>＜1937年＞ &quot;<ruby><rb>円卓会議</rb><rp>(</rp><rt>えんたくかいぎ</rt><rp>)</rp></ruby>&quot;と，＜ル-ズベルト大統領＞(第3の人間のような顔をした<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物？)により「新しい欧米帝国主義」が<ruby><rb>台頭</rb><rp>(</rp><rt>たいとう</rt><rp>)</rp></ruby>した．<br>又，&quot;<ruby><rb>円卓会議</rb><rp>(</rp><rt>えんたくかいぎ</rt><rp>)</rp></ruby>&quot;によって物価がコントロールされた，1デリナ(1日働いて得た収入)で わずか小麦1マス 又は 大麦3マスしか買えなくなった．しかし 彼ら(&quot;<ruby><rb>円卓会議</rb><rp>(</rp><rt>えんたくかいぎ</rt><rp>)</rp></ruby>&quot;)は 人々が神に<ruby><rb>捧</rb><rp>(</rp><rt>ささ</rt><rp>)</rp></ruby>げるオリーブ油とブドウ酒は <ruby><rb>欠</rb><rp>(</rp><rt>か</rt><rp>)</rp></ruby>く事の無いようにした．<br>"
+      );
+    }
+    function A0607() {
+      document.write(
+        "◇(第6章 第7～8節)：…第4の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，「出て<ruby><rb>来</rb><rp>(</rp><rt>こ</rt><rp>)</rp></ruby>い」と<ruby><rb>言</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>う第4の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物(<ruby><rb>鷲</rb><rp>(</rp><rt>わし</rt><rp>)</rp></ruby>？)の声を，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は<ruby><rb>聞</rb><rp>(</rp><rt>き</rt><rp>)</rp></ruby>いた．…見よ，<ruby><rb>青白</rb><rp>(</rp><rt>あおじろ</rt><rp>)</rp></ruby>い馬が<ruby><rb>現</rb><rp>(</rp><rt>あら</rt><rp>)</rp></ruby>われ，それに乗っている者の名は &quot;死&quot;と言い，これに &quot;<ruby><rb>黄泉</rb><rp>(</rp><rt>よみ</rt><rp>)</rp></ruby>&quot;が<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>っていた．<br>彼らは地上の4<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1を支配し，<ruby><rb>剣</rb><rp>(</rp><rt>つるぎ</rt><rp>)</rp></ruby>と<ruby><rb>飢饉</rb><rp>(</rp><rt>ききん</rt><rp>)</rp></ruby>と死をもって，<ruby><rb>更</rb><rp>(</rp><rt>さら</rt><rp>)</rp></ruby>には地から<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>て来る(666の)<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>とで人を<ruby><rb>滅</rb><rp>(</rp><rt>ほろ</rt><rp>)</rp></ruby>ぼす<ruby><rb>権威</rb><rp>(</rp><rt>けんい</rt><rp>)</rp></ruby>が<ruby><rb>与</rb><rp>(</rp><rt>あた</rt><rp>)</rp></ruby>えられた．<br>☆(第4の封印＜1957年＞)：この「<ruby><rb>青白</rb><rp>(</rp><rt>あおじろ</rt><rp>)</rp></ruby>い馬」とは，中国を<ruby><rb>指</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>す．<br>＜<ruby><rb>毛沢東</rb><rp>(</rp><rt>もうたくとう</rt><rp>)</rp></ruby>＞(第4の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の<ruby><rb>鷲</rb><rp>(</rp><rt>わし</rt><rp>)</rp></ruby>？)は1949年に中華人民共和国を<ruby><rb>樹立</rb><rp>(</rp><rt>じゅりつ</rt><rp>)</rp></ruby>する事になる．<br>しかし，アメリカ帝国主義との<ruby><rb>平和･共存</rb><rp>(</rp><rt>へいわ･きょうぞん</rt><rp>)</rp></ruby>を おしつけるソ連に<ruby><rb>反旗</rb><rp>(</rp><rt>はんき</rt><rp>)</rp></ruby>を ひるがえし，＜1957年＞に＜<ruby><rb>毛沢東</rb><rp>(</rp><rt>もうたくとう</rt><rp>)</rp></ruby>＞(第4の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の<ruby><rb>鷲</rb><rp>(</rp><rt>わし</rt><rp>)</rp></ruby>？)は解放軍と ともに，人民ゲリラ戦争による世界の武力解放路線を<ruby><rb>独自</rb><rp>(</rp><rt>どくじ</rt><rp>)</rp></ruby>に進める事になった．<br>※現在の中国の人口は約10数億ぐらいであり，この「第4の封印」に書かれたとおりに，人類の約4<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1の人口を支配している．<br>"
+      );
+    }
+    function A0609() {
+      document.write(
+        "◇(第6章 第9～11節)：…第5の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は，神の言葉と，自分達が立てた あかしとのために殺された人々の たましいが<ruby><rb>祭壇</rb><rp>(</rp><rt>さいだん</rt><rp>)</rp></ruby>の<ruby><rb>下</rb><rp>(</rp><rt>した</rt><rp>)</rp></ruby>にいるのを見た．<br>彼らは大声で<ruby><rb>叫</rb><rp>(</rp><rt>さけ</rt><rp>)</rp></ruby>んで言った．<br>「聖なる，真実な主よ．いつまで<ruby><rb>裁</rb><rp>(</rp><rt>さば</rt><rp>)</rp></ruby>きを行わず，地に住む者に私達の血の<ruby><rb>復讐</rb><rp>(</rp><rt>ふくしゅう</rt><rp>)</rp></ruby>を なさらないのですか．」すると，彼らの1人1人に白い<ruby><rb>衣</rb><rp>(</rp><rt>ころも</rt><rp>)</rp></ruby>が<ruby><rb>与</rb><rp>(</rp><rt>あた</rt><rp>)</rp></ruby>えられた．<br>そして彼らは，「あなたがたと同じ しもべ，また兄弟達で，あなたがたと同じように殺されるはずの人々の<ruby><rb>数</rb><rp>(</rp><rt>かず</rt><rp>)</rp></ruby>が<ruby><rb>満</rb><rp>(</rp><rt>み</rt><rp>)</rp></ruby>ちるまで，もうしばらくの<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby>，休んでいなさい．」と言い<ruby><rb>渡</rb><rp>(</rp><rt>わた</rt><rp>)</rp></ruby>された．<br>"
+      );
+    }
+    function A0612() {
+      document.write(
+        "◇(第6章 第12～14節)：…第6の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，大きな地震が起こった．<br>そして，太陽は 毛の<ruby><rb>荒布</rb><rp>(</rp><rt>あらぬの</rt><rp>)</rp></ruby>のように黒くなり，月の全面が血のようになった．<br>そして天の星が地上に落ちた．…天は<ruby><rb>巻物</rb><rp>(</rp><rt>まきもの</rt><rp>)</rp></ruby>が<ruby><rb>巻</rb><rp>(</rp><rt>ま</rt><rp>)</rp></ruby>かれるように消えていき，全ての山と島とは その場所から<ruby><rb>移</rb><rp>(</rp><rt>うつ</rt><rp>)</rp></ruby>された．<br>"
+      );
+    }
+    function A0702() {
+      document.write(
+        "◇(第7章 第2～4節)：…もう1人の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>ける神の<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を もって日の出る方から<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>って来た．<br>彼らは地をも海をも そこなう<ruby><rb>権威</rb><rp>(</rp><rt>けんい</rt><rp>)</rp></ruby>を与えられた4人の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>達に言った．「私達が神の しもべ達の<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>に<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を押してしまうまで，地にも海にも木にも害を与えては いけない．」<br>それから<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>が，(神の)<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を押された人々の<ruby><rb>数</rb><rp>(</rp><rt>かず</rt><rp>)</rp></ruby>を聞くと，イスラエル(の12部族)の子孫の あらゆる部族の者が<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を押されていて14万4千人であった．<br>"
+      );
+    }
+    function A0705() {
+      document.write(
+        " ◇(第7章 第5～8節)：ユダの部族で<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を押された者が1万2千人，ルベンの部族で1万2千人，ガドの部族で1万2千人，アセルの部族で1万2千人，ナフタリの部族で1万2千人，マナセの部族で1万2千人，シメオンの部族で1万2千人，レビの部族で1万2千人，イッサカルの部族で1万2千人，ゼブルンの部族で1万2千人，ヨセフの部族で1万2千人，ベニヤミンの部族で1万2千人，<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>を押された者がいた．<br>"
+      );
+    }
+    function A0716() {
+      document.write(
+        "◇(第7章 第16節)：彼ら(<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>に神の<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>が押された14万4千人の人々)は，もはや<ruby><rb>飢</rb><rp>(</rp><rt>う</rt><rp>)</rp></ruby>えることもなく，<ruby><rb>渇</rb><rp>(</rp><rt>かわ</rt><rp>)</rp></ruby>くこともなく太陽も どんな炎熱も彼らを打つことは ありません．<br>"
+      );
+    }
+    function A0801() {
+      document.write(
+        "◇(第8章 第1～2節)：…第7の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>を<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>いた時，＜半時間＞(6ヵ月間？)ばかり天に静けさがあった．それから<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は，神の<ruby><rb>御前</rb><rp>(</rp><rt>みまえ</rt><rp>)</rp></ruby>に立つ7人の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>を見た．<br>彼らに7つのラッパが与えられた．<br>☆この第7の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>が<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>かれるのは，第6の<ruby><rb>封印</rb><rp>(</rp><rt>ふういん</rt><rp>)</rp></ruby>が<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>かれてから6ヵ月後と解釈する事が出来る．そして，このあと&quot;7つのラッパの<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>い&quot;と&quot;7つの<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>い&quot;が我々に もたらされ，人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の2が死滅すると預言されている．<br>"
+      );
+    }
+    function A0807() {
+      document.write(
+        "◇(第8章 第7～11節)：第一の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>すると，血の<ruby><rb>混</rb><rp>(</rp><rt>ま</rt><rp>)</rp></ruby>じった<ruby><rb>雹</rb><rp>(</rp><rt>ひょう</rt><rp>)</rp></ruby>と火が現われ，地上に<ruby><rb>投</rb><rp>(</rp><rt>な</rt><rp>)</rp></ruby>げられた．<br>そして地の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が焼け，木の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が焼け，全ての<ruby><rb>青草</rb><rp>(</rp><rt>あおくさ</rt><rp>)</rp></ruby>も焼けた．<br>第二の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>すると，山のように巨大な<ruby><rb>燃</rb><rp>(</rp><rt>も</rt><rp>)</rp></ruby>える火が海に投げ込まれた．そして海の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が血と なった．<br>すると，海の中の<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き物の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が死に，船の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1も打たれた．<br>第三の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>すると，<ruby><rb>松明</rb><rp>(</rp><rt>たいまつ</rt><rp>)</rp></ruby>のように<ruby><rb>燃</rb><rp>(</rp><rt>も</rt><rp>)</rp></ruby>える大きな星が天から落ちて来て，川の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1と，その水源に落ちた．この星の名は &quot;<ruby><rb>苦</rb><rp>(</rp><rt>にが</rt><rp>)</rp></ruby>よもぎ&quot;と言い，川の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が &quot;<ruby><rb>苦</rb><rp>(</rp><rt>にが</rt><rp>)</rp></ruby>よもぎ&quot;のように なった．水が<ruby><rb>苦</rb><rp>(</rp><rt>にが</rt><rp>)</rp></ruby>くなったので，その水のために多くの人が死んだ．<br>"
+      );
+    }
+    function A0812() {
+      document.write(
+        "◇(第8章 第12節)：第四の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>太陽の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1，月の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1，星の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が打たれたので，それぞれ3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が暗くなって，昼は その光の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1を<ruby><rb>失</rb><rp>(</rp><rt>うしな</rt><rp>)</rp></ruby>い，<ruby><rb>夜</rb><rp>(</rp><rt>よる</rt><rp>)</rp></ruby>も同じようになった．<br>"
+      );
+    }
+    function A0901() {
+      document.write(
+        "◇(第9章 第1～5節)：第五の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．すると，<ruby><rb>私</rb><rp>(</rp><rt>ヨハネ</rt><rp>)</rp></ruby>は1つの星が天から地上に落ちるのを見た．その星には<ruby><rb>底知</rb><rp>(</rp><rt>そこし</rt><rp>)</rp></ruby>れぬ所の穴を開く カギが<ruby><rb>与</rb><rp>(</rp><rt>あた</rt><rp>)</rp></ruby>えられた．<br>その星が，<ruby><rb>底知</rb><rp>(</rp><rt>そこし</rt><rp>)</rp></ruby>れぬ所の穴を開くと，穴から大きな<ruby><rb>炉</rb><rp>(</rp><rt>ろ</rt><rp>)</rp></ruby>のような<ruby><rb>煙</rb><rp>(</rp><rt>けむり</rt><rp>)</rp></ruby>が立ちのぼり，太陽も<ruby><rb>空</rb><rp>(</rp><rt>そら</rt><rp>)</rp></ruby>も，この<ruby><rb>煙</rb><rp>(</rp><rt>けむり</rt><rp>)</rp></ruby>によって暗くなった．その<ruby><rb>煙</rb><rp>(</rp><rt>けむり</rt><rp>)</rp></ruby>の中から，イナゴが地上に出て来た．彼らには地に<ruby><rb>住</rb><rp>(</rp><rt>す</rt><rp>)</rp></ruby>むサソリ のような<ruby><rb>力</rb><rp>(</rp><rt>ちから</rt><rp>)</rp></ruby>が与えられた．<br>そして彼らには，地の草や全ての<ruby><rb>青物</rb><rp>(</rp><rt>あおもの</rt><rp>)</rp></ruby>や全ての木には<ruby><rb>害</rb><rp>(</rp><rt>がい</rt><rp>)</rp></ruby>を<ruby><rb>加</rb><rp>(</rp><rt>くわ</rt><rp>)</rp></ruby>え無いで，ただ<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>に神の<ruby><rb>印</rb><rp>(</rp><rt>いん</rt><rp>)</rp></ruby>が無い人間にだけ<ruby><rb>害</rb><rp>(</rp><rt>がい</rt><rp>)</rp></ruby>を<ruby><rb>加</rb><rp>(</rp><rt>くわ</rt><rp>)</rp></ruby>えるように言い<ruby><rb>渡</rb><rp>(</rp><rt>わた</rt><rp>)</rp></ruby>された．<br>しかし，人間を殺す事は<ruby><rb>許</rb><rp>(</rp><rt>ゆる</rt><rp>)</rp></ruby>されず，ただ5ヵ月の<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby> 苦しめる事が<ruby><rb>許</rb><rp>(</rp><rt>ゆる</rt><rp>)</rp></ruby>された．<br>その苦痛は，サソリ が人を<ruby><rb>刺</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>した時のような苦痛であった．<br>"
+      );
+    }
+    function A0907() {
+      document.write(
+        "◇(第9章 第7～8節)：そのイナゴの<ruby><rb>形</rb><rp>(</rp><rt>かたち</rt><rp>)</rp></ruby>は，…<ruby><rb>頭</rb><rp>(</rp><rt>あたま</rt><rp>)</rp></ruby>に<ruby><rb>金</rb><rp>(</rp><rt>きん</rt><rp>)</rp></ruby>の<ruby><rb>冠</rb><rp>(</rp><rt>かんむり</rt><rp>)</rp></ruby>のような物を付け，顔は人間のようであった．又 女の<ruby><rb>髪</rb><rp>(</rp><rt>かみ</rt><rp>)</rp></ruby>のような毛があり，歯は，<ruby><rb>獅子</rb><rp>(</rp><rt>しし</rt><rp>)</rp></ruby>の歯のようであった．<br>"
+      );
+    }
+    function A0912() {
+      document.write(
+        "◇(第9章 第12～18節)：第1の<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>い(第1～5のラッパ？)は過ぎ去った．<br>見よ．この<ruby><rb>後</rb><rp>(</rp><rt>のち</rt><rp>)</rp></ruby>なお2つの<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>いが来る．第六の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>…すると，<ruby><rb>定</rb><rp>(</rp><rt>さだ</rt><rp>)</rp></ruby>められた<ruby><rb>時</rb><rp>(</rp><rt>とき</rt><rp>)</rp></ruby>，<ruby><rb>日</rb><rp>(</rp><rt>ひ</rt><rp>)</rp></ruby>，<ruby><rb>月</rb><rp>(</rp><rt>つき</rt><rp>)</rp></ruby>，<ruby><rb>年</rb><rp>(</rp><rt>とし</rt><rp>)</rp></ruby>に<ruby><rb>備</rb><rp>(</rp><rt>そな</rt><rp>)</rp></ruby>えて おかれた4人の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1を殺すために<ruby><rb>解</rb><rp>(</rp><rt>と</rt><rp>)</rp></ruby>き<ruby><rb>放</rb><rp>(</rp><rt>はな</rt><rp>)</rp></ruby>たれた．<br>騎兵隊の<ruby><rb>数</rb><rp>(</rp><rt>かず</rt><rp>)</rp></ruby>は2億であった．彼らは，…口から火と<ruby><rb>煙</rb><rp>(</rp><rt>けむり</rt><rp>)</rp></ruby>と<ruby><rb>硫黄</rb><rp>(</rp><rt>いおう</rt><rp>)</rp></ruby>とを<ruby><rb>吐</rb><rp>(</rp><rt>は</rt><rp>)</rp></ruby>いていた．…この3つの<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>いのために人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1は殺された．<br>"
+      );
+    }
+    function A1103() {
+      document.write(
+        "◇(第11章 第3～7節)：…2人の<ruby><rb>証人</rb><rp>(</rp><rt>しょうにん</rt><rp>)</rp></ruby>が<ruby><rb>荒布</rb><rp>(</rp><rt>あらぬの</rt><rp>)</rp></ruby>を着て1,260日(約3年半)の<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby> 預言する．この人達が預言をしている期間は 雨が<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>らず，水を血に変え，あらゆる災害をもって地を打つ．そして，<ruby><rb>証</rb><rp>(</rp><rt>あかし</rt><rp>)</rp></ruby>を終えると，…<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>が彼らと戦って勝ち，彼らを殺す．<br>"
+      );
+    }
+    function A1108() {
+      document.write(
+        "◇(第11章 第8～12節)：彼らの死体は，霊的な理解では ソドム や エジプト と呼ばれる大きな<ruby><rb>都</rb><rp>(</rp><rt>みやこ</rt><rp>)</rp></ruby>の<ruby><rb>大通</rb><rp>(</rp><rt>おおどお</rt><rp>)</rp></ruby>りに さらされる．<br>彼らの＜<ruby><rb>主</rb><rp>(</rp><rt>しゅ</rt><rp>)</rp></ruby>＞(イエス)も その<ruby><rb>都</rb><rp>(</rp><rt>みやこ</rt><rp>)</rp></ruby>で十字架に付けられたので ある．<br>さまざまな民族，部族，<ruby><rb>言語</rb><rp>(</rp><rt>げんご</rt><rp>)</rp></ruby>，国民に<ruby><rb>属</rb><rp>(</rp><rt>ぞく</rt><rp>)</rp></ruby>する人々は，3日半の<ruby><rb>間</rb><rp>(</rp><rt>あいだ</rt><rp>)</rp></ruby>，彼らの死体を<ruby><rb>眺</rb><rp>(</rp><rt>なが</rt><rp>)</rp></ruby>め，それを<ruby><rb>墓</rb><rp>(</rp><rt>はか</rt><rp>)</rp></ruby>に<ruby><rb>葬</rb><rp>(</rp><rt>ほうむ</rt><rp>)</rp></ruby>る事を<ruby><rb>許</rb><rp>(</rp><rt>ゆる</rt><rp>)</rp></ruby>さず．<br>又 地に住む人々は，彼らの事で<ruby><rb>喜</rb><rp>(</rp><rt>よろこ</rt><rp>)</rp></ruby>び<ruby><rb>祝</rb><rp>(</rp><rt>いわ</rt><rp>)</rp></ruby>って，<ruby><rb>互</rb><rp>(</rp><rt>たが</rt><rp>)</rp></ruby>いに<ruby><rb>贈</rb><rp>(</rp><rt>おく</rt><rp>)</rp></ruby>り物を<ruby><rb>贈</rb><rp>(</rp><rt>おく</rt><rp>)</rp></ruby>り<ruby><rb>合</rb><rp>(</rp><rt>あ</rt><rp>)</rp></ruby>う．<br>それは，この＜2人の預言者＞(＝2人の<ruby><rb>証人</rb><rp>(</rp><rt>しょうにん</rt><rp>)</rp></ruby>)が，地に住む人々を苦しめたからで ある．<br>しかし，3日半の後，神から出た<ruby><rb>命</rb><rp>(</rp><rt>いのち</rt><rp>)</rp></ruby>の<ruby><rb>息</rb><rp>(</rp><rt>いき</rt><rp>)</rp></ruby>が，彼らに<ruby><rb>入</rb><rp>(</rp><rt>はい</rt><rp>)</rp></ruby>り，彼らが足で立ち<ruby><rb>上</rb><rp>(</rp><rt>あ</rt><rp>)</rp></ruby>がったので，それを見ていた人々は非常な恐怖に<ruby><rb>襲</rb><rp>(</rp><rt>おそ</rt><rp>)</rp></ruby>われた．<br>その<ruby><rb>時</rb><rp>(</rp><rt>とき</rt><rp>)</rp></ruby>，2人に天から大きな声が有って，「ここに<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>って<ruby><rb>来</rb><rp>(</rp><rt>こ</rt><rp>)</rp></ruby>い」と言うのを聞いた．<br>そして<ruby><rb>雲</rb><rp>(</rp><rt>くも</rt><rp>)</rp></ruby>に<ruby><rb>乗</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>って天に<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>った．…<br>"
+      );
+    }
+    function A1114() {
+      document.write(
+        "◇(第11章 第14～19節)：第2の<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>い(第6のラッパ？)は過ぎ去った．<br>見よ．第3の<ruby><rb>災</rb><rp>(</rp><rt>わざわ</rt><rp>)</rp></ruby>いが すぐに来る．第七の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>がラッパを<ruby><rb>吹</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>いた．<br>すると，天に大きな<ruby><rb>声々</rb><rp>(</rp><rt>こえごえ</rt><rp>)</rp></ruby>が<ruby><rb>起</rb><rp>(</rp><rt>お</rt><rp>)</rp></ruby>こって言った．「この世の国は私達の<ruby><rb>主</rb><rp>(</rp><rt>しゅ</rt><rp>)</rp></ruby>および そのキリストのものと なった．<ruby><rb>主</rb><rp>(</rp><rt>しゅ</rt><rp>)</rp></ruby>は<ruby><rb>永遠</rb><rp>(</rp><rt>えいえん</rt><rp>)</rp></ruby>に支配される．」<br>それから，神の<ruby><rb>御前</rb><rp>(</rp><rt>みまえ</rt><rp>)</rp></ruby>で自分達の<ruby><rb>座</rb><rp>(</rp><rt>ざ</rt><rp>)</rp></ruby>に<ruby><rb>着</rb><rp>(</rp><rt>つ</rt><rp>)</rp></ruby>いている24人の長老達も，地に ひれ<ruby><rb>伏</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>し，神を<ruby><rb>礼拝</rb><rp>(</rp><rt>れいはい</rt><rp>)</rp></ruby>して，言った．「…地を<ruby><rb>滅</rb><rp>(</rp><rt>ほろ</rt><rp>)</rp></ruby>ぼす者どもの<ruby><rb>滅</rb><rp>(</rp><rt>ほろ</rt><rp>)</rp></ruby>ぼされる時です．」…．<br>また，<ruby><rb>稲妻</rb><rp>(</rp><rt>いなずま</rt><rp>)</rp></ruby>，声，<ruby><rb>雷鳴</rb><rp>(</rp><rt>らいめい</rt><rp>)</rp></ruby>，地震が起こり，大きな<ruby><rb>雹</rb><rp>(</rp><rt>ひょう</rt><rp>)</rp></ruby>が<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>った．<br>"
+      );
+    }
+    function A1301() {
+      document.write(
+        "◇(第13章 第1～5節)：…海から一匹の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>が<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>って来た．<br>これには十本の<ruby><rb>角</rb><rp>(</rp><rt>つの</rt><rp>)</rp></ruby>と七つの<ruby><rb>頭</rb><rp>(</rp><rt>あたま</rt><rp>)</rp></ruby>とがあった．<br>その<ruby><rb>角</rb><rp>(</rp><rt>つの</rt><rp>)</rp></ruby>には 十の<ruby><rb>冠</rb><rp>(</rp><rt>かんむり</rt><rp>)</rp></ruby>があり，その<ruby><rb>頭</rb><rp>(</rp><rt>あたま</rt><rp>)</rp></ruby>には神を けがす名があった．<br>…その(海から来た<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の)<ruby><rb>頭</rb><rp>(</rp><rt>あたま</rt><rp>)</rp></ruby>の うちの一つは打ち殺されたかと思われたが，その致命的な傷も直ってしまった．そこで，<ruby><rb>全地</rb><rp>(</rp><rt>ぜんち</rt><rp>)</rp></ruby>は <ruby><rb>驚</rb><rp>(</rp><rt>おどろ</rt><rp>)</rp></ruby>いて，その<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>に<ruby><rb>従</rb><rp>(</rp><rt>したが</rt><rp>)</rp></ruby>い，そして，<ruby><rb>竜</rb><rp>(</rp><rt>サタン</rt><rp>)</rp></ruby>を<ruby><rb>拝</rb><rp>(</rp><rt>おが</rt><rp>)</rp></ruby>んだ．…この<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>は，…四十二ヵ月間(3年半)活動する<ruby><rb>権威</rb><rp>(</rp><rt>けんい</rt><rp>)</rp></ruby>を<ruby><rb>与</rb><rp>(</rp><rt>あた</rt><rp>)</rp></ruby>えられた．<br>☆この&quot;10本の<ruby><rb>角</rb><rp>(</rp><rt>つの</rt><rp>)</rp></ruby>&quot;とは，ヨーロッパ10ヵ国連合の10人の王の事だと思われる．<br>☆この&quot;七つの<ruby><rb>頭</rb><rp>(</rp><rt>あたま</rt><rp>)</rp></ruby>&quot;とは，エジプト，アッシリア，バビロニア，ペルシャ，ギリシャ，ローマという過去の6つの帝国と新たに出現するヨーロッパ10ヵ国連合による新ローマ帝国の事だと思われる．<br>☆&quot;神を けがす名がある<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>&quot;とは，聖マラキの &quot;法王の預言&quot;の なかの&quot;オリーブの<ruby><rb>栄光</rb><rp>(</rp><rt>えいこう</rt><rp>)</rp></ruby>&quot;と呼ばれるローマ法王の事だと思われる．この聖マラキの &quot;法王の預言&quot;には 1143年から この世の終わりに至るまでの全てのローマ法王 112人の異名リストが書かれている．<br>&quot;法王の預言&quot;の110人目は &quot;太陽の活動&quot;(ヨハネ･パウロ2世)であり，そして残りは &quot;オリーブの栄光&quot;，&quot;ローマの人ペテロ&quot;の 2人しかいない，そして その最後には &quot;FINIS&quot;と書かれている．<br>ただし，ベネディクト16世は &quot;オリーブの栄光&quot;＝ &quot;神を けがす名がある<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>&quot;としては<ruby><rb>小物</rb><rp>(</rp><rt>こもの</rt><rp>)</rp></ruby>すぎるように感じられるので，聖マラキの &quot;法王の預言&quot;の対象外かも しれない．<br>つまり &quot;神を けがす名がある<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>&quot;がら<ruby><rb>金</rb><rp>(</rp><rt>かね</rt><rp>)</rp></ruby>でローマ法王の<ruby><rb>座</rb><rp>(</rp><rt>ざ</rt><rp>)</rp></ruby>を買ったのかも しれない．<br>"
+      );
+    }
+    function A1311() {
+      document.write(
+        "◇(第13章 第11～18節)：もう一匹の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>が地から<ruby><rb>上</rb><rp>(</rp><rt>のぼ</rt><rp>)</rp></ruby>って来た．…又 人々の前で，火を天から地に<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>らせるような大きな しるしを<ruby><rb>行</rb><rp>(</rp><rt>おこな</rt><rp>)</rp></ruby>った．…又 (666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>は)全ての人々に その右の手か その<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>かに，<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>を受けさせた．<br>又，その<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>，すなわち，あの<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の名，又は その名の数字を持っている者 以外は，だれも買うことも，売ることも できないようにした．ここに知恵がある．<ruby><rb>思慮</rb><rp>(</rp><rt>しりょ</rt><rp>)</rp></ruby>ある者は その<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の数字を かぞえなさい．その数字は人間を<ruby><rb>指</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>しているからである．その数字は 666である．<br>"
+      );
+    }
+    function A1311Rem() {
+      document.write(
+        "☆この666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の数字は人間の名前を さしていて，その名前を数字に変換すると「666」に なると言われている．<br>又 EAN･シンボル の バー･コード は この預言の666の数字を参考に造られた可能性があるようだ．<br>EAN･シンボル の バー･コード は前半の コード は奇数･パリティー と偶数･パリティー の2種類が有り，後半の コード は偶数･パリティー の1種類の コード になっていて バー･コード を<ruby><rb>正</rb><rp>(</rp><rt>ただ</rt><rp>)</rp></ruby>しく読み取るために｛最初，真中，最後｝に数字の付いていない バー が有るのですが，この バー は｛前半，後半｝の偶数･パリティー  の &quot;6&quot;の コード と同じであり，<ruby><rb>他</rb><rp>(</rp><rt>ほか</rt><rp>)</rp></ruby>の コード とは一致しません．<br>なお バー･コード の詳細に関しては<br><a target='_blank' href='http://www.n-barcode.com/'><img border='0' src='b4link1.gif' alt=''> http://www.n-barcode.com/<br></a>を参照して下さい．<br>ただし，この『人々に その右の手か その<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>かに，<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>を受けさせた』とは あくまでも預言としての<ruby><rb>象徴</rb><rp>(</rp><rt>しょうちょう</rt><rp>)</rp></ruby>で有り，実際に「右の手；<ruby><rb>額</rb><rp>(</rp><rt>ひたい</rt><rp>)</rp></ruby>」に<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>を おこなう わけでは無い．<br>△ &quot;住民基本台帳･ネットワーク･システム&quot;(以下：住基･ネット)が 我々の行動を監視する システム に<ruby><rb>変貌</rb><rp>(</rp><rt>へんぼう</rt><rp>)</rp></ruby>するのでは ないかと<ruby><rb>危惧</rb><rp>(</rp><rt>きぐ</rt><rp>)</rp></ruby>しています．<br>この &quot;住基･ネット&quot;によって国民 1人1人に番号が付けられた わけですが，将来 その番号の カード？ を<ruby><rb>提示</rb><rp>(</rp><rt>ていじ</rt><rp>)</rp></ruby>しないと，物が買えなくなれば，人の行動を監視する事ができます．<br>「電車，バス，船，飛行機」は もちろんの事 自動車で移動する場合も ガソリン を買ったり，食料を買ったりするので，その人が どこで 何を買ったのかと言う行動が監視できると思われます．<br>＊ &quot;住基･ネット&quot;とは「各種行政の基礎であり居住関係を公証する住民基本台帳のネットワーク化を図り、4情報〔氏名･住所･性別･生年月日〕と住民票コード等により、地方公共団体共同のシステムとして、全国共通の本人確認ができる仕組みを構築します」と言う事らしいです．<br>"
+      );
+    }
+    function A1602() {
+      document.write(
+        "◇(第16章 第2～4節)：第一の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が…その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を地上に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の<ruby><rb>刻印</rb><rp>(</rp><rt>こくいん</rt><rp>)</rp></ruby>を持つ人々と，その<ruby><rb>像</rb><rp>(</rp><rt>ぞう</rt><rp>)</rp></ruby>を<ruby><rb>拝</rb><rp>(</rp><rt>おが</rt><rp>)</rp></ruby>む人々の体に，悪性の できものができた．<br>第二の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を海に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，海は死人の血のようになり，その中の生物が全て死んでしまった．<br>第三の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を川と水の<ruby><rb>源</rb><rp>(</rp><rt>みなもと</rt><rp>)</rp></ruby>に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，水は血になった．<br>"
+      );
+    }
+    function A1608() {
+      document.write(
+        "◇(第16章 第8～9節)：第四の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を太陽に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，太陽は火で人々を焼かれた．<br>☆この &quot;太陽&quot;の &quot;火&quot;とは，この世の火では無く &quot;神の火&quot;の事だと思われ，下記の「旧約･聖書 &quot;ゼカリヤ&quot;｛第13章 第8～9節｝」と関連していると思われる．<br>"
+      );
+    }
+    function A1610() {
+      document.write(
+        "◇(第16章 第10節)：第五の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を(666の)<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>の王座に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，…(666の)<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>が支配する国は暗くなり，人々は苦痛のあまり舌をかんだ．<br>"
+      );
+    }
+    function A1612() {
+      document.write(
+        "◇(第16章 第12～16節)：第六の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を大きな川，ユーフラテスに<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと…大ユ-フラテス川の水は，日の出る<ruby><rb>方</rb><rp>(</rp><rt>ほう</rt><rp>)</rp></ruby>から来る王達に対し道を<ruby><rb>備</rb><rp>(</rp><rt>そな</rt><rp>)</rp></ruby>えるために，<ruby><rb>渇</rb><rp>(</rp><rt>か</rt><rp>)</rp></ruby>れた．<br<ruby><rb>>竜</rb><rp>(</rp><rt>サタン</rt><rp>)</rp></ruby>，<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>，<ruby><rb>偽予言者</rb><rp>(</rp><rt>にせよげんしゃ</rt><rp>)</rp></ruby>らが，神の大いなる日に戦いを するためにハルマゲドン(地名)という所に，全世界の王達を<ruby><rb>召集</rb><rp>(</rp><rt>しょうしゅう</rt><rp>)</rp></ruby>した．<br>☆666の<ruby><rb>獣</rb><rp>(</rp><rt>けもの</rt><rp>)</rp></ruby>は イスラエルと戦うためにハルマゲドンという所に，全世界の王達を<ruby><rb>召集</rb><rp>(</rp><rt>しょうしゅう</rt><rp>)</rp></ruby>するのだと思われる．<br>"
+      );
+    }
+    function A1617() {
+      document.write(
+        "◇(第16章 第17～21節)：第七の<ruby><rb>御使</rb><rp>(</rp><rt>みつかい</rt><rp>)</rp></ruby>が，その<ruby><rb>鉢</rb><rp>(</rp><rt>はち</rt><rp>)</rp></ruby>の中身を<ruby><rb>空中</rb><rp>(</rp><rt>くうちゅう</rt><rp>)</rp></ruby>に<ruby><rb>注</rb><rp>(</rp><rt>そそ</rt><rp>)</rp></ruby>ぐと，<ruby><rb>神殿</rb><rp>(</rp><rt>しんでん</rt><rp>)</rp></ruby>の<ruby><rb>玉座</rb><rp>(</rp><rt>ぎょくざ</rt><rp>)</rp></ruby>から<ruby><rb>大声</rb><rp>(</rp><rt>おおごえ</rt><rp>)</rp></ruby>が<ruby><rb>聞</rb><rp>(</rp><rt>き</rt><rp>)</rp></ruby>こえ，「<ruby><rb>事</rb><rp>(</rp><rt>こと</rt><rp>)</rp></ruby>は<ruby><rb>成就</rb><rp>(</rp><rt>じょうじゅ</rt><rp>)</rp></ruby>した」と言った．<br>そして，<ruby><rb>稲妻</rb><rp>(</rp><rt>いなずま</rt><rp>)</rp></ruby>と<ruby><rb>声</rb><rp>(</rp><rt>こえ</rt><rp>)</rp></ruby>と<ruby><rb>雷鳴</rb><rp>(</rp><rt>らいめい</rt><rp>)</rp></ruby>があり，大きな地震があった．<br>この地震は人間が地上に住んで以来，かつて なかったほどのもので，それほどに大きな，強い地震であった．<br>また，大いなる<ruby><rb>都</rb><rp>(</rp><rt>みやこ</rt><rp>)</rp></ruby>は3つに<ruby><rb>裂</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>かれ，…島々は全て逃げ去り，山々は見えなくなった．<br>また1タラントほどの大きな<ruby><rb>雹</rb><rp>(</rp><rt>ひょう</rt><rp>)</rp></ruby>が，人々の<ruby><rb>上</rb><rp>(</rp><rt>うえ</rt><rp>)</rp></ruby>に天から<ruby><rb>降</rb><rp>(</rp><rt>ふ</rt><rp>)</rp></ruby>って来た．…その災害は非常に<ruby><rb>激</rb><rp>(</rp><rt>はげ</rt><rp>)</rp></ruby>しかった．<br>"
+      );
+    }
+    function TitleB() {
+      document.write(
+        "<a name='SolEnergy'></a>◆【旧約聖書 &quot;ゼカリヤ&quot;】<br>"
+      );
+    }
+    function B1203() {
+      document.write(
+        "◇(第12章 第3節)：…地の あらゆる国々が集まり，エルサレムに立ち向かう．<br>◇(第12章 第9節)：その日，私(神)は エルサレムに<ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>めて来る あらゆる国を<ruby><rb>必</rb><rp>(</rp><rt>かなら</rt><rp>)</rp></ruby>ず<ruby><rb>滅</rb><rp>(</rp><rt>ほろ</rt><rp>)</rp></ruby>ぼす．<br>◇(第13章 第8～9節)：この地の どこでも こうなる，と主は言われる．<br>3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の2は死に<ruby><rb>絶</rb><rp>(</rp><rt>た</rt><rp>)</rp></ruby>え，3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1が残る．この3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の1を私(神)は火に入れ銀を<ruby><rb>精錬</rb><rp>(</rp><rt>せいれん</rt><rp>)</rp></ruby>するように<ruby><rb>精錬</rb><rp>(</rp><rt>せいれん</rt><rp>)</rp></ruby>し<ruby><rb>金</rb><rp>(</rp><rt>きん</rt><rp>)</rp></ruby>を<ruby><rb>試</rb><rp>(</rp><rt>ため</rt><rp>)</rp></ruby>すように<ruby><rb>試</rb><rp>(</rp><rt>ため</rt><rp>)</rp></ruby>す．…<br>◇(第14章 第1～12節)：見よ，主の日が来る．…私(神)は全ての国々を集めてエルサレムを<ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>めさせる．…主が出て来られる．決戦の日に戦うように，それらの国々と戦われる．<br>その日，主の足は エルサレムの東に面するオリーブ<ruby><rb>山</rb><rp>(</rp><rt>やま</rt><rp>)</rp></ruby>の<ruby><rb>上</rb><rp>(</rp><rt>うえ</rt><rp>)</rp></ruby>に立つ．オリーブ<ruby><rb>山</rb><rp>(</rp><rt>やま</rt><rp>)</rp></ruby>は その真ん中で，2つに<ruby><rb>裂</rb><rp>(</rp><rt>さ</rt><rp>)</rp></ruby>け，<ruby><rb>東西</rb><rp>(</rp><rt>とうざい</rt><rp>)</rp></ruby>に<ruby><rb>延</rb><rp>(</rp><rt>の</rt><rp>)</rp></ruby>びる非常に大きな谷ができる．<br>…<ruby><rb>疫病</rb><rp>(</rp><rt>えきびょう</rt><rp>)</rp></ruby>で主は エルサレムを<ruby><rb>攻</rb><rp>(</rp><rt>せ</rt><rp>)</rp></ruby>めに来る全ての国々の民に この災害を加えられる．<br>彼らの肉を，まだ足で立っているうちに腐らせる．彼らの目は まぶたの中で腐り，彼らの舌は口の中で腐る．<br>"
+      );
+    }
+    function B1203Rem() {
+      document.write(
+        "☆上記の &quot;私(神)は火に入れ&quot;とは &quot;大いなる光りの存在&quot;(＝霊的･高次元の絶対的･エネルギー)によって<ruby><rb>焼</rb><rp>(</rp><rt>や</rt><rp>)</rp></ruby>かれ，その瞬間 地球は 溶鉱炉の中のような状態になるのだと思われます．<br>たとえ この時 シェルターの中に<ruby><rb>隠</rb><rp>(</rp><rt>かく</rt><rp>)</rp></ruby>れていようと，この&quot;大いなる光りの存在&quot;から<ruby><rb>逃</rb><rp>(</rp><rt>のが</rt><rp>)</rp></ruby>れる事は できません．<br>☆上記の『銀を<ruby><rb>精錬</rb><rp>(</rp><rt>せいれん</rt><rp>)</rp></ruby>するように<ruby><rb>精錬</rb><rp>(</rp><rt>せいれん</rt><rp>)</rp></ruby>し<ruby><rb>金</rb><rp>(</rp><rt>きん</rt><rp>)</rp></ruby>を<ruby><rb>試</rb><rp>(</rp><rt>ため</rt><rp>)</rp></ruby>すように<ruby><rb>試</rb><rp>(</rp><rt>ため</rt><rp>)</rp></ruby>す』の「 &quot;銀&quot;，&quot;<ruby><rb>金</rb><rp>(</rp><rt>きん</rt><rp>)</rp></ruby>&quot;」は 人間の霊的ランクの事だと思われる．<br>人間の霊的ランクには「ランク1.x(<ruby><rb>金</rb><rp>(</rp><rt>きん</rt><rp>)</rp></ruby>のランク)，ランク2.x(銀のランク)，ランク3.x(<ruby><rb>銅</rb><rp>(</rp><rt>どう</rt><rp>)</rp></ruby>のランク)」の3つが有り，又 この3つの人間のランクを超越したランク0(神のランク)が あるが， &quot;大いなる光りの存在&quot;によって<ruby><rb>焼</rb><rp>(</rp><rt>や</rt><rp>)</rp></ruby>かれ ランク1.xはランク1.0(<ruby><rb>純金</rb><rp>(</rp><rt>じゅんきん</rt><rp>)</rp></ruby>のランク)にランク2.xはランク2.0(純銀のランク)にランクが<ruby><rb>上</rb><rp>(</rp><rt>あ</rt><rp>)</rp></ruby>がるのですが，人類の3<ruby><rb>分</rb><rp>(</rp><rt>ぶん</rt><rp>)</rp></ruby>の2の ランク3.x(<ruby><rb>銅</rb><rp>(</rp><rt>どう</rt><rp>)</rp></ruby>のランク)の人は<ruby><rb>生</rb><rp>(</rp><rt>い</rt><rp>)</rp></ruby>き<ruby><rb>残</rb><rp>(</rp><rt>のこ</rt><rp>)</rp></ruby>る事は できないのだと思われます．<br>しかし，ランク3.x(<ruby><rb>銅</rb><rp>(</rp><rt>どう</rt><rp>)</rp></ruby>のランク)の人も， &quot;メシア&quot;によって<ruby><rb>救</rb><rp>(</rp><rt>すく</rt><rp>)</rp></ruby>われるかも しれません．<br>"
+      );
+    }
+    //Document End.
+    //
+    //Display Begin.
+    function Display() {
+      Header();
+      if (sHLA == "On") {
+        Headline();
+        TitleA();
+        A0406();
+        A0501();
+        A0601();
+        A0603();
+        A0605();
+        A0607();
+        A0609();
+
+        if (sHLA0612 != "") Line(1);
+
+        document.write("<a name='6-12'></a>");
+
+        if (sHLA0612 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA0612 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA0612 != "") Line(1);
+
+        A0612();
+
+        if (sHLA0702 != "") Line(1);
+
+        document.write("<a name='7-2'></a>");
+
+        if (sHLA0702 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA0702 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA0702 != "") Line(1);
+
+        A0702();
+        A0705();
+        A0716();
+
+        if (sHLA0801 != "") Line(1);
+
+        document.write("<a name='8-1'></a>");
+
+        if (sHLA0801 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA0801 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA0801 != "") Line(1);
+
+        A0801();
+        A0807();
+        A0812();
+
+        if (sHLA0901 != "") Line(1);
+
+        document.write("<a name='9-1'></a>");
+
+        if (sHLA0901 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA0901 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA0901 != "") Line(1);
+
+        A0901();
+        A0907();
+
+        if (sHLA0912 != "") Line(1);
+
+        if (sHLA0912 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA0912 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA0912 != "") Line(1);
+
+        A0912();
+
+        if (sHLA1103 != "") Line(1);
+
+        document.write("<a name='11-3'></a>");
+
+        if (sHLA1103 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA1103 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA1103 != "") Line(1);
+
+        A1103();
+        A1108();
+
+        if (sHLA1114 != "") Line(1);
+
+        if (sHLA1114 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA1114 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA1114 != "") Line(1);
+
+        A1114();
+
+        if (sHLA1301 != "") Line(1);
+
+        document.write("<a name='13-1'></a>");
+
+        if (sHLA1301 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA1301 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA1301 != "") Line(1);
+
+        A1301();
+
+        if (sHLA1311 != "") Line(1);
+
+        document.write("<a name='13-11'></a>");
+
+        if (sHLA1311 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA1311 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA1311 != "") Line(1);
+
+        A1311();
+        A1311Rem();
+
+        if (sHLA1602 != "") Line(1);
+
+        if (sHLA1602 == "Begin") {
+
+          document.write("<table width='100%' align='center'>");
+          document.write("<tr>");
+          document.write("<td bgcolor='#bfc7ef'>");
+
+        }
+
+        if (sHLA1602 == "End") {
+
+          document.write("</td>");
+          document.write("</tr>");
+          document.write("</table>");
+
+        }
+
+        if (sHLA1602 != "") Line(1);
+
+        A1602();
+        A1608();
+        A1610();
+        A1612();
+        A1617();
+        Line(2);
+      }
+      if (sHLB == "On") {
+        TitleB();
+        B1203();
+        B1203Rem();
+      }
+      Footer();
+    }
+    //Display End.
+
+    if ("?A0612~0614" == location.search) {
+      sHLA0612 = "Begin";
+      sHLA0702 = "End";
+    }
+    if ("?A0702~0716" == location.search) {
+      sHLA0702 = "Begin";
+      sHLA0801 = "End";
+    }
+    if ("?A0801~1119" == location.search) {
+      sHLA0801 = "Begin";
+      sHLA1301 = "End";
+    }
+    if ("?A0901~0908" == location.search) {
+      sHLA0901 = "Begin";
+      sHLA0912 = "End";
+    }
+    if ("?A1103~1112" == location.search) {
+      sHLA1103 = "Begin";
+      sHLA1114 = "End";
+    }
+    if ("?A1301~1318" == location.search) {
+      sHLA1301 = "Begin";
+      sHLA1602 = "End";
+    }
+    if ("?A1301~1305" == location.search) {
+      sHLA1301 = "Begin";
+      sHLA1311 = "End";
+    }
+    if ("?A1311~1318" == location.search) {
+      sHLA1311 = "Begin";
+      sHLA1602 = "End";
+    }
+    if ("?B0000~" == location.search) {
+      //sHLA = "Off";
+
+    }
+    Display();
+  </script>
+
+  <script language="JavaScript">
+    Footer();
+    Finalize();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+</head>
+<body>
+  <h2>Promiseテスト</h2>
+  <script>
+    let htm
+    async function get_data() {
+      const url = "";
+      const res = await fetch(url);
+      htm = res.json();
+    };
+
+    new Promise((resolve, reject) => {
+      get_data();
+      if (htm) {
+        resolve("成功");
+      } else {
+        reject("失敗");
+      }
+    })
+      .then(result => {
+        output.textContent = "then: " + result;
+        console.log(htm);
+      })
+      .catch(result => {
+        output.textContent = "reject: " + result;
+      })
+      .finally(() => {
+        // 最後に必ず実行される
+        console.log("finally");
+      });
+  </script>
+</body>
+</html>

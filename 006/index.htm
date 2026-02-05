@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .Container {
+    display: flex;
+    column-gap: 10px;
+  }
+
+  main {
+    width: 75%;
+    display: grid;
+    grid-template-columns: 5px repeat(12, 1fr) 5px;
+    grid-template-rows: repeat(4, 150px);
+    gap: 10px 0;
+  }
+
+  header,
+  nav,
+  footer {
+    height: 150px;
+    border: thin solid black;
+  }
+
+  main>* {
+    box-sizing: border-box;
+    border-top: thin solid black;
+    border-bottom: thin solid black;
+  }
+
+  aside>* {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  aside {
+    box-sizing: border-box;
+    border: thin solid black;
+    padding: 10px;
+    width: 25%;
+    height: 630px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px 10px;
+  }
+
+  .Column_Span1 {
+    grid-column: span 1;
+  }
+
+  .Column_Span2 {
+    grid-column: span 2;
+  }
+
+  .Column_Span3 {
+    grid-column: span 3;
+  }
+
+  .Column_Span4 {
+    grid-column: span 4;
+  }
+
+  .Column_Span5 {
+    grid-column: span 5;
+  }
+
+  .Column_Span6 {
+    grid-column: span 6;
+  }
+
+  main>.Column_Span2 {}
+
+  main>.Column_Span3 {}
+
+  main>.Column_Span4 {}
+
+  main>.Column_Span6 {}
+
+  main>* {
+    padding: 10px 5px;
+  }
+
+  main>*>* {
+    box-sizing: border-box;
+    border: thin solid black;
+    height: 100%;
+  }
+
+  main>.Column_First {
+    border-left: thin solid black;
+  }
+
+  main>.Column_Last {
+    border-right: thin solid black;
+  }
+
+  main>.Column_Span2>* {
+    background-color: #94b7e5;
+  }
+
+  main>.Column_Span3>* {
+    background-color: #00ffff;
+  }
+
+  main>.Column_Span4>* {
+    background-color: #88df7a;
+  }
+
+  main>.Column_Span6>* {
+    background-color: #da8bb1;
+  }
+
+  main>.Column_First,
+  main>.Column_Last {
+    padding: 0;
+  }
+
+</style>
+<body>
+  <header>
+    ヘッダー
+  </header>
+  <nav>
+    メニュー
+  </nav>
+  <div class="Container">
+    <main>
+      <div class="Column_Span1 Column_First"></div>
+      <div class="Column_Span3">
+        <div>1段目</div>
+      </div>
+      <div class="Column_Span3">
+        <div>1段目</div>
+      </div>
+      <div class="Column_Span3">
+        <div>1段目</div>
+      </div>
+      <div class="Column_Span3">
+        <div>1段目</div>
+      </div>
+      <div class="Column_Span1 Column_Last"></div>
+
+      <div class="Column_Span1 Column_First"></div>
+      <div class="Column_Span4">
+        <div>2段目</div>
+      </div>
+      <div class="Column_Span4">
+        <div>2段目</div>
+      </div>
+      <div class="Column_Span4">
+        <div>2段目</div>
+      </div>
+      <div class="Column_Span1 Column_Last"></div>
+
+      <div class="Column_Span1 Column_First"></div>
+      <div class="Column_Span6">
+        <div>3段目</div>
+      </div>
+      <div class="Column_Span6">
+        <div>3段目</div>
+      </div>
+      <div class="Column_Span1 Column_Last"></div>
+
+      <div class="Column_Span1 Column_First"></div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span2">
+        <div>4段目</div>
+      </div>
+      <div class="Column_Span1 Column_Last"></div>
+    </main>
+    <aside>
+      <div class="Column_Span6"></div>
+      <div class="Column_Span3"></div>
+      <div class="Column_Span3"></div>
+      <div class="Column_Span2"></div>
+      <div class="Column_Span2"></div>
+      <div class="Column_Span2"></div>
+      <div class="Column_Span6"></div>
+    </aside>
+  </div>
+  <footer>
+    フッター
+  </footer>
+</body>
+</html>

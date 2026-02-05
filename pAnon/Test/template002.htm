@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <link href="../css/style.css" rel="stylesheet">
+
+  <link rel="preload" href="" as="image">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+</head>
+
+<script>
+  l
+  var SiteLocate - new Class_WebLocation(url);
+
+  function Class_WebAddress(url) {
+    this.sWebPathFile = url.pathname.replace("\\", "/");
+    this.sWebPathFile = this.sWebPathFile.substring(1);
+    console.log('this.sWebPathFile: ' + this.sWebPathFile);
+    var fnpos = this.sWebPathFile.lastIndexOf("/") + 1;
+    this.sWebFile = this.sWebPathFile.substring(
+      fnpos, this.sWebPathFile.length);
+    console.log('this.sWebFile: ' + this.sWebFile);
+    this.sWebPath = this.sWebPathFile.substring(0,
+      fnpos);
+    console.log('this.sWebPath: ' + this.sWebPath);
+    var port = url.port;
+    port = port ? ':' + port : "";
+    this.sWebAbsRoot = url.protocol + "//" + url.hostname
+      + port + '/';
+    console.log('this.sWebAbsRoot: ' + this.sWebAbsRoot);
+    this.sWebAbsCurr = this.sWebAbsRoot + this.sWebPath;
+    console.log('this.sWebAbsCurr: ' + this.sWebAbsCurr);
+    this.sWebAbsFull = this.sWebAbsRoot + this.sWebPathFile;
+    console.log('this.sWebAbsFull: ' + this.sWebAbsFull);
+  }
+
+
+
+  window.onload = function () {
+    var cancel = { "nstrdm1.htm": true };
+    var tag = ["a", "img",];
+    var prop = ["href", "src",];
+    for (var j = 0; j < tag.length; j++) {
+      var element = document.getElementsByTagName(tag[j]);
+      for (var i = 0; i < element.length; i++) {
+        var e = element[i];
+        var pattern = new RegExp("^" + gsWebAbsCurr, 'g');
+        var url, rep;
+        if (e[prop[j]]) {
+          url = e[prop[j]];
+          if (url.match(cancel)) {
+            rep = url.replace(pattern, gsWebAbsRoot);
+            e[prop[j]] = rep;
+          }
+        }
+        // console.log('url: ' + url);
+        console.log('rep: ' + rep);
+      }
+    }
+  }
+</script>
+
+<body text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff">
+
+  ※このページは「Edge、Chrome」などでは正常に表示されない場合が有るので、Firefoxを推奨します。<br>
+
+  <div align="left">
+    <a href="index.htm" target="_top">
+      <img src="b4link6.gif" border="0" alt="トップ･ページの表示"></a>
+  </div>
+  <div align="center">
+    <h2>
+      <nobr>ノストラダムス</nobr><br>
+      <nobr>”諸世紀”</nobr><wbr>
+      <nobr>Part １</nobr><br>
+    </h2>
+    <br>
+  </div>
+  <a target="_blank" href="pandor/000000j.htm">❐</a>
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  body {
+    margin: 0.5vw auto;
+    width: 96.5vw;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vw;
+  }
+
+  .Container {
+    display: flex;
+    column-gap: 1vw;
+  }
+
+  main {
+    box-sizing: border-box;
+    width: 66%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 11vw) 10vw;
+    gap: 0 0;
+  }
+
+  header,
+  footer {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    height: 8vw;
+  }
+
+  nav {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    width: 17%;
+    height: 43vw;
+  }
+
+  main>* {
+    box-sizing: border-box;
+    border: 0 0;
+    padding: 0vw 0.5vw;
+  }
+
+  main>*>* {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    height: 8vw;
+  }
+
+  main>.MainGround_001 {
+    grid-column: span 3;
+  }
+
+  main>.MainGround_001>* {
+    background-color: #00ffff;
+  }
+
+  main>.MainGround_002 {
+    grid-column: span 4;
+  }
+
+  main>.MainGround_002>* {
+    background-color: #88df7a;
+  }
+
+  main>.MainGround_003 {
+    grid-column: span 6;
+  }
+
+  main>.MainGround_003>* {
+    background-color: #da8bb1;
+  }
+
+  main>.MainGround_004 {
+    grid-column: span 2;
+  }
+
+  main>.MainGround_004>* {
+    background-color: #94b7e5;
+  }
+
+
+  /*PC 横画面*/
+  @media screen and (min-width:799px) {
+
+  aside {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    padding: 1vw;
+    width: 17%;
+    height: 43vw;
+  }
+
+  /*MainGround_001*/
+  main>*:nth-child(n+1):nth-child(-n+4) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(1){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(4){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_002*/
+  main>*:nth-child(n+5):nth-child(-n+7) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(5){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(7){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_003*/
+  main>*:nth-child(n+8):nth-child(-n+9) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(8){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(9){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_004*/
+  main>*:nth-child(n+10):nth-child(-n+15) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(10){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(15){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  }
+
+
+  /*Tablet 縦画面*/
+  @media screen and (min-width:575px) and (max-width:798px) {
+
+  body {
+    margin: 0.5vw auto;
+    width: 99vw;
+    font-size: 3vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vw;
+  }
+
+  main {
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 10vw 10vw 11vw 11vw 10vw 9vw;
+    gap: 0 0;
+  }
+
+  aside {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    padding: 1vw;
+    width: 17%;
+    height: 61vw;
+  }
+
+  nav {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    width: 17%;
+    height: 61vw;
+    border: 0.05vw solid black;
+  }
+
+  main>* {
+    box-sizing: border-box;
+    border: 0 0;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  /*MainGround_001*/
+  main>.MainGround_001 {
+    grid-column: span 3;
+    
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+2) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+3):nth-child(-n+4) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(2n+1){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(2n+2){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_002*/
+  main>.MainGround_002 {
+    grid-column: span 2;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(5){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(7){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_003*/
+  main>.MainGround_003 {
+    grid-column: span 3;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(8){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(9){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  /*MainGround_004*/
+  main>.MainGround_004 {
+    grid-column: span 2;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+12) {
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+13):nth-child(-n+15) {
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 0vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(3n+1){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(3n+3){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  }
+
+
+  /*Smartphone 縦画面*/
+  @media screen and (max-width:575px) {
+
+  body {
+    width: 99vw;
+    font-size: 4.5vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vw;
+  }
+
+  .Container {
+    display: flex;
+    flex-flow: column;
+  }
+
+    main {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    padding: 1vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1vw;
+  }
+
+  nav {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    width: 100%;
+    height: 8vw;
+    margin-bottom: 1vw;
+  }
+
+  aside {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    padding: 1vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  aside>* {
+    box-sizing: border-box;
+    border: 0.05vw solid black;
+    height: 8vw;
+    background-color: #88df7a;
+  }
+
+  aside>*:nth-child(n+1):nth-child(-n+6){
+    margin-bottom: 1vw;
+  }
+
+
+  /*MainGround_001*/
+  main>.MainGround_001>* {
+    background-color: #00ffff;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(1){
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4):nth-child(4){
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  main>*:nth-child(n+1):nth-child(-n+4){
+    padding-bottom: 1vw;
+  }
+
+
+  /*MainGround_002*/
+  main>.MainGround_002>* {
+    background-color: #00ffff;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(5){
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7):nth-child(7){
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  main>*:nth-child(n+5):nth-child(-n+7){
+    padding-bottom: 1vw;
+  }
+
+
+  /*MainGround_003*/
+  main>.MainGround_003>* {
+    background-color: #00ffff;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(8){
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9):nth-child(9){
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+    margin-bottom: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  main>*:nth-child(n+8):nth-child(-n+9){
+    padding-bottom: 1vw;
+  }
+
+
+  /*MainGround_004*/
+  main>.MainGround_004>* {
+    background-color: #00ffff;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(10){
+    border-top: 0.05vw solid black;
+    padding-top: 0.95vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15):nth-child(15){
+    border-bottom: 0.05vw solid black;
+    padding-bottom: 0.95vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15){
+    border-left: 0.05vw solid black;
+    padding-left: 1vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15){
+    border-right: 0.05vw solid black;
+    padding-right: 1vw;
+  }
+
+  main>*:nth-child(n+10):nth-child(-n+15){
+    padding-bottom: 1vw;
+  }
+
+}
+</style>
+<body>
+  <header>
+    ヘッダー
+  </header>
+  <div class="Container">
+    <nav>
+    メニュー
+    </nav>
+    <main>
+      <div class="MainGround_001">
+        <div>1段目</div>
+      </div>
+      <div class="MainGround_001 ">
+        <div>1段目</div>
+      </div>
+      <div class="MainGround_001 ">
+        <div>1段目</div>
+      </div>
+      <div class="MainGround_001">
+        <div>1段目</div>
+      </div>
+
+      <div class="MainGround_002">
+        <div>2段目</div>
+      </div>
+      <div class="MainGround_002 ">
+        <div>2段目</div>
+      </div>
+      <div class="MainGround_002">
+        <div>2段目</div>
+      </div>
+
+      <div class="MainGround_003">
+        <div>3段目</div>
+      </div>
+      <div class="MainGround_003">
+        <div>3段目</div>
+      </div>
+
+      <div class="MainGround_004">
+        <div>4段目</div>
+      </div>
+      <div class="MainGround_004">
+        <div>4段目</div>
+      </div>
+      <div class="MainGround_004 ">
+        <div>4段目</div>
+      </div>
+      <div class="MainGround_004 ">
+        <div>4段目</div>
+      </div>
+      <div class="MainGround_004 ">
+        <div>4段目</div>
+      </div>
+      <div class="MainGround_004">
+        <div>4段目</div>
+      </div>
+    </main>
+
+    <aside>
+      サイド
+    </aside>
+  </div>
+  <footer>
+    フッター
+  </footer>
+  <br>
+</body>
+</html>

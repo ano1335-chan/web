@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .FlexBox-001 {
+    height: 15vw;
+    background-color: lightgray;
+    padding: 0 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .FlexBox-001>*:nth-child(1) {
+    height: 60%;
+  }
+
+  .FlexBox-001>*:nth-child(2) {}
+
+  .FlexBox-001>*:nth-child(3) {
+    height: 50%;
+  }
+
+</style>
+<body>
+  <header class="FlexBox-001">
+    <img src="Blue-Sky.png">
+    <div></div>
+    <img src="Blue-Sky.png">
+  </header>
+</body>
+</html>

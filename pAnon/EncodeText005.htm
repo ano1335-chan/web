@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+</head>
+<body>
+  <textarea name="nmSource"></textarea><br>
+  <button onclick="HTMLEncode()">Encode!</button><br>
+  <textarea name="nmHTMLDisplay"></textarea><br>
+</body>
+<script>
+  function HTMLEncode() {
+    var d1wSource = document.getElementsByName("nmSource");
+    var d1wHTMLDisplay = document.getElementsByName("nmHTMLDisplay");
+    // console.log(str);
+    for (var i = 0; i < d1wSource.length; i++) {
+      // console.log(`i: ${i}`);
+      var rep = d1wSource[i].value;
+      rep = rep
+        .replace(/^ +/gs, '')
+        .replace(/ +$/gs, '')
+        //.replace(/・/gs, '･')
+        .replace(/･/gs, '・')
+        .replace(/”/gs, '"')
+        .replace(/’/gs, "'")
+        .replace(/"/gs, '&quot;')
+        .replace(/'/gs, "&apos;")
+        .replace(/（/gs, '\(')
+        .replace(/）/gs, '\)')
+        .replace(/＋/gs, '\+')
+        .replace(/－/gs, '\-')
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
+          return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        })
+        .replace(/(\d)，(?=\d\d\d)/gs, '$1,')
+        .replace(/(\d)．(?=(x|\d))/gs, '$1\.')
+        
+        .replace(/>/gs, "&gt;")
+        .replace(/([^・･ ぁ-ゖァ-ヶーＡ-Ｚａ-ｚ０-９＿\w、：:；;，,。．\.＋\+－\-＊\*／\/＝\=…～←↑↓→※§☆★○●◎◇◆□■△▲▽▼＜＞/</>《》「」『』【】｛｝{}（）\(\)”’"'][^ ぁ-ゖァ-ヶーＡ-Ｚａ-ｚ０-９＿\w、：:；;，,。．\.＋\+－\-＊\*／\/＝\=…～←↑↓→※§☆★○●◎◇◆□■△▲▽▼＜＞/</>《》「」『』【】｛｝{}（）\(\)”’"']*)[（\(]([ぁ-ゖァ-ヶー・･]+)[）\)]/gs,
+        '<ruby><rb>$1</rb><rp>(</rp><rt>$2</rt><rp>)</rp></ruby>')
+        // .replace(/([^ ぁ-ゖァ-ヶＡ-Ｚａ-ｚ０-９＿\w、，,。．.：…～＝←↑→＊※§☆★○●◎◇◆□■△▲▽▼＜＞《》「」『』【】｛｝{}（）()”’\"\']+)[（(]([ぁ-ゖァ-ヶ・･]+) ?([ぁ-ゖァ-ヶ・･]*?)[）)]/gs,
+        // '<ruby><rb>$1</rb><rp>(</rp><rt>$2$3</rt><rp>)</rp></ruby>')
+        .replace(/ *(\x0D\x0A|\x0A|\x0D|\n)/gs, '<br>\n');
+      d1wHTMLDisplay[i].value = rep;
+      d1wSource[i].value = "";
+      // [・][^ ぁ-ゖァ-ヶーＡ-Ｚａ-ｚ０-９＜＞（）”’]+（[ぁ-ゖァ-ヶー]+）
+    }
+  }
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>画像切り替え</title>
+</head>
+<body>
+  <button onclick="changeImage()">画像を切り替える</button><br>
+  <img id="image" src="image1.jpg" alt="画像" style="width:35%;">
+
+  <script>
+    // 画像のリスト
+    const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+    let currentIndex = 0;
+    function changeImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("image").src = images[currentIndex];
+    }
+  </script>
+</body>
+</html>

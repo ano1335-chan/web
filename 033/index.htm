@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+</head>
+<style>
+  /*PC Screen*/
+  /*Media Query：Default*/
+  .FlexBox-000 {
+    display: flex;
+
+  }
+
+  .Indention {
+    display: none;
+  }
+
+  .FlexBox-000 * {
+    white-space: nowrap;
+  }
+
+  /*Tablet Screen*/
+  /*Media Query：992px未満＝991px以下*/
+  @media screen and (max-width:991px) {}
+
+  /*Smartphone Screen*/
+  /*Media Query：576x未満＝575px以下*/
+  @media screen and (max-width:575px) {
+    .FlexBox-000 .Indention {
+      display: inline;
+    }
+
+  }
+
+</style>
+<body>
+  <div class="FlexBox-000">
+    <h2>01&nbsp</h2>
+    <h2>見出し見出し見出し見出し<br class="Indention">見出し見出し</h2>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .Calc {
+    box-sizing: border-box;
+    border: 2px solid black;
+    width: 7.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Calc>ul {
+    list-style: none;
+    margin: 0.3rem;
+    margin-top: 0;
+    padding: 0;
+    width: 6.9rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 0.3rem;
+  }
+
+  .Calc>ul>li {
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Dsp {
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin: 0.3rem;
+    width: 6.9rem;
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .Calc>ul>.W100per {
+    width: 100%;
+  }
+
+</style>
+<body>
+  <div class="Calc">
+    <h1 class="Dsp">
+      12345
+    </h1>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li class="W100per">0</li>
+    </ul>
+  </div>
+</body>
+</html>

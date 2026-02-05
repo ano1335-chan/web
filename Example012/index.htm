@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  header,
+  nav,
+  footer,
+  .Flex-Box_000 {
+    height: 150px;
+  }
+
+  header,
+  nav,
+  footer,
+  aside,
+  .Flex-Box_000>* {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .Container {
+    width: 69%;
+    padding: 0 0.5%;
+  }
+
+  header {
+    margin-bottom: 0.5vw;
+  }
+
+  footer {
+    clear: both;
+    margin-top: 0.5vw;
+  }
+
+  nav {
+    float: left;
+    width: 15%;
+    height: 615px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+  }
+
+  aside {
+    float: right;
+    width: 15%;
+    height: 615px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .Flex-Box_000 {
+    display: flex;
+    gap: 0.5vw;
+  }
+
+  .Flex-Box_000>* {
+    flex-grow: 1;
+  }
+
+  .Box_BackColor_001>* {
+    background-color: #00ffff;
+  }
+
+  .Box_BackColor_003>* {
+    background-color: #da8bb1;
+  }
+
+  .Box_BackColor_004>* {
+    background-color: #94b7e5;
+  }
+
+  .Box_BackColor_002>* {
+    background-color: #88df7a;
+  }
+
+</style>
+<body>
+  <header>
+    ヘッダー
+  </header>
+  <aside>
+    サイド
+  </aside>
+  <nav>
+    メニュー
+  </nav>
+  <main class="Container">
+    <div class="Flex-Box_000 Box_BackColor_001">
+      <div>1段目</div>
+      <div>1段目</div>
+      <div>1段目</div>
+      <div>1段目</div>
+    </div>
+    <div class="Flex-Box_000 Box_BackColor_002">
+      <div>2段目</div>
+      <div>2段目</div>
+      <div>2段目</div>
+    </div>
+    <div class="Flex-Box_000 Box_BackColor_003">
+      <div>3段目</div>
+      <div>3段目</div>
+    </div>
+    <div class="Flex-Box_000 Box_BackColor_004">
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+    </div>
+  </main>
+  <footer>
+    フッター
+  </footer>
+</body>
+</html>

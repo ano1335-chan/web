@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .Border {
+    border: thin solid #000;
+  }
+
+  html {
+    width: 389px;
+  }
+
+  body {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 389px;
+    font-size: 17px;
+    background-color: ffffff;
+  }
+
+  .AbsoluteCaption {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+  }
+
+  header {
+    position: relative;
+    background-color: #ff8888;
+    width: 389px;
+    height: 135px;
+  }
+
+  nav {
+    position: absolute;
+    left: 13px;
+    top: 44px;
+    width: 363px;
+    height: 78px;
+    background-color: #aaddee;
+  }
+
+  .Menu {
+    position: absolute;
+    left: 35px;
+    top: 40px;
+    width: 300px;
+    height: 40px;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-flow: row;
+    column-gap: 10px;
+  }
+
+  .CoreBody {
+    position: relative;
+    width: 389px;
+    height: 384px;
+    background-color: ffffff;
+  }
+
+  .CoreInterior {
+    position: relative;
+    left: 7px;
+    top: 7px;
+    width: 375px;
+    height: 370px;
+    display: flex;
+    flex-flow: column;
+    row-gap: 6px;
+  }
+
+  main {
+    position: relative;
+    width: 375px;
+    height: 284px;
+    background-color: #99ee99;
+  }
+
+  article {
+    position: relative;
+    left: 13px;
+    top: 45px;
+    width: 349px;
+    height: 225px;
+    background-color: #55ccff;
+  }
+
+  .ArticleInterior {
+    position: relative;
+    left: 13px;
+    top: 45px;
+    width: 323px;
+    height: 167px;
+    display: flex;
+    flex-flow: column;
+    row-gap: 7px;
+  }
+
+  section {
+    position: relative;
+    background-color: #ffaa77;
+    width: 323px;
+    height: 80px;
+  }
+
+  aside {
+    position: relative;
+    background-color: #ffbbcc;
+    width: 375px;
+    height: 80px;
+  }
+
+  footer {
+    position: relative;
+    background-color: #22bbaa;
+    width: 389px;
+    height: 80px;
+  }
+
+</style>
+<body>
+  <header>
+    <div class="AbsoluteCaption">
+      header
+    </div>
+    <nav class="">
+      <div class="AbsoluteCaption">
+        nav
+      </div>
+      <ul class="Menu">
+        <li><a href="">link</a></li>
+        <li><a href="">link</a></li>
+        <li><a href="">link</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="CoreBody">
+    <div class="CoreInterior">
+      <main>
+        <div class="AbsoluteCaption">
+          main
+        </div>
+        <article>
+          <div class="AbsoluteCaption">
+            article
+          </div>
+          <div class="ArticleInterior">
+            <section>
+              <div class="AbsoluteCaption">
+                section
+              </div>
+            </section>
+            <section>
+              <div class="AbsoluteCaption">
+                section
+              </div>
+            </section>
+          </div>
+        </article>
+      </main>
+      <aside>
+        <div class="AbsoluteCaption">
+          aside
+        </div>
+      </aside>
+    </div>
+  </div>
+  <footer>
+    <div class="AbsoluteCaption">
+      footer
+    </div>
+  </footer>
+</body>
+</html>

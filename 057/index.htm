@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    background-color: rgb(0, 0, 0);
+    height: 19vw;
+    width: 19vw;
+    border-radius: 50%;
+    opacity: 0;
+    animation: circle1 2s ease-in-out 2s forwards;
+  }
+
+  @keyframes circle1 {
+    0% {
+      opacity: 0.999;
+      transform: scale(1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(7.5);
+    }
+  }
+
+</style>
+<body>
+  <div></div>
+</body>
+</html>

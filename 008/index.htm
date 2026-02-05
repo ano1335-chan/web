@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>株式会社LiNew</title>
+  <link rel="stylesheet" type="text/css" href="base.css">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  body {
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .header {
+    width: 100%;
+  }
+
+  .header-logo {
+    display: flex;
+    transform: translate(20vw);
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  ul {
+    padding: 0;
+    height: 30px;
+    background-color: lightseagreen;
+    color: #ffffff;
+    display: flex;
+  }
+
+
+  li {
+    flex: 1;
+    text-align: center;
+    color: #ffffff;
+    list-style-type: none;
+  }
+
+  li+li {
+    border-left: 1px solid #ffffff;
+  }
+
+
+
+
+  /* メインはここから */
+
+
+  .main {
+    width: 980px;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .main-content {
+    width: 700px;
+    flex: 1;
+  }
+
+
+  .vision {
+    margin-top: 10px;
+    background-color: lightseagreen;
+    color: #ffffff;
+    padding: 10px 0 10px 15px;
+  }
+
+  .vision-text {
+    padding-top: 10px;
+  }
+
+  .service {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: lightseagreen;
+    color: #ffffff;
+    padding: 10px 0 10px 15px;
+  }
+
+  .service-photo1 {
+    margin-bottom: 10px;
+  }
+
+  .service-photo2 {
+    margin-bottom: 10px;
+  }
+
+  .service-photo3 {
+    margin-bottom: 10px;
+  }
+
+  .service-items {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+  }
+
+
+
+
+  .company {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: lightseagreen;
+    color: #ffffff;
+    padding: 10px 0 10px 15px;
+  }
+
+
+  .company-text {
+    margin-bottom: 10px;
+    line-height: 40px
+  }
+
+
+  .banner {
+    width: 260px;
+  }
+
+
+  .banner-img1 {
+    margin: 10px;
+  }
+
+
+  .banner-img2 {
+    margin: 10px 0 0 10px;
+  }
+
+
+  .banner-img3 {
+    margin: 10px 0 0 10px;
+  }
+
+
+  /* メインはここまで */
+
+
+
+
+  /* フッターはここから */
+
+
+  .footer {
+    border-top: solid 4px lightseagreen;
+  }
+
+
+  .footer-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .copyright {
+    text-align: center;
+    font-size: 10px;
+    color: #ffffff;
+    padding: 10px 0;
+    background-color: lightseagreen;
+  }
+
+
+
+
+  @media screen and (max-width: 860px) {
+
+    nav.menu-item>ul>li:first-child,
+    nav.menu-item>ul>li:last-child {
+      display: none;
+    }
+
+    header,
+    .footer {
+      width: 100%;
+    }
+
+    .main {
+      flex-direction: column;
+      width: 100%;
+    }
+
+
+    .main-content {
+      width: 100%;
+    }
+
+
+    .vision-text {
+      font-size: 10px;
+
+    }
+
+
+    .service-items {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .service-item1,
+    .service-item2,
+    .service-item3 {
+      display: flex;
+      text-align: center;
+      gap: 10px;
+    }
+
+
+    .service-items p {}
+
+    .company-text p::after {
+      content: '';
+      display: block;
+      width: 100%;
+      /* 線の幅を項目の横幅に合わせる */
+      height: 2px;
+      background-color: lightseagreen;
+      /* 緑色の線 */
+      margin-top: 5px;
+      /* 線と文字の間隔 */
+    }
+
+    .banner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+
+    .banner-img1,
+    .banner-img2,
+    .banner-img3 {
+      display: block;
+      width: 100%;
+      margin: 10px auto;
+    }
+
+    .header-menu ul {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+
+
+
+
+
+
+
+  }
+
+
+  @media screen and (max-width: 390px) {
+    .header-menu ul {
+      flex-direction: row;
+      justify-content: space-around;
+      text-align: center;
+      padding: 0;
+    }
+
+    .service-items {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .service-item1,
+    .service-item2,
+    .service-item3 {
+      flex-direction: column;
+    }
+
+    .company-text p {
+      font-size: 14px;
+    }
+  }
+
+</style>
+<body>
+  <!--headerここから　-->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <img src="images/logo_icon.png">
+        <img src="images/logo_name.png">
+      </div>
+    </div>
+    <div class="header-menu">
+      <nav class="menu-item">
+        <ul>
+          <li></li>
+          <li>VISION</li>
+          <li>SERVICE</li>
+          <li>COMPANY</li>
+          <li></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!--headerここまで　-->
+
+
+  <!--mainここから　-->
+  <main class="main">
+    <div class="main-content">
+      <div class="vision">
+        <p>VISION</p>
+      </div>
+      <div class="vision-text">
+        <p>・　私たちは情熱を持ってあらゆるニーズに対応していきます。</p>
+        <p>・　努力を怠らない事によりやりたいことを追求し続けます。</p>
+        <P>・　最大限のパフォーマンスを発揮し効果を出し続け相乗効果を生み出します。</P>
+      </div>
+      <div class="service">
+        <p>SERVICE</p>
+      </div>
+      <div class="service-items">
+        <div class="service-item1">
+          <div class="service-photo1">
+            <img src="images/system_development.jpg">
+          </div>
+          <p>あらゆる受託開発においてプロフェッショナル集団がお客様の環境変化に対応・改善し常に最適化されたシステムにしていきます。</p>
+        </div>
+
+
+        <div class="service-item2">
+          <div class="service-photo2">
+            <img src="images/outsourcing.jpg">
+          </div>
+          <p>JavaやPHP、オープン系開発からネイティブアプリ、デザインやWebディレクションなど、幅広い領域に対応しております。</p>
+        </div>
+
+
+        <div class="service-item3">
+          <div class="service-photo3">
+            <img src="images/recruit.jpg">
+          </div>
+          <p>専門分野に特化したエージェントがお仕事をご紹介します。</p>
+        </div>
+      </div>
+      <div class="company">
+        <p>COMPANY</p>
+      </div>
+      <div class="company-text">
+        <p>会社名　　　　　株式会社LiNew</p>
+        <p>代表　　　　　　西本弘昌</p>
+        <p>資本金　　　　　500万円</p>
+        <p>本社住所　　　　東京都港区芝2-27-13芝尾島ビル3F</p>
+      </div>
+    </div>
+
+
+    <aside class="banner">
+      <div class="banner-img1">
+        <img src="images/banner.png">
+      </div>
+      <div class="banner-img2">
+        <img src="images/banner.png">
+      </div>
+      <div class="banner-img3">
+        <img src="images/banner.png">
+      </div>
+    </aside>
+  </main>
+
+
+  <!--mainここまで-->
+
+
+  <!--フッターここから　-->
+  <div class="footer">
+    <div class="footer-img">
+      <img src="images/logo_icon.png">
+    </div>
+
+    <p class="copyright">Copyright © 2020 LiNew Inc. All Rights Reserved.</p>
+  </div>
+  <!--ここまで-->
+</body>
+</html>

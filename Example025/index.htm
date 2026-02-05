@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  .Border {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .Global-BackColor {
+    background-color: #eaeaea;
+  }
+
+  .LField,
+  .RField {
+    width: 20%;
+  }
+
+  .MField {
+    width: 60%;
+  }
+
+  header {
+    height: 100px;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .Header-Item-001 {
+    flex-grow: 1;
+  }
+
+  nav>ul {
+    background-color: #20b2aa;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav>ul>li {
+    width: 20%;
+    color: white;
+    text-align: center;
+    border-right: thin solid #eaeaea;
+  }
+
+  nav>ul>li:first-child {
+    border-left: thin solid #eaeaea;
+  }
+
+  .SectionHeading {
+    background-color: #20b2aa;
+    padding-left: 1%;
+    color: white;
+  }
+
+  .Container {
+    display: flex;
+    justify-content: center;
+    column-gap: 1%;
+  }
+
+  main {
+    width: 45%;
+  }
+
+  aside {
+    width: 14%;
+  }
+
+  .Banner {
+    background-color: #bfbfc7;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .Service-FlexBox {
+    display: flex;
+    column-gap: 2%;
+  }
+
+  .Service-FlexBox>* {
+    width: 33.333%;
+  }
+
+  .Company-Box {}
+
+  .Company-Box>* {
+    display: inline-block;
+  }
+
+  .RJustified-4p5rem {
+    width: 4.5rem;
+    text-align: right;
+    margin-right: 1rem;
+  }
+
+</style>
+<body class="Global-BackColor">
+  <header class="Border">
+    <div class="Header-Item-001"></div>
+    <nav>
+      <ul>
+        <li>VISION</li>
+        <li>SERVICE</li>
+        <li>COMPANY</li>
+      </ul>
+    </nav>
+  </header>
+  <br>
+  <div class="Container">
+    <main class="Border">
+      <div class="SectionHeading">VISION</div>
+      <ul>
+        <li>私たちは情熱を持ってあらゆるニーズに対応していきます。</li>
+        <li>努力を怠らない事によりやりたいことを追求し続けます。</li>
+        <li>最大限のパフォーマンスを発揮し効果を出し続け相乗効果を生み出します。</li>
+      </ul>
+      <div class="SectionHeading">SERVICE</div>
+      <br>
+      <div class="Service-FlexBox">
+        <div class="Border">
+          あらゆる受託開発においてプロフェッショナル集団がお客様の環境変化に対応・改善し常に最適化されたシステムにしていきます。
+        </div>
+        <div class="Border">
+          JavaやPHP、オープン系開発からネイティブアプリ、デザインやWebディレクションなど、幅広い領域に対応しております。
+        </div>
+        <div class="Border">
+          専門分野に特化したエージェントがお仕事をご紹介します。
+        </div>
+      </div>
+      <br>
+      <div class="SectionHeading">COMPANY</div>
+      <br>
+      <div class="Company-Box">
+        <div class="RJustified-4p5rem Border">会社名</div>
+        株式会社LiNew<br>
+        <br>
+        <div class="RJustified-4p5rem Border">代表</div>
+        株西本弘昌<br>
+        <br>
+        <div class="RJustified-4p5rem Border">資本金</div>
+        株500万円<br>
+        <br>
+        <div class="RJustified-4p5rem Border">本社住所</div>
+        株東京都港区芝2-27-13芝尾島ビル3F<br>
+      </div>
+      <br>
+    </main>
+    <aside class="Border">
+      <div class="Banner">バナー</div>
+      <br>
+      <div class="Banner">バナー</div>
+      <br>
+      <div class="Banner">バナー</div>
+    </aside>
+  </div>
+</body>
+</html>

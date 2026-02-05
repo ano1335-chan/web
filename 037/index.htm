@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    line-height: 1.7;
+  }
+
+  header,
+  main,
+  footer {
+    width: 1100px;
+    margin: auto;
+  }
+
+  nav.uppermost {
+    display: grid;
+    grid-template-columns: 500px 100px 500px;
+    grid-template-rows: 100px;
+    margin: auto;
+  }
+
+  ul.nav-list>li {
+    width: fit-content;
+    padding-inline: 25px;
+    padding-block: 1px;
+    margin: 0;
+  }
+
+  .nav-list>li:nth-of-type(-n+2) {
+    border-right: #666 solid 1px;
+    box-sizing: border-box;
+  }
+
+  ul.left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  ul.right {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  img.logo {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: #666;
+  }
+
+  ul.nav-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+</style>
+<body>
+  <header>
+    <nav class="uppermost">
+      <ul class="nav-list left">
+        <li>ブルワリーについて</li>
+        <li>商品一覧</li>
+        <li>お知らせ</li>
+      </ul>
+      <img src="URL" alt="TOPページへ" class="logo">
+      <ul class="nav-list right">
+        <li>買える店・飲める</li>
+        <li>ビアスタンド</li>
+        <li>お問い合わせ</li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>
