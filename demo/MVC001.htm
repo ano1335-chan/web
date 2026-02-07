@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--
+↑metaタグでcharsetをUTF-8に設定しています。
+必ずcharsetに設定されているキャラクターセット(エンコード)でセーブして下さい。
+キャラクターセット(エンコード)が違うと全角文字が文字化けします。
+-->
+<title>BMI</title>
+</head>
+<body>
+
+A君(View Ver.1):
+Weight(kg):<input type="text" id="idA1_InpW" class="A1">
+Height(cm):<input type="text" id="idA1_InpW" class="A1">
+<button type="button" onclick="oController1.ExecBMI('A1')">Click!!</button>
+<br>
+<div id="idA1_OutBMI" class="A1" style="border: solid thin #000;"><br></div>
+<br>
+
+B君(View Ver.1):
+Weight(kg):<input type="text" id="idB1_InpW" class="B1">
+Height(cm):<input type="text" id="idB1_InpW" class="B1">
+<button type="button" onclick="oController1.ExecBMI('B1')">Click!!</button>
+<br>
+<div id="idB1_OutBMI" class="B1" style="border: solid thin #000;"><br></div>
+<br>
+
+A君(View Ver.2):
+Weight(kg):<input type="text" id="idA2_InpW" class="A2">
+Height(cm):<input type="text" id="idA2_InpW" class="A2">
+<button type="button" onclick="oController2.ExecBMI('A2')">Click!!</button>
+<br>
+<div id="idA2_OutBMI" class="A2" style="border: solid thin #000;"><br></div>
+<br>
+
+B君(View Ver.2):
+Weight(kg):<input type="text" id="idB2_InpW" class="B2">
+Height(cm):<input type="text" id="idB2_InpW" class="B2">
+<button type="button" onclick="oController2.ExecBMI('B2')">Click!!</button>
+<br>
+<div id="idB2_OutBMI" class="B2" style="border: solid thin #000;"><br></div>
+<br>
+
+</body>
+<script>
+class Storage {
+  // nWeight (kg)
+  // nHeight (m)
+  // nBMI
+  constructor(){
+    this.nBMI = 0;
+  }
+}
+class Model {
+  constructor(){
+    this.a1hmooStorage = new Array();
+  }
+  SetBMIWH(id, w, hc){
+    if( ! this.a1hmooStorage[id] ){
+      this.a1hmooStorage[id] = new Storage();
+    }
+    let h = hc/100;
+    // BMI＝体重（kg）÷（身長（m）×身長（m））
+    let bmi = w/(h*h);
+    this.a1hmooStorage[id].nBMI = bmi;
+  }
+  GetBMI(id){
+    return this.a1hmooStorage[id].nBMI
+  }
+}
+class View1 {
+  constructor(){
+  }
+  SetBMI(id, bmi){
+    let a1el = document.getElementsByClassName(id);
+    let judge;
+    if (bmi < 18.5) { // 18.5未満 やせ
+      judge = "やせ";
+    } else if (bmi < 25.0) { // 18.5以上25.0未満 標準
+      judge = "標準";
+    } else if (bmi < 30.0) { // 25.0以上30.0未満 肥満
+      judge = "肥満";
+    } else { // 30.0以上 高度肥満
+      judge = "高度肥満";
+    }
+    a1el[2].innerText = judge+" : "+bmi;
+  }
+}
+class View2 extends View1 {
+  constructor(){
+    super();
+  }
+  SetBMI(id, bmi){
+    super.SetBMI(id, bmi);
+    let a1el = document.getElementsByClassName(id);
+    let color;
+    if (bmi < 18.5) { // 18.5未満 やせ
+      color = "#00f";
+    } else if (bmi < 25.0) { // 18.5以上25.0未満 標準
+      color = "#0f0";
+    } else if (bmi < 30.0) { // 25.0以上30.0未満 肥満
+      color = "#ff0";
+    } else { // 30.0以上 高度肥満
+      color = "#f00";
+    }
+    a1el[2].style.background = color;
+  }
+}
+class Controller {
+  constructor(view){
+    this.oModel = new Model();
+    this.oView = view;
+  }
+  ExecBMI(id){
+    let a1el = document.getElementsByClassName(id);
+    let w = +a1el[0].value;
+    let hc = +a1el[1].value;
+    this.oModel.SetBMIWH(id, w, hc);
+    let bmi = this.oModel.GetBMI(id);
+    this.oView.SetBMI(id, bmi)
+  }
+}
+let oController1 = new Controller(new View1());
+let oController2 = new Controller(new View2());
+</script>
+</html>

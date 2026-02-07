@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+    .Accordion_Container {}
+
+    .Accordion_LOpener {
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+    }
+
+    .Accordion_Content {
+      display: none;
+      border: solid thin #000;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+      margin: 0.25rem;
+    }
+
+    .Accordion_ISwitch:checked+.Accordion_Content {
+      display: block;
+    }
+
+    .Accordion_LOpener:hover {
+      font-weight: bold;
+      color: #767;
+      background: #5ef;
+      cursor: pointer;
+    }
+
+    .Accordion_ISwitch {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Accordion_Container">
+    <label class="Accordion_LOpener" for="TUnit-001-001">いろはにほへと ちりぬるを</label>
+    <label class="Accordion_LOpener" for="TUnit-001-002">わかよたれそ つねならむ</label>
+    <label class="Accordion_LOpener" for="TUnit-001-003">うゐのおくやま けふこえて</label>
+    <label class="Accordion_LOpener" for="TUnit-001-004">あさきゆめみし ゑひもせす</label>
+    <br>
+
+    <input id="TUnit-001" type="radio" name="TUnit-001" class="Accordion_ISwitch" checked>
+
+    <input id="TUnit-001-001" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <div class="Accordion_Content">
+      【色は匂えど　散りぬるを】<br>
+      『花は咲いても散ってしまうのに』<br>
+    </div>
+
+    <input id="TUnit-001-002" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <div class="Accordion_Content">
+      【我が世誰ぞ　常ならん】<br>
+      『永遠に同じ姿でこの世に居続ける人も物もない』<br>
+    </div>
+
+    <input id="TUnit-001-003" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <div class="Accordion_Content">
+      【有為の奥山　今日超えて】<br>
+      『つらく・きびしく・険しい人生という山を今日も一つ乗り越えて』<br>
+    </div>
+
+    <input id="TUnit-001-004" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <div class="Accordion_Content">
+      【浅き夢見し　酔ひもぜず】<br>
+      『酔っ払っているかのように、真理から目を背け、はかない夢を見ないように』<br>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+
+  <link rel="preload" href="beach011.jpeg" as="image">
+  <link rel="preload" href="beach012.jpeg" as="image">
+  <link rel="preload" href="beach015.jpeg" as="image">
+  <link rel="preload" href="beach016.jpeg" as="image">
+  <link rel="preload" href="beach017.jpeg" as="image">
+  <link rel="preload" href="img001.jpg" as="image">
+  <link rel="preload" href="img002.jpg" as="image">
+  <link rel="preload" href="img003.jpg" as="image">
+  <link rel="preload" href="img005.jpg" as="image">
+  <link rel="preload" href="img006.jpg" as="image">
+
+  <title></title>
+  <style>
+    * {
+      overflow-wrap: break-word;
+    }
+
+    body {
+      margin: 0.5vw;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .BoxSizing_BorderBox {
+      box-sizing: border-box;
+    }
+
+    .Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Tab_Container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5vw 0.5vw;
+    }
+
+    .Tab_LOpener {
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      text-align: center;
+      min-width: 2rem;
+      border: solid thin #000;
+      border-radius: 0.7rem;
+      margin: 0;
+      padding: 0.1rem 0.5rem;
+      order: -1;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .Tab_LOpener:hover {
+      font-weight: bold;
+      color: #767;
+      background: #0ee;
+    }
+
+    .Tab_Content {
+      width: 100%;
+      display: grid;
+      display: none;
+      grid-template-columns: repeat(auto-fill, 64vmin);
+      justify-content: space-around;
+      gap: 2vw;
+    }
+
+    .Tab_ISwitch:checked+.Tab_LOpener {
+      font-weight: bold;
+      color: #767;
+      background: #0f7;
+    }
+
+    .Tab_ISwitch:checked+.Tab_LOpener+.Tab_Content {
+      display: grid;
+    }
+
+    .Cell_Container {
+      box-sizing: border-box;
+      border: solid thin #000;
+    }
+
+    .Cell_Image {
+      display: inline-block;
+      object-fit: contain;
+      margin: 0 auto;
+      width: 63vmin;
+      height: 30vmin;
+    }
+
+    .Tab_Container>input[type='radio'] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class='Tab_Container'>
+
+    <input id='TUnit-001-001' type='radio' name='TUnit-001' class='Tab_ISwitch'>
+    <label class='Tab_LOpener' for='TUnit-001-001'>浜辺</label>
+    <div class='Tab_Content'>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="beach011.jpeg">
+        いろはにほへと<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="beach012.jpeg">
+        ちりぬるをわかよたれそ<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="beach015.jpeg">
+        つねならむうゐのおくやま<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="beach016.jpeg">
+        けふこえてあさきゆめみし<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="beach017.jpeg">
+        ゑひもせす<br>
+      </div>
+    </div>
+
+    <input id='TUnit-001-002' type='radio' name='TUnit-001' class='Tab_ISwitch'>
+    <label class='Tab_LOpener' for='TUnit-001-002'>森</label>
+    <div class='Tab_Content'>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="img001.jpg">
+        いろはにほへと<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="img002.jpg">
+        ちりぬるをわかよたれそ<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="img003.jpg">
+        つねならむうゐのおくやま<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="img005.jpg">
+        けふこえてあさきゆめみし<br>
+      </div>
+      <div class='Cell_Container'>
+        <img class='Cell_Image' src="img006.jpg">
+        ゑひもせす<br>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!-- このページは「IE8、Firefox」だけでしかチェックしてません。-->
+<!-- 次の「!DOCTYPE」で互換モード表示に設定。-->
+<!DOCTYPE html>
+<html>
+   <head>
+
+<!--
+このページの表示には「jQuery」が必要です、下記サイトを参考に「jQuery」をダウンロードして下さい。
+※2016年5月21日現在の「jQuery」の Version は「1.12.4」です。
+
+jQuery入門道場 - 【jQueryとは？】
+http://jquery-master.net/basic/
+
+このページの表示には「PIE.js」が必要です、下記サイトを参考に「PIE.js」をダウンロードして下さい。
+※「PIE.htc」の場合、このページのように CSS を JavaScript で使用すると正常に表示できないようです。
+※「PIE.js」の問題点は動的に表示位置が変更されると正常に表示できないようです。
+
+IE8でCSS3を使うためのPIE.jsを使ってグラデーションを実装してみる
+http://casanel.me/pie-ie8
+-->
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+      <script src="jquery-1.12.4.min.js" type="text/javascript"></script>
+      <script src="PIE.js" type="text/javascript"></script>
+<script type="text/javascript">
+if(typeof jQuery != "undefined"){ // 「jQuery」がロードされているかチェック。
+  $(function() {
+    if (window.PIE) {
+      $('.RadiusBox_Off,.RadiusBox_34b8cd,.RadiusBox_9833ab,.RadiusBox_On,.RadiusBox_Hover').each(function() {
+        PIE.attach(this);
+      });
+    }
+  });
+}
+</script>
+<!--<![endif]-->
+
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+   </head>
+
+<style type="text/css">
+<!--
+.RadiusBox_Table{
+  width: 50px; /* IE 系用 min-width 的･指定 */
+}
+.RadiusBox_Cell{
+  min-width: 50px; /* Mozilla 系用 */
+}
+-->
+</style>
+
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+<style type="text/css">
+.RadiusBox_Off{
+  user-select: none;
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  -pie-box-shadow: #666 0px 3px 5px;
+  background: #396c97;
+  -pie-background: linear-gradient(#bed8ea, #396c97); 
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+<!-- IE 8 以下 以外はドキュメントとして解釈される。-->
+<!--[if !(lte IE 8)]><!-->
+<style type="text/css">
+.RadiusBox_Off{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#bed8ea, #396c97);
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+<style type="text/css">
+.RadiusBox_34b8cd{
+  user-select: none;
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  -pie-box-shadow: #666 0px 3px 5px;
+  background: #34b8cd;
+  -pie-background: linear-gradient(#aaeef3, #34b8cd); 
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+<!-- IE 8 以下 以外はドキュメントとして解釈される。-->
+<!--[if !(lte IE 8)]><!-->
+<style type="text/css">
+.RadiusBox_34b8cd{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#aaeef3, #34b8cd);
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+<style type="text/css">
+.RadiusBox_9833ab{
+  user-select: none;
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  -pie-box-shadow: #666 0px 3px 5px;
+  background: #9833ab;
+  -pie-background: linear-gradient(#f0d1f6, #9833ab); 
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+<!-- IE 8 以下 以外はドキュメントとして解釈される。-->
+<!--[if !(lte IE 8)]><!-->
+<style type="text/css">
+.RadiusBox_9833ab{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#f0d1f6, #9833ab);
+  font-weight: bold;
+  color: #ffffff;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+<style type="text/css">
+.RadiusBox_On{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  -pie-box-shadow: #666 0px 3px 5px;
+  background: #66EE33;
+  -pie-background: linear-gradient(#EEFF99, #66EE33); 
+  font-weight: bold;
+  color: #000000;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+<!-- IE 8 以下 以外はドキュメントとして解釈される。-->
+<!--[if !(lte IE 8)]><!-->
+<style type="text/css">
+.RadiusBox_On{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#EEFF99, #66EE33);
+  font-weight: bold;
+  color: #000000;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+
+<!-- IE 8 以下はドキュメントとして解釈される。-->
+<!--[if lte IE 8]><!-->
+<style type="text/css">
+.RadiusBox_Hover{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  -pie-box-shadow: #666 0px 3px 5px;
+  background: #f3812d;
+  -pie-background: linear-gradient(#ffe286, #f3812d); 
+  font-weight: bold;
+  color: #000000;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+<!-- IE 8 以下 以外はドキュメントとして解釈される。-->
+<!--[if !(lte IE 8)]><!-->
+<style type="text/css">
+.RadiusBox_Hover{
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#ffe286, #f3812d);
+  font-weight: bold;
+  color: #000000;
+  position:relative;
+}
+</style>
+<!--<![endif]-->
+
+<script type="text/javascript">
+<!--
+// Initialize.
+GUI_ToggleButton_Member = new Array( );
+// GUI_ToggleButton_Member["Button/Toggle/～"] = true; // false; //
+-->
+</script> 
+
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad( )" >
+
+<script type="text/javascript">
+<!--
+// 初期設定。
+// CheckboxChecked_Member = new Array( );
+Question_CheckboxProperty_Member = new Array( );
+Question_CorrectAnswer_Member = new Array( );
+Question_CorrectAnswerMessage_Member = new Array( ); // 正解用メッセージ配列
+// 下記「QuestionID(問題 ID)」は数値です、文字列には対応していません、
+// 下記の「QuestionID++」の場合「QuestionID」の初期値に「-1」を設定すると、「QuestionID」はゼロ・スタートになります。
+QuestionID = -1;
+
+// 関数。
+function ClickButtonFunc( qid ) {
+  oAnswer = document.getElementById("Text/"+String(qid)+"/Answer");
+  var tbm = GUI_ToggleButton_Member; // この関数内の GUI_ToggleButton_Member の短縮形 Alias
+  var cam = Question_CorrectAnswer_Member[qid]; // この関数内の CorrectAnswer_Member の短縮形 Alias
+  var check = false; // true; //
+  var err = false; // true; //
+  var k, k0, k1;
+  for(k0 in cam){
+  k1 = "Button/Toggle/"+String(qid)+"/"+k0;
+    if( tbm[k1]==true ) check = true;
+    // 厳密等価比較
+    if( tbm[k1]===undefined ) tbm[k1] = false;
+    if( tbm[k1]!=cam[k0] ) err = true;
+    // ↑なぜか厳密非等価比較になるようです。
+  }
+  if( ! check ){
+    oAnswer.innerHTML =
+    "チェックされていません。<br>"+
+    "１つ以上をチェックして下さい。<br>";
+  }else if( err ){
+    oAnswer.innerHTML =
+    "不正解です。<br>"+
+    "正解は「"+Question_CorrectAnswerMessage_Member[qid]+"」です。<br>";
+  }else{
+    oAnswer.innerHTML = "正解です。<br>"+
+    "<br>";
+  }
+}
+
+function DocumentWrite_Question( ) {
+  Question_CorrectAnswer_Member[QuestionID] = new Array( ); // 正解用配列
+  // document.write('<form>');
+  document.write(QuestionMessage+'<br>');
+  // document.write('<br>');
+  Question_CorrectAnswerMessage_Member[QuestionID] = ''; // 下記 for ループで正解用メッセージを作成しますので、プログラムで記述する必要はなくなりました。
+  Separator = '';
+  var cpm = Question_CheckboxProperty_Member[QuestionID]; // CheckboxProperty_Member の短縮形 Alias
+  var i;
+  for( i = 0; i<cpm.length; i++ ){
+    Question_CorrectAnswer_Member[QuestionID][cpm[i][1]] = cpm[i][2];
+    document.write("<table border=0 cellpadding=0 class='RadiusBox_Table' style='display: inline; margin: 0px; padding: 0px; '><tr><td nowrap class='RadiusBox_Cell' style='white-space: nowrap; ' >");
+    document.write("<label id='"
+    +"Button/Toggle/"+String(QuestionID)+"/"+cpm[i][1]+
+    "' class='RadiusBox_Off' style='display: block; visibility: hidden; ' onmouseover='this.className=\"RadiusBox_Hover\";' onmouseout='tm=GUI_ToggleButton_Member;id=this.id;if(tm[id]){this.className=\"RadiusBox_On\";}else{this.className=\"RadiusBox_Off\";}' onmousedown='tm=GUI_ToggleButton_Member;id=this.id;tm[id]=!tm[id];if(tm[id]){this.className=\"RadiusBox_On\";}else{this.className=\"RadiusBox_Off\";}' >"
+    +cpm[i][0]+
+    "</label>");
+    document.write("</td></tr></table>");
+    document.write('<br>');
+    if( cpm[i][2] ){
+      Question_CorrectAnswerMessage_Member[QuestionID] = 
+        Question_CorrectAnswerMessage_Member[QuestionID]+Separator+
+        cpm[i][0];
+        Separator = "、";
+    }
+  }
+  document.write('<br>');
+    document.write("<table border=0 cellpadding=0 class='RadiusBox_Table' style='display: inline; margin: 0px; padding: 0px; '><tr><td nowrap class='RadiusBox_Cell' style='white-space: nowrap; ' >");
+    document.write("<label id='Button/Default/"+String(QuestionID)+"' class='RadiusBox_9833ab' style='display: block; visibility: hidden; ' "+
+    "onmouseover='this.className=\"RadiusBox_Hover\";' "+
+    "onmouseout='this.className=\"RadiusBox_9833ab\";' "+
+    "onmousedown='this.className=\"RadiusBox_34b8cd\";ClickButtonFunc("+String(QuestionID)+");' "+">"
+    +"解答"+
+    "</label>");
+    document.write("</td></tr></table>");
+  document.write('<br>');
+  // document.write('<input type="hidden" name="Dummy">');
+  // document.write('</form>');
+  document.write('<br>');
+  document.write('<div id="'+"Text/"+String(QuestionID)+'/Answer"><br><br></div>');
+  document.write('<br>');
+}
+
+function BodyLoad( ) {
+  var wm = document.getElementsByTagName("label");
+  var i, k1, k1l, k2, k2l, w, id;
+  for( i = 0; i<wm.length; i++ ){
+    k1 = "Button/";
+    k1l = k1.length;
+    k2 = k1+"Toggle/";
+    k2l = k2.length;
+    w = wm[i];
+    id = w.id;
+    if( id==undefined ) id = "";
+    if( k1==id.substr(0, k1l) ){
+      w.style.visibility="visible";
+    }
+    if( k2==id.substr(0, k2l) ){
+      if( GUI_ToggleButton_Member[id] ) w.className = "RadiusBox_On"
+      else w.className = "RadiusBox_Off";
+    }
+  }
+}
+-->
+</script> 
+
+
+
+<!-- 下記は2問の場合のテストです -->
+<h3>問題1</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを設定するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼ 
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "福岡","Fukuoka", true ],
+  [ "大阪","Nagasaki", false ]
+];
+// ▲▲▲ 設定用データ ▲▲▲ 
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<!-- 下記は4問の場合のテストです -->
+<h3>問題2</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを設定するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼ 
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "福岡","Fukuoka", true ],
+  [ "広島","Hirosima", false ],
+  [ "熊本","Kumamoto", true ],
+  [ "山梨","Yamanasi", false ],
+  [ "長崎","Nagasaki", true ]
+];
+// ▲▲▲ 設定用データ ▲▲▲ 
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<!-- 下記は3問の場合のテストです -->
+<h3>問題3</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを設定するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼ 
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "熊本","Kumamoto", true ],
+  [ "山梨","Yamanasi", false ],
+  [ "長崎","Nagasaki", true ]
+];
+// ▲▲▲ 設定用データ ▲▲▲ 
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<br><br>
+
+   </body>
+</html>

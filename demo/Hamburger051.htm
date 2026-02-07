@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <TITLE></TITLE>
+  <style>
+    :root {
+      --Border_Weight_1: calc(1rem / 16);
+      --Border_Weight_1p31: calc(var(--Border_Weight_1) * 1.31);
+      --InnerRadius: 0.75rem;
+      --InnerDiameter: calc(var(--InnerRadius) * 2);
+      --OuterRadius: calc(var(--InnerRadius) + var(--Border_Weight_1));
+      --OuterDiameter: calc(var(--OuterRadius) * 2);
+      --Hamburger_Content_PaddingHorizon: 0.35rem;
+      --Hamburger_Content_PaddingVertical: 0.15rem;
+      --Hamburger_DummyLCloser_Container_PaddingTop:
+        calc(var(--Hamburger_LSwitcher_AbsoluteTop) - var(--Border_Weight_1));
+      --Hamburger_Exterior_PaddingTop: var(--Hamburger_DummyLCloser_Container_PaddingTop);
+      --Hamburger_LSwitcher_AbsolutePosition: 
+      calc(var(--Hamburger_Content_PaddingHorizon) + var(--Border_Weight_1));
+      --Hamburger_LSwitcher_AbsoluteHorizon: var(--Hamburger_LSwitcher_AbsolutePosition);
+      --Hamburger_LSwitcher_AbsoluteTop: var(--Hamburger_LSwitcher_AbsolutePosition);
+      --Hamburger_MaskLSwitcher_Width: calc(var(--Hamburger_LSwitcher_AbsoluteHorizon) + var(--OuterDiameter)); 
+      --Hamburger_MaskLSwitcher_Height: calc(var(--Hamburger_LSwitcher_AbsoluteTop) + var(--OuterDiameter));
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Circle_Naked {
+      border: none 0 #000;
+      border-radius: var(--OuterRadius);
+      width: var(--OuterDiameter);
+      height: var(--OuterDiameter);
+    }
+
+    .Circle_Border {
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: var(--OuterRadius);
+      width: var(--OuterDiameter);
+      height: var(--OuterDiameter);
+    }
+
+    .Position_Fixed_0_0 {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .Hamburger_Container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .Hamburger_BaseLSwitcher {
+      display: inline-flex;
+      justify-content: center;
+      background-color: #0ee;
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: var(--OuterRadius) ;
+      width: var(--OuterDiameter);
+      height: var(--OuterDiameter);
+      user-select: none;
+    }
+
+    .Hamburger_EmptyLSwitcher {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_LSwitcher_AbsoluteHorizon);
+      top: var(--Hamburger_LSwitcher_AbsoluteTop);
+    }
+
+    .Hamburger_MaskLSwitcher {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      opacity: 0;
+      background-color: #000;
+      left: 0;
+      top: 0;
+      /*border-bottom-left-radius: var(--OuterRadius);*/
+      border-bottom-right-radius: var(--OuterRadius);
+      width: var(--Hamburger_MaskLSwitcher_Width); 
+      height: var(--Hamburger_MaskLSwitcher_Height);
+    }
+
+    .Hamburger_LOpener {
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_LSwitcher_AbsoluteHorizon);
+      top: var(--Hamburger_LSwitcher_AbsoluteTop);
+    }
+
+    .Hamburger_LCloser {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_LSwitcher_AbsoluteHorizon);
+      top: var(--Hamburger_LSwitcher_AbsoluteTop);
+    }
+
+    .Hamburger_MenuISwitch_On:checked~.Hamburger_LCloser {
+      display: inline-flex;
+    }
+
+    .Hamburger_LCloser:hover {
+      display: inline-flex;
+    }
+
+    .Hamburger_DummyLCloser_Container {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    .Hamburger_DummyLCloser {
+      border: none 0 #000;
+      background-color: #fff;
+      visibility: hidden;
+      /*visibility: visible;*/
+    }
+
+    .Hamburger_Exterior {
+      display: inline-block;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0cc;
+      left: 0;
+      top: 0;
+      margin: 0;
+      padding: var(--Hamburger_Exterior_PaddingTop) 0 0 var(--Hamburger_Content_PaddingHorizon);
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1p31) #000;
+      border-radius: var(--OuterRadius);
+      transform: translateX(-101%);
+    }
+
+    .Hamburger_Content {
+      display: inline-block;
+      background-color: #0cc;
+      left: var(--Hamburger_LSwitcher_AbsoluteHorizon);
+      top: var(--Hamburger_LSwitcher_AbsoluteTop);
+      margin: 0;
+      padding: 0 var(--Hamburger_Content_PaddingHorizon) var(--Hamburger_Content_PaddingVertical) 0;
+      border: none 0 #000;
+      border-radius: var(--OuterRadius);
+      white-space: nowrap;
+    }
+
+    .Hamburger_MenuISwitch_On:checked~.Hamburger_Exterior {
+      transform: translateX(0%);
+      transition: 0.3s ease-in-out;
+    }
+
+    .Hamburger_MaskISwitch_On:checked~.Hamburger_EmptyLSwitcher {
+      display: inline-flex;
+    }
+
+    .Hamburger_MaskISwitch_On:checked~.Hamburger_MaskLSwitcher {
+      display: inline-block;
+    }
+
+    .Hamburger_Filter {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #000;
+      opacity: 0.5;
+    }
+
+    .Hamburger_MenuISwitch_On:checked~.Hamburger_Filter {
+      display: block;
+    }
+
+    .DummyTail {
+      width: 50vw;
+      height: 100vh;
+      margin: 0 auto;
+    }
+
+    .Hamburger_Container>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="Hamburger_Container">
+      <input type="radio" name="Hamburger_MenuISwitch" id="idHamburger_MenuISwitch_On" class="Hamburger_MenuISwitch_On ">
+      <input type="radio" name="Hamburger_MenuISwitch" id="idHamburger_MenuISwitch_Off" class="Hamburger_MenuISwitch_Off ">
+      <div class="Hamburger_Filter" onmouseenter="RadioSwitch('idHamburger_MenuISwitch_Off');"></div>
+      <label name="Hamburger_LOpener" for="idHamburger_MenuISwitch_On" class="Hamburger_LOpener Hamburger_BaseLSwitcher" onmouseover="RadioSwitch('idHamburger_MenuISwitch_On'); RadioSwitch('idHamburger_MaskISwitch_On');">
+        ≡
+      </label>
+      <div class="Hamburger_Exterior" onmouseover="RadioSwitch('idHamburger_MenuISwitch_Off');">
+        <div class="Hamburger_Content UserSelect_None" onmouseover="RadioSwitch()">
+          <div class="Hamburger_DummyLCloser_Container">
+            <label for="idHamburger_MenuISwitch_Off" class="Hamburger_BaseLSwitcher Hamburger_DummyLCloser ">
+              <br>
+            </label>
+          </div>
+          <label for="idHamburger_MenuISwitch_Off" onclick="location='#iroha';">
+            いろはにほへと<br>
+          </label>
+          <label for="idHamburger_MenuISwitch_Off" onclick="location='#tunena';">
+            つねならむ<br>
+          </label>
+          <label for="idHamburger_MenuISwitch_Off" onclick="location='#ehimo';">
+            ゑひもせす<br>
+          </label>
+        </div>
+      </div>
+      <label name="Hamburger_LCloser" for="idHamburger_MenuISwitch_Off" class="Hamburger_BaseLSwitcher Hamburger_LCloser ">
+        ×
+      </label>
+      <input type="radio" name="Hamburger_MaskISwitch" id="idHamburger_MaskISwitch_On" class="Hamburger_MaskISwitch_On ">
+      <input type="radio" name="Hamburger_MaskISwitch" id="idHamburger_MaskISwitch_Off" class="Hamburger_MaskISwitch_Off ">
+      <label name="Hamburger_EmptyLSwitcher" class="Hamburger_BaseLSwitcher Hamburger_EmptyLSwitcher" onclick="RadioSwitch('idHamburger_MaskISwitch_Off');" onmouseout="RadioSwitch('idHamburger_MaskISwitch_Off');">
+        <br>
+      </label>
+      <label name="Hamburger_MaskLSwitcher" class="Hamburger_MaskLSwitcher" onclick="RadioSwitch('idHamburger_MaskISwitch_Off');" onmouseout="RadioSwitch('idHamburger_MaskISwitch_Off');">
+      </label>
+    </nav>
+  </header>
+  <br>
+  いろは歌<br>
+  <br>
+  <a id="iroha"></a>
+  いろはにほへと<br>
+  ちりぬるを<br>
+  わかよたれそ<br>
+  <a id="tunena"></a>
+  つねならむ<br>
+  うゐのおくやま<br>
+  けふこえて<br>
+  あさきゆめみし<br>
+  <a id="ehimo"></a>
+  ゑひもせす<br>
+  <br>
+  <footer>
+    【Footer】
+  </footer>
+  <div class="DummyTail "></div>
+</body>
+<script>
+  function RadioSwitch(idHR) {
+    if (idHR) {
+      let wHR = document.getElementById(idHR);
+      wHR.checked = true; // false; //
+    }
+    event.stopPropagation();
+    // return false; // true; //
+  }
+</script>
+</html>

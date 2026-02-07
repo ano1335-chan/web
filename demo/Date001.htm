@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+  </style>
+</head>
+<body>
+  <div id="idMessage"></div>
+</body>
+<script>
+  let range = 2;
+  // ↑表示する月の範囲
+  // 「range = 2」なら今月と来月を表示
+  let Week = ["日", "月", "火", "水", "木", "金", "土",];
+  let wMessage = document.getElementById("idMessage");
+  wMessage.innerText = "";
+  for (let i = 0; i < range; i++) {
+    let Y, M, D, h, m, s, Day, W;
+    let oCurrDate = new Date();
+    oCurrDate.setMonth(oCurrDate.getMonth()+i);
+    oCurrDate.setDate(1);
+    Y = oCurrDate.getFullYear();
+    M = oCurrDate.getMonth() + 1;
+    D = oCurrDate.getDate();
+    h = oCurrDate.getHours();
+    m = oCurrDate.getMinutes();
+    s = oCurrDate.getSeconds();
+    Day = oCurrDate.getDay();
+    W = Week[Day];
+    let oLastDate = new Date(oCurrDate.getFullYear(), oCurrDate.getMonth() + 1, 0);
+    let LD, LW;
+    LD = oLastDate.getDate();
+    Day = oLastDate.getDay();
+    LW = Week[Day];
+    wMessage.innerText += `${M}月${D}日（${W}）～${M}月${LD}日（${LW}）\n`
+    +`締め切り ${M}月${LD}日（月）23:59\n\n`;
+  }
+</script>
+</html>

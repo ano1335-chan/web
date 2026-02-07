@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <!--
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://creator.aainc.co.jp/archives/4947
+-->
+  <style>
+    .Tab_Container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .Tab_LOpener {
+      display: inline-block;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin: 0.1em 0.3em 0.1em 0em;
+      padding: 0.2em 1em;
+      order: -1;
+    }
+
+    .Tab_Content {
+      width: 100%;
+      display: none;
+    }
+
+    .Tab_ISwitch:checked+.Tab_LOpener {
+      /*優先順位：21点*/
+      font-weight: bold;
+      color: #777;
+      background: #0f7;
+    }
+
+    .Tab_Container>.Tab_LOpener:hover {
+      /*優先順位：21点*/
+      font-weight: bold;
+      color: #777;
+      background: #0ee;
+    }
+
+    .Tab_ISwitch:checked+.Tab_LOpener+.Tab_Content {
+      display: block;
+    }
+
+    .Tab_Container>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Tab_Container">
+    <input id="TUnit-001" type="radio" name="TUnit" class="Tab_ISwitch" onclick="RadioSwitch('TUnit-001-001')" checked>
+    <label class="Tab_LOpener" for="TUnit-001">TUnit-001</label>
+    <div class="Tab_Content">
+      <div class="Tab_Container">
+        <input id="TUnit-001-001" type="radio" name="TUnit-001" class="Tab_ISwitch" checked>
+        <label class="Tab_LOpener" for="TUnit-001-001">TUnit-001-001</label>
+        <div class="Tab_Content">
+          いろはにほへと　
+          ちりぬるを　
+          わかよたれそ　
+          つねならむ　
+          うゐのおくやま　
+          けふこえて　
+          あさきゆめみし　
+          ゑいもせす<br>
+        </div>
+
+        <input id="TUnit-001-002" type="radio" name="TUnit-001" class="Tab_ISwitch">
+        <label class="Tab_LOpener" for="TUnit-001-002">TUnit-001-002</label>
+        <div class="Tab_Content">
+          ちりぬるを　
+          わかよたれそ　
+          つねならむ　
+          うゐのおくやま　
+          けふこえて　
+          あさきゆめみし　
+          ゑいもせす<br>
+        </div>
+      </div>
+    </div>
+
+    <input id="TUnit-002" type="radio" name="TUnit" class="Tab_ISwitch" onclick="RadioSwitch('TUnit-002-001')">
+    <label class="Tab_LOpener" for="TUnit-002">TUnit-002</label>
+    <div class="Tab_Content">
+      <div class="Tab_Container">
+        <input id="TUnit-002-001" type="radio" name="TUnit-002" class="Tab_ISwitch" checked>
+        <label class="Tab_LOpener" for="TUnit-002-001">TUnit-002-001</label>
+        <div class="Tab_Content">
+          わかよたれそ　
+          つねならむ　
+          うゐのおくやま　
+          けふこえて　
+          あさきゆめみし　
+          ゑいもせす<br>
+        </div>
+
+        <input id="TUnit-002-002" type="radio" name="TUnit-002" class="Tab_ISwitch">
+        <label class="Tab_LOpener" for="TUnit-002-002">TUnit-002-002</label>
+        <div class="Tab_Content">
+          つねならむ　
+          うゐのおくやま　
+          けふこえて　
+          あさきゆめみし　
+          ゑいもせす<br>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script>
+  function RadioSwitch(idHR) {
+    if (idHR) {
+      let wHR = document.getElementById(idHR);
+      wHR.checked = true; // false; //
+    }
+    // event.stopPropagation();
+    // return false; // true; //
+  }
+</script>
+</html>

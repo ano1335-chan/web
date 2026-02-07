@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preload" href="Human-001-00.png" as="image">
+  <link rel="preload" href="Human-001-01.png" as="image">
+  <link rel="preload" href="Human-001-02.png" as="image">
+
+  <link rel="preload" href="Human-001-10.png" as="image">
+  <link rel="preload" href="Human-001-11.png" as="image">
+  <link rel="preload" href="Human-001-12.png" as="image">
+
+  <link rel="preload" href="Human-001-20.png" as="image">
+  <link rel="preload" href="Human-001-21.png" as="image">
+  <link rel="preload" href="Human-001-22.png" as="image">
+
+  <link rel="preload" href="Human-001-30.png" as="image">
+  <link rel="preload" href="Human-001-31.png" as="image">
+  <link rel="preload" href="Human-001-32.png" as="image">
+
+  <link rel="preload" href="Hexagram-010.png" as="image">
+  <link rel="preload" href="Hexagram-020.png" as="image">
+
+  <link rel="preload" href="Treasure-010.png" as="image">
+  <link rel="preload" href="Treasure-020.png" as="image">
+
+  <link rel="preload" href="Jewelry-010.png" as="image">
+  <link rel="preload" href="Jewelry-020.png" as="image">
+  <link rel="preload" href="Jewelry-030.png" as="image">
+  
+  <link rel="preload" href="Dragon-001.png" as="image">
+  <link rel="preload" href="Slime-001.png" as="image">
+  <link rel="preload" href="Golem-001.png" as="image">
+  <link rel="preload" href="Wizard-001.png" as="image">
+  <link rel="preload" href="Python-001.png" as="image">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title>Roll Play</title>
+
+  <script>
+    window.onload = function () {
+      PreloadMan();
+    }
+    function PreloadMan() {
+      gnWebResourceDefective--;
+      // console.log(`gnWebResourceDefective: ${gnWebResourceDefective}`);
+      if (!gnWebResourceDefective) {
+        OnAllLady();
+      }
+    }
+    preload = document.querySelectorAll('link[rel="preload"]');
+    gnWebResourceDefective = preload.length + 1;
+    for (let w of preload) {
+      w.onload = PreloadMan;
+    }
+
+    gwHTMLHead = document.head;
+    gwHTMLRoot = document.documentElement;
+    goHTMLRoot_ComputedStyle = getComputedStyle(gwHTMLRoot);
+    gnScreenWidth = screen.width;
+    gnScreenHeight = screen.height;
+    gnScreenMinimum = Math.min(gnScreenWidth, gnScreenHeight);
+    gnScreenMaximum = Math.max(gnScreenWidth, gnScreenHeight);
+    // console.log('gnScreenWidth: ' + gnScreenWidth);
+    // console.log('gnScreenHeight: ' + gnScreenHeight);
+    gnWindow_InnerWidth = window.innerWidth;
+    gnWindow_InnerHeight = window.innerHeight;
+    gnWindow_InnerMinimum = Math.min(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    gnWindow_InnerMaximum = Math.max(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    // console.log('gnWindow_InnerWidth: ' + gnWindow_InnerWidth);
+    // console.log('gnWindow_InnerHeight: ' + gnWindow_InnerHeight);
+    gwHTMLRoot.style.setProperty('--Window_InnerMinimum', gnWindow_InnerMinimum + 'px');
+    CSSValue_Window_InnerMinimum = goHTMLRoot_ComputedStyle.getPropertyValue('--Window_InnerMinimum');
+    // console.log('CSSValue_Window_InnerMinimum: ' + CSSValue_Window_InnerMinimum);
+
+  </script>
+  <style>
+    body {
+      font-size: 1.5vw;
+      margin: 0;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 1vw;
+    }
+
+    .CanvasContainer {
+      display: grid;
+      background-color: #000;
+    }
+
+    .CanvasStyle {
+      display: inline-block;
+    }
+
+    .Transform_Fade_Content {
+      opacity: 0;
+    }
+
+    .Transform_IFade-in_On:checked+input+canvas {
+      transition: 2.5s;
+      opacity: 1;
+    }
+
+    .Animation_IFade-in_On:checked+input+canvas {
+      animation: Keyframes_Fade-in 1.5s;
+      animation-timing-function: ease-in;
+      /* linear */
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes Keyframes_Fade-in {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .CanvasContainer input[type='radio'] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Container">
+    <div class="CanvasContainer">
+      <input type="radio" id="TUnit-001_On" name="TUnit-001" class="Animation_IFade-in_On">
+      <input type="radio" id="TUnit-001_Off" name="TUnit-001" class="Animation_IFade-in_Off" checked>
+      <canvas id="idCanvas" class="CanvasStyle"></canvas>
+    </div>
+    <div id="idInformation" class="Border UserSelect_None">
+    </div>
+  </div>
+
+</body>
+<script>
+  function isObject(value) {
+    return value !== null && typeof value === 'object'
+  }
+
+  class Figure_Bottom {
+    R;
+    size = -1;
+    x = -1;
+    y = -1;
+    image;
+    worth = 0;
+    contact;
+
+    constructor(R, fimg, size, x, y) {
+      this.R = R;
+      this.setImage(fimg);
+      this.setSize(size);
+      this.setPos(x, y);
+    }
+
+    getImage1() {
+      return this.image;
+    }
+
+    setImage(fimg) {
+      let image;
+      if (Array.isArray(fimg)) {
+        this.image = new Array();
+        for (let i = 0; i < fimg.length; i++) {
+          if (Array.isArray(fimg[i])) {
+            this.image[i] = new Array();
+            for (let j = 0; j < fimg[i].length; j++) {
+              image = new Image();
+              image.src = fimg[i][j];
+              this.image[i][j] = image;
+            }
+          } else {
+            image = new Image();
+            image.src = fimg[i];
+            this.image[i] = image;
+          }
+        }
+      } else if (fimg) {
+        image = new Image();
+        image.src = fimg;
+        this.image = image;
+      }
+    }
+
+    setRandomImage(fimg) {
+      let fix = Math.floor(Math.random() * fimg.length);
+      this.setImage(fimg[fix]);
+    }
+
+    setSize(size) {
+      this.size = size;
+    }
+
+    setPos(x, y) {
+      this.setInnPos(x, y);
+    }
+
+    setInnPos(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    getFBMX() {
+      return this.x;
+    }
+
+    getFBMY() {
+      return this.y;
+    }
+
+    getFBMSize() {
+      return this.size;
+    }
+
+    getDrawShielding() {
+      return 0;
+    }
+
+    Move(dx, dy) {
+      let x = this.x + dx;
+      let y = this.y + dy;
+      let sr = this.size / 2 - 1;
+      let fbmmin = this.R.nFieldBitMapMin;
+      let fbmmax = this.R.nFieldBitMapMax;
+      if (fbmmin <= (x - sr) && (x + sr) <= fbmmax &&
+        fbmmin <= (y - sr) && (y + sr) <= fbmmax) {
+        this.setPos(x, y);
+      }
+      let oppo = this.getContact();
+      if (oppo && !this.isContact(oppo)) {
+        this.setContact(null);
+        oppo.setContact(null);
+      }
+    }
+
+    DirectDraw(vex, vey, ves) {
+      let image = this.getImage1();
+      // console.log(`image: ${image}; `);
+      // this.R.oCtx2d.fillStyle = "#fff";
+      // this.R.oCtx2d.fillRect(vex, vey, ves, ves);
+      this.R.oCtx2d.drawImage(image, vex, vey, ves, ves);
+      let sh = this.getDrawShielding();
+      if (0 < sh) {
+        this.R.oCtx2d.fillStyle = "rgba(" + [0, 0, 0, sh] + ")";
+        this.R.oCtx2d.fillRect(vex, vey, ves, ves);
+      }
+    }
+
+    Draw() {
+      let fbmx = this.getFBMX();
+      let fbmy = this.getFBMY();
+      let ves = this.size * this.R.nViewEssenceScale;
+      let vex = fbmx * this.R.nViewEssenceScale - this.R.nFECXBias - ves / 2;
+      let vey = fbmy * this.R.nViewEssenceScale - this.R.nFECYBias - ves / 2;
+      // console.log(`vex: ${vex}; vey: ${vey}; ves: ${ves}; `);
+      this.DirectDraw(vex, vey, ves);
+      this.Information();
+    }
+
+    isContact(oppo) {
+      let con = false; // true; //
+      if (oppo) {
+        let x1 = this.getFBMX();
+        let y1 = this.getFBMY();
+        let s1 = this.getFBMSize() + (this.R.nWalkStride - 1) * 2;
+        // console.log(`x1: ${x1}; y1: ${y1}; s1: ${s1}; oppo: ${oppo}; `);
+        con = this.isRawConflict(x1, y1, s1, oppo);
+      }
+      return con;
+    }
+
+    isConflict(oppo) {
+      let x1 = this.getFBMX();
+      let y1 = this.getFBMY();
+      return this.isInnConflict(x1, y1, oppo);
+    }
+
+    isInnConflict(x1, y1, oppo) {
+      // console.log(`★★★★isInnConflict(x1, y1, oppo) `);
+      let con = false; // true; //
+      let s1 = this.getFBMSize();
+      if (oppo) {
+        con = this.isRawConflict(x1, y1, s1, oppo);
+        // console.log(`★★★★con: ${con}; x1: ${x1}; y1: ${y1}; s1: ${s1}; `);
+        let oppocn = oppo.constructor.name;
+        if (con && oppo.isInteract()) {
+          // console.log(`★★★★if (con && oppo.isInteract())  `);
+          this.setContact(oppo);
+          oppo.setContact(this);
+          // console.log(`★★★★this.getContact(): ${this.getContact()};`);
+        }
+      }
+      return con;
+    }
+
+    isRawConflict(x1, y1, s1, oppo) {
+      // console.log(`★★★isRawConflict(x1, y1, s1, oppo) `);
+      let con = false; // true; //
+      if (oppo) {
+        let x2 = oppo.getFBMX();
+        let y2 = oppo.getFBMY();
+        let s2 = oppo.getFBMSize();
+        /*
+        console.log(`★Conflict: 
+x1: ${x1}; y1: ${y1}; s1: ${s1}; 
+x2: ${x2}; y2: ${y2}; s2: ${s2}; 
+`);
+*/
+        // 矩形同士の当たり判定を行うには
+        // http://mslabo.sakura.ne.jp/WordPress/make/processing%E3%80%80%E9%80%86%E5%BC%95%E3%81%8D%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/%E7%9F%A9%E5%BD%A2%E5%90%8C%E5%A3%AB%E3%81%AE%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A%E3%82%92%E8%A1%8C%E3%81%86%E3%81%AB%E3%81%AF/
+        // ABS( x1 – x2 ) <  ( aw + bw )/2 && ABS( y1 – y2 ) <  ( ah + bh )/2
+        con = Math.abs(x1 - x2) < (s1 + s2) / 2
+          && Math.abs(y1 - y2) < (s1 + s2) / 2;
+        // console.log(`★★★con: ${con}; x2: ${x2}; y2: ${y2}; s2: ${s2}; `);
+      }
+      return con;
+    }
+
+    getContact() {
+      return this.contact;
+    }
+
+    setContact(oppo) {
+      this.contact = oppo;
+    }
+
+    isCrimp() {
+      return false; // true; //
+    }
+
+    isInteract() {
+      return false; // true; //
+    }
+
+    Information() { }
+
+    Reciprocity(oppo) {
+      throw 'This method is not supported!';
+    }
+    innInfluence(oppo) {
+      throw 'This method is not supported!';
+    }
+
+    // setHP(hp) { }
+    // KMove(keyCode) { }
+  };
+
+  class Figure_Spot extends Figure_Bottom {
+    // FieldMap(x,y)
+    core = 1;
+
+    constructor(R, fimg, size, core, worth) {
+      let x, y;
+      super(R, fimg, size, -1, -1,);
+      this.worth = worth;
+      this.core = core;
+      x = Math.floor(this.R.nFieldMapSize * Math.random());
+      let fsm, player, con;
+      player = this.R.oFigure_Walker;
+      do {
+        y = x;
+        x = Math.floor(this.R.nFieldMapSize * Math.random());
+        this.setInnPos(x, y);
+        fsm = this.R.d2nFieldSubjectdMap[x][y];
+        con = this.isRawConflict(
+          this.getFBMX(), this.getFBMY(), this.getFBMSize(), player);
+      } while (fsm || con);
+      // x = 0; y = 0;
+      // console.log(`★Spot: this.x: ${this.x}; this.y: ${this.y};`);
+      if (!fimg) {
+        // this.setRandomImage(["Hexagram-010.png", "Hexagram-020.png",]);
+      }
+      this.setPos(x, y);
+    }
+
+    setPos(x, y) {
+      // console.log(`★Figure_Spot#setPos(x, y)`);
+      if (0 <= x && 0 <= y) {
+        /*
+        if (0 <= this.x && 0 <= this.y && this.getFieldMap1()) {
+          this.setFieldMap1(null);
+        }
+        */
+        this.x = x;
+        this.y = y;
+        // console.log(`★★★★this.x: ${this.x}; this.y: ${this.y};`);
+        this.setFieldMap1(this);
+      }
+    }
+
+    getFieldMap1() {
+      /*
+      let mx = Math.floor(this.x / R.nFieldBlockSize);
+      let my = Math.floor(this.y / R.nFieldBlockSize);
+      */
+      return this.R.d2nFieldSubjectdMap[this.x][this.y];
+    }
+
+    setFieldMap1(fm) {
+      // console.log(`★setFieldMap1(fm)`);
+      /*
+      let mx = Math.floor(this.x/R.nFieldBlockSize);
+      let my = Math.floor(this.y/R.nFieldBlockSize);
+      */
+      this.R.d2nFieldSubjectdMap[this.x][this.y] = fm;
+      // console.log(`★this.x: ${this.x}; this.y: ${this.y}; `);
+      // console.log(`★this.getFieldMap1(): ${this.getFieldMap1()};`);
+    }
+
+    getFBMX() {
+      return this.x * this.R.nFieldBlockSize + this.size / 2;
+    }
+
+    getFBMY() {
+      return this.y * this.R.nFieldBlockSize + this.size / 2;
+    }
+
+    getFBMSize() {
+      return Math.ceil(this.size * this.core);
+    }
+
+    innInfluence(oppo) {
+      oppo.level += this.worth;
+    }
+  }
+
+  class Figure_Item extends Figure_Spot {
+    // FieldMap(x,y)
+
+    constructor(R, fimg, size, core, worth) {
+      super(R, fimg, size, core, worth);
+      if (!fimg) {
+        this.setRandomImage(["Jewelry-010.png", "Jewelry-020.png", "Jewelry-030.png",]);
+      }
+    }
+  }
+
+  class Figure_Hexagram extends Figure_Spot {
+    // FieldMap(x,y)
+
+    constructor(R, fimg, size, core, worth) {
+      super(R, fimg, size, core, worth);
+      if (!fimg) {
+        this.setRandomImage(["Hexagram-010.png", "Hexagram-020.png",]);
+      }
+    }
+
+    innInfluence(oppo) {
+      let fgmlng = this.R.d3nFieldGroundMap.length;
+      let other = new Array();
+      for (let i = 0; i < fgmlng; i++) {
+        if (this.R.nFieldGroundSide !== i) {
+          other.push(i);
+        }
+      }
+      if (0 < other.length) {
+        let side = other[Math.floor(Math.random() * other.length)];
+        this.R.nFieldGroundSide = side;
+        this.R.wTUnit_001_On.checked = true; // false; //
+        this.R.KeyEnable = false; // true; //
+        setTimeout(
+          function () {
+            this.R.KeyEnable = true; // false; //
+            this.R.wTUnit_001_Off.checked = true; // false; //
+          }, 1500
+        );
+      }
+    }
+  }
+
+  class Figure_Subject extends Figure_Spot {
+    // FieldMap(x,y)
+
+    constructor(R, fimg, size, core, worth,) {
+      super(R, fimg, size, core, worth);
+    }
+
+    getImage1() {
+      throw 'This method is not supported!';
+    }
+
+    isCrimp() {
+      return true; // false; //
+    }
+  }
+
+  class Figure_Interact extends Figure_Subject {
+    // FieldMap(x,y)
+
+    isInteract() {
+      return true; // false; //
+    }
+  }
+
+  class Figure_Cabinet extends Figure_Interact {
+    // FieldMap(x,y)
+
+    constructor(R, fimg, size, core, worth,) {
+      // console.log("★Figure_Cabinet#constructor()");
+      if (!fimg) {
+        fimg = ["Treasure-020.png", "Treasure-010.png",];
+      }
+      super(R, fimg, size, core, worth);
+      // this.setPos(0, 0);
+    }
+
+    getImage1() {
+      // console.log("★Figure_Cabinet#getImage1()");
+      // console.log(`this.x: ${this.x}; this.y: ${this.y}; `);
+      // console.log(this.image);
+      return !this.getContact() ? this.image[0] : this.image[1];
+    }
+  }
+
+  class Figure_Worker extends Figure_Bottom {
+    hp = 0;
+    mp = 0;
+    level = 0;
+
+    setHP(hp) {
+      this.hp = hp;
+    }
+  }
+
+  class Figure_Enemy extends Figure_Worker {
+    hpmax = 0;
+
+    constructor(R, size, x, y) {
+      super(R, null, size, x, y);
+      this.setHP(4);
+      this.worth = 0.0543;
+      this.setRandomImage(["Dragon-001.png", "Slime-001.png",
+        "Golem-001.png", "Python-001.png", "Wizard-001.png",]);
+    }
+
+    setHP(hp) {
+      this.hpmax = hp;
+      super.setHP(hp);
+    }
+
+    getDrawShielding() {
+      this.hp = 0 <= this.hp ? this.hp : 0;
+      return (this.hpmax - this.hp) / this.hpmax;
+    }
+
+    Draw() {
+      let vbmx = this.x;
+      let vbmy = this.y;
+      let ves = this.size * this.R.nViewEssenceScale;
+      let vex = vbmx * this.R.nViewEssenceScale - ves / 2;
+      let vey = vbmy * this.R.nViewEssenceScale - ves / 2;
+      // console.log(`vex: ${vex}; vey: ${vey}; ves: ${ves}; `);
+      this.DirectDraw(vex, vey, ves);
+      // this.Information();
+    }
+
+    innInfluence(oppo) {
+      oppo.hp += this.worth;
+      oppo.mp += this.worth;
+      oppo.level += this.worth;
+    }
+
+    Reciprocity(oppo) {
+      throw 'This method is not supported!';
+    }
+    Move(dx, dy) {
+      throw 'This method is not supported!';
+    }
+    getFBMX() {
+      throw 'This method is not supported!';
+    }
+    getFBMY() {
+      throw 'This method is not supported!';
+    }
+    isConflict(oppo) {
+      throw 'This method is not supported!';
+    }
+    isContact(oppo) {
+      throw 'This method is not supported!';
+    }
+    isCrimp() {
+      throw 'This method is not supported!';
+    }
+  };
+
+  class Figure_Walker extends Figure_Worker {
+    direction = 0;
+    walk = 0;
+    feet = 3;
+
+    constructor(R, fimg, size, x, y, hp, mp, level) {
+      super(R, fimg, size, x, y);
+      this.setHP(hp);
+      this.mp = mp;
+      this.level = level;
+    }
+
+    getImage1() {
+      let idrc = this.image[this.direction];
+      let image = idrc[Math.floor(this.walk / this.feet)];
+      // console.log(`image: ${image}; `);
+      return image;
+    }
+
+    Information() {
+      this.R.wInformation.innerText = `
+名前：ラミー
+ステータス
+Level：${this.level}
+HP：${this.hp}
+MP：${this.mp}
+      `;
+    }
+
+    KDelta(keyCode) {
+      // console.log("★★KDelta(keyCode)");
+      let mov = [0, 0];
+      if (this.R.d2nMovKeySets[keyCode]) {
+        mov = this.R.d2nMovKeySets[keyCode];
+      }
+      // console.log(mov);
+      // console.log(`★★mov: ${mov}; `);
+      return mov;
+    }
+
+    isKMoveConflict(keyCode, oppo) {
+      // console.log(`★★★isKMoveConflict(keyCode, oppo)`);
+      let con = false; // true; //
+      if (oppo) {
+        let mov = this.KDelta(keyCode);
+        let x1 = this.getFBMX();
+        let y1 = this.getFBMY();
+        con = this.isInnConflict(x1 + mov[0], y1 + mov[1], oppo);
+        // console.log(`★★mov[0]: ${mov[0]}; mov[1]: ${mov[1]}; oppo: ${oppo}; `);
+      }
+      return con;
+    }
+
+    KMove(keyCode, active, oppo) {
+      // console.log(`★★KMove(keyCode, oppo)`);
+      if (this.R.d2nMovKeySets[keyCode]) {
+        // console.log("★if (this.R.d2nMovKeySets[keyCode])");
+        let mov = this.KDelta(keyCode);
+        // let active = false; // true; //
+        let enable = false; // true; //
+        switch (keyCode) {
+          case this.R.d1nInpKeySets.down:
+            enable = true; // false; //
+            this.direction = 0;
+            break;
+          case this.R.d1nInpKeySets.left:
+            enable = true; // false; //
+            this.direction = 1;
+            break;
+          case this.R.d1nInpKeySets.up:
+            enable = true; // false; //
+            this.direction = 2;
+            break;
+          case this.R.d1nInpKeySets.right:
+            enable = true; // false; //
+            this.direction = 3;
+            break;
+          default:
+        }
+        if (enable) {
+          // console.log("★if (enable)");
+          // let oppocn = oppo.constructor.name;
+          let m = false; // true; //
+          /*
+          if (!oppo) {
+            // console.log(`if (!oppo)`);
+            m = true; // false; //
+          }
+          if (oppo
+            && !(oppo.isCrimp() && this.isKMoveConflict(keyCode, oppo))) {
+            // console.log(`if (oppo && !(oppo.isCrimp() && this.isKMoveConflict(keyCode, oppo)))`);
+            m = true; // false; //
+          }
+          // console.log(`m: ${m}; `);
+          */
+          if (active) {
+            this.Move(mov[0], mov[1]);
+          }
+          let idrc = this.image[this.direction];
+          this.walk++;
+          this.walk = this.walk % (idrc.length * this.feet);
+        }
+      }
+      let fmcl = this.R.d1oFigureList_Subject.length;
+      // console.log(`★★fmcl: ${fmcl}; `);
+      if (0 <= fmcl && fmcl <= this.R.nListItemQnt) {
+        if (Math.random() < 0.2) {
+          // console.log("★★ Hexagram ★★");
+          this.R.d1oFigureList_Subject.push(new Figure_Hexagram(R, null, this.R.nSpotModelSize, 1, 0.1));
+        } else if (Math.random() < 0.7) {
+          // console.log("★★ Hexagram ★★");
+          this.R.d1oFigureList_Subject.push(new Figure_Item(R, null, this.R.nSpotModelSize, 1, 0.1));
+        } else {
+          // console.log("★★ Cabinet ★★");
+          this.R.d1oFigureList_Subject.push(new Figure_Cabinet(R, null, this.R.nSubjectModelSize, 1, 0.1));
+        }
+      }
+      if (this.R.nFieldModeSets.disaster === this.R.nFieldMode
+        && 0.99 < Math.random()) {
+        // console.log("★★ Enemy ★★");
+        this.R.oFigure_Enemy = new Figure_Enemy(R, this.R.nEnemyModelSize,
+          this.R.nViewBitMapRadius, this.R.nViewBitMapRadius);
+      }
+    }
+
+    Reciprocity(oppo, keyCode) {
+      // console.log("★★★★★Reciprocity(oppo, keyCode)");
+      // throw 'This method is not supported!';
+      let oppocn = oppo.constructor.name;
+      let keySpace = this.R.d1nInpKeySets.space === keyCode;
+      if (oppocn === "Figure_Enemy") {
+        oppo.innInfluence(R.oFigure_Walker);
+        this.R.oFigure_Enemy = null;
+      } else {
+        let inf1 = false; // true; //
+        let inf2 = false; // true; //
+        if (!oppo.isCrimp()) {
+          inf1 = true; // false; //
+        }
+        if (keySpace) {
+          // console.log("★★★★if (keySpace)");
+          // console.log(`★★★★oppocn: ${oppocn}; oppo: ${oppo}; `);
+          // console.log(`★★★★this.getContact(): ${this.getContact()}; `);
+          if (oppocn === "Figure_Cabinet" && this.getContact() === oppo) {
+            // inf1 = true; // false; //
+            inf2 = true; // false; //
+          }
+        }
+        // console.log(`★★★★inf1: ${inf1}; inf2: ${inf2}; `);
+        if (inf1 || inf2) {
+          oppo.innInfluence(R.oFigure_Walker);
+          oppo.setFieldMap1(null);
+          if (inf2) {
+            oppo.setContact(null);
+            this.setContact(null);
+          }
+          for (let i = R.d1oFigureList_Subject.length - 1; 0 <= i; i--) {
+            let item = this.R.d1oFigureList_Subject[i];
+            if (oppo === item) {
+              // console.log(`★★★★if(oppo===item)`);
+              this.R.d1oFigureList_Subject.splice(i, 1);
+              break;
+            }
+          }
+        }
+      }
+    }
+  };
+
+  setGlobalResource();
+  function setGlobalResource() {
+    R = {};
+
+    R.wTUnit_001_On = document.getElementById('TUnit-001_On');
+    R.wTUnit_001_Off = document.getElementById('TUnit-001_Off');
+    R.wInformation = document.getElementById('idInformation');
+    R.nCanvasSize = gnWindow_InnerMinimum;
+    R.wCanvas = document.getElementById('idCanvas');
+    R.wCanvas.width = R.nCanvasSize;
+    R.wCanvas.height = R.nCanvasSize;
+    R.oCtx2d = R.wCanvas.getContext('2d');
+
+    R.nWalkStride = 8;
+    R.nCharModelSize = 32;
+    R.nSpotModelSize = 32;
+    R.nSubjectModelSize = 32;
+    R.nEnemyModelSize = 96;
+    R.nFieldBlockSize = 32;
+    R.nFieldBlockPaintMultiple = 3;
+    R.nFieldMapSize = 90;
+    R.nFieldGroundSideQnt = 3;
+    R.nFieldGroundSide = 0;
+    R.nListItemQnt = 20;
+    R.KeyEnable = true; // false; //
+    R.d1sFieldBlockPalette = [
+      ["#5b0", "#890", "#980", "#a70"],
+      ["#da7000", "#e15b00", "#e45000", "#e74700"],
+      ["#4ead6e", "#7e8e6e", "#8e7e6e", "#9d6e6e"],
+    ];
+    R.nFieldBitMapSize = R.nFieldMapSize * R.nFieldBlockSize;
+    R.nLastSystemTime = Date.now();
+
+    R.nFieldModeSets = {
+      safety: 0,
+      normal: 1,
+      disaster: 2,
+      fight: 3,
+    };
+    R.nFieldMode = R.nFieldModeSets.safety;
+
+    R.nViewEssenceScale = gnScreenMaximum * 1.1 / 1000;
+    // console.log('R.nViewEssenceScale: ' + R.nViewEssenceScale);
+
+    R.nFieldMapMin = 0;
+    R.nFieldMapMax = R.nFieldMapSize - 1;
+    // console.log('R.nFieldMapMax: ' + R.nFieldMapMax);
+    R.nFieldBitMapMin = 0;
+    R.nFieldBitMapMax = R.nFieldMapSize * R.nFieldBlockSize - 1;
+    // console.log('R.nFieldBitMapMax: ' + R.nFieldBitMapMax);
+    R.nFieldEssenceMin = 0;
+    R.nFieldEssenceMax = Math.ceil(R.nFieldBitMapMax * R.nViewEssenceScale) - 1;
+    // console.log('R.nFieldEssenceMax: ' + R.nFieldEssenceMax);
+
+    R.nViewEssenceMax = R.nCanvasSize - 1;
+    R.nViewEssenceDiameter = R.nCanvasSize;
+    R.nViewEssenceRadius = R.nViewEssenceDiameter / 2;
+    // console.log('R.nViewEssenceDiameter: ' + R.nViewEssenceDiameter);
+    // console.log('R.nViewEssenceRadius: ' + R.nViewEssenceRadius);
+    R.nViewBitMapMax = Math.ceil(R.nCanvasSize / R.nViewEssenceScale) - 1;
+    R.nViewBitMapDiameter = R.nCanvasSize / R.nViewEssenceScale;
+    R.nViewBitMapRadius = R.nViewBitMapDiameter / 2;
+    // console.log('R.nViewBitMapRadius: ' + R.nViewBitMapRadius);
+    R.nViewMapMax = R.nViewBitMapMax / R.nFieldBlockSize
+    R.nViewMapDiameter = R.nViewBitMapDiameter / R.nFieldBlockSize;
+    R.nViewMapRadius = R.nViewMapDiameter / 2;
+    // console.log('R.nViewMapRadius: ' + R.nViewMapRadius);
+
+    let multiple = R.nFieldBlockPaintMultiple;
+    R.nFieldGroundSide = 0;
+    R.d3nFieldGroundMap = new Array(R.nFieldGroundSideQnt);
+    for (let k = 0; k < R.d3nFieldGroundMap.length; k++) {
+      R.d3nFieldGroundMap[k] = new Array(R.nFieldMapSize);
+      for (let i0 = 0; i0 < R.d3nFieldGroundMap[k].length; i0 += multiple) {
+        for (let i1 = 0; i1 < multiple; i1++) {
+          let i = i0 + i1;
+          if (i < R.d3nFieldGroundMap[k].length) {
+            R.d3nFieldGroundMap[k][i] = new Array(R.nFieldMapSize);
+          }
+        }
+        for (let j0 = 0; j0 < R.d3nFieldGroundMap[k][i0].length; j0 += multiple) {
+          let fbcix = Math.floor(Math.random() * R.d1sFieldBlockPalette.length);
+          for (let i1 = 0; i1 < multiple; i1++) {
+            let i = i0 + i1;
+            if (i < R.d3nFieldGroundMap[k].length) {
+              for (let j1 = 0; j1 < multiple; j1++) {
+                let j = j0 + j1;
+                if (j < R.d3nFieldGroundMap[k][i].length) {
+                  R.d3nFieldGroundMap[k][i][j] = R.d1sFieldBlockPalette[k][fbcix];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    R.d2nFieldSubjectdMap = new Array(R.nFieldMapSize);
+    for (let i = 0; i < R.d2nFieldSubjectdMap.length; i++) {
+      R.d2nFieldSubjectdMap[i] = new Array(R.nFieldMapSize);
+    }
+
+    R.d1nInpKeySets = {
+      left: 37,
+      right: 39,
+      down: 40,
+      up: 38,
+      space: 32,
+    };
+
+    R.d2nMovKeySets = {
+      37: [-R.nWalkStride, 0], //left
+      39: [R.nWalkStride, 0], //right
+      40: [0, R.nWalkStride], //down
+      38: [0, -R.nWalkStride], //up
+    };
+
+    R.oFigure_Walker = new Figure_Walker(R,
+      [
+        ["Human-001-00.png", "Human-001-01.png", "Human-001-02.png",],
+        ["Human-001-10.png", "Human-001-11.png", "Human-001-12.png",],
+        ["Human-001-20.png", "Human-001-21.png", "Human-001-22.png",],
+        ["Human-001-30.png", "Human-001-31.png", "Human-001-32.png",],
+      ],
+      R.nCharModelSize, R.nFieldBitMapSize / 2, R.nFieldBitMapSize / 2,
+      30, 20, 1);
+
+    R.d1oFigureList_Subject = new Array();
+    // console.log(`★★R.d1oFigureList_Subject: ${R.d1oFigureList_Subject}; `);
+    // console.log(R.d1oFigureList_Subject);
+    R.oFigure_Enemy = null;
+  }
+
+  function OnAllLady() {
+    FieldDraw(R, R.oFigure_Walker);
+  }
+
+  document.body.onkeydown = function (ev) {
+    // console.log('body.onkeydown = function (ev)');
+    let time = Date.now();
+    if (R.KeyEnable) {
+      let scale = 1;
+      let cm = R.oFigure_Walker;
+      let worth = 0;
+      if (20 < time - R.nLastSystemTime) {
+        if (R.d1nInpKeySets.space === ev.keyCode) {
+          // console.log('★★★★if (R.d1nInpKeySets.space === ev.keyCode)');
+          if (R.oFigure_Enemy) {
+            // console.log('if (R.oFigure_Enemy)');
+            R.oFigure_Enemy.hp--;
+            if (R.oFigure_Enemy.hp <= 0) {
+              // console.log('if (R.oFigure_Enemy.hp <= 0)');
+              // worth = R.oFigure_Enemy.worth;
+              cm.Reciprocity(R.oFigure_Enemy);
+              //R.oFigure_Enemy.Reciprocity(R.oFigure_Walker);
+              // R.oFigure_Enemy = null;
+            }
+          }
+          let contact = cm.getContact();
+          if (contact) {
+            // console.log(`★★★★contact: ${contact}; `);
+            cm.Reciprocity(contact, ev.keyCode);
+          }
+        }
+        if (!R.oFigure_Enemy) {
+          // console.log('★if (!R.oFigure_Enemy)');
+          // console.log(`★R.d1oFigureList_Subject.length: ${R.d1oFigureList_Subject.length}`);
+          let active = true; // false; //
+          let walker = R.oFigure_Walker;
+          let oppo, interact;
+          for (let i = R.d1oFigureList_Subject.length - 1; 0 <= i; i--) {
+            oppo = R.d1oFigureList_Subject[i];
+            if (walker.isKMoveConflict(ev.keyCode, oppo)) {
+              // console.log("★★★ Conflict ★★");
+              let oppocn = oppo.constructor.name;
+              // console.log(`★★oppocn: ${oppocn}`);
+              // console.log(`★★oppo.isCrimp(): ${oppo.isCrimp()}`);
+              if (!oppo.isCrimp()) {
+                cm.Reciprocity(oppo);
+                // oppo.Reciprocity(R.oFigure_Walker);
+                // oppo.setFieldMap1(null);
+                // R.d1oFigureList_Subject.splice(i, 1);
+              }
+              if (oppo.isCrimp()) {
+                // console.log("★★if (oppo.isCrimp())");
+                active = false; // true; //
+              }
+              if (oppo.isInteract()) {
+                interact = oppo;
+              }
+            }
+          }
+          R.oFigure_Walker.KMove(ev.keyCode, active, interact);
+        }
+        FieldDraw(R, cm);
+      }
+    }
+    R.nLastSystemTime = time;
+  }
+
+  function FieldDraw(R, oCharModel) {
+    if (!gnWebResourceDefective) {
+      let fbmcx = oCharModel.x;
+      let fbmcy = oCharModel.y;
+
+      let fmcx = fbmcx / R.nFieldBlockSize;
+      let fmcy = fbmcy / R.nFieldBlockSize;
+      let fecx = fbmcx * R.nViewEssenceScale;
+      let fecy = fbmcy * R.nViewEssenceScale;
+
+      let fmcxmin = fmcx - R.nViewMapRadius;
+      let fmcxmax = fmcx + R.nViewMapRadius;
+      let fmcymin = fmcy - R.nViewMapRadius;
+      let fmcymax = fmcy + R.nViewMapRadius;
+
+      let fbmcxmin = fbmcx - R.nViewBitMapRadius;
+      let fbmcymin = fbmcy - R.nViewBitMapRadius;
+
+      R.nFieldMode = R.nFieldModeSets.disaster;
+
+      let fmcxbias = fmcxmin;
+      let fbmcxbias = fmcxbias * R.nFieldBlockSize;
+      let fecxbias = fbmcxbias * R.nViewEssenceScale;
+      let feicxmax = Math.ceil(fecxbias + R.nViewEssenceMax);
+
+      fmcxmin = 0 <= fmcxmin ? Math.floor(fmcxmin) : fmcxmin;
+      fmcxmax = 0 <= fmcxmax ? Math.ceil(fmcxmax) : 0;
+      // console.log(`(1): fmcxbias: ${fmcxbias}; fbmcxbias: ${fbmcxbias}; `);
+      // console.log(`(1): fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; `);
+      if (fmcxmin < 0) {
+        // R.nFieldMode = R.nFieldModeSets.safety;
+        fmcxmin = 0;
+        fmcxmax = Math.ceil(R.nCanvasSize / R.nFieldBlockSize);
+        fbmcxbias = 0;
+      }
+      if (R.nFieldEssenceMax < feicxmax) {
+        // R.nFieldMode = R.nFieldModeSets.safety;
+        fmcxmax = R.nFieldMapSize - 1;
+        fmcxmin = fmcxmax - R.nViewMapMax;
+        // fmcxbias = R.nPrevFMCXBias;
+        fmcxbias = R.nFieldMapSize - (R.nViewBitMapDiameter / R.nFieldBlockSize);
+        fbmcxbias = fmcxbias * R.nFieldBlockSize;
+        fmcxmin = 0 <= fmcxmin ? Math.floor(fmcxmin) : 0;
+      } else {
+        R.nPrevFMCXBias = fmcxbias;
+      }
+      fecxbias = fbmcxbias * R.nViewEssenceScale;
+      // console.log(`(2): fmcxbias: ${fmcxbias}; fbmcxbias: ${fbmcxbias}; `);
+      // console.log(`(2): fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; `);
+      // console.log(`fecxbias: ${fecxbias}`);
+
+      let fmcybias = fmcymin;
+      let fbmcybias = fmcybias * R.nFieldBlockSize;
+      let fecybias = fbmcybias * R.nViewEssenceScale;
+      let feicymax = Math.ceil(fecybias + R.nViewEssenceMax);
+
+      fmcymin = 0 <= fmcymin ? Math.floor(fmcymin) : fmcymin;
+      fmcymax = 0 <= fmcymax ? Math.ceil(fmcymax) : 0;
+      // console.log(`(1): fmcybias: ${fmcybias}; fbmcybias: ${fbmcybias}; `);
+      // console.log(`(1): fmcymin: ${fmcymin}; fmcymax: ${fmcymax}; `);
+      if (fmcymin < 0) {
+        // R.nFieldMode = R.nFieldModeSets.safety;
+        fmcymin = 0;
+        fmcymax = Math.ceil(R.nCanvasSize / R.nFieldBlockSize);
+        fbmcybias = 0;
+      }
+      if (R.nFieldEssenceMax < feicymax) {
+        // R.nFieldMode = R.nFieldModeSets.safety;
+        fmcymax = R.nFieldMapSize - 1;
+        fmcymin = fmcymax - R.nViewMapMax;
+        // fmcybias = R.nPrevFMCYBias;
+        fmcybias = R.nFieldMapSize - (R.nViewBitMapDiameter / R.nFieldBlockSize);
+        fbmcybias = fmcybias * R.nFieldBlockSize;
+        fmcymin = 0 <= fmcymin ? Math.floor(fmcymin) : 0;
+      } else {
+        R.nPrevFMCYBias = fmcybias;
+      }
+      fecybias = fbmcybias * R.nViewEssenceScale;
+      // console.log(`(2): fmcybias: ${fmcybias}; fbmcybias: ${fbmcybias}; `);
+      // console.log(`(2): fmcymin: ${fmcymin}; fmcymax: ${fmcymax}; `);
+      // console.log(`fecybias: ${fecybias}`);
+
+      R.nFECXBias = fecxbias;
+      R.nFECYBias = fecybias;
+      let vbmcbx = fbmcx - fmcxmin * R.nFieldBlockSize;
+      let vbmcby = fbmcy - fmcymin * R.nFieldBlockSize;
+
+      let vecbx = vbmcbx * R.nViewEssenceScale;
+      let vecby = vbmcby * R.nViewEssenceScale;
+      // console.log(`fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; `);
+      // console.log(`fmcymin: ${fmcymin}; fmcymax: ${fmcymax}; `);
+
+      R.oCtx2d.fillStyle = "#000";
+      R.oCtx2d.fillRect(0, 0, R.nCanvasSize, R.nCanvasSize);
+      if (!R.oFigure_Enemy) {
+        // console.log(`★★R.nViewMapDiameter: ${R.nViewMapDiameter}; `);
+        let thick;
+        thick = fmcxmax - fmcxmin;
+        // console.log(`★★fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; thick: ${thick}; `);
+        if (Math.ceil(R.nViewMapDiameter) + 1 < thick) {
+          // console.log("★★★Error(Math.ceil(R.nViewMapDiameter) + 1 < thick)");
+          // console.log(`★★★fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; thick: ${thick}; `);
+          // console.log(`★★★R.nViewMapDiameter: ${R.nViewMapDiameter}; `);
+        }
+        thick = fmcymax - fmcymin;
+        // console.log(`★★fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; thick: ${thick}; `);
+        if (Math.ceil(R.nViewMapDiameter) + 1 < thick) {
+          // console.log("★★★Error(Math.ceil(R.nViewMapDiameter) + 1 < thick)");
+          // console.log(`★★★fmcxmin: ${fmcxmin}; fmcxmax: ${fmcxmax}; thick: ${thick}; `);
+          // console.log(`★★★R.nViewMapDiameter: ${R.nViewMapDiameter}; `);
+        }
+        let side = R.nFieldGroundSide;
+        for (let x = fmcxmin; x <= fmcxmax; x++) {
+          let xl = R.d3nFieldGroundMap[side].length;
+          if (0 <= x && x < xl) {
+            for (let y = fmcymin; y <= fmcymax; y++) {
+              let yl = R.d3nFieldGroundMap[side][x].length;
+              if (0 <= y && y < yl) {
+                // console.log(`x: ${x}; y: ${y}; `);
+                let vbmx = x * R.nFieldBlockSize;
+                let vbmy = y * R.nFieldBlockSize;
+                let vex = vbmx * R.nViewEssenceScale - fecxbias;
+                let vey = vbmy * R.nViewEssenceScale - fecybias;
+                let ves = R.nFieldBlockSize * R.nViewEssenceScale + 1;
+                R.oCtx2d.fillStyle = R.d3nFieldGroundMap[side][x][y];
+                R.oCtx2d.fillRect(vex, vey, ves, ves);
+                let fs = R.d2nFieldSubjectdMap[x][y];
+                if (fs) {
+                  fs.Draw();
+                }
+              }
+            }
+          }
+        }
+        oCharModel.Draw();
+      } else {
+        R.oFigure_Enemy.Draw();
+      }
+    }
+  }
+
+</script>
+</html>

@@ -1,0 +1,142 @@
+<html>
+<head>
+<mefta charset="UTF-8">
+</head>
+<body>
+<canvas id="idCanvas" height="500px" width="500px" style='border: solid thin #000000;' ></canvas><br/>
+<script>
+  oCanvas = document.getElementById('idCanvas');
+  ctx = oCanvas.getContext('2d');
+  nCanvasW = oCanvas.width;
+  nCanvasH = oCanvas.height;
+  
+  class Figure {
+    x = 0;
+    y = 0;
+    dx = 0;
+    dy = 0;
+    bc = null;
+    
+    constructor(x,y,dx,dy,bc) {
+      this.setPosition(x,y);
+      this.dx = dx;
+      this.dy = dy;
+      this.backcolor = bc;
+    }
+    
+    setPosition(x,y) {
+      this.x = x;
+      this.y = y;
+    }
+    
+    Move( ) {
+      let nx,ny;
+      nx = this.x+this.dx;
+      ny = this.y+this.dy;
+      if(nx<0){
+        nx = 0;
+        this.dx = -this.dx;
+      }
+      if(nCanvasW<nx){
+        nx = nCanvasW;
+        this.dx = -this.dx;
+      }
+      if(ny<0){
+        ny = 0;
+        this.dy = -this.dy;
+      }
+      if(nCanvasH<ny){
+        ny = nCanvasH;
+        this.dy = -this.dy;
+      }
+      this.setPosition(nx,ny);
+    }
+    
+    Drawing( ) { } // ダミー
+  };
+  
+  class Square extends Figure {
+    edge = 0;
+    
+    constructor(x,y,eg,dx,dy,bc) {
+      super(x,y,dx,dy,bc);
+      this.edge = eg;
+    }
+    
+    Drawing( ) {
+      let half = this.edge/2;
+      console.log(half);
+      ctx.fillStyle = this.backcolor;
+      ctx.fillRect(this.x-half, this.y-half, this.edge, this.edge);
+    }
+  };
+  
+  class Ball extends Figure {
+    radius = 0;
+    
+    constructor(x,y,r,dx,dy,bc) {
+      super(x,y,dx,dy,bc);
+      this.radius = r;
+    }
+    
+    Drawing( ) {
+      ctx.beginPath(); // パスの初期化
+      ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+      ctx.closePath();
+      ctx.fillStyle = this.backcolor;
+      ctx.fill();
+    }
+  };
+  
+  class Pentagram extends Ball {
+    constructor(x,y,r,dx,dy,bc) {
+      super(x,y,r,dx,dy,bc);
+    }
+    
+    Drawing( ) {
+      ctx.beginPath(); // パスの初期化
+      this.CreateStar(this.radius);
+      ctx.closePath();
+      ctx.fillStyle = this.backcolor;
+      ctx.fill();
+    }
+
+    CreateStar(r){
+      // 「Canvasで五芒星を書く」より。
+      // https://qiita.com/nasum/items/a59f2ee4df4fd2f24227
+      let degree = [-90,-234,-18,-162,-306];
+      let cdt = this.CreateCordinate(r,degree[0]);
+      ctx.moveTo(this.x+cdt.x,this.y+cdt.y);
+      for(let i = 1; i<degree.length; i++){
+        cdt = this.CreateCordinate(r,degree[i]);
+        ctx.lineTo(this.x+cdt.x,this.y+cdt.y);
+      }
+    }
+    
+    CreateCordinate(r,angle){
+      let x = r * Math.cos(angle / 180 * Math.PI);
+      let y = r * Math.sin(angle / 180 * Math.PI);
+      return {
+        "x" : x,
+        "y" : y
+      };
+    }
+  }
+  
+  a1oFg = new Array();
+  a1oFg.push(new Square(nCanvasW/2,0,100,0,1,"#00f"));
+  a1oFg.push(new Ball(nCanvasW,nCanvasH/2,50,-1,0,"#0f0"));
+  a1oFg.push(new Ball(0,nCanvasH/2,50,1,1,"#f00"));
+  a1oFg.push(new Pentagram(nCanvasW/2,nCanvasH,50,1,-1,"#f0f"));
+  
+  var oInterval = setInterval(function () { 
+    ctx.clearRect(0, 0, nCanvasW, nCanvasH);
+    for(let i = 0; i<a1oFg.length; i++){
+      a1oFg[i].Move(); 
+      a1oFg[i].Drawing(); 
+    }
+  }, 7);
+  
+</script>
+</body>
+</html>

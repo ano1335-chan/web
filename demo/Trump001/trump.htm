@@ -1,0 +1,128 @@
+<html>
+<head>
+<!--
+metaタグでcharsetをShift-JISに設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+    <!-- charset=Shift-JIS、UTF-8 -->
+    <TITLE>test</TITLE>
+    <style type="text/css">
+    <!--
+    :root {
+      --card-window-w: 37px;
+      --card-window-h: 51px;
+      --card-pos-min-x: 22px;
+      --card-pos-min-y: 13px;
+      --card-max-w: 499px;
+      --card-max-h: 216px;
+      --card-scale: 1;
+    }   
+    
+    .thumb {
+      display: inline-block;
+      position: relative;
+      width: var(--card-window-w); height: var(--card-window-h);
+      margin: calc(var(--card-window-h) / 2 * calc(var(--card-scale) - 1)) calc(var(--card-window-w) / 2 * calc(var(--card-scale) - 1));
+      overflow: hidden;
+      transform: scale(var(--card-scale));
+    } 
+    
+    .thumb img {
+      max-width: initial; /* サイズ指定をリセット！ */
+      position: absolute;
+      left: calc(-1 * var(--card-max-w) / 13 * 12 - var(--card-pos-min-x)); 
+      top: calc(-1 * var(--card-max-h) / 4 * 3 - var(--card-pos-min-y));
+      width: auto; height: auto;
+      /* transform: translate( 
+      calc(-1 * var(--card-max-w) / 13 * 12 - var(--card-pos-min-x)), 
+      calc(-1 * var(--card-max-h) / 4 * 3 - var(--card-pos-min-y)) ); */
+    }
+    -->
+    </style>
+</head>
+<body>
+
+    <table id="Table" border="border" width="100%" height="30%">
+        <tr>
+            <td width="100%" style="background-color: lime">
+                <div class="thumb"><img id="Tableau001" src="cards-vector.jpg"></div>
+                <div class="thumb"><img id="Tableau002" src="cards-vector.jpg"></div>
+                <div class="thumb"><img id="Tableau003" src="cards-vector.jpg"></div>
+                <div class="thumb"><img id="Tableau004" src="cards-vector.jpg"></div>
+                <div class="thumb"><img id="Tableau005" src="cards-vector.jpg"></div>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+    <!--
+    // let ClientHeight = document.documentElement.clientHeight;
+    let ClientHeight = document.getElementById('Table').clientHeight;
+    let docelm = document.documentElement;
+    let RootStyle = getComputedStyle(docelm);
+    
+    let card_window_w = parseInt(RootStyle.getPropertyValue('--card-window-w'));
+    let card_window_h = parseInt(RootStyle.getPropertyValue('--card-window-h'));
+    let card_max_w = parseInt(RootStyle.getPropertyValue('--card-max-w'));
+    let card_max_h = parseInt(RootStyle.getPropertyValue('--card-max-h'));
+    let card_pos_min_x = parseInt(RootStyle.getPropertyValue('--card-pos-min-x'));
+    let card_pos_min_y = parseInt(RootStyle.getPropertyValue('--card-pos-min-y'));
+    let card_scale = ClientHeight / card_window_h;
+
+    console.log(ClientHeight);
+    console.log(card_window_h);
+    console.log(card_scale);
+    
+    docelm.style.setProperty('--card-scale', String(card_scale));
+
+    let tableau001 = document.getElementById('Tableau001');
+    let tableau002 = document.getElementById('Tableau002');
+    let tableau003 = document.getElementById('Tableau003');
+    let tableau004 = document.getElementById('Tableau004');
+    let tableau005 = document.getElementById('Tableau005');
+
+    let deck = new Array();
+    let h = 0;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 13; j++) {
+            deck.push(i * 13 + j);
+        }
+    }
+
+    let dorder, card;
+
+    dorder = Math.floor(Math.random() * deck.length);
+    card = deck[dorder];
+    deck.splice(dorder, 1); // 選ばれたカードは、(同じカードが2度以上出ないように)デッキから削除する。
+    SetTableau(tableau001, Math.floor(card / 13), card % 13);
+
+    dorder = Math.floor(Math.random() * deck.length);
+    card = deck[dorder];
+    deck.splice(dorder, 1);
+    SetTableau(tableau002, Math.floor(card / 13), card % 13);
+
+    dorder = Math.floor(Math.random() * deck.length);
+    card = deck[dorder];
+    deck.splice(dorder, 1);
+    SetTableau(tableau003, Math.floor(card / 13), card % 13);
+
+    dorder = Math.floor(Math.random() * deck.length);
+    card = deck[dorder];
+    deck.splice(dorder, 1);
+    SetTableau(tableau004, Math.floor(card / 13), card % 13);
+
+    dorder = Math.floor(Math.random() * deck.length);
+    card = deck[dorder];
+    deck.splice(dorder, 1);
+    SetTableau(tableau005, Math.floor(card / 13), card % 13);
+
+    function SetTableau(card, category, order) {
+        card.style.left = String(-card_max_w / 13 * order - card_pos_min_x) + "px";
+        card.style.top = String(-card_max_h / 4 * category - card_pos_min_y) + "px";
+    }
+    // -->
+    </script>
+
+</body>
+</html>

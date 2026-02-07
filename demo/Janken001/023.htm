@@ -1,0 +1,79 @@
+<head>
+<!--
+// metaタグでcharsetをShift-JISに設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+<TITLE>test</TITLE>
+</head>
+
+<body>
+
+<br/>
+<input id="exec" type="button" value="START" onclick="vnSlotCountdown=-1;Slot();"><br/>
+<br/>
+
+      <script type="text/javascript">
+      <!--
+      let Images = [
+        'img/gu.png',
+        'img/choki.png',
+        'img/pa.png'
+      ];
+      
+      for(let i = 0; i<Images.length; i++){
+          document.write('<img id="target'+i+'" src="'+Images[i]+'" width="150" height="150"  style="display: none;" />');
+      }
+      let target = document.getElementById('target0');
+      target.style.display = "inline";
+      document.write('<br><br>');
+      for(let i = 0; i<Images.length; i++){
+          document.write('<img id="img'+i+'" src="'+Images[i]+'" width="100" height="100" style="cursor: pointer" onclick="vnUserIndex='+i+';SlotCountdown();"/>');
+          document.write(' '); // 少し隙間を空ける
+      }
+      document.write('<br>');
+      
+      let vnSlotTimeout = 300;
+      let vnSlotIndex = -1;
+      let vnSlotCountdown = -1;
+      let vnUserIndex = 0;
+      let vnTimelagCountdown = 0;
+      let vnTimelag = 0;
+
+      function Slot(){
+          let target, win, lose, TimeoutID;
+          if(0!=vnSlotCountdown ){
+               for(let i = 0; i<Images.length; i++){
+                   target = document.getElementById('target'+i);
+                   target.style.display = "none";
+               }
+               vnSlotIndex++;
+               vnSlotIndex = vnSlotIndex % Images.length; // 剰余
+               target = document.getElementById('target'+vnSlotIndex);
+               target.style.display = "inline";
+               // console.log(vnSlotIndex);
+              if(0<vnSlotCountdown){
+               vnSlotCountdown--;
+               }
+               TimeoutID = setTimeout("Slot()", vnSlotTimeout);
+          }else{
+              win = (vnUserIndex+1) % Images.length; // 剰余
+              lose = (vnUserIndex+Images.length-1) % Images.length; // 剰余
+              if(vnSlotIndex==win){
+                  alert('You win!');
+              }else if(vnSlotIndex==lose){
+                  alert('You lose!');
+              }else{
+                  alert('Try again!');
+              }
+          }
+      }
+      function SlotCountdown(){
+         vnSlotCountdown = Math.floor( Math.random() * Images.length )+1;
+      }
+      
+      // -->
+      </script>
+
+</body>
+</html>

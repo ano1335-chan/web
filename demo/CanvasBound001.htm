@@ -1,0 +1,79 @@
+﻿<html>
+<head>
+<mefta charset="UTF-8">
+</head>
+<body>
+<canvas id="idCanvas" height="500px" width="500px" style='border: solid thin #000000;' ></canvas><br/>
+<script>
+  oCanvas = document.getElementById('idCanvas');
+  ctx = oCanvas.getContext('2d');
+  nCanvasW = oCanvas.width;
+  nCanvasH = oCanvas.height;
+  
+  class Ball {
+    x = 0;
+    y = 0;
+    radius = 0;
+    dx = 0;
+    dy = 0;
+    backcolor = "";
+    
+    constructor(x,y,r,dx,dy,bc) {
+      this.setPosition(x,y);
+      this.radius = r;
+      this.dx = dx;
+      this.dy = dy;
+      this.backcolor = bc;
+    }
+    setPosition(x,y) {
+      this.x = x;
+      this.y = y;
+    }
+    Move() {
+      let nx,ny;
+      nx = this.x+this.dx;
+      ny = this.y+this.dy;
+      if(nx<0){
+        nx = 0;
+        this.dx = -this.dx;
+      }
+      if(nCanvasW<nx){
+        nx = nCanvasW;
+        this.dx = -this.dx;
+      }
+      if(ny<0){
+        ny = 0;
+        this.dy = -this.dy;
+      }
+      if(nCanvasH<ny){
+        ny = nCanvasH;
+        this.dy = -this.dy;
+      }
+      this.setPosition(nx,ny);
+    }
+    Drawing() {
+      ctx.beginPath(); // パスの初期化
+      ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+      // ctx.stroke();
+      ctx.closePath();
+      ctx.fillStyle = this.backcolor;
+      ctx.fill();
+    }
+  };
+  
+  a1oBall = new Array();
+  a1oBall.push(new Ball(nCanvasW,nCanvasH/2,30,-1,0,"#0f0"));
+  a1oBall.push(new Ball(nCanvasW/2,0,30,0,1,"#00f"));
+  a1oBall.push(new Ball(0,nCanvasH/2,30,1,1,"#f00"));
+  
+  var oInterval = setInterval(function () { 
+    ctx.clearRect(0, 0, nCanvasW, nCanvasH);
+    for(let i = 0; i<a1oBall.length; i++){
+      a1oBall[i].Move(); 
+      a1oBall[i].Drawing(); 
+    }
+  }, 7);
+  
+</script>
+</body>
+</html>

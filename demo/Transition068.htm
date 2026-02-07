@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<style>
+  .Transition003 {
+    position: absolute;
+    box-sizing: border-box;
+    margin: 0px;
+    width: -0px;
+    height: -0px;
+    background: #0f0;
+    transition: none 1s ease 0s;
+    transition-property: width, height;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  .Container003:hover .Transition003 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .Container003 {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    height: 300px;
+    background: #ccc;
+  }
+</style>
+
+<body>
+  <div class="Container003">
+    <div class="Transition003"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+<link rel="preload" href="img001.jpg" as="image">
+<link rel="preload" href="beach011.jpeg" as="image">
+  <title></title>
+  <style>
+    :root {
+      --Body_Margin: 0.5vw;
+      --GlobalBox_Gap: 0.5vw;
+      --GlobalBox_Gap_Vertical: 0.5vw;
+      --Thumbnail_Width: 12vw;
+      --Thumbnail_Height: 12vw;
+      --Thumbnail_Gap: 0.5vw;
+      --Thumbnail_Gap_Vertical: 0.5vw;
+      --Image_Width: 64vmin;
+      --Image_Height: 64vmin;
+      --Image_Gap: 0.5vw;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .BoxSizing_BorderBox {
+      box-sizing: border-box;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Body_Container {
+      margin: var(--Body_Margin);
+    }
+
+    .Global_Container {
+      display: grid;
+      grid-template: auto auto / auto;
+      gap: var(--GlobalBox_Gap);
+    }
+
+    .Thumbnail_Container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, var(--Thumbnail_Width));
+      grid-template-rows: var(--Thumbnail_Height);
+      row-gap: var(--Thumbnail_Gap_Vertical);
+      gap: var(--Thumbnail_Gap);
+    }
+
+    .Image_Container {
+      display: grid;
+      display: none;
+      justify-content: space-around;
+      grid-template-columns: repeat(auto-fill, var(--Image_Width));
+      grid-template-rows: var(--Image_Height);
+      gap: var(--Image_Gap);
+    }
+
+    .ThumbnailBox {
+      box-sizing: border-box;
+      border: solid thin #000;
+    }
+
+    .Image_Container>img{
+      box-sizing: border-box;
+      border: solid thin #000;
+    }
+
+    .Image_ObjectFit_Contain {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    .Tab_LOpener {
+      user-select: none;
+    }
+
+    .Tab_ISwitch:checked+.Image_Container{
+      display: grid;
+    }
+
+    .Global_Container input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body class="Body_Container">
+
+  <div class="Global_Container">
+
+    <div class="Thumbnail_Container">
+      <label class="ThumbnailBox Tab_LOpener" for="TUnit-001-001">
+        <img class="Image_ObjectFit_Contain" src="img001.jpg" alt="img001.jpg">
+      </label>
+      <label class="ThumbnailBox Tab_LOpener" for="TUnit-001-002">
+        <img class="Image_ObjectFit_Contain" src="beach011.jpeg" alt="beach018.jpeg">
+      </label>
+    </div>
+
+    <input id="TUnit-001" type="radio" name="TUnit-001" class="Tab_ISwitch" checked>
+    <div class="Image_Container"></div>
+
+    <input id="TUnit-001-001" type="radio" name="TUnit-001" class="Tab_ISwitch">
+    <div class="Image_Container">
+      <img class="Image_ObjectFit_Contain" src="img001.jpg" alt="img001.jpg">
+      <img class="Image_ObjectFit_Contain" src="img002.jpg" alt="img002.jpg">
+      <img class="Image_ObjectFit_Contain" src="img003.jpg" alt="img003.jpg">
+      <img class="Image_ObjectFit_Contain" src="img005.jpg" alt="img005.jpg">
+      <img class="Image_ObjectFit_Contain" src="img006.jpg" alt="img006.jpg">
+    </div>
+
+    <input id="TUnit-001-002" type="radio" name="TUnit-001" class="Tab_ISwitch">
+    <div class="Image_Container">
+      <img class="Image_ObjectFit_Contain" src="beach011.jpeg" alt="beach011.jpeg">
+      <img class="Image_ObjectFit_Contain" src="beach012.jpeg" alt="beach012.jpeg">
+      <img class="Image_ObjectFit_Contain" src="beach016.jpeg" alt="beach016.jpeg">
+      <img class="Image_ObjectFit_Contain" src="beach017.jpeg" alt="beach017.jpeg">
+    </div>
+
+  </div>
+
+</body>
+</html>

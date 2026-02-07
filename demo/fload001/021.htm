@@ -1,0 +1,43 @@
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+   <TITLE>test</TITLE>
+</head>
+   <body>
+
+      <script type="text/javascript">
+      <!--
+      d0Data = fload("ArrayData.txt");
+      d1Data = d0Data.split("\n");
+      d2Data = new Array(d1Data.length);
+      document.write('d1Data<br>');
+      for( i = 0; i<d1Data.length; i++){
+         document.write(d1Data[i]);
+         document.write('<br>');
+         d2Data[i] = d1Data[i].split(",");
+      }
+      document.write('<br>');
+      
+      document.write('d2Data<br>');
+      for( i = 0; i<d2Data.length; i++){
+         for( j = 0; j<d2Data[i].length; j++){
+            document.write("<"+d2Data[i][j]+"> ");
+         }
+         document.write('<br>');
+      }
+      document.write('<br>');
+      
+      function fload(url) {
+         let reqXML, response;
+         reqXML = new XMLHttpRequest();
+         reqXML.open( "GET", url, false );
+         reqXML.overrideMimeType('text\/plain; charset=x-user-defined');
+         reqXML.send(null);
+         response = reqXML.responseText;
+         if( reqXML.status!=200 ) response = null;
+         return response;
+      }
+      // -->
+      </script>
+
+   </body>
+</html>

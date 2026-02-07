@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    body {
+      font-size: 1.5vw;
+      margin: 0.5vw;
+    }
+
+    .Border {
+      border: solid 0.05vw #000;
+    }
+
+    .Box {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      column-gap: 1vw;
+    }
+
+  </style>
+</head>
+<body>
+  【PCフレンドリー･デモ】
+  (モバイル･フレンドリーは考慮していません)。<br>
+  下記の文章にも意味があるのでチャント読んで下さい。<br>
+  <div class="Box">
+    <div class="Border" style="width: 48vw;">
+      このページはモバイルに対応して無いので、とりあえずChromeモバイル･エミュレーターで約「1000px～3000px」解像度ぐらいをチェックしてみると良いでしょう。<br>
+      このページのコードを参照したい場合は、必ずブラウザの開発者ツール(デベロッパー･ツール)で参照して下さい(ダウンロードするとブラウザ？によってコードが改変されてしまう場合があるようなので)。<br>
+      このページのコードは非常に単純なので理解しやすいでしょう。<br>
+      これは あくまでもデモなので縦スクロール･バーの幅を引いたりなどは していません。<br>
+      【注意点】<br>
+      このページの「要素サイズ、font-size、margin、border、column-gap」など、全てのサイズをvw単位で指定しています。<br>
+      bodyのデフォルトmarginは0.5vwに変更しています。<br>
+      bodyタグで「font-size: 1.5vw;」を指定、
+      font-sizeをvwで指定しているので、ブラウザによる変更を許容しません。<br>
+      「.Border」の幅は0.05vwに設定しています。<br>
+      「.Box」のcolumn-gapは1vwに設定しています。<br>
+      このページの要素には縦サイズは指定していませんが、当然 プロは縦サイズも指定します。
+    </div>
+    <img src="img063.jpg" style="width: 48vw;">
+  </div>
+  <br>
+</body>
+</html>

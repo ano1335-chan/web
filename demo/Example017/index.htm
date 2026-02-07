@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .Caption_Flex_Box {
+    display: flex;
+    justify-content: center;
+    border: thin solid black;
+  }
+
+  .Image_Flex_Box {
+    display: flex;
+  }
+
+  .Image_Flex_Box>img {
+    height: 300px;
+  }
+
+  .Image_Flex_001>img {
+    width: 100%;
+  }
+
+  .Image_Flex_002>img {
+    width: 50%;
+  }
+
+  .Image_Flex_003>img {
+    width: 33.333%;
+  }
+
+  .Image_Flex_004>img {
+    width: 25%;
+  }
+
+</style>
+<body>
+  <div class="Caption_Flex_Box">
+    <span>画像1段目</span>
+  </div>
+  <div class="Image_Flex_Box Image_Flex_001">
+    <img src="Hawaii.png">
+  </div>
+
+  <div class="Caption_Flex_Box">
+    <span>画像2段目</span>
+  </div>
+  <div class="Image_Flex_Box Image_Flex_002">
+    <img src="Hawaii.png">
+    <img src="BlueSky.png">
+  </div>
+
+  <div class="Caption_Flex_Box">
+    <span>画像3段目</span>
+  </div>
+  <div class="Image_Flex_Box Image_Flex_003">
+    <img src="Hawaii.png">
+    <img src="BlueSky.png">
+    <img src="Hawaii.png">
+  </div>
+
+  <div class="Caption_Flex_Box">
+    <span>画像4段目</span>
+  </div>
+  <div class="Image_Flex_Box Image_Flex_004">
+    <img src="Hawaii.png">
+    <img src="BlueSky.png">
+    <img src="Hawaii.png">
+    <img src="BlueSky.png">
+  </div>
+</body>
+</html>

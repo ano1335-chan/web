@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'>
+<body>
+<button type="button" onclick='SQ.Later(A)'>A</button>
+<button type="button" onclick='SQ.Later(B)'>B</button>
+<script>
+class SemaphoreQueue {
+  Queue = new Array();
+  Semaphore = false; // true; //
+  constructor() { }
+  Later(fn) {
+    this.Queue.push(fn);
+    if( this.Queue.length<=1 ){
+      if( ! this.Semaphore ){
+        this.Exec();
+      }
+    }
+    this.Semaphore = true; // false; //
+  }
+  Exec() {
+    if( 0<this.Queue.length ){
+      let fn = this.Queue.shift();
+      fn();
+    }
+  }
+  Next() {
+    this.Semaphore = false; // true; //
+    this.Exec();
+  }
+}
+SQ = new SemaphoreQueue();
+Timeout = 2500;
+function A(){
+  console.log('function A()');
+  setTimeout(AHandler, Timeout );
+}
+function AHandler(){
+  console.log('function AHandler()');
+  SQ.Next();
+}
+function B(){
+  console.log('function B()');
+  setTimeout(BHandler, Timeout );
+}
+function BHandler(){
+  console.log('function BHandler()');
+  SQ.Next();
+}
+</script>
+</body>
+</html>

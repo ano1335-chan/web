@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--
+↑metaタグでcharsetをUTF-8に設定しています。
+必ずcharsetに設定されているキャラクターセット(エンコード)でセーブして下さい。
+キャラクターセット(エンコード)が違うと全角文字が文字化けします。
+-->
+<title>BMI</title>
+</head>
+<body>
+
+View Ver.1 : Client 1 : <br>
+A君:
+Weight(kg):<input type="text" id="idA1_InpW" class="V1 C1 A">
+Height(cm):<input type="text" id="idA1_InpW" class="V1 C1 A">
+<button type="button" onclick="oProcess.ExecSBMI('V1 C1 A')">Click!!</button>
+<br>
+<div id="idA1_OutBMI" class="V1 C1 A" style="border: solid thin #000;"><br></div>
+<br>
+
+B君:
+Weight(kg):<input type="text" id="idB1_InpW" class="V1 C1 B">
+Height(cm):<input type="text" id="idB1_InpW" class="V1 C1 B">
+<button type="button" onclick="oProcess.ExecSBMI('V1 C1 B')">Click!!</button>
+<br>
+<div id="idB1_OutBMI" class="V1 C1 B" style="border: solid thin #000;"><br></div>
+<br>
+
+View Ver.2 : Client 2 : <br>
+A君:
+Weight(kg):<input type="text" id="idA1_InpW" class="V2 C2 A">
+Height(cm):<input type="text" id="idA1_InpW" class="V2 C2 A">
+<button type="button" onclick="oProcess.ExecSBMI('V2 C2 A')">Click!!</button>
+<br>
+<div id="idA1_OutBMI" class="V2 C2 A" style="border: solid thin #000;"><br></div>
+<br>
+
+B君:
+Weight(kg):<input type="text" id="idB1_InpW" class="V2 C2 B">
+Height(cm):<input type="text" id="idB1_InpW" class="V2 C2 B">
+<button type="button" onclick="oProcess.ExecSBMI('V2 C2 B')">Click!!</button>
+<br>
+<div id="idB1_OutBMI" class="V2 C2 B" style="border: solid thin #000;"><br></div>
+<br>
+
+</body>
+<script>
+class Storage {
+  // nBMI
+  // nWeight (kg)
+  // nHeight (cm)
+  constructor(){
+    // Entry(target);
+    this.nBMI = null;
+    this.nWeight = null;
+    this.nHeight = null;
+  }
+  SetChangeAdapter(target){
+    console.log("Storage#SetChangeAdapter()");
+    this.oChangeAdapter = target;
+    // console.log("this.oChangeAdapter: "+this.oChangeAdapter);
+    // console.log(this.oChangeAdapter);
+  }
+  SetBMIWH(bmi, w, hc){
+    console.log("Storage#SetBMIWH()");
+    this.nBMI = bmi;
+    this.nWeight = w;
+    this.nHeight = hc;
+    // console.log("this.oChangeAdapter: "+this.oChangeAdapter);
+    // console.log(this.oChangeAdapter);
+    if( this.oChangeAdapter ){
+      // * this.oChangeAdapter.onChange();
+    }
+    this.oChangeAdapter.onChange();
+  }
+}
+let dhooStorage = new Array();
+class Model {
+  constructor(){
+  }
+  SetBMIWH(vn, cn, id, w, hc){
+    console.log("Model#SetBMIWH()");
+    /*
+    console.log(
+    "vn: "+vn+"; "+
+    "cn: "+cn+"; "+
+    "id: "+id+"; "+
+    "");
+    */
+    if( ! dhooStorage[id] ){
+      dhooStorage[id] = new Storage();
+    }
+    dhooStorage[id].nWeight = w;
+    dhooStorage[id].nHeight = hc;
+    let h = hc/100;
+    // BMI＝体重（kg）÷（身長（m）×身長（m））
+    let bmi = w/(h*h);
+    dhooStorage[id].SetBMIWH(bmi, w, hc);
+  }
+  GetStorage(id){
+    if( ! dhooStorage[id] ){
+      dhooStorage[id] = new Storage();
+    }
+    return dhooStorage[id];
+  }
+}
+class View1 {
+  constructor(){
+  }
+  SetBMIWH(vn, cn, id, bmi, w, hc){
+    console.log("View1#SetBMIWH()");
+    this.SetBMI(vn, cn, id, bmi);
+    let a1el = document.getElementsByClassName(vn+" "+cn+" "+id);
+    if(a1el.length){
+      a1el[0].value = w;
+      a1el[1].value = hc;
+    }
+  }
+  SetBMI(vn, cn, id, bmi){
+    console.log("View1#SetBMI()");
+    let a1el = document.getElementsByClassName(vn+" "+cn+" "+id);
+    // console.log("a1el ="+a1el);
+    // console.log(a1el);
+    if(a1el.length){
+      let judge;
+      if (bmi < 18.5) { // 18.5未満 やせ
+        judge = "やせ";
+      } else if (bmi < 25.0) { // 18.5以上25.0未満 標準
+        judge = "標準";
+      } else if (bmi < 30.0) { // 25.0以上30.0未満 肥満
+        judge = "肥満";
+      } else { // 30.0以上 高度肥満
+        judge = "高度肥満";
+      }
+      a1el[2].innerText = judge+" : "+bmi;
+    }
+  }
+}
+class View2 extends View1 {
+  constructor(){
+    super();
+  }
+  SetBMI(vn, cn, id, bmi){
+    super.SetBMI(vn, cn, id, bmi);
+    let a1el = document.getElementsByClassName(vn+" "+cn+" "+id);
+    if(a1el.length){
+      let color;
+      if (bmi < 18.5) { // 18.5未満 やせ
+        color = "#00f";
+      } else if (bmi < 25.0) { // 18.5以上25.0未満 標準
+        color = "#0f0";
+      } else if (bmi < 30.0) { // 25.0以上30.0未満 肥満
+        color = "#ff0";
+      } else { // 30.0以上 高度肥満
+        color = "#f00";
+      }
+      a1el[2].style.background = color;
+    }
+  }
+}
+class Controller {
+  constructor(view){
+    console.log("Controller#constructor()");
+    this.oModel = new Model();
+    // console.log("this.oModel =");
+    // console.log(this.oModel);
+    this.oView = view;
+  }
+  ExecSBMI(symbol){
+    console.log("Controller#ExecSBMI()");
+    // console.log("this.symbol: "+symbol);
+    let a1Sbl = symbol.split(" ");
+    let vn = a1Sbl[0];
+    let cn = a1Sbl[1];
+    let id = a1Sbl[2];
+    let a1el = document.getElementsByClassName(cn+" "+id);
+    let w = +a1el[0].value;
+    let hc = +a1el[1].value;
+    /*
+    console.log(
+    "vn: "+vn+"; "+
+    "cn: "+cn+"; "+
+    "id: "+id+"; "+
+    "");
+    */
+    this.oModel.SetBMIWH(vn, cn, id, w, hc);
+    let st = this.oModel.GetStorage(id);
+    this.oView.SetBMI(vn, cn, id, st.nBMI);
+  }
+  ReflectBMIWH(vn, cn, id){
+    console.log("Controller#ReflectBMIWH()");
+    /*
+    console.log(
+    "vn: "+vn+"; "+
+    "cn: "+cn+"; "+
+    "id: "+id+"; "+
+    "");
+    */
+    let st = this.oModel.GetStorage(id);
+    this.oView.SetBMIWH(vn, cn, id, st.nBMI, st.nWeight, st.nHeight);
+  }
+}
+class Process {
+  constructor(dhooView, dhooController){
+    console.log("Process#constructor()");
+    this.dhooView = dhooView;
+    // dhooStorage = new Array();
+    this.dhooController = dhooController;
+    console.log("this.dhooController ="+this.dhooController);
+    console.log(this.dhooController);
+  }
+  onChange(){
+    console.log("Process#onChange()");
+    console.log(
+    "this.vn: "+this.vn+"; "+
+    "this.cn: "+this.cn+"; "+
+    "this.id: "+this.id+"; "+
+    "");
+    console.log("this.dhooController ="+this.dhooController);
+    console.log(this.dhooController);
+    for (let kvn in this.dhooView) {
+      this.oView = this.dhooView[kvn];
+      console.log(
+      "kvn: "+kvn+"; "+
+      "this.oView: "+this.oView+"; "+
+      "");
+      for (let key in this.dhooController) {
+        let kcn = key.split(" ").pop();
+        console.log(
+        "kcn: "+kcn+"; "+
+        "this.cn: "+this.cn+"; "+
+        "");
+        this.oController = this.CreateController(kvn, kcn, this.id);
+        this.oStorage = this.oController.oModel.GetStorage(this.id);
+        if( this.cn!==kcn ){
+          console.log("if( this.cn!==kcn )");
+          this.oController.ReflectBMIWH(kvn, kcn, this.id);
+        }
+      }
+    }
+  }
+  CreateController(vn, cn, id){
+    console.log("Process#CreateController()");
+    let key = vn+" "+cn;
+    if( ! this.dhooController[key] ){
+      console.log("if( ! this.dhooController[key] )");
+      this.dhooController[key] = new Controller(this.dhooView[vn]);
+      console.log("***Process#CreateController()");
+      console.log(
+      "vn: "+vn+"; "+
+      "cn: "+cn+"; "+
+      "key: "+key+"; "+
+      "");
+    }
+    return this.dhooController[key];
+  }
+  ExecSBMI(symbol){
+    console.log("Process#ExecSBMI()");
+    this.symbol = symbol;
+    let a1Sbl = this.symbol.split(" ");
+    this.vn = a1Sbl[0];
+    this.cn = a1Sbl[1];
+    this.id = a1Sbl[2];
+    /*
+    console.log(
+    "this.vn: "+this.vn+"; "+
+    "this.cn: "+this.cn+"; "+
+    "this.id: "+this.id+"; "+
+    "");
+    */
+    this.oController = this.CreateController(this.vn, this.cn, this.id);
+    this.oStorage = this.oController.oModel.GetStorage(this.id);
+    this.oStorage.SetChangeAdapter(this);
+    this.oController.ExecSBMI(this.symbol);
+  }
+}
+let oProcess = new Process({"V1": new View1(), "V2": new View2()}, {"C1": null, "C2": null});
+</script>
+</html>

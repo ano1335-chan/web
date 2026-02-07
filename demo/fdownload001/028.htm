@@ -1,0 +1,73 @@
+<html>
+    <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+        <title>Sample</title>
+    </head>
+    <body>
+
+        <script type='text/javascript'>
+            
+            // ブラウザは必ずChromeにして下さい。
+            // 一気に複数のファイルをダウンロードするので、ファイル･サイズが大きいと問題が発生するかもしれません。
+            
+            DownloadFileList = ["images008.jpg", "images009.jpg", "images010.jpg"];
+            
+            FileDownload = function(DownloadFile) {
+                this.DownloadFile = DownloadFile;
+            };
+            FileDownload.prototype.DownloadAnchorClick = function() {
+                this.DownloadAnchor.click();
+            };
+            FileDownload.prototype.CreateDownloadNoneTag = function() {
+                this.DownloadAnchor = document.createElement("a");
+                this.DownloadAnchor.style.display = 'none';
+                document.body.appendChild(this.DownloadAnchor);
+                this.DownloadAnchor.href = 'JavaScript:;';
+                this.DownloadAnchor.download = this.DownloadFile;
+                this.DownloadAnchor.onclick = this.FDownload();
+            };
+            FileDownload.prototype.FLoad = function(url) {
+                let content;
+                this.DownloadHttpReq = new XMLHttpRequest();
+                this.DownloadHttpReq.open( "GET", url, false );
+                this.DownloadHttpReq.overrideMimeType('text\/plain; charset=x-user-defined');
+// MIME タイプを上書きしてブラウザーに強制的に、ユーザー定義の文字セットを使用したプレインテキストとして扱わせます。
+// これにより、ブラウザーはこれを解釈せず、未処理のままバイト列を通します。
+                this.DownloadHttpReq.send(null);
+                content = this.DownloadHttpReq.responseText;
+                if( this.DownloadHttpReq.status==200 ) this.DownloadMimeType = this.DownloadHttpReq.getResponseHeader('content-type');
+                else content = null;
+                return content;
+            };
+            FileDownload.prototype.FDownload= function() {
+                let BinaryArray = StringToBinaryArray(this.FLoad(this.DownloadFile));
+                let blob = new Blob([BinaryArray], {type: this.DownloadMimeType});
+                if (window.navigator.msSaveBlob) { 
+                    window.navigator.msSaveBlob(blob, this.DownloadFile); 
+                    // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+                    window.navigator.msSaveOrOpenBlob(blob, this.DownloadFile); 
+                } else {
+                    this.DownloadAnchor.href = window.URL.createObjectURL(blob);
+                }
+            }
+            
+            FileDownloadObjList = new Array(DownloadFileList.length);
+            for( let i = 0; i<FileDownloadObjList.length; i++ ){
+                FileDownloadObjList[i] = new FileDownload(DownloadFileList[i]);
+                FileDownloadObjList[i].CreateDownloadNoneTag();
+                FileDownloadObjList[i].DownloadAnchorClick();
+            }
+            
+            function StringToBinaryArray(s) {
+                let buf = new ArrayBuffer(s.length);
+                let BinaryInterface = new Uint8Array(buf);
+                for (let i=0; i<s.length; i++) {
+                    BinaryInterface[i] = s.charCodeAt(i);
+                }
+                return buf;
+            }  
+            
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <TITLE></TITLE>
+  <style>
+    :root {
+      --Border_Weight_1: calc(1rem / 16);
+      --Border_Weight_1p31: calc(var(--Border_Weight_1) * 1.31);
+      --InnerRadius: 0.75rem;
+      --InnerDiameter: calc(var(--InnerRadius) * 2);
+      --OuterRadius: calc(var(--InnerRadius) + var(--Border_Weight_1));
+      --OuterDiameter: calc(var(--OuterRadius) * 2);
+      --Hamburger_Content_PaddingHorizon: 0.35rem;
+      --Hamburger_Content_PaddingVertical: 0.15rem;
+      --Hamburger_DummyCloser_Container_PaddingTop:
+        calc(var(--Hamburger_Switcher_AbsoluteTop) - var(--Border_Weight_1));
+      --Hamburger_Exterior_PaddingTop:
+        calc(var(--Hamburger_Switcher_AbsoluteTop) - var(--Border_Weight_1));
+      --Hamburger_Switcher_AbsolutePosition:
+        calc(var(--Hamburger_Content_PaddingHorizon) + var(--Border_Weight_1));
+      --Hamburger_Switcher_AbsoluteHorizon: var(--Hamburger_Switcher_AbsolutePosition);
+      --Hamburger_Switcher_AbsoluteTop: var(--Hamburger_Switcher_AbsolutePosition);
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Border_Circle {
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: var(--OuterRadius);
+      width: var(--OuterDiameter);
+      height: var(--OuterDiameter);
+    }
+
+    .Position_Fixed_0_0 {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .Hamburger_Checkbox {
+      display: none;
+    }
+
+    .Hamburger_Container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .Hamburger_BaseSwitcher {
+      display: inline-flex;
+      justify-content: center;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0ee;
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: var(--OuterRadius);
+      width: var(--OuterDiameter);
+      height: var(--OuterDiameter);
+      user-select: none;
+    }
+
+    .Hamburger_Opener {
+      position: absolute;
+      top: var(--Hamburger_Switcher_AbsoluteTop);
+      left: var(--Hamburger_Switcher_AbsoluteHorizon);
+      /*right: var(--Hamburger_BaseSwitcher_AbsoluteHorizon);*/
+    }
+
+    .Hamburger_Closer {
+      display: none;
+      position: absolute;
+      top: var(--Hamburger_Switcher_AbsoluteTop);
+      left: var(--Hamburger_Switcher_AbsoluteHorizon);
+      /*right: var(--Hamburger_Switcher_AbsoluteHorizon);*/
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Closer {
+      display: inline-flex;
+    }
+
+    .Hamburger_DummyCloser_Container {
+      display: flex;
+      justify-content: flex-start;
+      padding: var(--Hamburger_DummyCloser_Container_PaddingTop) 0 var(--Hamburger_Content_PaddingVertical) 0;
+    }
+
+    .Hamburger_DummyCloser {
+      border: none 0 #000;
+      background-color: #fff;
+      /*visibility: visible;*/
+      visibility: hidden;
+    }
+
+    .Hamburger_Content {
+      display: inline-block;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0cc;
+      position: absolute;
+      left: 0;
+      top: 0;
+      white-space: nowrap;
+      box-sizing: border-box;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: var(--OuterRadius);
+      padding: 0 var(--Hamburger_Content_PaddingHorizon) var(--Hamburger_Content_PaddingVertical) var(--Hamburger_Content_PaddingHorizon);
+      transform: translateX(-101%);
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Content {
+      left: 0;
+      transform: translateX(0%);
+      transition: 0.3s ease-in-out;
+    }
+
+    .Hamburger_Filter {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      width: 100%;
+      height: 100vh;
+      background-color: #000;
+      opacity: 0.5;
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Filter {
+      display: block;
+    }
+
+    .DummyTail {
+      width: 50vw;
+      height: 100vh;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="Hamburger_Container">
+      <input type="checkbox" id="Hamburger_Checkbox" class="Hamburger_Checkbox ">
+      <div class="Hamburger_Filter"></div>
+      <label name="Hamburger_Opener" for="Hamburger_Checkbox" class="Hamburger_Opener Hamburger_BaseSwitcher">
+        ≡
+      </label>
+      <div class="Hamburger_Content UserSelect_None">
+        <div class="Hamburger_DummyCloser_Container">
+          <label for="Hamburger_Checkbox" class="Hamburger_BaseSwitcher Hamburger_DummyCloser ">
+            ×
+          </label>
+        </div>
+        <label for="Hamburger_Checkbox" onclick="location='#iroha';">
+          いろはにほへと<br>
+        </label>
+        <label for="Hamburger_Checkbox" onclick="location='#tunena';">
+          つねならむ<br>
+        </label>
+        <label for="Hamburger_Checkbox" onclick="location='#ehimo';">
+          ゑひもせす<br>
+        </label>
+      </div>
+      <label name="Hamburger_Closer" for="Hamburger_Checkbox" class="Hamburger_BaseSwitcher Hamburger_Closer ">
+        ×
+      </label>
+    </nav>
+  </header>
+  <br>
+  いろは歌<br>
+  <br>
+  <a id="iroha"></a>
+  いろはにほへと<br>
+  ちりぬるを<br>
+  わかよたれそ<br>
+  <a id="tunena"></a>
+  つねならむ<br>
+  うゐのおくやま<br>
+  けふこえて<br>
+  あさきゆめみし<br>
+  <a id="ehimo"></a>
+  ゑひもせす<br>
+  <br>
+  <footer>
+    【Footer】
+  </footer>
+  <div class="DummyTail "></div>
+</body>
+</html>

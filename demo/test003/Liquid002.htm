@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  .Box001>img {
+    width: 10rem;
+  }
+
+  .Box003 {
+    display: none;
+  }
+
+  /* Break Point：767px */
+  @media screen and (max-width:767px) {
+    .Box001>img {
+      width: 12rem;
+    }
+
+    .Box002 {
+      display: none;
+    }
+
+    .Box003 {
+      display: block;
+    }
+  }
+
+</style>
+<body>
+  <div class="Box002">
+    @media screen and (Default)
+  </div>
+  <div class="Box003">
+    @media screen and (max-width:767px)
+  </div>
+
+  <div class="Box001">
+    <img src="001.jpg">
+    <img src="002.jpg">
+    <img src="003.jpg">
+    <img src="004.jpg">
+    <img src="005.jpg">
+    <img src="006.jpg">
+    <img src="007.jpg">
+    <img src="008.jpg">
+    <img src="009.jpg">
+    <img src="010.jpg">
+  </div>
+</body>
+</html>

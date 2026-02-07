@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+html {font-size: var(--HTML_FontSize);}
+
+html { overflow-y: scroll; }
+* {font-size: 1rem;}
+
+@media screen and (min-width: 688px) { /* 688px以上～ */
+  :root {
+    --Client_Width: calc(100vw - var(--Window_ScrollbarWidth));
+    --HTML_SelectOption_MNumber: 0.217;
+    --HTML_SelectOption_FontSize: calc(1rem * var(--HTML_SelectOption_MNumber));
+    --ScreenMinimumWidth: 479; /* ＜480(≒480) */
+    --VPixel1: calc(var(--ScreenWidth) / var(--ScreenMinimumWidth));
+    --VPixel2: calc(var(--VPixel1) * 2);
+    --VPixel3: calc(var(--VPixel1) * 3);
+    --VPixel4: calc(var(--VPixel1) * 4);
+    --VPixel5: calc(var(--VPixel1) * 5);
+    --Basic_FontSize: 1rem;
+    --Basic_Space1: 1rem;
+    --Basic_Space_D2: 0.5rem;
+    --Basic_Space_D4: 0.25rem;
+    --Basic_Space_D8: 0.125rem;
+    --Basic_Margin: var(--VPixel1);
+    --Basic_MarginSide: var(--VPixel1);
+    --Basic_MarginBottom: var(--VPixel1);
+    --Basic_Padding: var(--VPixel1);
+    --Basic_PaddingSide: var(--VPixel1);
+    --Basic_Between1: var(--VPixel1);
+    --Basic_Between5: var(--VPixel5);
+    --Placement1_Width: calc(var(--Client_Width) - var(--Basic_Space_D2) - var(--Basic_Between1));
+    --Placement2_Width: calc(calc(var(--Client_Width) - var(--Basic_Space_D2)) / 2 - var(--Basic_Between1));
+    --Basic_MinWidth: calc(12rem + var(--Basic_Between5));
+  }
+}
+
+$breakpoints: (
+  'model0': 'screen and (min-width: 0px)', // 0px以上～688px未満
+  'model1': 'screen and (min-width: 688px)', // 688px以上～992px未満
+  'model2': 'screen and (min-width: 992px)', // 992px以上～1312px未満
+  'model3': 'screen and (min-width: 1312px)', // 1312px以上～
+);
+@mixin mq($bp: model0) {
+  @media #{map-get($breakpoints, $bp)} {
+    @content;
+  }
+}
+
+%Classic_Definition { } // プレースホルダーセレクター
+
+$bc: null !global;
+$HTML_SelectOption_FontSize: null !global;
+$Client_Width: null !global;
+$VPixel1: null !global;
+$VPixel2: null !global;
+$VPixel3: null !global;
+$VPixel4: null !global;
+$VPixel5: null !global;
+$Basic_FontSize: null !global;
+$Basic_Space1: null !global;
+$Basic_Space_D2: null !global;
+$Basic_Space_D4: null !global;
+$Basic_Space_D8: null !global;
+$Basic_Margin: null !global;
+$Basic_MarginSide: null !global;
+$Basic_MarginBottom: null !global;
+$Basic_Between1: null !global;
+$Basic_Between5: null !global;
+$Placement1_Width: null !global;
+$Placement2_Width: null !global;
+$Basic_MinWidth: null !global;
+
+%Initialize { // プレースホルダーセレクター
+}
+
+@mixin Basic_Definition {
+  body {
+    margin: $VPixel1;  
+  }
+  select > option {font-size: $HTML_SelectOption_FontSize;}
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .WhiteSpace_Nowrap {
+    white-space: nowrap;    
+  }
+  .Basic_Button_Style {
+    background: silver;
+    font-weight: bold;
+    padding: 0 $VPixel1;
+  }
+  .Img_Dice_Style {
+    width: 2.6rem;
+  }
+  .Basic_BorderSolid {
+    border: solid $VPixel1 #012;
+  }
+  .Basic_MarginLeft {
+    margin-left: $Basic_MarginSide;
+  }
+  .Basic_MarginRight {
+    margin-right: $Basic_MarginSide;
+  }
+  .Basic_MarginBottom {
+    margin-bottom: $Basic_MarginBottom;
+  }
+  .Basic_TextBox_Style {
+    padding: $VPixel1;
+    margin-bottom: $Basic_MarginBottom;
+    box-sizing: border-box;
+  }
+  .Basic_TextBox_ContainStyle > * {
+    padding: $VPixel1;
+    margin-bottom: $Basic_MarginBottom;
+    box-sizing: border-box;
+  }
+  .Img_FlexStyle_Container > img {
+    margin-left: $Basic_Space_D4;
+  }  
+  .Placement1_Width {
+    width: $Placement1_Width;
+  }
+  .Placement2_Width {
+    width: $Placement2_Width;
+  }
+  .Dynamic_PlacementM2_Container > * {
+    margin: 0 $Basic_MarginSide $Basic_MarginBottom 0;
+  }
+  .Dynamic_PlacementM2_Width_Container > * {
+    width: $Placement2_Width;
+  }
+  .Dynamic_PlacementM2_Width {
+    width: $Placement2_Width;
+  }
+  .FlexBox_DisplayContents > * {
+    display: contents;   
+  }  
+  .FlexBox_Container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    > * {
+      display: block;
+    }  
+  }
+  .Basic_FlexBox_ContainStyle > * {
+    padding: $VPixel1;
+    margin-bottom: $VPixel1;
+  }  
+  .FlexBox_WrapNowrap {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .Dynamic_Indention {
+    display: none;
+    width: $Placement1_Width;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .Display_InlineBlock {
+    display: inline-block;
+  }
+  .Display_Table {
+    display:table;
+  }
+  .Display_TableCell {
+    display:table-cell;
+  }
+  .Element_0 {
+    font-size: 1.45rem;
+  }
+  .Element_1 {
+  }
+  .Element_2 {
+  }
+  .Element_5 {
+  }
+  .Element_8 {
+  }
+  .Element_9 {
+  }
+}
+
+@include mq( ) { // 引数省略 0px以上～
+  $HTML_SelectOption_FontSize: 1rem !global;
+  $Client_Width: 480px !global;
+  $VPixel1: 1px !global;
+  $VPixel2: 2px !global;
+  $VPixel3: 3px !global;
+  $VPixel4: 4px !global;
+  $VPixel5: 5px !global;
+  $Basic_FontSize: 16px !global;
+  $Basic_Space1: $Basic_FontSize !global;
+  $Basic_Space_D2: $Basic_Space1 / 2 !global;
+  $Basic_Space_D4: $Basic_Space1 / 4 !global;
+  $Basic_Space_D8: $Basic_Space1 / 8 !global;
+  $Basic_Margin: $VPixel1 !global;
+  $Basic_MarginSide: $Basic_Margin !global;
+  $Basic_MarginBottom: $Basic_Margin !global;
+  $Basic_Between1: $VPixel1 !global;
+  $Basic_Between5: $VPixel5 !global;
+  $Placement1_Width: ($Client_Width - $Basic_Space_D4) - $Basic_Between1 !global;
+  $Placement2_Width: (($Client_Width - $Basic_Space_D4) / 2) - $Basic_Between1 !global;
+  $Basic_MinWidth: $Basic_FontSize * 12 - $Basic_Between5 !global;
+  @include Basic_Definition;
+  .Dynamic_Indention {
+    display: block;
+  }
+  .Basic_BorderSolid {
+    border: solid $VPixel1 #678;
+  }
+  .Dynamic_PlacementM2_Width_Container > * {
+    width: $Placement1_Width;
+  }
+  .Dynamic_PlacementM2_Width {
+    width: $Placement1_Width;
+  }
+  .Element_0 {
+    font-size: 1rem;
+  }
+}
+@include mq(model1) { //  688px以上～
+  $HTML_SelectOption_FontSize: var(--HTML_SelectOption_FontSize) !global;
+  $Client_Width: 100% !global;
+  $VPixel1: var(--VPixel1) !global;
+  $VPixel2: var(--VPixel2) !global;
+  $VPixel3: var(--VPixel3) !global;
+  $VPixel4: var(--VPixel4) !global;
+  $VPixel5: var(--VPixel5) !global;
+  $Basic_FontSize: var(--Basic_FontSize) !global;
+  $Basic_Space1: var(--Basic_Space1) !global;
+  $Basic_Space_D2: var(--Basic_Space_D2) !global;
+  $Basic_Space_D4: var(--Basic_Space_D4) !global;
+  $Basic_Space_D8: var(--Basic_Space_D8) !global;
+  $Basic_Margin: var(--Basic_Margin) !global;
+  $Basic_MarginSide: var(--Basic_MarginSide) !global;
+  $Basic_MarginBottom: var(--Basic_MarginBottom) !global;
+  $Basic_Between1: var(--Basic_Between1) !global;
+  $Basic_Between5: var(--Basic_Between5) !global;
+  $Placement1_Width: var(--Placement1_Width) !global;
+  $Placement2_Width: var(--Placement2_Width) !global;
+  $Basic_MinWidth: var(--Basic_MinWidth) !global;
+  @include Basic_Definition;
+  .Basic_BorderSolid {
+    border: solid $VPixel1 #456;
+  }
+}
+@include mq(model2) { // 992px以上～
+  .Basic_BorderSolid {
+    border: solid $VPixel1 #567;
+  }
+}
+
+/* 0px以上～688px未満 */
+@media screen and (min-width: 0px) and  (max-width: 687px){
+  .Element_0 {
+  }
+  .Element_2 {
+    order: 1;
+  }
+  .Element_5 {
+    order: -1;
+  }
+  .Element_8 {
+    order: 1;
+  }
+  .Element_9 {
+  }
+}
+/* 688px以上～992px未満 */
+@media screen and (min-width: 688px) and (max-width: 991px) { }
+/* 992px以上～1312px未満 */
+@media screen and (min-width: 992px) and (max-width: 1311px) { }
+/* 1312px以上～ */
+@media screen and (min-width: 1312px) { }

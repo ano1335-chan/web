@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <TITLE></TITLE>
+    <style>
+.Display_InlineBlock {
+  display: inline-block;
+}
+.Display_InlineFlex{
+  display: inline-flex;
+}
+.Position_Relative {
+  position: relative;
+}
+.Flexbox_MiddleCenter {
+  align-items: center;
+  justify-content: center;
+}
+.EdgeRadius_50per{
+  border-radius: 50%;
+}
+.EdgeCircle {
+  border-radius: 50%;
+  width: 1.5rem;
+}
+.BalloonBox {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  background: #def;
+  color: #000;
+  border: thin solid #000;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+.BalloonVisibility:hover .BalloonBox {
+  display: inline-block;
+}
+.BalloonLabel {
+  color: #fff; 
+  background-color: #f70;
+}
+    </style>
+  </head>
+  <body>
+QWERTY<span class="BalloonContainer BalloonVisibility" ><span class="BalloonBox">Balloon Box Text</span><span class="Display_InlineFlex Flexbox_MiddleCenter BalloonLabel EdgeCircle" >！</span></span>
+QWERTY<span class="BalloonContainer BalloonVisibility" ><span class="BalloonBox">Balloon Box Text</span><span class="Display_InlineFlex Flexbox_MiddleCenter BalloonLabel EdgeCircle" >！</span></span>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+  <head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta charset='UTF-8'>
+    <TITLE>test</TITLE>
+    <style type='text/css'>
+    <!--
+.tab-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tab-switch {
+  text-decoration: none;
+  font-weight: bold;
+  color: #fef;
+  background: #0a9;
+  margin: 0.1em 0.3em 0.1em 0em;
+  padding: 0.2em 1em;
+  order: -1;
+}
+.tab-wrap > a:target {
+  font-weight: bold;
+  color: #767;
+  background: #5f6;
+}
+.tab-wrap > .tab-content {
+  display: none;
+}
+.tab-wrap > a:target + .tab-content {
+  display: block;
+}
+.tab-content {
+  width: 100%;
+}
+.tab-switch:hover {
+  font-weight: bold;
+  color: #767;
+  background: #0fcc;
+}
+    -->
+    </style>
+  </head>
+  <body>
+<div class='tab-wrap'>
+  <a id='TAB-001-001UNIT' class='tab-switch' href='#TAB-001-001UNIT'>001-001UNIT</a>
+  <div class='tab-content'>
+いろはにほへと ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+  </div>
+  <a id='TAB-001-002UNIT' class='tab-switch' href='#TAB-001-002UNIT'>001-002UNIT</a>
+  <div class='tab-content'>
+ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+  </div>
+  <a id='TAB-001-003UNIT' class='tab-switch' href='#TAB-001-003UNIT'>001-003UNIT</a>
+  <div class='tab-content'>
+つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+  </div>
+</div>
+  </body>
+</html>

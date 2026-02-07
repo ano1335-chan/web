@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <!--
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://creator.aainc.co.jp/archives/4947
+  -->
+  <style>
+    .Accordion_Container {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .Accordion_LOpener {
+      display: block;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin: 0.1rem 0;
+      padding: 0.2em 1em;
+    }
+
+    .Accordion_LCloser {
+      display: none;
+      font-weight: bold;
+      color: #767;
+      background: #0f7;
+      margin: 0.1rem 0;
+      padding: 0.2em 1em;
+    }
+
+    .Accordion_Content {
+      display: block;
+      border: solid thin #000;
+      transform: scaleY(0);
+      height: 0px;
+    }
+
+    .Accordion_ISwitch:checked+label+label+.Accordion_Content {
+      /*CSS優先順位：23点*/
+      /*「.Accordion_ISwitch:checked+label」CSS優先順位：12点*/
+      display: block;
+      transition: none 0.3s linear 0s;
+      /*transition: property duration timing-function delay;*/ 
+      transition-property: transform;
+      transform: scaleY(1);
+      height: auto;
+    }
+
+    .Accordion_ISwitch:checked+.Accordion_LOpener {
+      /*CSS優先順位：21点*/
+      font-weight: bold;
+      color: #767;
+      background: #0f7;
+    }
+
+    .Accordion_ISwitch:checked+.Accordion_LOpener+.Accordion_LCloser {
+
+      display: block;
+    }
+
+    .Accordion_ISwitch:checked+.Accordion_LOpener {
+      /*CSS優先順位：21点*/
+      display: none;
+    }
+
+    .Accordion_Container>.Accordion_LSwitcher:hover {
+      /*CSS優先順位：21点*/
+      font-weight: bold;
+      color: #767;
+      /*#0ee #5ef #aef #bef #ede*/
+      background: #0ee;
+    }
+
+    .Accordion_Container>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Accordion_Container">
+    <input id="TUnit-001" type="radio" name="TUnit-001" class="Accordion_ISwitch" checked>
+
+    <input id="TUnit-001-001" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <label class="Accordion_LOpener Accordion_LSwitcher" for="TUnit-001-001">001-001</label>
+    <label class="Accordion_LCloser Accordion_LSwitcher" for="TUnit-001">001-001</label>
+    <div class="Accordion_Content">
+      いろはにほへと<br>
+      ちりぬるをわかよたれそ<br>
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+
+    <input id="TUnit-001-002" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <label class="Accordion_LOpener Accordion_LSwitcher" for="TUnit-001-002">001-002</label>
+    <label class="Accordion_LCloser Accordion_LSwitcher" for="TUnit-001">001-002</label>
+    <div class="Accordion_Content">
+      ちりぬるをわかよたれそ<br>
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+
+    <input id="TUnit-001-003" type="radio" name="TUnit-001" class="Accordion_ISwitch">
+    <label class="Accordion_LOpener Accordion_LSwitcher" for="TUnit-001-003">001-003</label>
+    <label class="Accordion_LCloser Accordion_LSwitcher" for="TUnit-001">001-003</label>
+    <div class="Accordion_Content">
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+  </div>
+</body>
+</html>

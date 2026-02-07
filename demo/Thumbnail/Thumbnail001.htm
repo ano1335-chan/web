@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <link rel="preload" href="img2.jpg" as="image">
+  <link rel="preload" href="img3.jpg" as="image">
+  <link rel="preload" href="img6.jpg" as="image">
+  <title></title>
+  <!--
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://c...content-available-to-author-only...o.jp/archives/4947
+  -->
+  <style>
+    :root {
+      --Body_Margin: 0.5vw;
+      --Body_Margin_VerticalAmount: calc(var(--Body_Margin) * 2);
+      --GlobalBox_Gap: 0.5vw;
+      --GlobalBox_Gap_VerticalAmount: calc(var(--GlobalBox_Gap) * 5);
+      --GlobalBox_PieceHeight: 10vw;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .BoxSizing_BorderBox {
+      box-sizing: border-box;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Body_Container {
+      margin: var(--Body_Margin);
+    }
+
+    .Global_Container {
+      display: grid;
+      align-content: flex-start;
+      grid-template: repeat(6, var(--GlobalBox_PieceHeight)) / 1fr 1fr 1fr 3fr;
+      gap: var(--GlobalBox_Gap);
+      height: var(--GlobalBox_Height);
+    }
+
+    .TextViewer {
+      display: none;
+      box-sizing: border-box;
+      order: 1;
+      grid-column: 1 / span 3;
+      grid-row: 2 / span 5;
+    }
+
+    .ImageViewer {
+      display: none;
+      box-sizing: border-box;
+      order: -1;
+      grid-column: 4;
+      grid-row: 1 / span 6;
+    }
+
+    .Image_Container {
+      box-sizing: border-box;
+    }
+
+    .Tab_LOpener {
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .ObjectFit_Contain {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    .Image_Width_100per {
+      width: 100%;
+    }
+
+    .Tab_ISwitch:checked+label+.ImageViewer {
+      /*CSS優先順位：22点*/
+      /*.Tab_ISwitch:checked+label：12点*/
+      display: block;
+    }
+
+    .Tab_ISwitch:checked+label+div+.TextViewer {
+      /*CSS優先順位：23点*/
+      display: block;
+    }
+
+    .Global_Container>input[type="radio"] {
+      display: none;
+    }
+
+    .Global_Container>.Tab_LOpener {
+      /*CSS優先順位：20点*/
+      display: inline-block;
+    }
+
+    .Body_Container .Stealth {
+      /*CSS優先順位：20点*/
+      display: none;
+    }
+
+  </style>
+</head>
+<body class="Body_Container">
+  <div class="Global_Container">
+
+    <input id="TUnit-001" type="radio" name="TUnit-001" class="Tab_ISwitch" checked>
+    <label class="Image_Container Tab_LOpener Stealth" for="TUnit-001">aaa</label>
+    <div class="ImageViewer Border"></div>
+    <div class="TextViewer Border"></div>
+
+    <input id="TUnit-001-001" type="radio" name="TUnit-001" class="Tab_ISwitch">
+    <label class="Image_Container Tab_LOpener Border" for="TUnit-001-001">
+      <img class="ObjectFit_Contain" src="img2.jpg">
+    </label>
+    <div class="ImageViewer Border">
+      <img class="Image_Width_100per" src="img2.jpg">
+    </div>
+    <div class="TextViewer Border">
+      いろはにほへと　
+      ちりぬるを　
+      わかよたれそ　
+      つねならむ　
+      うゐのおくやま　
+      けふこえて　
+      あさきゆめみし　
+      ゑいもせす
+    </div>
+
+    <input id="TUnit-001-002" type="radio" name="TUnit-001" class="Tab_ISwitch">
+    <label class="Image_Container Tab_LOpener Border" for="TUnit-001-002">
+      <img class="ObjectFit_Contain" src="img3.jpg">
+    </label>
+    <div class="ImageViewer Border">
+      <img class="Image_Width_100per" src="img3.jpg">
+    </div>
+    <div class="TextViewer Border">
+      ちりぬるを　
+      わかよたれそ　
+      つねならむ　
+      うゐのおくやま　
+      けふこえて　
+      あさきゆめみし　
+      ゑいもせす
+    </div>
+
+    <input id="TUnit-001-003" type="radio" name="TUnit-001" class="Tab_ISwitch">
+    <label class="Image_Container Tab_LOpener Border" for="TUnit-001-003">
+      <img class="ObjectFit_Contain" src="img6.jpg">
+    </label>
+    <div class="ImageViewer Border">
+      <img class="Image_Width_100per" src="img6.jpg">
+    </div>
+    <div class="TextViewer Border">
+      わかよたれそ　
+      つねならむ　
+      うゐのおくやま　
+      けふこえて　
+      あさきゆめみし　
+      ゑいもせす
+    </div>
+  </div>
+</body>
+</html>

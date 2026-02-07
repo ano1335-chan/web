@@ -1,0 +1,154 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" >
+
+<script type="text/javascript">
+<!--
+// 初期設定。
+CheckboxChecked_Member = new Array( );
+Question_CheckboxProperty_Member = new Array( );
+Question_CorrectAnswer_Member = new Array( );
+Question_CorrectAnswerMessage_Member = new Array( ); // 正解用メッセージ配列
+// 下記「QuestionID(問題 ID)」は数値です、文字列には対応していません、
+// 下記の「QuestionID++」の場合「QuestionID」の初期値に「-1」を設定すると、「QuestionID」はゼロ・スタートになります。
+QuestionID = -1;
+
+// 関数。
+function ClickButtonFunc( qid ) {
+  oAnswer = document.getElementById("Text/"+String(qid)+"/Answer");
+  var ccm = CheckboxChecked_Member; // この関数内の CheckboxChecked_Member の短縮形 Alias
+  var cam = Question_CorrectAnswer_Member[qid]; // この関数内の CorrectAnswer_Member の短縮形 Alias
+  var check = false; // true; //
+  var err = false; // true; //
+  var k, k0, k1;
+  for(k0 in cam){
+  k1 = "Checkbox/"+String(qid)+"/"+k0;
+    if( ccm[k1]==true ) check = true;
+    // 厳密等価比較
+    if( ccm[k1]===undefined ) ccm[k1] = false;
+    if( ccm[k1]!=cam[k0] ) err = true;
+    // ↑なぜか厳密非等価比較になるようです。
+  }
+  if( ! check ){
+    oAnswer.innerHTML =
+    "チェックされていません。<br>"+
+    "１つ以上をチェックして下さい。<br>";
+  }else if( err ){
+    oAnswer.innerHTML =
+    "不正解です。<br>"+
+    "正解は「"+Question_CorrectAnswerMessage_Member[qid]+"」です。<br>";
+  }else{
+    oAnswer.innerHTML = "正解です。<br>";
+  }
+}
+
+function DocumentWrite_Question( ) {
+Question_CorrectAnswer_Member[QuestionID] = new Array( ); // 正解用配列
+  // CheckboxChecked_Member = new Array( );
+  document.write('<form>');
+  document.write(QuestionMessage+'<br>');
+  // document.write('<br>');
+  Question_CorrectAnswerMessage_Member[QuestionID] = ''; // 下記 for ループで正解用メッセージを作成しますので、プログラムで記述する必要はなくなりました。
+  Separator = '';
+  cpm = Question_CheckboxProperty_Member[QuestionID]; // CheckboxProperty_Member の短縮形 Alias
+  for(i = 0; i<cpm.length; i++){
+    Question_CorrectAnswer_Member[QuestionID][cpm[i][1]] = cpm[i][2];
+    document.write("<label><input id='"+"Checkbox/"+String(QuestionID)+"/"+cpm[i][1]+"' type='checkbox' onclick='CheckboxChecked_Member[this.id] = this.checked;'>"+cpm[i][0]+"</label><br>");
+    if( cpm[i][2] ){
+      Question_CorrectAnswerMessage_Member[QuestionID] = 
+        Question_CorrectAnswerMessage_Member[QuestionID]+Separator+
+        cpm[i][0];
+        Separator = "、";
+    }
+  }
+  // Question_CorrectAnswer_Member[QuestionID] = CorrectAnswer_Member;
+  document.write('<br>');
+  document.write('<input type="button" value="解答" onclick="ClickButtonFunc('+String(QuestionID)+');" ><br>');
+  document.write('<input type="hidden" name="Dummy">');
+  document.write('</form>');
+  document.write('<div id="'+"Text/"+String(QuestionID)+'/Answer"></div>');
+  document.write('<br>');
+}
+-->
+</script> 
+
+
+
+<!-- 下記は2問の場合のテストです -->
+<h3>問題1</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを記述するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "福岡","Fukuoka", true ],
+  [ "大阪","Nagasaki", false ]
+];
+// ▲▲▲ 設定用データ ▲▲▲
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<!-- 下記は4問の場合のテストです -->
+<h3>問題2</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを記述するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼ 
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "福岡","Fukuoka", true ],
+  [ "広島","Hirosima", false ],
+  [ "熊本","Kumamoto", true ],
+  [ "山梨","Yamanasi", false ],
+  [ "長崎","Nagasaki", true ]
+];
+// ▲▲▲ 設定用データ ▲▲▲ 
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<!-- 下記は3問の場合のテストです -->
+<h3>問題3</h3>
+<script type="text/javascript">
+<!--
+// 下記「QuestionID(問題 ID)」はゼロ以上にし重複させないようにして下さい。
+QuestionID++; // ←この「QuestionID++」の場合は連番になりますので、特に変更する必要はありません。
+// 下記に設定用データを記述するだけで、作成できるようになりました。
+// ▼▼▼ 設定用データ ▼▼▼ 
+QuestionMessage = '九州の県は次のうちどれですか?';
+Question_CheckboxProperty_Member[QuestionID] = [
+  [ "熊本","Kumamoto", true ],
+  [ "山梨","Yamanasi", false ],
+  [ "長崎","Nagasaki", true ]
+];
+// ▲▲▲ 設定用データ ▲▲▲ 
+DocumentWrite_Question( );
+-->
+</script> 
+
+
+
+<br><br>
+
+
+
+<script type="text/javascript">
+<!--
+-->
+</script> 
+
+   </body>
+</html>

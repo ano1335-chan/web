@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+  -->
+  <title></title>
+  <!--
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://creator.aainc.co.jp/archives/4947
+
+下記「貴金属比、フィボナッチ比」は、絶対では無いので あくまでも参考程度にしておくこと。
+
+「黄金比」「白銀比」「青銅比」「白金比」「第2黄金比」とは？
+https://business-textbooks.com/type-of-ratio/
+
+フィボナッチ比率｜テクニカル分析入門
+http://www.fx-soken.co.jp/tech/fibonacci-ratio.html
+
+-->
+  <style>
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Display_Block {
+      display: block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Global_Container {
+      display: grid;
+      align-content: flex-start;
+      grid-template-columns: 2.414fr 1% auto 1fr;
+      /* grid-template-columns */
+      /*「2.414fr:1fr」は白銀比。*/
+      /* 1%はギャップ。*/
+      /* autoは内因性サイジングなので、貴金属比にはならない。*/
+      /*「貴金属比、フィボナッチ比」は、絶対では無いので あくまでも参考程度にすること。*/
+      grid-template-rows: repeat(3, auto) 1fr;
+      gap: 0;
+    }
+
+    .Main_Container {
+      box-sizing: border-box;
+      border: solid thin #000;
+      grid-column: 1;
+      grid-row: 1 / span 4;
+      height: 60vw;
+    }
+
+    .Tab_LOpener {
+      display: block;
+      grid-column: 3;
+      grid-row: span 1;
+      box-sizing: border-box;
+      border: none thin #000;
+      border-style: solid none none solid;
+      user-select: none;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+    }
+
+    .Tab_Content {
+      display: none;
+      grid-column: 4;
+      grid-row: 1 / span 4;
+      box-sizing: border-box;
+      border: solid thin #000;
+      height: 60vw;
+    }
+
+    .Tab_ISwitch:checked+label {
+      /*CSS優先順位：12点*/
+      font-weight: bold;
+      color: #767;
+      /*#0f7 #8f8 #7f7 #5fb*/
+      background: #0f7;
+    }
+
+    .Tab_ISwitch:checked+label+.Tab_Content {
+      display: block;
+    }
+
+    .Global_Container>label {
+      border-style: thin thin none none;
+    }
+
+    .Global_Container>label:hover {
+      /*CSS優先順位：12点*/
+      font-weight: bold;
+      color: #767;
+      /*#0ee #bef #aef #ede*/
+      background: #0ee;
+    }
+
+    .Tab_OpenerResidue {
+      display: block;
+      grid-column: 3;
+      grid-row: span 1;
+      box-sizing: border-box;
+      border: none thin #000;
+      border-style: solid none solid solid;
+      user-select: none;
+    }
+
+    .Global_Container>input[type='radio'] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body class="Body_Container">
+  <div class="Global_Container">
+    <div class="Main_Container"></div>
+
+    <input id='TUnit-001-001' type='radio' name='TUnit-001' class='Tab_ISwitch' checked>
+    <label class="Tab_LOpener" for="TUnit-001-001">
+      いろはに
+    </label>
+    <div class="Tab_Content">
+      いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <input id='TUnit-001-002' type='radio' name='TUnit-001' class='Tab_ISwitch'>
+    <label class="Tab_LOpener" for="TUnit-001-002">
+      ほへと
+    </label>
+    <div class="Tab_Content">
+      ほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <input id='TUnit-001-003' type='radio' name='TUnit-001' class='Tab_ISwitch'>
+    <label class="Tab_LOpener" for="TUnit-001-003">
+      ちりぬるを
+    </label>
+    <div class="Tab_Content">
+      ちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <div class="Tab_OpenerResidue"></div>
+  </div>
+</body>
+</html>

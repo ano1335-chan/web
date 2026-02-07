@@ -1,0 +1,83 @@
+<!-- このページは「IE8、Firefox」だけでしかチェックしてません。-->
+<!-- 次の「!DOCTYPE」で互換モード表示に設定。-->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+<style type="text/css">
+<!--
+.FadeInAnimaCS {
+  color: #000;
+  opacity: 0;
+}
+.FadeInAnimaCS {
+  animation: FadeInAnima 1s linear 0.5s 1 forwards;
+}
+@keyframes FadeInAnima {
+  100% {
+    opacity: 1;
+  }
+}
+
+.FadeOutAnimaCS {
+  color: #000;
+  opacity: 1;
+}
+.FadeOutAnimaCS {
+  animation: FadeOutAnima 1s linear 0s 1 forwards;
+}
+@keyframes FadeOutAnima {
+  100% {
+    opacity: 0;
+  }
+}
+-->
+</style>
+   </head>
+<body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" >
+
+<br>
+<div id="HogeID"> hoge </div>
+<div id="IrohaniID"> irohani </div>
+<div id="SontakuID"> sontaku </div>
+<div id="HugaID"> huga </div>
+<div id="PiyoID"> piyo </div>
+
+      <script type="text/javascript"><!--
+      TimerCnt = 0;
+      TimerCntMax = 20; // Intervalの繰り返し回数の指定。
+      ArrayCnt = 0;
+      TxtArray = [
+      document.getElementById('HogeID'), 
+      document.getElementById('IrohaniID'), 
+      document.getElementById('SontakuID'),
+      document.getElementById('HugaID'), 
+      document.getElementById('PiyoID') ];
+      HdnArray = new Array(TxtArray.length);
+
+TimerId = setInterval( function () {
+
+if((TxtArray.length-1)<ArrayCnt){
+ArrayCnt = 0;
+}
+
+ArrayPrv = (TxtArray.length+ArrayCnt-1)%TxtArray.length; // 「ArrayCnt-1」をマイナスにならないようにする。
+if(HdnArray[ArrayPrv]===true){
+HdnArray[ArrayPrv] = false; // true; // 
+TxtArray[ArrayPrv].className = "FadeInAnimaCS";
+}
+HdnArray[ArrayCnt] = true; // false; //
+TxtArray[ArrayCnt].className = "FadeOutAnimaCS";
+ArrayCnt++;
+
+TimerCnt++; // ここをコメントにすれば永遠に繰り返します。
+// 「TimerCntMax」は「TimerCnt」より大きな値にして下さい。
+if(TimerCntMax<=TimerCnt){
+clearInterval(TimerId); // 「setInterval()」を解除
+}
+}, 1000);
+      // --></script>
+<br><br>
+   </body>
+</html>

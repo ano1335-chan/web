@@ -1,0 +1,203 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+    <TITLE>test</TITLE>
+</head>
+<body>
+
+    <input type="button" value="ガチャを引く" onclick="Gacha_One()" />
+    <br/>
+    <p>画像カウント数：<span id="img_out_id">　</span></p>
+    <br/>
+
+    <script type="text/javascript">
+    <!--
+    SSRrare = 10; // 分からないので適当に設定
+    Sum = 0;
+    money = 0;
+    SSRcount = 0;
+    SRcount = 0;
+    Rcount = 0;
+
+    FNImageArray = [
+        'image/image1.png',
+        'image/image2.png',
+        'image/image3.png',
+        'image/image4.png',
+        'image/image5.png',
+        'image/image6.png',
+        'image/image7.png',
+        'image/image8.png',
+        'image/image9.png',
+        'image/image10.png'
+    ];
+
+    ImageArray = new Array(); // 連想配列用
+    gachaCntArray = new Array(); // 連想配列用
+
+    var gachaSSR = [
+        [FNImageArray[0], 'SSR', 0]
+    ];
+    var gachaSR = [
+        [FNImageArray[1], 'SR', 0],
+        [FNImageArray[2], 'SR', 0]
+    ];
+    var gachaR = [
+        [FNImageArray[3], 'R', 0],
+        [FNImageArray[4], 'R', 0],
+        [FNImageArray[5], 'R', 0],
+        [FNImageArray[6], 'R', 0],
+        [FNImageArray[7], 'R', 0],
+        [FNImageArray[8], 'R', 0],
+        [FNImageArray[9], 'R', 0]
+    ];
+
+    for (i = 0; i < FNImageArray.length; i++) {
+        idname = "im" + (i + 1);
+        document.write('<a href="JavaScript:">');
+        document.write('<img src="' + FNImageArray[i] + '" id="' + idname +
+            '" border="1" height = "50" weight = "50" onclick="Imgout(' + i + ')" >');
+        document.write('</a>');
+        document.write('　');
+        ImageArray[FNImageArray[i]] = document.getElementById(idname);
+        gachaCntArray[FNImageArray[i]] = 0;
+    }
+    document.write('<br/>');
+
+    function GachaRamdam(n) {
+        let ramdamRare, obj, ramdamSSR, ramdamSR, ramdamR;
+        //ランダムで画像ファイルを取得する
+        ramdamRare = Math.floor(Math.random() * 101);
+        //レアリティを選ぶランダム（０～１００）
+
+        if (ramdamRare <= SSRrare)
+        //SSR
+        //gachaSSRの中からランダムに画像を取得（０～SSRrare）
+        {
+            ramdamSSR = Math.floor(Math.random() * gachaSSR.length);
+            /*
+            alert(
+               "ramdamSSR" + "\n" +
+               ramdamSSR + "\n" +
+               gachaSSR[ramdamSSR][0] + "\n" +
+               "");
+               */
+            obj = ImageArray[gachaSSR[ramdamSSR][0]];
+            //配列gachaSSRのimage/image?.pngを画像ファイルとして取得
+            obj.height = 150;
+            obj.weight = 150;
+            //画像の縦幅と横幅
+            SSRcount++;
+            //SSRを引いた数
+            Sum++;
+            //全体で何枚引いたかを入れる変数
+            money += 300;
+            //金額を計算する変数
+            gachaCntArray[gachaSSR[ramdamSSR][0]]++;
+            // gachaSSR[ramdamSSR][2]++;
+            //1枚1枚が何枚出たかを表示するための文
+            /*
+            alert(
+                "SSRrare" + "\n" +
+                ramdamSSR + "\n" +
+                SSRcount + "\n" +
+                gachaSSR[ramdamSSR][2] + "\n" +
+                "");
+                */
+        } else if (5 < ramdamRare && ramdamRare <= 25)
+        //SR
+        //gachaSRの中からランダムに画像を取得（SSRrare～２０+SSRrare）
+        {
+            ramdamSR = Math.floor(Math.random() * gachaSR.length);
+            /*
+            alert(
+               "ramdamSR" + "\n" +
+               ramdamSR + "\n" +
+               gachaSR[ramdamSR][0] + "\n" +
+               "");
+               */
+            obj = ImageArray[gachaSR[ramdamSR][0]];
+            obj.height = 150;
+            obj.weight = 150;
+            SRcount++;
+            Sum++;
+            money += 300;
+            gachaCntArray[gachaSR[ramdamSR][0]]++;
+            // gachaSR[ramdamSR][2]++;
+            /*
+            alert(
+                "SRrare" + "\n" +
+                ramdamSR + "\n" +
+                SRcount + "\n" +
+                gachaSR[ramdamSR][2] + "\n" +
+                "");
+                */
+        } else
+        //R
+        //gachaRの中からランダムに画像を取得（２０+SSRrare～１００）
+        {
+            ramdamR = Math.floor(Math.random() * gachaR.length);
+            /*
+            alert(
+               "ramdamR" + "\n" +
+               ramdamR + "\n" +
+               gachaR[ramdamR][0] + "\n" +
+               "");
+               */
+            obj = ImageArray[gachaR[ramdamR][0]];
+            obj.height = 150;
+            obj.weight = 150;
+            Rcount++;
+            Sum++;
+            money += 300;
+            gachaCntArray[gachaR[ramdamR][0]]++;
+            // gachaR[ramdamR][2]++;
+            /*
+            alert(
+                "Rrare" + "\n" +
+                ramdamR + "\n" +
+                Rcount + "\n" +
+                gachaR[ramdamR][2] + "\n" +
+                "");
+                */
+        }
+    }
+
+    function Gacha_Init() {
+        var img_luc1 = document.getElementById('img_out_id');
+        img_luc1.innerHTML = ""
+        for (i = 0; i < FNImageArray.length; i++) {
+            obj = ImageArray[FNImageArray[i]];
+            obj.height = 50;
+            obj.weight = 50;
+        }
+    }
+
+    function Gacha_One()
+    //ガチャを1回引く関数
+    {
+        Gacha_Init();
+        //これを使って画像を1回1回消したいが、うまくいかない
+        //document.getElementsByClassName("hide").style.visibility="hidden";
+        var i = 0
+        GachaRamdam(i);
+    }
+
+    function Gacha_Ten()
+    //ガチャを10回引く関数
+    {
+        Gacha_Init();
+        for (var i = 0; i < 10; i++) {
+            GachaRamdam(i);
+        }
+    }
+
+    function Imgout(i) {
+        var img_luc1 = document.getElementById('img_out_id');
+        img_luc1.innerHTML = gachaCntArray[FNImageArray[i]];
+        //特定の画像を何枚引いたかの表示
+    }
+    // -->
+    </script>
+
+</body>
+</html>

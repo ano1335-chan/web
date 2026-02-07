@@ -1,0 +1,142 @@
+<head>
+<!-- 
+charsetはShift-JISです、セーブ時のcharsetに注意して下さい(モチロンmetaタグのcontentを変更しても良いですが)。
+-->
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+    <TITLE>test</TITLE>
+</head>
+<body onLoad="onLoadBody()">
+
+    <script type="text/javascript">
+    <!-- 
+    
+    function onLoadBody(){
+        let LabelKeys = Object.keys(Item_LabelSets);
+        for(let i = 0; i<Item_Sets.length; i++ ) {
+            let Value_Sets = Item_Sets[i];
+            let Keys = Object.keys(Value_Sets);
+            let img = document.getElementById('Item_img'+i);
+            let nw = img.naturalWidth;
+            let nh = img.naturalHeight; 
+            let h = 175;
+            let w = nw/nh*h;
+            img.width = w;
+            img.height = h;
+            img.style.display = "inline";
+        } 
+    }
+    // 「Item_LabelSets」は連想配列です、Item_Sets」の要素も連想配列です。
+    // 要素番号を明示することにより項目の「抜け、重複」の入力ミス起こりにくくしています。
+    Item_LabelSets = { 0:"画像", 1:"名前", 2:"種類", 3:"生活", 4:"色", 5:"大きさ" };
+    Item_Sets = [ 
+    { 0: "inu-black.jpg", 1:"犬", 2:"哺乳類", 3:"陸上", 4:"黒系", 5:"中くらい" },
+    { 0: "inu-white.jpg", 1:"犬", 2:"哺乳類", 3:"陸上", 4:"白系", 5:"中くらい" },
+    { 0: "inu-brown.jpg", 1:"犬", 2:"哺乳類", 3:"陸上", 4:"茶系", 5:"中くらい" },
+    { 0: "neko-white.jpg", 1:"猫", 2:"哺乳類", 3:"陸上", 4:"白系", 5:"中くらい" },
+    { 0: "neko-brown.jpg", 1:"猫", 2:"哺乳類", 3:"陸上", 4:"茶系", 5:"中くらい" },
+    { 0: "koara-gray.jpg", 1:"コアラ", 2:"哺乳類", 3:"陸上", 4:"灰色系", 5:"中くらい" },
+    { 0: "umigame-green.jpeg", 1:"海亀", 2:"爬虫類", 3:"水中", 4:"緑系", 5:"中くらい" },
+    { 0: "kurage.jpg", 1:"クラゲ", 2:"その他", 3:"水中", 4:"半透明", 5:"小さい" },
+    { 0: "kujira-black.jpg", 1:"鯨", 2:"哺乳類", 3:"水中", 4:"黒系", 5:"大きい" }
+    ];
+    LabelKeys = Object.keys(Item_LabelSets);
+    Category_Sets = new Array(LabelKeys.length);
+    for( i = 0; i<Item_Sets.length; i++ ) {
+        Category_Sets[i] = new Array();
+    }
+    for( i = 0; i<Item_Sets.length; i++ ) {
+        Value_Sets = Item_Sets[i];
+        Keys = Object.keys(Value_Sets);
+        for( j = 0; j<Keys.length; j++ ) {
+            Value = Value_Sets[j];
+            Category_Sets[j][Value] = true; // false; // 
+        }
+    } 
+    // LabelKeys = Object.keys(Item_LabelSets);
+    for( j = 1; j<LabelKeys.length; j++ ) {
+        Keys = Object.keys(Category_Sets[j]);
+        // alert(Keys+"\n"+"");
+        document.write('');
+        document.write('<select id="Select_Category'+j+'" onchange="SelectItem()" >');
+        document.write('<option value="" selected>'+Item_LabelSets[j]+'を選択</option>');
+        for( k=0; k<Keys.length; k++ ) {
+            document.write('<option value="'+Keys[k]+'">'+Keys[k]+'</option>');
+        }
+        document.write('</select>');
+        document.write(' ');
+        // document.write('<br>');
+    }
+    document.write('<input type="button" value="リセット" onclick="ResetSelect()">');
+    document.write('<br>');
+    document.write('<br>');
+    DeployItem();
+    document.write('<br>');
+    
+    function ResetSelect(){
+        let LabelKeys = Object.keys(Item_LabelSets);
+        for(let i = 0; i<Item_Sets.length; i++ ) {
+            let Value_Sets = Item_Sets[i];
+            let Keys = Object.keys(Value_Sets);
+            let Condition = true; // false; //
+            let msg = "";
+            for(let j = 1; j<Keys.length; j++ ) {
+                document.getElementById('Select_Category'+j).selectedIndex = 0;
+            }
+            SelectItem();
+        }
+    }
+    
+    function SelectItem(){
+        let LabelKeys = Object.keys(Item_LabelSets);
+        for(let i = 0; i<Item_Sets.length; i++ ) {
+            let Value_Sets = Item_Sets[i];
+            let Keys = Object.keys(Value_Sets);
+            let Condition = true; // false; //
+            let msg = "";
+            for(let j = 1; j<Keys.length; j++ ) {
+                let Value = document.getElementById('Select_Category'+j).value;
+                if( Value=="" || Value===Value_Sets[j] ){
+                    // 
+                }else{
+                    Condition = false; // true; //
+                }
+                msg = msg+
+                "j="+j+"; "+
+                "Value="+Value+"; "+
+                "Value_Sets[j]="+Value_Sets[j]+"; "+
+                "Condition="+Condition+"; "+
+                "\n";
+            }
+            // alert(msg);
+            let div = document.getElementById('Item_div'+i);
+            if( Condition ){
+                div.style.display = "inline-block";
+            }else{
+                div.style.display = "none";
+            }
+        } 
+    }
+    
+    function DeployItem(){
+        let LabelKeys = Object.keys(Item_LabelSets);
+        for(let i = 0; i<Item_Sets.length; i++ ) {
+            let Value_Sets = Item_Sets[i];
+            let Keys = Object.keys(Value_Sets);
+            document.write('');
+            document.write('<div id="Item_div'+i+'" style="display: inline-block; padding: 7px; " >');
+            document.write('<img id="Item_img'+i+'" style="display: none; " src="image000/'+Value_Sets[0]+'" />');
+            document.write('<br>');
+            for(let j = 1; j<Keys.length; j++ ) {
+                document.write(Item_LabelSets[j]+':'+Value_Sets[j]);
+                document.write('<br>');
+            }
+            document.write('<br>');
+            document.write('</div>');
+        } 
+    }
+    
+    // -->
+    </script>
+    
+</body>
+</html>

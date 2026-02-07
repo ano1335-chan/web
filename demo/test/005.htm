@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    body {
+      font-size: 20px;
+    }
+
+    .Border {
+      border: solid 1px #000;
+    }
+
+    .Box {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      column-gap: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  【ダメダメ･デモ】<br>
+  <div class="Box">
+    <div class="Border" style="width: 480px;">
+      このページは1k解像度用のページです。<br>
+      とりあえずChromeモバイル･エミュレーターで約「1000px～3000px」解像度ぐらいをチェックしてみると良いでしょう。<br>
+      このページのコードを参照したい場合は、必ずブラウザの開発者ツール(デベロッパー･ツール)で参照して下さい(ダウンロードするとブラウザ？によってコードが改変されてしまう場合があるようなので)。<br>
+      <br>
+      bodyのデフォルトmarginはデフォルト値のままです。<br>
+      bodyタグで「font-size: 20px;」を指定、
+      当然 font-sizeをpxで指定しているので、ブラウザによる変更を許容しません。<br>
+      「.Border」の幅は1pxに設定しています。<br>
+      「.Box」のcolumn-gapは10pxに設定しています。<br>
+      このページの要素の縦サイズは指定していません。<br>
+    </div>
+    <img src="img063.jpg" style="width: 480px;">
+  </div>
+  <br>
+</body>
+</html>

@@ -1,0 +1,203 @@
+﻿
+<html>
+<head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <TITLE>test</TITLE>
+</head>
+<body>
+
+<canvas id="idCanvas" style='width: 98vw; height: 97vh; background-color: #000; ' ></canvas>
+
+    <script type="text/javascript">
+    <!--
+
+    feFigureEnemyType = {
+        None: 0,
+        Invader: 1,
+        Myself: 2
+    };
+    feFigureWeaponType = {
+        None: 0,
+        Bullet: 1,
+        Aircraft: 2
+    };
+    class Figure {
+        constructor(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, 
+          vnArmor, vnAttack, veEnemyType, veWeaponType) {
+            this.vsColor = vsColor;
+            this.vnX = vnX;
+            this.vnY = vnY;
+            this.vnSX = vnSX; // SizeX
+            this.vnSY = vnSY; // SizeY
+            this.vnBX = vnBX; // BiasX
+            this.vnBY = vnBY; // BiasY
+            this.vnArmor = vnArmor; // 装甲
+            this.vnAttack = vnAttack; // 攻撃力
+            this.veEnemyType = veEnemyType;
+            this.veWeaponType = veWeaponType;
+        }
+        GetClassName(){
+            // クラス.name();
+            return this.constructor.name;
+        }
+        Draw(ctx){
+            let ax0 = this.vnX+this.vnBX;
+            let ay0 = this.vnY+this.vnBY;
+            let sx = this.vnSX;
+            let sy = this.vnSY;
+            let ax1 = ax0+sx;
+            let ay1 = ay0+sy;
+            /*
+            console.log(
+            'vnSX='+this.vnSX+'; '+
+            'vnSY='+this.vnSY+'; '+
+            ''); 
+            console.log(
+            'ax0='+ax0+'; '+
+            'ay0='+ay0+'; '+
+            ''); 
+            console.log(
+            'ax1='+ax1+'; '+
+            'ay1='+ay1+'; '+
+            ''); 
+            */
+            ctx.beginPath();
+            ctx.moveTo(ax0, ay0);
+            ctx.lineTo(ax1, ay0);
+            ctx.lineTo(ax1, ay1);
+            ctx.lineTo(ax0, ay1);
+            ctx.closePath();
+            ctx.fillStyle = this.vsColor;
+            ctx.fill();
+        }
+        CheckCollision(objFigure){
+            // 衝突チェック用
+        }
+        isInRange(){
+            let res = 0<=this.vnX && this.vnX<=viCnvWidth && 
+            0<=this.vnY && this.vnY<=viCnvHeight;
+            return res;
+        }
+        Progress(){ }
+    }
+    class Bullet extends Figure {
+        constructor(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, vnDX, vnDY,
+          vnArmor, vnAttack, veEnemyType, veWeaponType) {
+            super(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, 
+              vnArmor, vnAttack, veEnemyType, veWeaponType);
+            this.vnDX = vnDX; // DeltaX
+            this.vnDY = vnDY; // DeltaY
+        }
+        Progress(){
+            this.vnX += this.vnDX;
+            this.vnY += this.vnDY;
+            /*
+            console.log(
+            'vnDX='+this.vnDX+'; '+
+            'vnDY='+this.vnDY+'; '+
+            ''); 
+            console.log(
+            'vnX='+this.vnX+'; '+
+            'vnY='+this.vnY+'; '+
+            ''); 
+            */
+        }
+    }
+    class Aircraft extends Figure {
+        constructor(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, 
+          vnArmor, vnAttack, veEnemyType, veWeaponType) {
+            super(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, 
+              vnArmor, vnAttack, veEnemyType, veWeaponType);
+        }
+    }
+    
+    viBulletBlazeCnt = 0;
+    
+    objCanvas = document.getElementById("idCanvas");
+    viCnvWidth = objCanvas.getBoundingClientRect().width;
+    viCnvHeight = objCanvas.getBoundingClientRect().height;
+    objCanvas.width = viCnvWidth;
+    objCanvas.height = viCnvHeight;
+    console.log(
+    'viCnvWidth='+viCnvWidth+'; '+
+    'viCnvHeight='+viCnvHeight+'; '+
+    ''); 
+    ctx = objCanvas.getContext('2d');
+    ox = viCnvWidth / 2;
+    oy = viCnvHeight / 2;
+    
+    d1InvaderList = new Array();
+    objInvader = new Aircraft('#f00', ox, 20, 30, 30, -15, -15, 50, 10,
+      feFigureEnemyType.Invader, feFigureWeaponType.Aircraft);
+    d1InvaderList.push(objInvader);
+    // objInvader.Draw(ctx);
+    // d1InvaderList.unshift(objInvader);
+    
+    d1MyselfList = new Array();
+    objMyself = new Aircraft('#0f0', ox, viCnvHeight-20, 30, 30, -15, -15, 100, 1, 
+      feFigureEnemyType.Myself, feFigureWeaponType.Aircraft);
+    d1MyselfList.push(objMyself);
+    // objMyself.Draw(ctx);
+    // d1MyselfList.unshift(objMyself);
+    
+    objInterval = setInterval(IntervalMovement, 100); // ms
+
+    function IntervalMovement(){
+        ctx.clearRect(0, 0, viCnvWidth, viCnvHeight);
+        
+        // getBlaze(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, vnDX, vnDY,
+        let objInvaderBullet = getBlaze("#ff0", ox, 35, 6, 12, -3, -6, 0, 5, 
+          feFigureEnemyType.Invader);
+        if(objInvaderBullet!==null){
+            d1InvaderList.push(objInvaderBullet);
+        }
+        
+        // getBlaze(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, vnDX, vnDY,
+        let objMyselfBullet = getBlaze("#0ff", ox, viCnvHeight-35, 6, 12, -3, -6, 0, -5, 
+          feFigureEnemyType.Myself);
+        if(objMyselfBullet!==null){
+            d1MyselfList.push(objMyselfBullet);
+        }
+        
+        for(let i = d1InvaderList.length-1; 0<=i; i--){ 
+            // 「d1InvaderList.length-1」から「i--」しないと正常に動作しません。
+            d1InvaderList[i].Progress();
+            if( d1InvaderList[i].isInRange() ){
+                d1InvaderList[i].Draw(ctx);
+            }else{
+                d1InvaderList.splice(i, 1); 
+                console.log('Delete:d1InvaderList:'+i); 
+                console.log('d1InvaderList.length='+d1InvaderList.length);           }
+        }
+        for(let i = d1MyselfList.length-1; 0<=i; i--){
+            // 「d1MyselfList.length-1」から「i--」しないと正常に動作しません。
+            d1MyselfList[i].Progress();
+            if( d1MyselfList[i].isInRange() ){
+                d1MyselfList[i].Draw(ctx);
+            }else{
+                d1MyselfList.splice(i, 1);
+                // console.log('Delete:d1MyselfList:'+i); 
+                // console.log('d1MyselfList.length='+d1MyselfList.length);
+            }
+        }
+    }
+    function getBlaze(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, vnDX, vnDY,
+          vnArmor, vnAttack, veEnemyType){
+        let objBullet = null;
+        if(viBulletBlazeCnt===0){
+            objBullet = new Bullet(vsColor, vnX,  vnY, vnSX, vnSY, vnBX, vnBY, vnDX, vnDY,
+          vnArmor, vnAttack, veEnemyType, feFigureWeaponType.Bullet);
+        }
+        viBulletBlazeCnt++;
+        viBulletBlazeCnt = viBulletBlazeCnt%7;
+        return objBullet;
+    }
+    // -->
+    </script>
+
+</body>
+</html>

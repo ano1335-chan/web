@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <textarea id="text" onkeyup="charCount();"></textarea><br>
+  TABは半角文字としてカウント<br>
+  文字数(改行を含む)：<span id="Count_Text">0</span><br>
+  文字数(改行を含まない)：<span id="Count_Char">0</span><br>
+  全角：<span id="Count_Full">0</span><br>
+  半角：<span id="Count_Half">0</span><br>
+  改行：<span id="Count_Indention">0</span><br>
+</body>
+<script>
+  function charCount() {
+    var wText = document.getElementById('text');
+    var wCount_Text = document.getElementById('Count_Text');
+    var wCount_Char = document.getElementById('Count_Char');
+    var wCount_Full = document.getElementById('Count_Full');
+    var wCount_Half = document.getElementById('Count_Half');
+    var wCount_Indention = document.getElementById('Count_Indention');
+    sText = wText.value;
+    var sChar;
+    wCount_Text.innerText = sText.length;
+    var rIndent = /\n/g;
+    var rHalf = /[!"#\$%&'\(\)\\\-\^\~=@\+\*\[\];:,\.<>\/\?_\w\d\s\t]/g;
+    new Promise((resolve) => {
+      console.log(`Promise((resolve)`);
+      sChar = sText.replace(rIndent, '');
+      nChar_length = sChar.length;
+      sFull = sChar.replace(rHalf, '');
+      console.log(`sText.length: ${sText.length}, `);
+      console.log(`sChar.length: ${sChar.length}, `);
+      console.log(`sFull.length: ${sFull.length}, `);
+      resolve();
+    }).then(() => {
+      console.log(`then(() =>`);
+      wCount_Char.innerText = sChar.length;
+      wCount_Indention.innerText = sText.length - sChar.length;
+      wCount_Full.innerText = sFull.length;
+      wCount_Half.innerText = sChar.length - sFull.length;
+    });
+  }
+</script>
+</html>

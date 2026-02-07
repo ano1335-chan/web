@@ -1,0 +1,132 @@
+<html>
+    <head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+        <TITLE>test</TITLE>
+        <style type='text/css'>
+        <!--
+.tab-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tab-label {
+    font-weight: bold;
+    color: #fef;
+    background: #0bb;
+    margin: 0.1em 0.3em 0.1em 0em;
+    padding: 0.2em 1em;
+    order: -1;
+}
+.tab-label:hover {
+    font-weight: bold;
+    color: #777;
+    background: #0ee;
+}
+.tab-content {
+    width: 100%;
+    display: none;
+}
+.tab-switch:checked + .tab-label {
+    font-weight: bold;
+    color: #777;
+    background: #0f7;
+}
+.tab-switch:checked + .tab-label+.tab-content {
+     display: block;
+}
+.tab-wrap > input[type='radio'] {
+    display: none;
+}
+        -->
+        </style>
+    </head>
+    <body>
+
+三択問題は下記サイト様から引用。<br>
+【動物クイズ】動物の知識が身につく三択問題<br>
+https://pedant19.com/animal-quiz<br>
+<br>
+<hr>
+<br>
+
+ダチョウの脳みそのサイズはどれくらい？<br>
+ヒント：人間の脳みそは1200～1400グラムくらい。<br>
+    <div class='tab-wrap'>
+        <input id='TAB-001-001UNIT' type='radio' name='TAB-001' class='tab-switch' >
+        <label class='tab-label' for='TAB-001-001UNIT'>40グラム</label>
+        <div class='tab-content'>
+正解です：１ばんの「40グラム」<br>
+        </div>
+
+        <input id='TAB-001-002UNIT' type='radio' name='TAB-001' class='tab-switch' >
+        <label class='tab-label' for='TAB-001-002UNIT'>400グラム</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+
+        <input id='TAB-001-003UNIT' type='radio' name='TAB-001' class='tab-switch' >
+        <label class='tab-label' for='TAB-001-003UNIT'>1400グラム</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+    </div>
+<br>
+<hr>
+<br>
+
+動物の赤ちゃんのサイズ<br>
+つぎのうちで、生まれたての赤ちゃんのサイズが１ばん小さい動物はどれ？<br>
+    <div class='tab-wrap'>
+        <input id='TAB-002-001UNIT' type='radio' name='TAB-002' class='tab-switch' >
+        <label class='tab-label' for='TAB-002-001UNIT'>トイプードル</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+
+        <input id='TAB-002-002UNIT' type='radio' name='TAB-002' class='tab-switch' >
+        <label class='tab-label' for='TAB-002-002UNIT'>カンガルー</label>
+        <div class='tab-content'>
+正解です：２ばんの「カンガルー」<br>
+カンガルーの赤ちゃんはわずか２センチ程度の大きさで生まれてくる。<br>
+        </div>
+
+        <input id='TAB-002-003UNIT' type='radio' name='TAB-002' class='tab-switch' >
+        <label class='tab-label' for='TAB-002-003UNIT'>キリン</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+    </div>
+<br>
+<hr>
+<br>
+
+つぎのうちで本当にある恐竜の名前はどれ？<br>
+    <div class='tab-wrap'>
+        <input id='TAB-003-001UNIT' type='radio' name='TAB-003' class='tab-switch' >
+        <label class='tab-label' for='TAB-003-001UNIT'>ゴジラサウルス</label>
+        <div class='tab-content'>
+正解です：１ばんの「ゴジラサウルス」<br>
+化石を発見した人がゴジラの大ファンだったのでゴジラサウルスと名付けられた。<br>
+        </div>
+
+        <input id='TAB-003-002UNIT' type='radio' name='TAB-003' class='tab-switch' >
+        <label class='tab-label' for='TAB-003-002UNIT'>デジモンサウルス</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+
+        <input id='TAB-003-003UNIT' type='radio' name='TAB-003' class='tab-switch' >
+        <label class='tab-label' for='TAB-003-003UNIT'>ポケモンサウルス</label>
+        <div class='tab-content'>
+不正解です。<br>
+        </div>
+    </div>
+<br>
+<hr>
+<br>
+
+    </body>
+</html>

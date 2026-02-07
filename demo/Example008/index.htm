@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  header,
+  nav,
+  footer,
+  .Float-Box_000 {
+    height: 150px;
+  }
+
+  header,
+  nav,
+  footer,
+  aside,
+  .Float-Box_000>* {
+    box-sizing: border-box;
+    border: thin solid black;
+  }
+
+  .LefWing {
+    width: 74.4%;
+  }
+
+  .Container {}
+
+  nav,
+  main,
+  footer {
+    margin-top: 5px;
+  }
+
+  aside {
+    float: right;
+    width: 24.8%;
+    height: 1080px;
+  }
+
+  main {}
+
+  main>* {
+    margin-top: 5px;
+  }
+
+  main>*:first-child {
+    margin-top: 0px;
+  }
+
+  .Float-Box_000 {}
+
+  .Box_Item-Size_001 {
+    display: block;
+  }
+
+  .Box_Item-Size_001>* {
+    float: left;
+    display: inline-block;
+    width: 25%;
+    height: 150px;
+  }
+
+  .Box_Item-Size_002 {
+    display: block;
+  }
+
+  .Box_Item-Size_002>* {
+    float: left;
+    display: inline-block;
+    width: 33.333%;
+    height: 150px;
+  }
+
+  .Box_Item-Size_003 {
+    display: block;
+  }
+
+  .Box_Item-Size_003>* {
+    float: left;
+    display: inline-block;
+    width: 50%;
+    height: 150px;
+  }
+
+  .Box_Item-Size_004 {
+    display: block;
+  }
+
+  .Box_Item-Size_004>* {
+    float: left;
+    display: inline-block;
+    width: 16.666%;
+    height: 150px;
+  }
+
+  .Box_BackColor_001>* {
+    background-color: #00ffff;
+  }
+
+  .Box_BackColor_003>* {
+    background-color: #da8bb1;
+  }
+
+  .Box_BackColor_004>* {
+    background-color: #94b7e5;
+  }
+
+  .Box_BackColor_002>* {
+    background-color: #88df7a;
+  }
+
+</style>
+<body>
+  <aside>
+    サイド
+  </aside>
+  <header class="LefWing">
+    ヘッダー
+  </header>
+  <nav class="LefWing">
+    メニュー
+  </nav>
+  <main class="Container LefWing">
+    <div class="Float-Box_000 Box_Item-Size_001 Box_BackColor_001">
+      <div>1段目</div>
+      <div>1段目</div>
+      <div>1段目</div>
+      <div>1段目</div>
+    </div>
+    <div class="Float-Box_000 Box_Item-Size_002 Box_BackColor_002">
+      <div>2段目</div>
+      <div>2段目</div>
+      <div>2段目</div>
+    </div>
+    <div class="Float-Box_000 Box_Item-Size_003 Box_BackColor_003">
+      <div>3段目</div>
+      <div>3段目</div>
+    </div>
+    <div class="Float-Box_000 Box_Item-Size_004 Box_BackColor_004">
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+      <div>4段目</div>
+    </div>
+  </main>
+  <footer class="LefWing">
+    フッター
+  </footer>
+</body>
+</html>

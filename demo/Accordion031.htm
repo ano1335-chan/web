@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+    .Accordion_Container {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .Accordion_Label_Opener {
+      display: block;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin: 0.1rem 0;
+      padding: 0.2em 1em;
+    }
+
+    .Accordion_Label_Closer {
+      display: none;
+      font-weight: bold;
+      color: #767;
+      background: #8f8;
+      margin: 0.1rem 0;
+      padding: 0.2em 1em;
+    }
+
+    .Accordion_Content {
+      display: block;
+      border: solid thin #000;
+      transform: scaleY(0);
+      height: 0px;
+    }
+
+    .Accordion_Checkbox:checked+.Accordion_Label_Opener {
+      font-weight: bold;
+      color: #767;
+      background: #0f7;
+    }
+
+    .Accordion_Radio:checked+.Accordion_Label_Opener+.Accordion_Label_Closer+.Accordion_Content {
+      display: block;
+      transition: none 0.3s linear 0s;
+      /*transition: property duration timing-function delay;*/ 
+      transition-property: transform;
+      transform: scaleY(1);
+      height: auto;
+    }
+
+    .Accordion_Radio:checked+.Accordion_Label_Opener+.Accordion_Label_Closer {
+      display: block;
+    }
+
+    .Accordion_Radio:checked+.Accordion_Label_Opener {
+      display: none;
+    }
+
+    .Accordion_Label_Opener:hover {
+      font-weight: bold;
+      color: #767;
+      background: #5ef;
+    }
+
+    .Accordion_Label_Closer:hover {
+      font-weight: bold;
+      color: #767;
+      background: #5ef;
+    }
+
+    .Accordion_Container>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Accordion_Container">
+    <input id="Tab-001" type="radio" name="Tab-001" class="Accordion_Radio" checked>
+
+    <input id="Tab-001-001" type="radio" name="Tab-001" class="Accordion_Radio">
+    <label class="Accordion_Label_Opener" for="Tab-001-001">001-001</label>
+    <label class="Accordion_Label_Closer" for="Tab-001">001-001</label>
+    <div class="Accordion_Content">
+      いろはにほへと<br>
+      ちりぬるをわかよたれそ<br>
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+
+    <input id="Tab-001-002" type="radio" name="Tab-001" class="Accordion_Radio">
+    <label class="Accordion_Label_Opener" for="Tab-001-002">001-002</label>
+    <label class="Accordion_Label_Closer" for="Tab-001">001-002</label>
+    <div class="Accordion_Content">
+      ちりぬるをわかよたれそ<br>
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+
+    <input id="Tab-001-003" type="radio" name="Tab-001" class="Accordion_Radio">
+    <label class="Accordion_Label_Opener" for="Tab-001-003">001-003</label>
+    <label class="Accordion_Label_Closer" for="Tab-001">001-003</label>
+    <div class="Accordion_Content">
+      つねならむうゐのおくやま<br>
+      けふこえてあさきゆめみし<br>
+      ゑひもせす<br>
+    </div>
+  </div>
+</body>
+</html>

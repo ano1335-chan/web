@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+<style>
+  .Dummy {
+    border: 3px solid #00f;
+  }
+
+  body {
+    margin: 0;
+    font-family: "MS Mincho";
+    font-weight: bold;
+    width: 575px;
+  }
+
+  .BannerBox {
+    position: relative;
+    border-top: 2px solid #000;
+    width: 575px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .BannerBackground {
+    background-color: #cff;
+    width: 575px;
+    height: 200px;
+  }
+
+  .BannerTitle {
+    position: absolute;
+    display: inline-block;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: bold;
+    left: 10px;
+    top: 30px;
+  }
+
+  .Nav {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-left: 30px;
+    width: 490px;
+    height: 35px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    width: 200px;
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .MyPageMark {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fa0;
+    left: -30px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .MyPageBox001 {
+    position: absolute;
+    display: inline-block;
+    font-size: 42px;
+    line-height: 42px;
+    letter-spacing: 20px;
+    font-weight: bold;
+    left: 10px;
+    top: 160px;
+  }
+
+  .GoBack {
+    font-size: 20px;
+    line-height: 20px;
+    color: #fff;
+    background-color: #000;
+    width: 70px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Group001 {
+    position: relative;
+    height: 360px;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .Group002 {
+    position: relative;
+    border: 2px solid #000;
+    border-radius: 15px;
+    margin-bottom: 25px;
+  }
+
+  .Group003 {
+    position: relative;
+    height: 300px;
+  }
+
+  .AobutMark {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #cff;
+    left: 0px;
+    top: 0px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .AobutBackground {
+    position: absolute;
+    background-color: #eee;
+    width: 535px;
+    height: 250px;
+    left: 40px;
+    top: 50px;
+  }
+
+  .AobutTitle {
+    position: absolute;
+    display: inline-block;
+    left: 80px;
+    top: 38px;
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: bold;
+  }
+
+  .AobutContent {
+    position: absolute;
+    left: 60px;
+    top: 90px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 500px;
+    height: 200px;
+  }
+
+</style>
+<body>
+  <header class="Group001">
+    <nav class="Nav">
+      <ul class="Menu">
+        <li>Aobut</li>
+        <li>Web</li>
+        <li>Mode</li>
+      </ul>
+      <div class="GoBack">Back</div>
+    </nav>
+    <div class="BannerBox">
+      <div class="BannerTitle">ＰＯＲＴＦＯＬＩＯ</div>
+      <div class="BannerBackground"></div>
+      <div class="MyPageMark"></div>
+      <div class="MyPageBox001">MyPage</div>
+    </div>
+  </header>
+
+  <main class="Group002">
+    <article>
+      <h2>【いろは歌】</h2>
+      <section>
+        <h3>【漢字表記】</h3>
+        <p>
+          色はにほへど　散りるぬるを　
+          我か世たれぞ　常ならむ　<br>
+        </p>
+      </section>
+      <section>
+        <h3>【語訳】</h3>
+        <p>
+          花は咲き誇っても　散ってしまうように、
+          この世で誰が　常住不変(不老不死)でいられようか。<br>
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="Group003">
+    <div class="AobutMark"></div>
+    <div class="AobutBackground"></div>
+    <div class="AobutTitle">ＡＯＢＵＴ</div>
+    <div class="AobutContent">
+      MyName<br>
+    </div>
+  </footer>
+  <br>
+</body>
+</html>

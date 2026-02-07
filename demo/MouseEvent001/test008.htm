@@ -1,0 +1,165 @@
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+   <TITLE>test</TITLE>
+ </head>
+   <body>
+
+      <script type="text/javascript">
+      <!--
+      d1MouseEvent_Switch = new Array();
+      d2MouseEvent_ImageFile = new Array();
+      d2MouseEvent_ImageObj = new Array();
+      vsMouseEvent_ClickStatus = "";
+      vsMouseEvent_ImageID = "";
+      vsMouseEvent_ImageFID = "MouseEvent_";
+      vfMouseEvent_SerialNumber = 0;
+      vfMouseEvent_GroupNumber = 0;
+      d1MouseEvent_ImagePreloadCache = new Array();
+      vfMouseEvent_ImagePreloadNumber = 0;
+      
+      
+      document.write("<table border='0' cellpadding='7'>");
+      document.write("<tr><td>");
+      MouseEvent_Button001();
+      document.write("</td><td>");
+      MouseEvent_Button001();
+      document.write("</td></tr>");
+      document.write("<tr><td>");
+      MouseEvent_Button001();
+      document.write("</td><td>");
+      MouseEvent_Button001();
+      document.write("</td></tr>");
+      document.write("</table>");
+      
+      
+      /*
+      function BodyLoad( ){
+         var i;
+         var obj, oImage, oDiv, oSpan, vsImageID, vsGImageID, vsGNumber, vfGNumber1;
+         for(i = 0; i < vfMouseEvent_SerialNumber; i++) {
+            vsImageID = vsMouseEvent_ImageFID+i;
+            oImage = document.getElementById(vsImageID);
+            oDiv = document.getElementById("Div_"+vsImageID);
+            oDiv.style.width = oImage.naturalWidth;
+            oDiv.style.height = oImage.naturalHeight;
+         }
+      }
+      */
+      
+      function MouseEvent_Button001(){
+         var vsImageFile;
+         
+         vfMouseEvent_GroupNumber = vfMouseEvent_SerialNumber;
+      
+         document.write("");
+         document.write("<table border='0' cellpadding='0' cellspacing='0' style='display: inline; '>");
+         document.write("<tr><td>");
+         
+         vsMouseEvent_ImageID = vsMouseEvent_ImageFID+vfMouseEvent_SerialNumber;
+         d2MouseEvent_ImageFile[vsMouseEvent_ImageID] = ["left.png", "left_on.png"];
+         d1MouseEvent_Switch[vsMouseEvent_ImageID] = false; // true // 
+         document.write("<a href='JavaScript:;' >");
+         document.write("<div id='Div_"+vsMouseEvent_ImageID+"' ");
+         document.write(" style='display: block; background: url(\""+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][0]+"\") no-repeat; ' ");
+         document.write(" onmouseover='MouseEvent_Button001_MOverEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         document.write(" onmouseout='MouseEvent_Button001_MOutEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         document.write(" onmousedown='MouseEvent_Button001_MDowneEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         // document.write(" onmouseup='"+vfMouseEvent_MUpEvent+"' ");
+         document.write(" >");
+         document.write("<img border='0' id='"+vsMouseEvent_ImageID+"' src='"+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][1]+"' ");
+         document.write(" style='visibility: visible; ' ");
+         document.write(" >");
+         document.write("</div>");
+         document.write("</a>");
+         // document.write('<br>');
+         vfMouseEvent_SerialNumber++;
+      
+         document.write("");
+         document.write("</td><td>");
+      
+         vsMouseEvent_ImageID = vsMouseEvent_ImageFID+vfMouseEvent_SerialNumber;
+         d2MouseEvent_ImageFile[vsMouseEvent_ImageID] = ["right.png", "right_on.png"];
+         d1MouseEvent_Switch[vsMouseEvent_ImageID] = false; // true // 
+         document.write("<a href='JavaScript:;' >");
+         document.write("<div id='Div_"+vsMouseEvent_ImageID+"' ");
+         document.write(" style='display: block; background: url(\""+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][0]+"\") no-repeat; ' ");
+         document.write(" onmouseover='MouseEvent_Button001_MOverEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         document.write(" onmouseout='MouseEvent_Button001_MOutEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         document.write(" onmousedown='MouseEvent_Button001_MDowneEvent("+vfMouseEvent_GroupNumber+", "+vfMouseEvent_SerialNumber+");' ");
+         // document.write(" onmouseup='"+vfMouseEvent_MUpEvent+"' ");
+         document.write(" >");
+         document.write("<img border='0' id='"+vsMouseEvent_ImageID+"' src='"+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][1]+"' ");
+         document.write(" style='visibility: hidden; ' ");
+         document.write(" >");
+         document.write("</div>");
+         document.write("</a>");
+         // document.write('<br>');
+         vfMouseEvent_SerialNumber++;
+      
+         document.write("");
+         document.write("</td></tr>");
+         document.write("</table>");
+      }
+      function MouseEvent_Button001_MOverEvent(vfGroupNumber, vfSerialNumber, vsOverImage){
+         var obj, vsImageID, vsGImageID, vsGNumber, vfGNumber1;
+         vsImageID = vsMouseEvent_ImageFID+vfSerialNumber;
+         vsGImageID = vsMouseEvent_ImageFID+vfGroupNumber;
+         obj = document.getElementById(vsImageID);
+         if( d1MouseEvent_Switch[vsGImageID] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               // obj.src = d2MouseEvent_ImageFile[vsImageID][1];
+               obj.style.visibility = "visible"; // "hidden"; //
+            }
+         }else{ 
+            if( vfGroupNumber!=vfSerialNumber ){
+               // obj.src = d2MouseEvent_ImageFile[vsImageID][1];
+               obj.style.visibility = "visible"; // "hidden"; //
+            }
+         }
+      }
+      function MouseEvent_Button001_MOutEvent(vfGroupNumber, vfSerialNumber, vsOutImage){
+         var obj, vsImageID, vsGImageID, vsGNumber, vfGNumber1;
+         vsImageID = vsMouseEvent_ImageFID+vfSerialNumber;
+         vsGImageID = vsMouseEvent_ImageFID+vfGroupNumber;
+         obj = document.getElementById(vsImageID);
+         if( d1MouseEvent_Switch[vsGImageID] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               // obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+               obj.style.visibility = "hidden"; // "visible"; //
+            }
+         }else{ // if( ! d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber!=vfSerialNumber ){
+               // obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+               obj.style.visibility = "hidden"; // "visible"; //
+            }
+         }
+         vsMouseEvent_ClickStatus = "";
+      }
+      function MouseEvent_Button001_MDowneEvent(vfGroupNumber, vfSerialNumber, vsDowneImage){
+         var obj, vsImageID, vsGImageID, vsGNumber, vfGNumber1;
+          vsImageID = vsMouseEvent_ImageFID+vfSerialNumber;
+          vsGImageID = vsMouseEvent_ImageFID+vfGroupNumber;
+          vsMouseEvent_ClickStatus = vsImageID;
+          vsGNumber = String(vfGroupNumber);
+         if( d1MouseEvent_Switch[vsGImageID] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               d1MouseEvent_Switch[vsGImageID] = ! d1MouseEvent_Switch[vsGImageID];
+               vsImageID = vsMouseEvent_ImageFID+(vfGroupNumber+1);
+               obj = document.getElementById(vsImageID);
+               // obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+               obj.style.visibility = "hidden"; // "visible"; //
+            }
+         }else{ // if( ! d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber!=vfSerialNumber ){
+               d1MouseEvent_Switch[vsGImageID] = ! d1MouseEvent_Switch[vsGImageID];
+               obj = document.getElementById(vsGImageID);
+               // obj.src = d2MouseEvent_ImageFile[vsGImageID][0];
+               obj.style.visibility = "hidden"; // "visible"; //
+            }
+         }
+      }
+      // -->
+      </script>
+
+   </body>
+</html>

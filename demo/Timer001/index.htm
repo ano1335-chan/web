@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<!--
+↑metaタグでcharsetをUTF-8に設定しています。
+必ずcharsetに設定されているキャラクターセット(エンコード)でセーブして下さい。
+キャラクターセット(エンコード)が違うと全角文字が文字化けします。
+-->
+
+<!--
+著作：「VSQ plus+」
+https://vsq.co.jp/plus/
+利用規約
+https://vsq.co.jp/plus/tos/
+音源ファイル
+https://vsq.co.jp/plus/wordpress/wp-content/uploads/2021/07/VSQSE_0022_kirarin_22.mp3
+-->
+<audio id="idVSQSE_0022_kirarin_22" src="VSQSE_0022_kirarin_22.mp3" autoplay="false" ></audio>
+
+<body>
+このWebページで使用されている音源は「VSQ plus+」様の著作物です、利用する場合は「利用規約」を参照して下さい。<br>
+著作：「VSQ plus+」<br>
+<a target="_blank" href="https://vsq.co.jp/plus/ ">https://vsq.co.jp/plus/ </a><br>
+利用規約<br>
+<a target="_blank" href="https://vsq.co.jp/plus/tos/ ">https://vsq.co.jp/plus/tos/ </a><br>
+「VSQ plus+」様の音源を使う場合は直リンせずに、音源ファイルをダウンロードして使って下さい。<br>
+<button type="button" id="idStopTimer_Reset" onclick="Timer_Reset()">Reset</button><br>
+<button type="button" id="idStopTimer_Start" onclick="Timer_Start(3)">Start 3Sec</button><br>
+<button type="button" id="idStopTimer_Start" onclick="Timer_Start(5)">Start 5Sec</button><br>
+<button type="button" id="idStopTimer_Start" onclick="Timer_Start(7)">Start 7Sec</button><br>
+<div id="idTimer_Display"></div>
+</body>
+<script>
+let oVSQSE_0022_kirarin_22 = document.getElementById("idVSQSE_0022_kirarin_22");
+let elTimerStart = document.getElementById("idTimer_Start");
+let elTimerReset = document.getElementById("idTimer_Reset");
+let elTimerDisplay = document.getElementById("idTimer_Display");
+let lTimerStart = true; // false; //
+let nTimerLimit = 0;
+let nTimerStart = -1;
+let nTimerCurr = -1;
+let nTimerAccum = 0;
+let oTimerInterval;
+
+function Timer_Start(nLimit){
+  nTimerLimit = nLimit;
+  console.log("nTimerLimit: "+nTimerLimit);
+  if( ! lTimerStart ){
+    // Timer_Stop();
+    return;
+  }
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nTimerCurr = Date.now();
+  if(nTimerStart<0){
+    nTimerStart = nTimerCurr;
+  }
+  Timer_Display();
+  if( ! oTimerInterval){
+    oTimerInterval = setInterval(Timer_Interval, 250); // ms
+  }
+  lTimerStart = false; // true; //
+}
+function Timer_Stop(){
+  // nTimerCurr = Date.now();
+  if(0<=nTimerStart){
+    Timer_Display();
+    nTimerAccum += nTimerCurr-nTimerStart;
+  }
+  nTimerStart = -1;
+  nTimerCurr = -1;
+  if(oTimerInterval){
+    clearInterval(oTimerInterval);
+  }
+  oTimerInterval = null;
+  lTimerStart = true; // false; //
+}
+function Timer_Reset(){
+  nTimerStart = -1;
+  nTimerAccum = 0;
+  lTimerStart = true; // false; //
+  elTimerDisplay.innerText = "";
+  if(oTimerInterval){
+    clearInterval(oTimerInterval);
+  }
+  oTimerInterval = null;
+}
+function Timer_Display(){
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nTimeMS = nTimerLimit*1000-(nTimerAccum+nTimerCurr-nTimerStart);
+  if(nTimeMS<=0){
+    nTimerStart = -1;
+    nTimerAccum = 0;
+    lTimerStart = true; // false; //
+    clearInterval(oTimerInterval);
+    oTimerInterval = null;
+    oVSQSE_0022_kirarin_22.play();
+  }
+  nTimeMS = Math.max(0, nTimeMS);
+  nTimeSec = Math.floor(nTimeMS / 1000);
+  nTimeMS = nTimeMS % 1000;
+  nTimeMinutes = Math.floor(nTimeSec / 60);
+  nTimeSec = nTimeSec % 60;
+  nTimeHours = Math.floor(nTimeMinutes / 60);
+  nTimeMinutes = nTimeMinutes % 60;
+  elTimerDisplay.innerText = 
+    nTimeHours + ":" + nTimeMinutes + ":" + nTimeSec+"　"+nTimeMS;
+}
+function Timer_Interval(){
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nTimerCurr = Date.now();
+  Timer_Display();
+}
+</script>
+</html>

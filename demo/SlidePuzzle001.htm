@@ -1,0 +1,122 @@
+<head>
+    <!--
+metaタグでcharsetをShift-JISに設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+    <TITLE>test</TITLE>
+    <style type="text/css">
+    <!--
+       .PuzzleCell {
+       width: 1.5rem; 
+       text-align: center; 
+       cursor : pointer;
+       }
+       -->
+    </style>
+</head>
+<body>
+
+    <table id="PuzzleTable_Id" border="border">
+        <tr>
+            <td class="PuzzleCell">1</td>
+            <td class="PuzzleCell">2</td>
+            <td class="PuzzleCell">3</td>
+        </tr>
+        <tr>
+            <td class="PuzzleCell">4</td>
+            <td class="PuzzleCell">5</td>
+            <td class="PuzzleCell">6</td>
+        </tr>
+        <tr>
+            <td class="PuzzleCell">7</td>
+            <td class="PuzzleCell">8</td>
+            <td class="PuzzleCell"></td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+    <!--
+    let PuzzleTable_Obj = document.getElementById("PuzzleTable_Id");
+    console.log("PuzzleTable_Obj.rows.length=" + PuzzleTable_Obj.rows.length);
+    console.log("PuzzleTable_Obj.rows[0].cells.length=" + PuzzleTable_Obj.rows[0].cells
+        .length);
+    // PuzzleTable_Obj.rows[0].cells[0].onclick = new Function("console.log('PuzzleTable:"+0+":"+0+"');");
+    
+    for ( let i = 0; i < PuzzleTable_Obj.rows.length; i++ ) {
+        for ( let j = 0; j < PuzzleTable_Obj.rows[i].cells.length; j++ ) {
+            PuzzleTable_Obj.rows[i].cells[j].onclick = new Function("PuzzleCell_OnClick("+i+","+j+");");
+        }
+    }
+
+    function PuzzleCell_OnClick(tr, tc) {
+        let trl = PuzzleTable_Obj.rows.length;
+        let tcl = PuzzleTable_Obj.rows[0].cells.length;
+        let tcd = PuzzleTable_Obj.rows[tr].cells[tc].innerText;
+        let rtr, rtc, m;
+        let n = -1;
+        m = false; // true; //
+        let tcn = parseInt(tcd+'-2');
+        console.log("tcd:" + tcd);
+        console.log("tcn:" + tcn);
+        if( 1<=tcn ){
+            console.log("n:"+n);
+            if( n!==-2 ){
+                console.log("1:for:" );
+                for ( let i = -1; i <= 1; i += 2 ) {
+                    let r = tr + i;
+                    console.log("i:"+i);
+                    console.log("r:"+r);
+                    console.log("(trl-1):"+(trl - 1));
+                    if ( 0 <= r && r <= (trl - 1) ) {
+                        console.log("if:");
+                        let d = PuzzleTable_Obj.rows[r].cells[tc].innerText;
+                        n = parseInt(d+'-2');
+                        console.log("1:n:"+n);
+                        if( n===-2 ){
+                            rtr = r;
+                            rtc = tc;
+                            console.log("rtr:"+rtr);
+                            console.log("rtc:"+rtc);
+                            break;
+                        }
+                    }
+                }
+            }
+            console.log("n:"+n);
+            if( n!==-2 ){
+                console.log("2:for:" );
+                for ( let i = -1; i <= 1; i += 2 ) {
+                    let c = tc + i;
+                    console.log("i:"+i);
+                    console.log("c:"+c);
+                    console.log("(tcl-1):"+(tcl - 1));
+                    if ( 0 <= c && c <= (tcl - 1) ) {
+                        console.log("if:");
+                        let d = PuzzleTable_Obj.rows[tr].cells[c].innerText;
+                        n = parseInt(d+'-2');
+                        console.log("2:n:"+n);
+                        if( n===-2 ){
+                            rtr = tr;
+                            rtc = c;
+                            console.log("rtr:"+rtr);
+                            console.log("rtc:"+rtc);
+                            break;
+                        }
+                    }
+                }
+            }
+            if( n===-2 ){
+                console.log("2:rtr:" + rtr);
+                console.log("2:rtc:" + rtc);
+                PuzzleTable_Obj.rows[rtr].cells[rtc].innerText = 
+                PuzzleTable_Obj.rows[tr].cells[tc].innerText;
+                PuzzleTable_Obj.rows[tr].cells[tc].innerText = "";
+            }
+        }
+    }
+    // -->
+    </script>
+
+</body>
+</html>

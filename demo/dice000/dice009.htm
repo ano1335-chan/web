@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width'>
+  
+<link rel='preload' href='dice-001.png' as='image'>
+<link rel='preload' href='dice-002.png' as='image'>
+<link rel='preload' href='dice-003.png' as='image'>
+<link rel='preload' href='dice-004.png' as='image'>
+<link rel='preload' href='dice-005.png' as='image'>
+<link rel='preload' href='dice-006.png' as='image'>
+
+<script>
+  fwHTMLRoot = document.documentElement;
+  vnScreenWidth = screen.width;
+  vnScreenHeight = screen.height;
+  vnScreenMinimum = Math.min(vnScreenWidth, vnScreenHeight);
+  vnScreenMaximum = Math.max(vnScreenWidth, vnScreenHeight);
+  console.log(vnScreenWidth); 
+  console.log(vnScreenHeight); 
+  fwHTMLRoot.style.setProperty('--ScreenWidth', vnScreenWidth+'px');
+  fwHTMLRoot.style.setProperty('--ScreenHeight', vnScreenHeight+'px');
+  fwHTMLRoot.style.setProperty('--ScreenMinimum', vnScreenMinimum+'px');
+  fwHTMLRoot.style.setProperty('--ScreenMaximum', vnScreenMaximum+'px');
+  vnDevicePixelRatio = window.devicePixelRatio;
+  console.log('vnDevicePixelRatio='+vnDevicePixelRatio);
+  vnDeviceWidth = vnScreenWidth*vnDevicePixelRatio;
+  vnDeviceHeight = vnScreenHeight*vnDevicePixelRatio;
+  console.log('vnDeviceWidth='+vnDeviceWidth);
+  console.log('vnDeviceHeight='+vnDeviceHeight);
+  fwHTMLHead = document.head;
+  voComputedStyle = window.getComputedStyle(fwHTMLHead, null);
+  vsDefaultFontSize = voComputedStyle.fontSize;
+  console.log('vsDefaultFontSize='+vsDefaultFontSize);
+  vnDefaultFontSize = parseFloat(vsDefaultFontSize); 
+  console.log('vnDefaultFontSize='+vnDefaultFontSize);
+</script>
+
+<style>
+/* html {font-size: var(--HTML_FontSize);} */
+:root {
+--HTML_SelectOption_MNumber: 0.217;
+--HTML_SelectOption_FontSize: calc(1rem * var(--HTML_SelectOption_MNumber));
+  
+--ScreenMinimumWidth: 319; /* ＜320(≒320) */
+--VirtualPixel1: calc(var(--ScreenWidth) / var(--ScreenMinimumWidth));
+--VirtualPixel2: calc( var(--VirtualPixel1) * 2 );
+
+--Basic_Space25: 0.25rem;
+--Basic_Space50: 0.5rem;
+--Basic_Margin: var(--VirtualPixel1);
+--Basic_MarginSide: var(--VirtualPixel1);
+--Basic_MarginBottom: var(--VirtualPixel1);
+--Basic_Padding: var(--VirtualPixel1);
+--Basic_PaddingSide: var(--VirtualPixel1);
+--Dynamic_Margin: var(--Basic_Space25);
+--Dynamic_Between: calc(var(--VirtualPixel1) * 4 + var(--Basic_Space25) );
+--Basic_Between: calc( var(--VirtualPixel1) * 5 );
+--Placement1_Width: calc(100% - var(--Basic_Between) - var(--Basic_Space25) );
+--Basic_Space25D2: calc( var(--Basic_Space25) / 2 );
+--Placement2_Width: calc(50% - var(--Basic_Between) - var(--Basic_Space25) / 2 );
+  
+}
+
+.Basic_MarginLeft25 {
+  margin-left: var(--Basic_Space25);
+}
+.Basic_MarginLeft {
+  margin-left: var(--Basic_PaddingSide);
+}
+.Basic_MarginBottom {
+  margin-bottom: var(--Basic_MarginBottom);
+}
+.Basic_PaddingSide {
+padding-right: var(--Basic_PaddingSide);
+padding-left: var(--Basic_PaddingSide);
+}
+
+* {font-size: 1rem;}
+select > option {font-size: var(--HTML_SelectOption_FontSize);}
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+margin: var(--VirtualPixel1);  
+}
+.Basic_Button_Style {
+  background: silver;
+  font-weight: bold;
+  padding: 0 var(--VirtualPixel1);
+}
+
+.Basic_Reset_Style {
+  padding: 0;
+  margin: 0;
+}
+.Basic_Reset_Container > * {
+  padding: 0;
+  margin: 0;
+}
+
+.Img_Dice_Style {
+  width: 2.6rem;
+}
+.WhiteSpace_Nowrap {
+  white-space: nowrap;    
+}
+.FlexBox_Container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;  
+}
+.FlexBox_Container > * {
+}  
+.FlexBox_Placement2 > * {
+  width: var(--Placement2_Width);
+  margin: 0 0 var(--Basic_MarginBottom) var(--Basic_MarginSide);
+}
+.Basic_FlexStyle_Container > * {
+  padding: var(--VirtualPixel1);
+  margin-bottom: var(--VirtualPixel1);
+}  
+.FlexBox_WrapNowrap {
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.Basic_MinWidth {
+  min-width: 10rem;
+}
+.Text_Box {
+  padding: var(--VirtualPixel1);
+  margin-bottom: var(--VirtualPixel1);
+}  
+.Img_FlexStyle_Container > img {
+  margin-left: var(--Basic_Space25);;
+}  
+.FlexBox_DisplayContents > * {
+  display: contents;   
+}  
+.Display_InlineBlock {
+  display: inline-block;
+}
+.Display_Table {
+  display:table;
+}
+.Display_TableCell {
+  display:table-cell;
+}
+.Placement1_Width {
+  width: var(--Placement1_Width);
+}
+.Placement2_Width {
+  width: var(--Placement2_Width);
+}
+
+.Element_0 {
+  font-size: 1.45rem;
+}
+.Element_2 {
+}
+.Element_5 {
+}
+.Element_8 {
+}
+.Element_9 {
+}
+.Dynamic_Indention {
+  display:none;
+}
+
+.Dynamic_PlacementM2_Container > * {
+  margin: 0 0 var(--Basic_MarginBottom) var(--Basic_MarginSide);
+}
+.Dynamic_PlacementM2_Container > *:nth-of-type(2n+1) {
+  margin-left: 0;
+}
+.Dynamic_PlacementM2_Width_Container > * {
+  width: var(--Placement2_Width);
+  flex-basis: var(--Placement2_Width); 
+}
+.Dynamic_PlacementM2_MinWidth_Container > * {
+  min-width: var(--Placement2_Width);
+}
+.Dynamic_PlacementM2_Width {
+  width: var(--Placement2_Width);
+  flex-basis: var(--Placement2_Width); 
+}
+.Dynamic_PlacementM2_MinWidth {
+  min-width: var(--Placement2_Width);
+}
+
+.Basic_BorderSolid {
+  border: solid var(--VirtualPixel1) #678;
+}
+/* 688px以上～992px未満 */
+@media screen and (min-width: 688px) and (max-width: 991px) {
+  .Basic_BorderSolid {
+    border: solid var(--VirtualPixel1) #456;
+    /* #012 #456 #567 #678 #789 */
+  }
+}
+
+/* 1312px以上 */
+@media screen and (min-width: 1312px) { }
+/* 992px以上～1312px未満 */
+@media screen and (min-width: 992px) and (max-width: 1311px) { }
+/* 688px以上～992px未満 */
+@media screen and (min-width: 688px) and (max-width: 991px) { }
+/* 688px未満 */
+@media screen and (max-width: 687px){
+  .Basic_BorderSolid {
+    border: solid var(--VirtualPixel1) #012;
+  }
+  .Dynamic_PlacementM2_Container > * {
+    margin: 0 0 var(--Basic_MarginBottom) 0;
+  }
+  .Dynamic_PlacementM2_Width_Container > * {
+    width: var(--Placement1_Width);
+    flex-basis: var(--Placement2_Width); 
+  }
+  .Dynamic_PlacementM2_MinWidth_Container > * {
+    min-width: var(--Placement1_Width);
+  }
+  .Dynamic_PlacementM2_Width {
+    width: var(--Placement1_Width);
+    flex-basis: var(--Placement2_Width); 
+  }
+  .Dynamic_PlacementM2_MinWidth {
+    min-width: var(--Placement1_Width);
+  }
+  .Dynamic_Indention {
+    display:block;
+    width: var(--Placement1_Width);
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .Element_0 {
+    font-size: 1rem;
+  }
+  .Element_2 {
+    order: 1;
+  }
+  .Element_5 {
+    order: -1;
+  }
+  .Element_8 {
+    order: 1;
+  }
+  .Element_9 {
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!--
+https://dic.pixiv.net/a/%E3%83%81%E3%83%B3%E3%83%81%E3%83%AD%E3%83%AA%E3%83%B3
+
+http://www.kyumamorita.com/entry/tintirorin
+
+https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%B3%E3%83%81%E3%83%AD%E3%83%AA%E3%83%B3
+
+https://www.h-eba.com/heba/gamble/gamble07.html
+
+https://dic.nicovideo.jp/a/%E3%83%81%E3%83%B3%E3%83%81%E3%83%AD%E3%83%AA%E3%83%B3
+-->
+<center><span class='WhiteSpace_Nowrap Element_0 ' style=''>《 チンチロリン Version 2.001.8.6 》</span></center>
+
+<div class='FlexBox_Container Basic_FlexStyle_Container '>
+<span class=''>
+プレーヤーの掛金
+</span>
+  
+<span class='Element_2 '>
+<input type='text' id='idPlayLatch' class='Basic_BorderSolid' > ペリカ
+</span>
+
+<button type='button' class='Basic_Button_Style Basic_MarginLeft25 ' style='' onclick='PlayDice();'>
+Click!!
+</button>
+<div class='Dynamic_Indention '></div>
+</div>
+
+<div class='FlexBox_Container Basic_FlexStyle_Container ' style='' >
+<div id='idMessage001' class='Basic_BorderSolid Dynamic_PlacementM2_Width Text_Box ' style='' ><br></div>
+
+<table border=0 class='Dynamic_PlacementM2_Width Element_5 ' ><tr><td class='FlexBox_Container Img_FlexStyle_Container ' style='padding: 0;'>
+<img id='idImgDice000' src='dice-001.png' class='Img_Dice_Style' style=''>
+<img id='idImgDice001' src='dice-001.png' class='Img_Dice_Style' style=''>
+<img id='idImgDice002' src='dice-001.png' class='Img_Dice_Style' style=''>
+</td></tr></table>
+</div>
+
+<div id='idMessage002' class='Basic_BorderSolid Placement1_Width Text_Box ' style=''><br></div>
+<div id='idMessage003' class='Basic_BorderSolid Placement1_Width Text_Box ' style=''><br></div>
+
+<div class='FlexBox_Container Dynamic_PlacementM2_Container Basic_FlexStyle_Container Dynamic_PlacementM2_Width_Container '>
+<div id='idDisplay00' class='Basic_BorderSolid Element_8 ' style='' >
+班長CPU：<span id='idDisplay000'></span><br>
+所持金：<span id='idDisplay001'></span> ペリカ
+<span id='idDisplay002'></span>
+</div>
+  
+<div id='idDisplay01' class='Basic_BorderSolid Dynamic_PlacementM2_Width ' style='' >
+プレーヤー：<span id='idDisplay010'></span><br>
+所持金：<span id='idDisplay011'></span> ペリカ
+<span id='idDisplay012'></span>
+</div>
+</div>
+  
+<div id='idExplanation' class='Basic_BorderSolid Text_Box' >
+チンチロリンのルール自体が良く分かってないので、本物と多少 違うかもしれません、又 カイジの地下ルールでもありません。<br>
+ヤッツケで作ったので(プログラム的には)データ構造を あまりチャント考えておらず冗長になっていましたが、そのデータ構造を修正して、以前より少しスッキリしてます。<br>
+スマホでもプレイできると思います。<br>
+</div>
+<br>
+
+<script>
+let a1sDiceFile = [
+  'dice-001.png','dice-002.png','dice-003.png',
+  'dice-004.png','dice-005.png','dice-006.png',
+]; 
+
+let oExplanation = document.getElementById('idExplanation');
+let oImgDice000 = document.getElementById('idImgDice000');
+let oImgDice001 = document.getElementById('idImgDice001');
+let oImgDice002 = document.getElementById('idImgDice002');
+let a1oImgDice = [oImgDice000,oImgDice001,oImgDice002]; 
+let oDisplay000 = document.getElementById('idDisplay000');
+let oDisplay001 = document.getElementById('idDisplay001');
+let oDisplay002 = document.getElementById('idDisplay002');
+let oDisplay010 = document.getElementById('idDisplay010');
+let oDisplay011 = document.getElementById('idDisplay011');
+let oDisplay012 = document.getElementById('idDisplay012');
+let oMessage001 = document.getElementById('idMessage001');
+let oMessage002 = document.getElementById('idMessage002');
+let oMessage003 = document.getElementById('idMessage003');
+let oPlayLatch = document.getElementById('idPlayLatch');
+let oDisplay;
+let oMessage;
+let a1sJudgeSymbol = ['勝ち','負け','引き分け'];
+let a1sPlaySymbol = ['班長CPU','プレーヤー'];
+let a1sPlayPost = ['親','子'];
+let nPlayJudge = -1;
+let nPlayCnt = 0;
+let nPlayNxt = 0;
+let a1nPlayDice = [0,0];
+let a1nPlayChip = [5000,5000];
+let a1nPlayLatch = [0,0];
+let nIxParent = 0;
+let nIxChildren = 1;
+let nFixEnemy = 0;
+let nFixMyself = 1;
+let nNext = 0;
+let nGrade = -1; // 目なし：0　対戦：1　即決：2
+let nPostSwitch = 0;
+let nRupture = 0; // 不成立
+let nDummy = 0;
+
+oMessage001.innerText =
+'次の振り手：'+a1sPlaySymbol[nPlayCnt]+'\n';
+oDisplay000.innerText = a1sPlayPost[nFixEnemy];
+oDisplay001.innerText = a1nPlayChip[nFixEnemy];
+oDisplay010.innerText = a1sPlayPost[nFixMyself];
+oDisplay011.innerText = a1nPlayChip[nFixMyself];
+
+function PlayDice(){
+  oExplanation.style.visibility ='hidden';
+  let latch = Number(oPlayLatch.value);
+  oMessage001.innerText = '';
+  if( Number.isFinite(latch) ){
+    if(latch<=0){
+      oMessage001.innerText += '入力エラー：０以下の額は入力できません。　';
+      return;
+    }else if(a1nPlayChip[nFixMyself]<latch){
+      oMessage001.innerText += '入力エラー：所持金を超えた額は入力できません。　';
+      return;
+    }else {
+      a1nPlayLatch[nFixMyself] = latch;
+    }
+    }else{
+    oMessage001.innerText += '入力エラー：数字を入力して下さい。　';
+    return;
+  }
+  if(a1nPlayChip[nFixMyself]<=0){
+     oMessage001.innerText += a1sPlaySymbol[nFixMyself]+
+       'の所持金がありません';
+    return;
+  }
+  if(a1nPlayChip[nFixEnemy]<=0){
+     oMessage001.innerText += a1sPlaySymbol[nFixEnemy]+
+       'の所持金がありません';
+    return;
+  }
+  Loop: while(true){
+    console.log('******************************');
+    let i = nNext;
+    nNext++;
+    console.log('i='+i);
+    console.log('nNext='+nNext);
+    console.log('nPlayCnt='+nPlayCnt);
+    console.log('nIxParent='+nIxParent);
+    console.log('nIxChildren='+nIxChildren);
+    // sPlayPost = a1sPlayPost[(nIxParent+nPlayCnt)%2];
+    console.log(a1sPlaySymbol[nPlayCnt]+
+    '：'+a1sPlayPost[nIxParent]);
+    nPlayCnt = nPlayNxt;
+    let a1nPlayRate = [0,0];
+    // let ahnnDiceToPCnt = Array();
+    // et ahnnDiceToMCnt = Array();
+    let aoDiceToCntList = [Array(), Array()];
+    // ahnnDiceToPCnt, ahnnDiceToMCnt
+    let ahnnCntToDiceList = Array();
+    let nLatchRate = null;
+    let latch = 0;
+    if( a1nPlayLatch[nFixEnemy]===0 ){
+      latch = 50*(Math.floor(Math.random()*10)+2);
+      latch = Math.min(latch,a1nPlayChip[nFixEnemy]);
+      a1nPlayLatch[nFixEnemy] = latch;
+    }
+    console.log('a1nPlayLatch[nFixEnemy]='+
+                a1nPlayLatch[nFixEnemy]);
+    let a1nDice = [
+      Math.floor(Math.random()*6+1),
+      Math.floor(Math.random()*6+1),
+      Math.floor(Math.random()*6+1),
+    ];
+    for(let j = 0; j<a1oImgDice.length; j++){
+      a1oImgDice[j].src =
+        a1sDiceFile[Math.abs(a1nDice[j])-1];
+      a1nDice[j] = 
+        a1nDice[j]*Math.sign(Math.random()*100-1);
+      a1oImgDice[j].style.opacity = 1;
+      if(a1nDice[j]<0){
+        a1oImgDice[j].style.opacity = 0.35;
+      }
+    }
+    for(let j = 0; j<a1nDice.length; j++){
+      let dice = a1nDice[j];
+      let sdice = Math.sign(dice);
+      dice = Math.abs(dice);
+      console.log('sdice='+sdice);
+      console.log('dice='+dice);
+      let side = (0<sdice) ? 0 : 1  ;
+      let ahnnDiceToXCnt = aoDiceToCntList[side];
+      // ahnnDiceToPCnt, ahnnDiceToMCnt
+      let dtxcd = ahnnDiceToXCnt[dice];
+      dtxcd = ( dtxcd===void(0) ) ? 0 : dtxcd;
+      console.log('dtxcd='+dtxcd);
+      dtxcd += sdice;
+      ahnnDiceToXCnt[dice] = dtxcd;
+      console.log('dtxcd:2='+dtxcd);
+      console.log('Object.keys(ahnnDiceToXCnt)='+
+        Object.keys(ahnnDiceToXCnt));
+      console.log('Object.values(ahnnDiceToXCnt)='+
+        Object.values(ahnnDiceToXCnt));
+    }
+    ahnnCntToDiceList[0] = Array();
+    for(let side = 0; side<aoDiceToCntList.length; side++){
+      console.log('@side='+side);
+      let ahnnDiceToXCnt = aoDiceToCntList[side];
+      for(let dice in  ahnnDiceToXCnt){
+        let dtxcd = ahnnDiceToXCnt[dice];
+        console.log('@dice='+dice);
+        console.log('dtxcd='+dtxcd);
+        let ahnnDTXC = ahnnCntToDiceList[dtxcd];
+        if( ! ahnnDTXC ){
+          ahnnDTXC = Array();
+        }
+        ahnnDTXC[dice] = dtxcd;
+        ahnnCntToDiceList[dtxcd] = ahnnDTXC;
+        console.log('@ahnnDTXC[dice]='+ahnnDTXC[dice]);
+        console.log('Object.keys(ahnnDTXC)='+
+          Object.keys(ahnnDTXC));
+        console.log('Object.values(ahnnDTXC)='+
+          Object.values(ahnnDTXC));
+        for(let dice in ahnnDTXC){
+          let dtxcd = ahnnDTXC[dice];
+          let sdtxcd = Math.sign(dtxcd);
+          console.log('@@dice='+dice);
+          console.log('dtxcd='+dtxcd);
+        }
+        console.log('Object.keys(ahnnDTXC)='+
+          Object.keys(ahnnDTXC));
+        console.log('Object.values(ahnnDTXC)='+
+          Object.values(ahnnDTXC));
+        if(dtxcd<0){
+          let ahnnDTMC = ahnnCntToDiceList[0];
+          ahnnDTMC[dice] = dtxcd;
+          ahnnCntToDiceList[0] = ahnnDTMC;
+        }
+      }
+    }
+    
+    nPostSwitch = 0;
+    latch = a1nPlayLatch[nIxChildren];
+    let ahnnCTDList = ahnnCntToDiceList;
+    console.log('latch='+latch);
+    console.log('nIxChildren='+nIxChildren);
+    console.log('Object.keys(ahnnCTDList)='+
+      Object.keys(ahnnCTDList));
+    console.log('Object.values(ahnnCTDList)='+
+      Object.values(ahnnCTDList));
+    for(let side = 0; side<aoDiceToCntList.length; side++){
+      console.log('@side='+side);
+      let ahnnDiceToXCnt = aoDiceToCntList[side];
+      for(let dice in  ahnnDiceToXCnt){
+        let dtxcd = ahnnDiceToXCnt[dice];
+        let ahnnDTXC = ahnnCntToDiceList[dtxcd];
+        console.log('@Object.keys(ahnnDTXC)='+
+          Object.keys(ahnnDTXC));
+        console.log('Object.values(ahnnDTXC)='+
+          Object.values(ahnnDTXC));
+        console.log('dice='+dice);
+        console.log('ahnnDTXC[dice]='+ahnnDTXC[dice]);
+        console.log('dtxcd='+dtxcd);
+        if(dtxcd<0){
+          console.log('ahnnCntToDiceList[0]='+
+            ahnnCntToDiceList[0]);
+        }
+      }
+    }
+    let ahnnDTPC = ahnnCTDList[0];
+    console.log('Object.keys(ahnnCTDList[0]).length='+
+      Object.keys(ahnnCTDList[0]).length);
+    console.log('nPlayCnt='+nPlayCnt);
+    console.log('nIxParent='+nIxParent);
+    console.log('nIxChildren='+nIxChildren);
+    console.log(a1sPlaySymbol[nPlayCnt]+
+      '：'+a1sPlayPost[nIxParent]);
+    console.log('i='+i);
+    oDisplay002.innerText = '';
+    oDisplay012.innerText = '';
+    if( nPlayCnt===0 ){
+      oDisplay = oDisplay002;
+    }else{
+      oDisplay = oDisplay012;
+    }
+    oMessage001.innerText = '';
+    if( nPlayCnt===nIxParent ){
+      oMessage = oMessage002;
+      oMessage003.innerText = '\n';
+    }else{
+      oMessage = oMessage003;
+    }
+    oMessage.innerText = '';
+    console.log(
+    'a1sPlayPost[(nFixEnemy+nPlayCnt)%2]：CPU='+
+    a1sPlayPost[(nFixEnemy+nPlayCnt)%2]);
+    console.log(
+    'a1sPlayPost[(nFixMyself+nPlayCnt)%2]：プレーヤー='+
+    a1sPlayPost[(nFixMyself+nPlayCnt)%2]);
+    oMessage.innerText += '・振り手：'+
+      a1sPlaySymbol[nPlayCnt]+
+      '('+a1sPlayPost[(nPlayCnt+nIxParent)%2]+')　';
+    if( nPlayCnt===nIxParent &&
+      nFixEnemy===nIxChildren ){
+      oMessage.innerText += '・'+
+        a1sPlaySymbol[nIxChildren]
+        +'の掛け金：'+latch+' ペリカ　';
+    }
+    // nGrade = 0; // 目なし：0　対戦：1　即決：2
+    console.log('==============================');
+    nPlayJudge = -1;
+    if(
+      ahnnCTDList[0]!==void(0) &&
+      0<Object.keys(ahnnCTDList[0]).length
+    ){
+      nRupture = 0;
+      console.log('ションベン');
+      console.log('即負け');
+      nGrade = 2; // 目なし：0　対戦：1　即決：2
+      nLatchRate = -1;
+      console.log('倍率：'+nLatchRate);
+      oMessage.innerText += '・状態：ションベン　';
+      let nJudge = 1; // 勝ち：0　負け：1
+      oMessage.innerText +=
+      '・倍率：'+Math.abs(nLatchRate)+'　';
+      
+      Balance(latch,nLatchRate);
+      nPlayNxt = nIxParent;
+      if(nPostSwitch){
+         PlaySwap(nPlayNxt);
+      }
+      for(let side = 0; side<aoDiceToCntList.length; side++){  
+        let ahnnDiceToXCnt = aoDiceToCntList[side];
+        for(let dice in ahnnDiceToXCnt){
+          let dtxcd = ahnnDiceToXCnt[dice];
+          if(0<dtxcd){
+            console.log('@dice='+dice);
+            console.log('dtxcd='+dtxcd);
+          }
+        }
+      }
+    }else if( ahnnCTDList[3]!==void(0) &&
+    Object.keys(ahnnCTDList[3]).length){
+      nRupture = 0;
+      console.log('アラシ');
+      console.log('即勝ち');
+      nGrade = 2; // 目なし：0　対戦：1　即決：2
+      let ahnnDTPC = ahnnCTDList[3];
+      console.log('Object.keys(ahnnDTPC)='+
+      Object.keys(ahnnDTPC));
+      console.log('Object.values(ahnnDTPC)='+
+      Object.values(ahnnDTPC));
+      if(0<ahnnDTPC[1]){
+        nLatchRate = 5;
+        oMessage.innerText += '・状態：アラシ・ピンゾロ　';
+        // oMessage.innerText += '・結果：即勝ち　';
+        let nJudge = 0; // 勝ち：0　負け：1
+        console.log('倍率：'+nLatchRate);
+        oMessage.innerText +=
+        '・倍率：'+Math.abs(nLatchRate)+'　';
+        Balance(latch,nLatchRate);
+        nPlayNxt = nIxParent;
+        if(nPostSwitch){
+           PlaySwap(nPlayNxt);
+        }
+      }else{
+        nRupture = 0;
+        oMessage.innerText += '・状態：アラシ　';
+        // oMessage.innerText += '・結果：即勝ち　';
+        nLatchRate = 3;
+        let nJudge = 0; // 勝ち：0　負け：1
+        console.log('倍率：'+nLatchRate);
+        oMessage.innerText +=
+        '・倍率：'+Math.abs(nLatchRate)+'　';
+        Balance(latch,nLatchRate);
+        nPlayNxt = nIxParent;
+        if(nPostSwitch){
+           PlaySwap(nPlayNxt);
+        }
+      }
+    }else if( 
+      ahnnCTDList[2]!==void(0) &&
+      Object.keys(ahnnCTDList[2]).length
+    ){
+      console.log('++++++++++++++++++++++++++++++');
+      nRupture = 0;
+      console.log('出目');
+      if(Object.keys(ahnnCTDList[1]).length){
+        let ahnnDTPC = ahnnCTDList[1];
+        let dice = Object.keys(ahnnDTPC)[0]
+        console.log('出目：'+dice);
+        oMessage.innerText +=
+        '・状態：出目['+dice+']　';
+        // oMessage.innerText += '・結果：　';
+        a1nPlayDice[nPlayCnt] = dice;
+        nGrade = 1; // 目なし：0　対戦：1　即決：2
+        nPlayNxt = nIxChildren;
+        nLatchRate = 1;
+        if(dice==1){
+          console.log('即負け');
+          // oMessage.innerText += '・結果：即負け　';
+          let nJudge = 1; // 勝ち：0　負け：1
+          nGrade = 2; // 目なし：0　対戦：1　即決：2
+          nLatchRate = -1;
+          console.log('倍率：'+nLatchRate);
+          oMessage.innerText +=
+            '・倍率：'+Math.abs(nLatchRate)+'　';
+          Balance(latch,nLatchRate);
+          nPlayNxt = nIxParent;
+          if(nPostSwitch){
+             PlaySwap(nPlayNxt);
+          }
+        }
+        if(dice==6){
+          console.log('即勝ち');
+          // oMessage.innerText += '・結果：即勝ち　';
+          let nJudge = 0; // 勝ち：0　負け：1
+          nGrade = 2; // 目なし：0　対戦：1　即決：2
+          nLatchRate = 1;
+          console.log('倍率：'+nLatchRate);
+          oMessage.innerText +=
+            '・倍率：'+Math.abs(nLatchRate)+'　';
+          Balance(latch,nLatchRate);
+          nPlayNxt = nIxParent;
+          if(nPostSwitch){
+             PlaySwap(nPlayNxt);
+          }
+        }
+        console.log('++++++++++++++++++++++++++++++');
+        console.log('nPlayCnt='+nPlayCnt);
+        console.log('nLatchRate='+nLatchRate);
+        console.log('nIxParent='+nIxParent);
+        console.log('nIxChildren='+nIxChildren);
+        console.log('nGrade='+nGrade);
+        a1nPlayRate[nPlayCnt] = nLatchRate;
+        if( nGrade===1 &&
+        nIxChildren==nPlayCnt ){
+          console.log('倍率：'+nLatchRate);
+          oMessage.innerText +=
+          '・倍率：'+Math.abs(nLatchRate)+'　';
+          nGrade = 2; // 目なし：0　対戦：1　即決：2
+          srate = Math.sign(dice-a1nPlayDice[nIxParent]);
+          console.log('a1nPlayDice[nIxParent]='+
+                      a1nPlayDice[nIxParent]);
+          console.log('dice='+dice);
+          console.log('srate='+srate);
+          Balance(latch,srate*nLatchRate);
+          nPlayNxt = nIxParent;
+          if(nPostSwitch){
+             PlaySwap(nPlayNxt);
+          }
+        }
+      }
+    }else if(
+      ahnnCTDList[1]!==void(0) &&
+      Object.keys(ahnnCTDList[1]).length
+    ){
+      let ahnnDTPC = ahnnCTDList[1];
+      let cnt;
+      cnt = 0;
+      for(let j = 1; j<=3; j++){
+        cnt += ahnnDTPC[j] ? 1 : 0;
+      }
+      if(cnt==3){
+        nRupture = 0;
+        console.log('ヒフミ');
+        console.log('即負け');
+        oMessage.innerText += '・状態：ヒフミ　';
+        // oMessage.innerText += '・結果：即負け　';
+        let nJudge = 1; // 勝ち：0　負け：1
+        nGrade = 2; // 目なし：0　対戦：1　即決：2
+        nLatchRate = -2;
+        console.log('倍率：'+nLatchRate);
+        oMessage.innerText +=
+        '・倍率：'+Math.abs(nLatchRate)+'　';
+        Balance(latch,nLatchRate);
+        nPlayNxt = nIxParent;
+        if(nPostSwitch){
+           PlaySwap(nPlayNxt);
+        }
+      }
+      cnt = 0;
+      for(let j = 4; j<=6; j++){
+        cnt += ahnnDTPC[j] ? 1 : 0;
+      }
+      if(cnt==3){
+        nRupture = 0;
+        console.log('シゴロ');
+        console.log('即勝ち');
+        oMessage.innerText += '・状態：シゴロ　';
+        // oMessage.innerText += '・結果：即勝ち　';
+        let nJudge = 0; // 勝ち：0　負け：1
+        nGrade = 2; // 目なし：0　対戦：1　即決：2
+        nLatchRate = 2;
+        console.log('倍率：'+nLatchRate);
+        oMessage.innerText +=
+        '・倍率：'+Math.abs(nLatchRate)+'　';
+        Balance(latch,nLatchRate);
+        nPlayNxt = nIxParent;
+        if(nPostSwitch){
+           PlaySwap(nPlayNxt);
+        }
+      }
+    }
+    if(nLatchRate===null){
+      console.log('目なし');
+      oMessage.innerText += '・状態：目なし　';
+      nGrade = 0; // 目なし：0　対戦：1　即決：2
+      nRupture++;
+      console.log(nRupture+'回目');
+      oMessage.innerText += '・振り：'+nRupture+' 回目　';
+      if(3<=nRupture){
+        nRupture = 0;
+        console.log('ブタ');
+        console.log('即負け');
+        oMessage.innerText += '・状態：ブタ　';
+        // oMessage.innerText += '・結果：即負け　';
+        let nJudge = 1; // 勝ち：0　負け：1
+        nGrade = 2; // 目なし：0　対戦：1　即決：2
+        nLatchRate = -1;
+        console.log('倍率：'+nLatchRate);
+        oMessage.innerText +=
+        '・倍率：'+Math.abs(nLatchRate)+'　';
+        Balance(latch,nLatchRate);
+        nPlayNxt = nIxParent;
+        if(nPostSwitch){
+          PlaySwap(nPlayNxt);
+        }
+      }
+    }
+    break Loop;
+  }
+  oMessage001.innerText +=
+      '次の振り手：'+a1sPlaySymbol[nPlayNxt]+'\n';
+  // nPlayCnt = nPlayNxt;
+}
+
+function PlaySwap(pn){
+  console.log('PlaySwap( )');
+  console.log('pn='+pn);
+  pn = pn+0; // Dummy
+  let ip = nIxParent;
+  let ic = nIxChildren;
+  nIxParent = ic;
+  nIxChildren = ip;
+  console.log('nFixMyself='+nFixMyself);
+  console.log('nFixEnemy='+nFixEnemy);
+  console.log('nIxParent='+nIxParent);
+  console.log('nIxChildren='+nIxChildren);
+  console.log(a1sPlaySymbol[
+     ( nFixEnemy===nIxParent ) ? nFixEnemy : nFixMyself]+
+     'が'+a1sPlayPost[0]+'になります');
+  oMessage001.innerText += a1sPlaySymbol[
+     ( nFixEnemy===nIxParent ) ? nFixEnemy : nFixMyself]+
+     'が'+a1sPlayPost[0]+'になります\n';
+  if( nFixEnemy===nIxParent ){
+    nPlayNxt = nFixEnemy;
+    oDisplay000.innerText = '親';
+  }else{
+    oDisplay000.innerText = '子';
+  }
+  if( nFixMyself===nIxParent ){
+    nPlayNxt = nFixMyself;
+    oDisplay010.innerText = '親';
+  }else{
+    oDisplay010.innerText = '子';
+  }
+}
+  
+function Balance(latch,rate){
+  console.log('Balance( )');
+  console.log('nPlayCnt='+nPlayCnt);
+  console.log('nIxParent='+nIxParent);
+  console.log('nIxChildren='+nIxChildren);
+  console.log('nFixEnemy='+nFixEnemy);
+  console.log('nFixMyself='+nFixMyself);
+  console.log(
+  'a1sPlayPost[(nFixEnemy+nPlayCnt)%2]：CPU='+
+  a1sPlayPost[(nFixEnemy+nPlayCnt)%2]);
+  console.log(
+  'a1sPlayPost[(nFixMyself+nPlayCnt)%2]：プレーヤー='+
+  a1sPlayPost[(nFixMyself+nPlayCnt)%2]);
+  console.log('a1nPlayChip[nFixEnemy]：CPU='+
+  a1nPlayChip[nFixEnemy]);
+  console.log('a1nPlayChip[nFixMyself]：プレーヤー='+
+  a1nPlayChip[nFixMyself]);
+  // let prate = (pcnt===nIxParent) ? rate : -rate;
+  let mrate = (nPlayCnt!==nFixMyself) ? -rate : rate;
+  let myself = (nFixMyself+nIxParent)%2;
+  console.log('mrate='+mrate);
+  console.log('myself='+myself);
+  console.log('a1sPlayPost[myself]='+a1sPlayPost[myself]);
+  nPostSwitch = 0;
+  let nJudge = -1;
+  if(0<mrate){
+    console.log('プレーヤーの勝ち');
+    if( nIxParent===nFixEnemy ){
+       nPostSwitch = 1;
+    }
+    nJudge = 0; // 勝ち：0　負け：1　引き分け:2
+    let echip = a1nPlayChip[nFixEnemy];
+    latch = latch*mrate;
+    // nGrade // 目なし：0　対戦：1　即決：2
+    if(nGrade===2){
+      oMessage.innerText +=
+      // '：：プレーヤーの勝ち：：'+
+      '・結果：'+a1sPlaySymbol[nFixMyself]+'の'+
+      a1sJudgeSymbol[nJudge]+'　';
+      oMessage001.innerText += '金額：'+
+        (latch<=0 ? latch : '+'+latch)+' ペリカ\n';
+    }
+    latch = Math.abs(latch);
+    latch = Math.min(latch,echip);
+    echip -= latch;
+    a1nPlayChip[nFixEnemy] = (echip<0) ? 0 : echip;
+    a1nPlayChip[nFixMyself] += latch;
+  }else if(mrate<0){
+    console.log('プレーヤーの負け');
+    if( nIxParent===nFixMyself ){
+       nPostSwitch = 1;
+    }
+    nJudge = 1; // 勝ち：0　負け：1　引き分け：2
+    let mchip = a1nPlayChip[nFixMyself];
+    latch = latch*mrate;
+    // nGrade // 目なし：0　対戦：1　即決：2
+    if(nGrade===2){
+      oMessage.innerText +=
+      // '：：プレーヤーの負け：：'+
+      '・結果：'+a1sPlaySymbol[nFixMyself]+'の'+
+      a1sJudgeSymbol[nJudge]+'　';
+      oMessage001.innerText += '金額：'+
+        (latch<=0 ? latch : '+'+latch)+' ペリカ\n';
+    }
+    latch = Math.abs(latch);
+    latch = Math.min(latch,mchip);
+    mchip -= latch;
+    a1nPlayChip[nFixMyself] = (mchip<0) ? 0 : mchip;
+    a1nPlayChip[nFixEnemy] += latch;
+  }else{
+    nJudge = 2; // 勝ち：0　負け：1　引き分け：2
+    console.log('引き分け');
+    oMessage.innerText += '・結果：'+
+      a1sJudgeSymbol[nJudge]+'　';
+  }
+  a1nPlayLatch[nFixEnemy] = 0;
+  console.log('nPostSwitch='+nPostSwitch);
+  oDisplay001.innerText = a1nPlayChip[nFixEnemy];
+  oDisplay011.innerText = a1nPlayChip[nFixMyself];
+  console.log('a1nPlayChip[nFixEnemy]：CPU='+
+  a1nPlayChip[nFixEnemy]);
+  console.log('a1nPlayChip[nFixMyself]：プレーヤー='+
+  a1nPlayChip[nFixMyself]);
+  nPlayJudge = nJudge;
+}
+</script>
+</body>
+</html>

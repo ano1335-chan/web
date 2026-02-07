@@ -1,0 +1,113 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" >
+
+<script type="text/javascript">
+<!--
+CheckboxGroup_Index = -1;
+CheckboxGroup_Member = new Array( );
+CheckboxChecked_Member = new Array( );
+
+
+
+function ClickButtonGroupFunc(oForm, group) {
+  var i, e, eid, fid, name, lng, checked;
+  fid = oForm.id;
+  checked = false; // true; //
+  name = "Checkbox/";
+  if( ""!=group ){
+    name = name+group+"/";
+  }
+  lng = name.length;
+  for( i = 0; i<oForm.elements.length; i++ ){
+    e = oForm.elements[i];
+    eid = e.id;
+    if( name==eid.substr(0, lng) ){
+      if( true==e.checked ){
+        checked = true; // false; //
+      }
+    }
+  }
+  if( ! checked ){
+    for( i = 0; i<oForm.elements.length; i++ ){
+      e = oForm.elements[i];
+      eid = e.id;
+      if( name==eid.substr(0, lng) ){
+        e.checked = true; // false; //
+        CheckboxChecked_Member[eid] =  true; // false; //
+      }
+    }
+  }
+}
+
+function ClickButtonFormFunc(oForm, CheckboxGroup_Member){
+  for( i = 0; i<CheckboxGroup_Member.length; i++ ){
+    ClickButtonGroupFunc(oForm, CheckboxGroup_Member[i]);
+  }
+}
+
+
+
+document.write('<form id="Form_Animal">');
+document.write('【Form Animal】<br>');
+document.write('<br>');
+
+
+
+CheckboxGroup_ID = "Group_Cat";
+CheckboxGroup_Index++;
+CheckboxGroup_Member[CheckboxGroup_Index] = CheckboxGroup_ID;
+document.write('【Group Cat】<br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_AAA";
+document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">アメリカンショートヘア</label><br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_BBB";
+document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">スコティッシュフォールド</label><br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_CCC";
+  document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">ブリティッシュショートヘア</label><br>');
+document.write('<input type="button" value="Group Cat" onclick="ClickButtonGroupFunc(this.form, \''+CheckboxGroup_ID+'\')">');
+
+document.write('<input type="hidden" name="Dummy"><br>');
+
+
+
+document.write('<br>');
+
+
+
+CheckboxGroup_ID = "Group_Dog";
+CheckboxGroup_Index++;
+CheckboxGroup_Member[CheckboxGroup_Index] = CheckboxGroup_ID;
+document.write('【Group Dog】<br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_AAA";
+document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">トイ・プードル</label><br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_BBB";
+document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">チワワ</label><br>');
+
+Checkbox_ID = "Checkbox/"+CheckboxGroup_ID+"/ID_CCC";
+  document.write('<label><input id="'+Checkbox_ID+'" type="checkbox" onclick="CheckboxChecked_Member[this.id] = this.checked;">ダックスフンド</label><br>');
+document.write('<input type="button" value="Group Dog" onclick="ClickButtonGroupFunc(this.form, \''+CheckboxGroup_ID+'\')">');
+
+document.write('<input type="hidden" name="Dummy"><br>');
+
+
+
+document.write('<br>');
+
+
+
+document.write('<input type="button" value="Form Animal" onclick="ClickButtonFormFunc(this.form, CheckboxGroup_Member)">');
+
+document.write('</form>');
+-->
+</script> 
+
+   </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+  </style>
+</head>
+<body>
+  <canvas id="idCanvas" width="500" height="500" style="border: solid thin #000000;" 
+  onmousedown="MouseSwitch(1)" onmouseup="MouseSwitch(0)" onmousemove="MouseOver()"></canvas><br />
+</body>
+<script>
+  wCanvas = document.getElementById('idCanvas');
+  oC2DCtx = wCanvas.getContext('2d');
+  oC2DCtx.strokeStyle = "#000"; // 線のカラー
+  oC2DCtx.lineWidth = 1; // 線の太さ
+  nCanvasW = wCanvas.width;
+  nCanvasH = wCanvas.height;
+  nMouseSwitch = 0;
+  nMousePrevX = null;
+  nMousePrevY = null;
+
+  function MouseSwitch(sw) {
+    nMouseSwitch = sw;
+    if (nMouseSwitch) {
+      nMousePrevX = null;
+      nMousePrevY = null;
+    }
+  }
+
+  function MouseOver() {
+    let x0, y0;
+    let x1 = event.offsetX;
+    let y1 = event.offsetY;
+    if (nMouseSwitch) {
+      console.log(
+        "x1: " + x1 + "; " +
+        "y1: " + y1 + "; " +
+        "");
+      if (null !== nMousePrevX && null !== nMousePrevY) {
+        x0 = nMousePrevX;
+        y0 = nMousePrevY;
+      } else {
+        x0 = x1;
+        y0 = y1;
+        console.log("oC2DCtx.moveTo(x0, y0);");
+      }
+      console.log(
+        "x0: " + x0 + "; " +
+        "y0: " + y0 + "; " +
+        "");
+      oC2DCtx.moveTo(x0, y0);
+      oC2DCtx.lineTo(x1, y1);
+      oC2DCtx.stroke(); // 線を描画
+      nMousePrevX = x1;
+      nMousePrevY = y1;
+    }
+  }
+</script>
+
+</html>

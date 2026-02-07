@@ -1,0 +1,78 @@
+<head>
+<!--
+// metaタグでcharsetをShift-JISに設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+<TITLE>test</TITLE>
+</head>
+
+<body>
+
+      <script type="text/javascript">
+      <!--
+      let vnSlotTimeout = 300;
+      let vnSlotIndex = -1;
+      let vnSlotCountdown = -1;
+      let vnUserIndex = 0;
+      let vnTimelagCountdown = 0;
+      let vnTimelag = 0;
+      let Images = [
+        'img/gu.png',
+        'img/choki.png',
+        'img/pa.png'
+    ];
+
+      function Slot(){
+          let target, win, lose, TimeoutID;
+          if(0!=vnSlotCountdown ){
+               for(let i = 0; i<Images.length; i++){
+                   target = document.getElementById('target'+i);
+                   target.style.display = "none";
+               }
+               vnSlotIndex++;
+               vnSlotIndex = vnSlotIndex % Images.length; // 剰余
+               target = document.getElementById('target'+vnSlotIndex);
+               target.style.display = "inline";
+               // console.log(vnSlotIndex);
+              if(0<vnSlotCountdown){
+               vnSlotCountdown--;
+               }
+               TimeoutID = setTimeout("Slot()", vnSlotTimeout);
+          }else{
+              win = (vnUserIndex+1) % Images.length; // 剰余
+              lose = (vnUserIndex+Images.length-1) % Images.length; // 剰余
+              if(vnSlotIndex==win){
+                  alert('You win!');
+              }else if(vnSlotIndex==lose){
+                  alert('You lose!');
+              }else{
+                  alert('Try again!');
+              }
+          }
+      }
+      function SlotCountdown(){
+         vnSlotCountdown = Math.floor( Math.random() * Images.length )+1;
+      }
+      
+      // -->
+      </script>
+      
+<br/>
+<input id="exec" type="button" value="START" onclick="vnSlotCountdown=-1;Slot();"><br/>
+<br/>
+        <img id="target0" src="img/gu.png" alt="gu" width="150" height="150"/>
+        <!--
+        インターネット上では画像ロードのタイムラグを考慮する必要がある。
+        初めから画像をロードしておけば良い。
+        -->
+        <img id="target1" src="img/choki.png" alt="choki" width="150" height="150" style="display: none;" />
+        <img id="target2" src="img/pa.png" alt="pa" width="150" height="150" style="display: none;" />
+        <br/>
+        <br/>
+            <img id="imggu" src="img/gu.png" alt="gu" widgh="100" height="100" onclick="vnUserIndex=0;SlotCountdown();"/>
+            <img id="imgchoki" src="img/choki.png" alt="choki" widgh="100" height="100" onclick="vnUserIndex=1;SlotCountdown();"/>
+            <img id="imgpa" src="img/pa.png" alt="pa" widgh="100" height="100" onclick="vnUserIndex=2;SlotCountdown();"/>
+
+</body>
+</html>

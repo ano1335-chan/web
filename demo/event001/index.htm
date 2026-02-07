@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--
+    ↑metaタグでcharsetをUTF-8に設定しています。
+    モチロン他のキャラクターセットに変更しても良いですが、
+    必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+    -->
+    <title>test</title>
+</head>
+
+<body>
+
+    <div id="idFlower_Level000" style="width: 299px; height: 168px; text-align: right; 
+       background: url(flower020.jpg) no-repeat;" onclick="SwitchImage(this);">
+        <img id="idFlower_Level001" src="flower031.jpg" style="visibility: hidden;" onclick="SwitchImage(this);">
+    </div>
+
+    <script type="text/javascript">
+        veSwitchImage = null;
+        function SwitchImage(veImage) {
+            console.log("SwitchImage(veImage)");
+            let veFlower000 = document.getElementById("idFlower_Level000");
+            let veFlower001 = document.getElementById("idFlower_Level001");
+            let vsFlower001_visibility = veFlower001.style.visibility; // "visible" // "hidden" //
+            if (vsFlower001_visibility === "hidden") {
+                console.log("if (vsFlower001_visibility === hidden)");
+                if (veImage === veFlower000) {
+                    console.log("if (veImage === veFlower000)");
+                    veFlower001.style.visibility = "visible"; // "hidden"; //
+                }
+            } else { // if (vsFlower001_visibility === "visible")
+                console.log("if (vsFlower001_visibility === visible)");
+                if (veImage === veFlower001) {
+                    console.log("if (veImage === veFlower000)");
+                    veSwitchImage = veFlower001;
+                }
+                if (veSwitchImage === veFlower001 && veImage === veFlower000) {
+                    console.log("if (veImage === veFlower000)");
+                    veSwitchImage = null;
+                    veFlower001.style.visibility = "hidden"; // "visible"; //
+                }
+            }
+            return false; // true; //
+        }
+    </script>
+
+</body>
+
+</html>

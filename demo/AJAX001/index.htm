@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'>
+<body>
+Ajax Demo.<br>
+<div id='idDisplay'></div>
+<script>
+    let oDisplay = document.getElementById('idDisplay');
+    let charset = 'UTF-8';
+    let url = "hoge.txt";
+    let oAJAX = new XMLHttpRequest();
+    oAJAX.onreadystatechange = function() {
+      if( oAJAX.readyState===4 && oAJAX.status===200 ) {
+        let res = oAJAX.responseText;
+        oDisplay.innerText = res;
+      }
+    }
+    oAJAX.open('GET', url, true);
+    oAJAX.overrideMimeType('text/plain; charset='+charset); 
+    oAJAX.send(null);
+</script>
+</body>
+</html>

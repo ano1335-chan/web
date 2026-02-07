@@ -1,0 +1,66 @@
+<head>
+<!--
+metaタグでcharsetをShift-JISに設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+    <TITLE>test</TITLE>
+</head>
+<body>
+
+    <canvas id="canvas001" width='400' height='400' style='border: solid thin #000000;' ></canvas><br/>
+
+    <script type="text/javascript">
+    <!--
+    moovKeys = {
+        37: [-10, 0], //left
+        39: [10, 0], //right
+        40: [0, 10], //down
+        38: [0, -10], //up
+    };
+
+    canvas = document.getElementById('canvas001');
+    canvas2DContext = canvas.getContext('2d');
+    canvasW = canvas.width;
+    canvasH = canvas.height;
+    
+    playerW = 25;
+    playerH = 25;
+    playerPosX = (canvasW - playerW) / 2;
+    playerPosY = (canvasH - playerH) / 2;
+    render();
+
+    document.body.onkeydown = function(e) {
+        if (moovKeys[e.keyCode]) {
+            let moov = moovKeys[e.keyCode];
+            playerPosX += moov[0];
+            playerPosY += moov[1];
+        }
+        checkPosition();
+        render();
+    }
+
+    function checkPosition() {
+        if (playerPosX < 0) {
+            playerPosX = 0;
+        }
+        if ((canvasW - playerW) < playerPosX) {
+            playerPosX = canvasW - playerW;
+        }
+        if (playerPosY < 0) {
+            playerPosY = 0;
+        }
+        if ((canvasH - playerH) < playerPosY) {
+            playerPosY = canvasH - playerH;
+        }
+    }
+
+    function render() {
+        canvas2DContext.clearRect(0, 0, canvasW, canvasH);
+        canvas2DContext.fillRect(playerPosX, playerPosY, playerW, playerH);
+    }
+    // -->
+    </script>
+
+</body>
+</html>

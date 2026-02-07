@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <TITLE></TITLE>
+    <style>
+.MainMenu {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding : 0;
+  margin: 0;
+}
+.Menu_Item_Style {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+.MainMenu a {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+.MainMenu ul {
+  padding : 0;
+  margin: 0;
+}
+.MainMenu > li {
+  display: inline-block;
+  font-size: 1rem;
+}
+.MainMenu li {
+  list-style: none;
+  white-space: nowrap;
+  background: #0bb;
+}
+.MainMenu_Item:hover > .SubMenu {
+  display: block;
+}
+.Menu_Item_Style:hover {
+  text-decoration: underline;
+}
+.MainMenu a:hover {
+  text-decoration: underline;
+}
+.SubMenu {
+  position: relative;
+  display: none;
+}
+.SubMenu > ul {
+  position: absolute;
+}
+    </style>
+  </head>
+  <body>
+<ul class="MainMenu" >
+  <li class="MainMenu_Item" >
+    <span class="Menu_Item_Style">Menu A</span>
+    <div class="SubMenu" >
+      <ul>
+        <li><a href="#">Menu A-0</a></li>
+        <li><a href="#">Menu A-1</a></li>
+        <li><a href="#">Menu A-2</a></li>
+      </ul>
+    </div>
+  </li>
+  <li class="MainMenu_Item" >
+    <span class="Menu_Item_Style">Menu B</span>
+    <div class="SubMenu" >
+      <ul>
+        <li><a class="Menu_Item_Style" href="#">Menu B-0</a></li>
+        <li><a class="Menu_Item_Style" href="#">Menu B-1</a></li>
+        <li><a class="Menu_Item_Style" href="#">Menu B-2</a></li>
+      </ul>
+    </div>
+  </li>
+  <li class="MainMenu_Item" >
+    <span class="Menu_Item_Style">Menu C</span>
+    <div class="SubMenu" >
+      <ul>
+        <li><a class="Menu_Item_Style" href="#">Menu C-0</a></li>
+        <li><a class="Menu_Item_Style" href="#">Menu C-1</a></li>
+        <li><a class="Menu_Item_Style" href="#">Menu C-2</a></li>
+      </ul>
+    </div>
+  </li>
+</ul>
+  </body>
+</html>

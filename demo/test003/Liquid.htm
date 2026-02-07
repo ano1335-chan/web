@@ -1,0 +1,55 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<script>
+  wHTMLRoot = document.documentElement;
+  nScreenWidth = screen.width;
+  nScreenHeight = screen.height;
+  nDP = screen.width / 100;
+  nImgWidthDP = 18;
+  // @media(メディアクエリ)を使ったらダメ。
+  // Break Point：767px
+  if (nScreenWidth <= 767) {
+    nImgWidthDP = 36;
+  }
+  nImgWidth = nImgWidthDP * nDP;
+  wHTMLRoot.style.setProperty('--DP', nDP);
+  wHTMLRoot.style.setProperty('--ImgWidthDP', nImgWidthDP);
+  wHTMLRoot.style.setProperty('--ImgWidth', String(nImgWidth) + "px");
+</script>
+
+<style>
+  .Box001>img {
+    width: var(--ImgWidth);
+  }
+
+</style>
+<body>
+  <script>
+    CSSValue_DP = getComputedStyle(wHTMLRoot).getPropertyValue('--DP');
+    CSSValue_ImgWidthDP = getComputedStyle(wHTMLRoot).getPropertyValue('--ImgWidthDP');
+    CSSValue_ImgWidth = getComputedStyle(wHTMLRoot).getPropertyValue('--ImgWidth');
+    document.write(
+      'nScreenWidth:' + nScreenWidth + ';<br>' +
+      'CSSValue_DP:' + CSSValue_DP + ';<br>' +
+      'CSSValue_ImgWidthDP:' + CSSValue_ImgWidthDP + ';<br>' +
+      'CSSValue_ImgWidth:' + CSSValue_ImgWidth + ';<br>' +
+      '<br>');
+  </script>
+
+  <div class="Box001">
+    <img src="001.jpg">
+    <img src="002.jpg">
+    <img src="003.jpg">
+    <img src="004.jpg">
+    <img src="005.jpg">
+    <img src="006.jpg">
+    <img src="007.jpg">
+    <img src="008.jpg">
+    <img src="009.jpg">
+    <img src="010.jpg">
+  </div>
+</body>
+</html>

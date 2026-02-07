@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    .ButtonFace-001 {
+      user-select: none;
+      display: inline-block;
+      border: solid thin #000;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+      font-weight: bold;
+      color: #fef;
+      background-color: #0bb;
+    }
+
+    .SwitchOff_On-Off {
+      color: #767;
+      background-color: #0f0;
+    }
+
+    .Fade_Container {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      border: solid thin #000;
+      margin: 0.5rem;
+    }
+
+    .Transform_Fade-001_Content {
+      display: inline-block;
+      opacity: 0;
+    }
+
+    .Transform_Fade-001_Content_IFade-in:checked+label+div {
+      transition: 1.2s;
+      transition-property: opacity;
+      /*transition-propertyのValueにCSS Propertyを記述することで、*/
+      /*transitionで変化させる対象のCSS Propertyを限定可能。*/
+      /*Valueは「,」(カンマ)で複数のCSS Propertyを指定可能。*/
+      opacity: 1;
+    }
+
+    .Transform_Fade-002_Content {
+      display: inline-block;
+      transition: 1.2s;
+      transition-property: opacity;
+      /*transition-propertyのValueにCSS Propertyを記述することで、*/
+      /*transitionで変化させる対象のCSS Propertyを限定可能。*/
+      /*Valueは「,」(カンマ)で複数のCSS Propertyを指定可能。*/
+      opacity: 0;
+    }
+
+    .Transform_Fade-002_Content_IFade-in-out:checked+label+div {
+      opacity: 1;
+    }
+
+    .Animation_Fade-001_Content {
+      display: inline-block;
+      opacity: 0;
+    }
+
+    /*SwitchOn_Off-On*/
+    .Animation_Fade-001_Content_IFade-in-out_On:checked+input+label+label+div {
+      animation: Keyframes_Fade-in 1.2s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes Keyframes_Fade-in {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /*SwitchOff_On-Off*/
+    .Animation_Fade-001_Content_IFade-in-out_Off:checked+label+label+div {
+      animation: Keyframes_Fade-out 1.2s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes Keyframes_Fade-out {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .Transform_Fade-001_Content_IFade-in:checked+label,
+    .Transform_Fade-002_Content_IFade-in-out:checked+label,
+    .Animation_Fade-001_Content_IFade-in-out_On:checked+input+label {
+      font-weight: bold;
+      color: #767;
+      background-color: #0f0;
+    }
+
+    /*SwitchOff_On-Off*/
+    .Animation_Fade-001_Content_IFade-in-out_On:not(:checked)+input+label+label {
+      display: none;
+    }
+
+    /*SwitchOn_Off-On*/
+    .Animation_Fade-001_Content_IFade-in-out_On:checked+input+label {
+      display: none;
+    }
+
+    .Fade_Container>label:hover {
+      font-weight: bold;
+      color: #767;
+      background-color: #0ee;
+    }
+
+    .Fade_Container>input[type='checkbox'] {
+      display: none;
+    }
+
+    .Fade_Container>input[type='radio'] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Fade_Container">
+    <input type="checkbox" id="TUnit-001" class="Transform_Fade-001_Content_IFade-in">
+    <label for="TUnit-001" class="ButtonFace-001">Transform Fade-in</label>
+    <div class="Transform_Fade-001_Content">
+      いろはにほへと ちりぬるを<br>
+      わかよたれそ つねならむ<br>
+      うゐのおくやま けふこえて<br>
+      あさきゆめみし ゑひもせす<br>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="Fade_Container">
+    <input type="checkbox" id="TUnit-002" class="Transform_Fade-002_Content_IFade-in-out">
+    <label for="TUnit-002" class="ButtonFace-001">Transform Fade-in-out</label>
+    <div class="Transform_Fade-002_Content">
+      いろはにほへと ちりぬるを<br>
+      わかよたれそ つねならむ<br>
+      うゐのおくやま けふこえて<br>
+      あさきゆめみし ゑひもせす<br>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="Fade_Container">
+    <input type="radio" id="TUnit-003_On" name="TUnit-003" class="Animation_Fade-001_Content_IFade-in-out_On">
+    <input type="radio" id="TUnit-003_Off" name="TUnit-003" class="Animation_Fade-001_Content_IFade-in-out_Off">
+    <label for="TUnit-003_On" class="SwitchOn_Off-On ButtonFace-001">Animation Fade-in-out Switch Off-On</label>
+    <label for="TUnit-003_Off" class="SwitchOff_On-Off ButtonFace-001">Animation Fade-in-out Switch On-Off</label>
+    <div class="Animation_Fade-001_Content">
+      いろはにほへと ちりぬるを<br>
+      わかよたれそ つねならむ<br>
+      うゐのおくやま けふこえて<br>
+      あさきゆめみし ゑひもせす<br>
+    </div>
+  </div>
+</body>
+</html>

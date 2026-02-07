@@ -1,0 +1,64 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" >
+
+<script type="text/javascript">
+<!--
+CheckboxProperty_Member = [
+  [ "福岡","FukuokaCheckbox", true ],
+  [ "広島","HirosimaCheckbox", false ],
+  [ "熊本","KumamotoCheckbox", true ],
+  [ "山梨","YamanasiCheckbox", false ],
+  [ "長崎","NagasakiCheckbox", true ]
+];
+CorrectAnswer_Member = new Array( ); // 正解
+
+document.write('九州の県は次のうちどれですか?<br>');
+document.write('<br>');
+document.write('<form name="KyuusyuuForm">');
+for(i = 0; i<CheckboxProperty_Member.length; i++){
+  CorrectAnswer_Member[CheckboxProperty_Member[i][1]] = CheckboxProperty_Member[i][2];
+  document.write('<label><input id="'+CheckboxProperty_Member[i][1]+'" type="checkbox" onclick="HTMLDocument_CheckboxChecked_Member[this.id] = this.checked;">'+CheckboxProperty_Member[i][0]+'</label><br>');
+}
+document.write('<br>');
+document.write('<input type="button" value="Exec" onclick="ClickButtonFunc( );" ><br>');
+document.write('<input type="hidden" name="Dummy">');
+document.write('</form>');
+// document.write('<br>');
+document.write('<div id="Answer"></div>');
+document.write('<br><br><br>');
+
+HTMLDocument_CheckboxChecked_Member = new Array( );
+
+function ClickButtonFunc( ) {
+  oAnswer = document.getElementById('Answer' );
+  var ccm = HTMLDocument_CheckboxChecked_Member; // この関数内の短縮形 Alias
+  var check = false; // true; //
+  var err = false; // true; //
+  for(k in CorrectAnswer_Member){
+    if( ccm[k]==true ) check = true;
+    // 厳密等価比較
+    if( ccm[k]===undefined ) ccm[k] = false;
+    if( ccm[k]!=CorrectAnswer_Member[k] ) err = true;
+    // ↑なぜか厳密非等価比較になるようです。
+  }
+  if( ! check ){
+    oAnswer.innerHTML =
+    "チェックされていません。<br>"+
+    "１つ以上をチェックして下さい。<br>";
+  }else if( err ){
+    oAnswer.innerHTML =
+    "不正解です。<br>"+
+    "正解は「福岡、熊本、長崎」です。<br>";
+  }else{
+    oAnswer.innerHTML = "正解です。<br>";
+  }
+}
+-->
+</script> 
+
+   </body>
+</html>

@@ -1,0 +1,224 @@
+<html>
+<head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>test</title>
+</head>
+<style type="text/css"><!--
+
+.GradientBox_Off{
+  margin: 0em; 
+  padding: 0.8em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  border-radius: 23px;
+  background: linear-gradient(#bed8ea, #396c97);
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap; 
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.GradientBox_On_34b8cd{
+  margin: 0em; 
+  padding: 0.8em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  border-radius: 23px;
+  background: linear-gradient(#dfefff, #34b8cd);
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap; 
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.GradientBox_9833ab{
+  margin: 0em; 
+  padding: 0.8em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  border-radius: 23px;
+  background: linear-gradient(#f0d1f6, #9833ab);
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap; 
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.GradientBox_On_66EE33{
+  margin: 0em; 
+  padding: 0.8em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  border-radius: 23px;
+  background: linear-gradient(#EEFF99, #66EE33);
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap; 
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.GradientBox_Hover{
+  margin: 0em; 
+  padding: 0.8em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  border-radius: 23px;
+  background: linear-gradient(#ffe286, #f3812d);
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap; 
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.ToggleButton_On{
+  position:relative;
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 0.8em;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#EEFF99, #66EE33);
+  font-weight: bold;
+  color: #000000;
+}
+
+.ToggleButton_Off{
+  position:relative;
+  -ms-user-select:  none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid #063b65;
+  padding: 0.8em;
+  text-align: center;
+  border-radius: 23px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(#bed8ea, #396c97);
+  font-weight: bold;
+  color: #ffffff;
+}
+
+--></style>
+<body>
+
+<script type="text/javascript">
+<!--
+
+
+Question_Member = [ // 配列の要素はゼロ･スタートです。
+"どの犬が好きですか？", // 要素0
+"どのネコが好きですか？", // 要素1
+"どの鳥が好きですか？" // 要素2
+];
+Answer_Member = [ // 2次元配列
+["プードル","コリー","ブルドッグ"],
+["スコティッシュフォールド","アメリカンショートヘア","ラグドール"],
+["インコ","マメルリハ","オウム"]
+]; 
+
+GUI_ToggleButton_Member = new Array( );
+Check_Member = new Array(Question_Member.length);
+for( i = 0; i<Check_Member.length; i++ ){
+// Check_Member[i] = -1;
+}
+
+    document.write("");
+    document.write("<br>");
+    document.write("<table id='box_area1_001' class='box_area1' align='center' border=0 style='width:90%; height:90%; ' >");
+    document.write("<tr><td>");
+    
+    document.write("<table border=0 cellpadding=0 style='display: inline; margin: 0px; padding: 0px; float: right; '><tr><td>");
+    document.write("<table border=0 cellpadding=0 id='Button/Default/"+
+    "test"+
+    "' class='GradientBox_9833ab' style='display: block; visibility: visible; ' "+
+    "onmouseover='this.className=\"GradientBox_Hover\";' "+
+    "onmousedown='this.className=\"GradientBox_On_34b8cd\";' "+
+    "onmouseout='this.className=\"GradientBox_9833ab\";' "+
+    " ><tr><td nowrap >"+
+    "＞"+
+    "</td></tr></table>");
+    document.write("</td></tr></table>");
+
+    document.write("<table border=0 cellpadding=0 style='display: inline; margin: 0px; padding: 0px; '><tr><td>");
+    document.write("<table border=0 cellpadding=0 id='Button/Default/"+
+    "test"+
+    "' class='GradientBox_9833ab' style='display: block; visibility: visible; ' "+
+    "onmouseover='this.className=\"GradientBox_Hover\";' "+
+    "onmousedown='this.className=\"GradientBox_On_34b8cd\";' "+
+    "onmouseout='this.className=\"GradientBox_9833ab\";' "+
+    " ><tr><td nowrap >"+
+    "＜"+
+    "</td></tr></table>");
+    document.write("</td></tr></table>");
+
+    document.write("<table id='box_area2_001' class='box_area2' align='center' border=0 style='width:100%; height:100%; ' >");
+    document.write("<tr><td valign='middle' bgcolor='#AAEEDD'  style='' >");
+    
+    document.write("<table align='center' border=0 cellpadding=0 ><tr><td>");
+    for(let i = 0; i<Question_Member.length; i++ ){
+    document.write("Question "+(1+i)+".<br><br>");
+    document.write("<div id='tab_"+i+"' class='page_area_"+i+"' >");
+    document.write(Question_Member[i]+"<br><br>");
+    for(let j = 0; j<Answer_Member[i].length; j++ ){
+    
+    document.write("<table border=0 cellpadding=0 ><tr><td valign='middle' >");
+    
+    document.write("<table border=0 cellpadding=0 style='display: inline; margin: 0px; padding: 0px; '><tr><td>");
+    document.write("<table border=0 cellpadding=0 id='"+
+    "Button/Toggle/"+i+":"+j+"' class='GradientBox_Off' style='display: block; visibility: visible; ' "+
+    "onmouseover='this.className=\"GradientBox_Hover\";'"+
+    "onmouseout='tm=GUI_ToggleButton_Member;id=this.id;if(typeof tm[id]==\"undefined\"){tm[id]=false;};if(tm[id]){this.className=\"ToggleButton_On\";}else{this.className=\"ToggleButton_Off\";}'"+
+    "onmousedown='tm=GUI_ToggleButton_Member;id=this.id;if(typeof tm[id]==\"undefined\"){tm[id]=false;};tm[id]=!tm[id];if(tm[id]){this.className=\"GradientBox_On_66EE33\";}else{this.className=\"GradientBox_Off\";};OthersClear_ToggleButton("+i+","+j+");'"+
+    "><tr><td nowrap >"+
+    "Ans."+(1+j)+
+    "</td></tr></table>");
+    document.write("</td></tr></table>");
+
+    document.write("</td>");
+    document.write("<td valign='middle' >");
+    document.write(Answer_Member[i][j]+"<br><br>");
+    document.write("</td></tr></table>");
+    }
+    
+    document.write("</div>");
+    }
+    
+    document.write("</td></tr></table>");
+    document.write("</td></tr>");
+    document.write("</table>");
+    document.write("");
+    
+    document.write("</td></tr>");
+    document.write("</table>");
+
+function OthersClear_ToggleButton(i,k){
+for(let j = 0; j<Answer_Member[i].length; j++ ){
+if(j!=k){
+GUI_ToggleButton_Member["Button/Toggle/"+i+":"+j] = false;
+document.getElementById("Button/Toggle/"+i+":"+j).className="GradientBox_Off";
+}
+}
+}
+
+-->
+</script> 
+
+</body>
+</html>

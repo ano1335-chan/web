@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'>
+<script>
+nCookieLifeAgeDay = 90; // 日にち
+nCookieLifeAgeSec = nCookieLifeAgeDay*24*60*60; // 秒
+a1sCookie = new Array();
+CreateCookie();
+SetCookie('restore',1);
+if( ! a1sCookie['restore'] ){
+  // ClearCookie();
+}
+// ResetCookie('restore');
+
+InfoCookie();
+function SetCookie(key,val){
+  console.log('SetCookie()');
+  let s = encodeURIComponent(key)+"="+encodeURIComponent(val)+"; max-age="+nCookieLifeAgeSec;
+  document.cookie = s;
+  console.log(s);
+  CreateCookie();
+}
+function ResetCookie(key){
+  console.log('ResetCookie()');
+  let s = encodeURIComponent(key)+"=; max-age=0";
+  document.cookie = s;
+  console.log(s);
+  CreateCookie();
+}
+function CreateCookie(){
+  console.log('CreateCookie()');
+  a1sCookie = new Array();
+  let sCookies = document.cookie;
+  console.log('sCookies:"'+sCookies+'"');
+  if( ""!==sCookies ){
+    let a1sCookies = sCookies.split(';');
+    for(let sC of a1sCookies){
+      let a1sC = sC.split('=');
+      a1sCookie[decodeURIComponent(a1sC[0].trim())] = decodeURIComponent(a1sC[1]);
+    }
+  }
+}
+function ClearCookie(){
+  console.log('ClearCookie)');
+  for (let key in a1sCookie) {
+    ResetCookie(key);
+  }
+  InfoCookie();
+}
+function InfoCookie(){
+  console.log('InfoCookie()');
+  CreateCookie();
+  for (let key in a1sCookie) {
+    console.log(
+    "key:"+key+"; "+
+    "value:"+a1sCookie[key]+"; "+
+    "");
+  }
+}
+function GetCheckbox_SetCookie(form){
+  console.log('GetCheckbox_SetCookie()');
+  let a1oEl = form.getElementsByTagName('input');
+  let val = "";
+  for(let oEl of a1oEl){
+    if('checkbox'===oEl.type){
+      val += Number(oEl.checked)+' ';
+    }
+  }
+  SetCookie('check',val);
+}
+function SetCheckbox_GetCookie(form){
+  console.log('SetCheckbox_GetCookie()');
+  CreateCookie();
+  let a1oEl = form.getElementsByTagName('input');
+  let val = a1sCookie['check'];
+  console.log('val:'+val+'; ');
+  if( val!=undefined ){
+    let a1sCheck = val.split(' ');
+    let cnt = 0;
+    for(let oEl of a1oEl){
+      if('checkbox'===oEl.type){
+        oEl.checked = Number(a1sCheck[cnt]);
+        cnt++;
+      }
+    }
+  }
+}
+function Restore(){
+  console.log('SetCheckbox_GetCookie()');
+  let form = document.getElementById('idFormCheck');
+  SetCheckbox_GetCookie(form);
+  InfoCookie();
+}
+window.onload = Restore;
+window.onfocus = Restore;
+</script>
+<body>
+test006 => <a href= "test005.htm" >test005.htm</a><br>
+<form id='idFormCheck'>
+結果：
+<input type="checkbox" disabled>
+<input type="checkbox" disabled>
+<input type="checkbox" disabled>
+<br>
+</form>
+</body>
+</html>

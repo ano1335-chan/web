@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>example</title>
+</head>
+<body>
+
+    <input type="button" value="Start" onclick="StartInterval('idText000');StartInterval('idText001');StartInterval('idText002')"><br>
+    
+    <input type="button" value="Stop" onclick="StopInterval('idText000')">
+    <input id="idText000" type="text" size="5" style="text-align: center; "/><br>
+    
+    <input type="button" value="Stop" onclick="StopInterval('idText001')">
+    <input id="idText001" type="text" size="5" style="text-align: center; "/><br>
+    
+    <input type="button" value="Stop" onclick="StopInterval('idText002')">
+    <input id="idText002" type="text" size="5" style="text-align: center; "/><br>
+
+    <script type="text/javascript">
+    <!--
+    IntervalIdArray = new Array();
+    SlotArray = new Array();
+    function fncInterval(id){
+        if(SlotArray[id]===void 0){
+            SlotArray[id] = 0;
+        }
+        SlotArray[id] = Math.floor(Math.random()*10)+1;
+        // ↑「1～10」
+        let objText = document.getElementById(id);
+        objText.value = SlotArray[id];
+    }
+    function StartInterval(id){
+        IntervalIdArray[id] = 
+          setInterval("fncInterval('"+id+"')", 100);
+    }
+    function StopInterval(id){
+        clearInterval(IntervalIdArray[id]);
+        if(SlotArray[id]===void 0){
+            SlotArray[id] = 0;
+        }
+        let objText = document.getElementById(id);
+        objText.value = SlotArray[id];
+    }
+    // -->
+    </script>
+
+</body>
+</html>

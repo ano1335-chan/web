@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+</head>
+<body>
+  <button type="button" onmousedown="MouseEvent('onmousedown')">onmousedown</button><br>
+  <button type="button" onmouseup="MouseEvent('onmouseup')">onmouseup</button><br>
+  <div id="idDisplay"></div>
+</body>
+<script>
+  let wDisplay = document.getElementById("idDisplay");
+function MouseEvent(msg) {
+  wDisplay.innerText = msg;
+}
+</script>
+</html>

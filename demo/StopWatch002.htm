@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<!--
+↑metaタグでcharsetをUTF-8に設定しています。
+必ずcharsetに設定されているキャラクターセット(エンコード)でセーブして下さい。
+キャラクターセット(エンコード)が違うと全角文字が文字化けします。
+-->
+<body>
+<button type="button" id="idStopWatch_Start" onclick="SWatch_Start()">Start/Stop</button>
+<button type="button" id="idStopWatch_Reset" onclick="SWatch_Reset()">Reset</button>
+<div id="idStopWatch_Display"></div>
+</body>
+<script>
+// let elSWStart = document.getElementById("idStopWatch_Start");
+// let elSWReset = document.getElementById("idStopWatch_Reset");
+let elSWDisplay = document.getElementById("idStopWatch_Display");
+let lSWStart = true; // false; //
+let nSWStart = -1;
+let nSWCurr = -1;
+let nSWAccum = 0;
+let oSWInterval;
+function SWatch_Start(){
+  if( ! lSWStart ){
+    SWatch_Stop();
+    return;
+  }
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nSWCurr = Date.now();
+  if(nSWStart<0){
+    nSWStart = nSWCurr;
+  }
+  SWatch_Display();
+  if( ! oSWInterval){
+    oSWInterval = setInterval(SWatch_Interval, 250); // ms
+  }
+  lSWStart = false; // true; //
+}
+function SWatch_Stop(){
+  // nSWCurr = Date.now();
+  if(0<=nSWStart){
+    SWatch_Display();
+    nSWAccum += nSWCurr-nSWStart;
+  }
+  nSWStart = -1;
+  nSWCurr = -1;
+  lSWStart = true; // false; //
+  if(oSWInterval){
+    clearInterval(oSWInterval);
+  }
+  oSWInterval = null;
+}
+function SWatch_Reset(){
+  nSWStart = -1;
+  nSWAccum = 0;
+  elSWDisplay.innerText = "";
+  if(oSWInterval){
+    clearInterval(oSWInterval);
+  }
+  oSWInterval = null;
+  lSWStart = true; // false; //
+}
+function SWatch_Display(){
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nTimeMS = nSWAccum+nSWCurr-nSWStart;
+  nTimeSec = Math.floor(nTimeMS / 1000);
+  nTimeMS = nTimeMS % 1000;
+  nTimeMinutes = Math.floor(nTimeSec / 60);
+  nTimeSec = nTimeSec % 60;
+  nTimeHours = Math.floor(nTimeMinutes / 60);
+  nTimeMinutes = nTimeMinutes % 60;
+  elSWDisplay.innerText = 
+  nTimeHours + ":" + nTimeMinutes + ":" + nTimeSec+"　"+nTimeMS;
+}
+function SWatch_Interval(){
+  let nTimeMS, nTimeSec, nTimeMinutes, nTimeHours;
+  nSWCurr = Date.now();
+  SWatch_Display();
+}
+</script>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Title</title>
+</head>
+<style>
+  .Border {
+    border: 1px solid black;
+  }
+
+  html {
+    width: 575px;
+  }
+
+  body {
+    margin: 8px;
+    width: 559px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 100px auto 150px 100px;
+    gap: 5px 5px;
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    font-size: 25.8px;
+  }
+
+  header {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .Banner-Image {
+    background-image: url(BlueSky.png);
+    background-repeat: no-repeat;
+    background-size: 575px 160px;
+  }
+
+  .Banner-Caption-Cell {}
+
+  .Banner-Caption {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 30px auto 0 20px;
+    height: 25px;
+    background-color: #ffffff99;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 32.3px;
+    line-height: 25px;
+    font-weight: bold;
+  }
+
+  nav {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1;
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .Menu {
+    position: relative;
+    left: 30px;
+    top: 20px;
+    margin: 0;
+    padding-left: 0;
+    width: 200px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 25.8px;
+    line-height: 25.8px;
+  }
+
+  .Menu>li {
+    background-color: #ffffff99;
+  }
+
+  .GoBack {
+    position: relative;
+    right: 35px;
+    align-self: stretch;
+    width: 70px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25.8px;
+    line-height: 25.8px;
+    color: #fff;
+    background-color: #000;
+  }
+
+  main {
+    grid-column: 1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(7, 75px);
+    gap: 5px 5px;
+  }
+
+  main>* {
+    border: 1px solid black;
+  }
+
+  aside {
+    grid-column: 1;
+    grid-row: 4;
+    height: 150px;
+    background-color: #d8a;
+  }
+
+  footer {
+    grid-column: 1;
+    grid-row: 5;
+    height: 100px;
+    background-color: #aaf;
+  }
+
+  .Category_001 {
+    background-color: #0ff;
+  }
+
+  .Category_002 {
+    background-color: #8d7;
+  }
+
+  .Category_003 {
+    background-color: #fa7;
+  }
+
+  main>div:nth-child(n+1):nth-child(-n+5) {
+    grid-column: span 2;
+  }
+
+  main>div:nth-child(n+6):nth-child(-n+9) {
+    grid-column: span 1;
+  }
+
+</style>
+<body>
+  <header class="Banner-Image"></header>
+
+  <nav>
+    <ul class="Menu">
+      <li>Web</li>
+      <li>Mode</li>
+      <li>Aobut</li>
+    </ul>
+    <div class="GoBack">Back</div>
+  </nav>
+
+  <div class="Banner-Caption">
+    ＰＯＲＴＦＯＬＩＯ
+  </div>
+
+  <main>
+    <div class="Category_001"></div>
+    <div class="Category_001"></div>
+    <div class="Category_002"></div>
+    <div class="Category_002"></div>
+    <div class="Category_002"></div>
+    <div class="Category_003"></div>
+    <div class="Category_003"></div>
+    <div class="Category_003"></div>
+    <div class="Category_003"></div>
+  </main>
+
+  <aside>
+    aside
+  </aside>
+
+  <footer>
+    footer
+  </footer>
+  <br>
+</body>
+</html>

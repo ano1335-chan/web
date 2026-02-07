@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <TITLE></TITLE>
+  <style>
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    body {
+      position: relative;
+    }
+
+    .Balloon {
+      display: inline-block;
+      color: #fff;
+      background-color: #f70;
+      border-radius: 0.5rem;
+    }
+
+    .Balloon>*:nth-of-type(1) {
+      display: none;
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 98%;
+      background: #def;
+      color: #000;
+      border-radius: 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .Balloon:hover>*:nth-of-type(1) {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  QWERTY
+  <span class="Balloon">いろは歌</span>
+  QWERTY
+  <span class="Balloon">祇園精舎</span>
+  QWERTY<br>
+  <br>
+  QWERTY
+  <span class="Balloon">祇園精舎</span>
+  QWERTY
+  <span class="Balloon">いろは歌</span>
+  QWERTY<br>
+</body>
+<script>
+  var deBC_Source = {
+    'いろは歌':
+      '【いろは歌】\n' +
+      '\n' +
+      '◆かな表記\n' +
+      'いろはにほへと　ちりぬるを\n' +
+      'わかよたれそ　つねならむ\n' +
+      'うゐのおくやま　けふこえて\n' +
+      'あさきゆめみし　ゑいもせす\n' +
+      '\n' +
+      '◆漢字表記\n' +
+      '色はにほへど　散りるぬるを\n' +
+      '我か世たれぞ　常ならむ\n' +
+      '有為(うい)の奥山　今日越えて\n' +
+      '浅き夢見じ　酔いもせず\n' +
+      '\n' +
+      '◆語訳\n' +
+      '花は咲き誇っても　散ってしまうように\n' +
+      'この世で誰が　常住不変(不老不死)でいられようか\n' +
+      '苦しみや悩みの深い山を　今日も乗り越えて\n' +
+      '(彼岸へと達し、ブッダのように覚醒者になったので)' +
+      '儚い夢(幻想)を見たり　そのような幻想に酔いしれて正気を失うこともない\n' +
+      '※「いろは歌」は仏教経典の『大般涅槃経聖行品』の無常偈の和訳らしい。\n',
+
+    '祇園精舎':
+      '【 平家物語の「驕(おご)る平家は久しからず」より】\n' +
+      '\n' +
+      '◆漢字表記\n' +
+      '祗園精舎の鐘の声、諸行無常の響きあり。\n' +
+      '娑羅双樹の花の色、盛者必衰の理をあらは(わ)す。\n' +
+      '驕(おご)れる人も久しからず、唯春の夜の夢のごとし。\n' +
+      '猛(たけ)き者も遂には滅びぬ、偏(ひとえ)に風の前の塵に同じ。\n' +
+      '\n' +
+      '◆語訳\n' +
+      '祇園精舍の鐘の音には、諸行無常すなわちこの世のすべての現象は絶えず変化していくものだという響きがある。\n' +
+      '娑羅双樹の花の色は、どんなに勢いが盛んな者も必ず衰えるものであるという道理をあらわしている。\n' +
+      '世に栄え得意になっている者も、その栄えはずっとは続かず、春の夜の夢のようである。\n' +
+      '勢い盛んではげしい者も、結局は滅び去り、まるで風に吹き飛ばされる塵と同じようである。\n',
+  }
+  var sBalloonSymbol = 'Balloon';
+  // var a1eBB = document.getElementsByName(sBalloonSymbol);
+  var a1eBB = document.querySelectorAll('.' + sBalloonSymbol);
+  if (a1eBB) {
+    console.log(`a1eBB.length: ${a1eBB.length}`);
+    console.log(`a1eBB: ${a1eBB}`);
+    console.log(a1eBB);
+    for (var eBB of a1eBB) {
+      var e0 = document.createElement("span");
+      var e1 = document.createElement("span");
+      console.log(`eBB: ${eBB}`);
+      console.log(eBB);
+      var sBB_name = eBB.getAttribute("name");
+      console.log(`sBB_name: ${sBB_name}, `);
+      //console.log(`deBB_Source[sBC_name]: ${deBB_Source[sBC_name]}, `)
+      // eBB.innerText = deBB_Source[sBC_name];
+      var sBCSymbol = eBB.textContent;
+      console.log(`sBCSymbol: ${sBCSymbol}`);
+      e1.innerText = deBC_Source[sBCSymbol];
+      console.log(`a1eBB: ${a1eBB}`);
+      console.log(a1eBB);
+      console.log(`a1eBB.innerHTML: ${a1eBB.innerHTML}`);
+      for (var e of eBB.children) {
+        console.log(e);
+      }
+      eBB.prepend(e1);
+      console.log(`a1eBB: ${a1eBB}`);
+      console.log(a1eBB);
+      console.log(`a1eBB.innerHTML: ${a1eBB.innerHTML}`);
+      for (var e of eBB.childNodes) {
+        console.log(e);
+        console.log(e.nodeValue);
+      }
+    }
+  }
+</script>
+</html>

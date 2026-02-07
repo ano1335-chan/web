@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    #left_btn {
+      position: fixed;
+      left: 0px;
+      top: 50%;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+    }
+
+  </style>
+</head>
+<body>
+  <input type="text">
+  <div id="left_btn">■左辺の中央に固定したい■</div>
+</body>
+</html>

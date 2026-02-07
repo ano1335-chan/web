@@ -1,0 +1,82 @@
+--- a.jsx	2023-12-09 19:43:58.109448600 +0900
++++ b.jsx	2023-12-09 19:43:49.364975100 +0900
+@@ -1 +1,76 @@
+-textMove = 0.38;selObj = activeDocument.selection;selObjCount = selObj.length;if(selObjCount == 1){    if(selObj[0].typename == "GroupItem") {    		textItem = selObj[0].textArtItems[0];		textRange = textItem.textRange();        textOri = textItem.textPaths[0].orientation;        textKind = textItem.kind;        textPara = textRange.paragraphs[0];        textJust = textPara.justification;        textSize = textPara.size;        textScall = textPara.scaling;        selObj[0].pathItems[0].rotate(90);    }    else    {        textItem = selObj[0];		textRange = textItem.textRange();        textPara = textRange.paragraphs[0];        textJust = textPara.justification;        textSize = textPara.size;        textScall = textPara.scaling;        textOri = textItem.textPaths[0].orientation;        textKind = selObj[0].kind;    }alert(textKind);    if(textKind != 1 || textJust !=3) textMove = 0;    if(textOri==1) {        textItem.translate(0 , textSize * textMove) ;        textItem.textPaths[0].orientation = TextOrientation.VERTICAL;    } else {        textItem.translate(0 ,- textSize * textMove) ;        textItem.textPaths[0].orientation = TextOrientation.HORIZONTAL;    }}
+\ 繝輔ぃ繧､繝ｫ譛ｫ蟆ｾ縺ｫ謾ｹ陦後′縺ゅｊ縺ｾ縺帙ｓ
++  textMove = 0.38; //縦組みと横組みの位置を調整する係数
++
++  //選択されたオブジェクト「テキスト」を取得
++  selObj = activeDocument.selection;
++  selObjCount = selObj.length;
++
++  // オブジェクトの数が一つの場合
++  if(selObjCount == 1){
++     // オブジェクトがグループ・アイテムかの判定
++    if(selObj[0].typename == "GroupItem") {
++        // オブジェクトがグループ・アイテムの場合
++        selObj[0].pathItems[0].rotate(90);
++        textFrame = selObj[0].textFrames[0]
++        textOri = textFrame.orientation;
++        textKind = textFrame.kind;
++
++    }
++    else
++    {
++        // オブジェクトがグループ・アイテム以外の場合
++        textFrame = selObj[0];
++        textOri = selObj[0].orientation;
++        textKind = selObj[0].kind;
++        
++    }
++
++    textLinCunt = textFrame.lines.length;
++    var textScall = [];
++    
++    if(textLinCunt == 1){//一行テキストの場合
++        textPara = textFrame.paragraphs[0];
++        textJust = textPara.justification;
++        textSize = textPara.size;
++        textScall [0]= textPara.scaling;
++        
++        swap(textScall [0],0)
++        textPara.scaling = textScall [0];
++
++        if(textKind == "TextType.POINTTEXT" && textJust =="Justification.CENTER") {
++            //一行中央揃えテキスト　縦組みと横組みの位置調整
++            switch(textOri){
++                case TextOrientation.HORIZONTAL : 
++                textFrame.translate(0 , textSize * textMove) ;
++                break;
++            
++                case TextOrientation.VERTICAL :
++                    textFrame.translate(0 ,- textSize * textMove) ;
++                break;
++            }
++        }
++    }
++
++    else{ //複数行テキストの場合
++        for(i=0; i<textFrame.paragraphs.length; i++){
++            if(textFrame.paragraphs[i].length){
++               textPara = textFrame.paragraphs[i];
++               textScall [i]= textPara.scaling;
++            
++               swap(textScall [i],i)
++               textPara.scaling = textScall [i];
++            }
++        }
++    }
++
++    //縦組み・横組み　入れ替え
++    switch(textOri){
++        case TextOrientation.HORIZONTAL : 
++            textFrame.orientation = TextOrientation.VERTICAL;
++        break;
++    
++        case TextOrientation.VERTICAL :
++            textFrame.orientation = TextOrientation.HORIZONTAL;
++        break;
++    }
++
++  }
+\ 繝輔ぃ繧､繝ｫ譛ｫ蟆ｾ縺ｫ謾ｹ陦後′縺ゅｊ縺ｾ縺帙ｓ

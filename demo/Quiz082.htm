@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<body id="idBody" style="background: #fff;">
+
+  <div id="idQuestionContainer"></div>
+
+</body>
+<script>
+  let a2sInterior = [
+    ["QuestionRadio", "radio", "10", "3", "", "",
+      "今日は どんな天気ですか、どれか選んで下さい", "正解、Goodな天気です"],
+    ["nmQ001", "", "１．みぞれ<br>",],
+    ["nmQ001", "", "２．ヒョウ<br>",],
+    ["nmQ001", "1", "３．良い天気<br>",],
+
+    ["QuestionRadio", "radio", "10", "2", "", "",
+      "鎌倉幕府成立は「いい国（1192）作ろう」ではなくなった、○×で答えて", "正解、1185年です"],
+    ["nmQ001", "1", "○　",],
+    ["nmQ001", "", "×<br>",],
+
+    ["QuestionText", "text", "10", "0", "number", "794",
+      "平安時代のスタートは、鳴くようぐいす平安京",
+      "正解、鳴くよ(794)うぐいす平安京"],
+
+    ["QuestionText", "text", "10", "0", "number", "1868",
+      "明治維新のスタートは、一つやろうや明治維新",
+      "正解、一つやろうや(1868)明治維新"],
+
+  ];
+
+  let elQuestionContainer = document.getElementById("idQuestionContainer");
+  let a1sCellarContainer = [
+    "<div name='nmCellar'>", "</div>"
+  ];
+  let dhmCellar = {
+    score: "<input type='hidden' name='nmScore' class='clScore' value='@value'>",
+    radio: "<label><input type='radio' name='@name' value='@value' onclick='QuestionRadio(this);'>@capture</label>",
+    text: "<input type='hidden' name='nmCorrect' class='clCorrect' value='@correct'>" +
+      "<input type='hidden' name='nmCorType' class='clCorType' value='@cortype'>" +
+      "<input type='text' name='nmAnswer' class='clAnswer' value=''> " +
+      "<button type='button' onclick='QuestionText(this);'>回答</button><br>",
+    question: "<div name='nmQuestion' class='clQuestion'>@question</div>",
+    message: "<div name='nmMessage' class='clMessage' style='display: none;'>@message</div>",
+    ngmessage: "<div name='nmNGMessage' class='clNGMessage' style='display: none;'>不正解です</div>",
+  };
+  let vmodname, vmodel, vqnt, vinterior, value, html, vline;
+  let vmodmsg, vmodngmsg, vmessage, vquestion, vscore;
+  let vcorrect, vcortype;
+  let vpx, vlp, vnx;
+  vpx = 0;
+  while (vpx < a2sInterior.length) {
+    console.log("for (let vlp = 0; vlp<a2sInterior.length; vlp++)");
+    vmodname = a2sInterior[vpx][1];
+    vscore = -Number(a2sInterior[vpx][2]);
+    vqnt = Number(a2sInterior[vpx][3]);
+    vcortype = a2sInterior[vpx][4];
+    vcorrect = a2sInterior[vpx][5];
+    vquestion = a2sInterior[vpx][6];
+    vmessage = a2sInterior[vpx][7];
+    vinterior = "";
+    vinterior += "<br>";
+    vmodel = a1sCellarContainer[0];
+    vinterior += vmodel;
+    vmodel = dhmCellar["score"];
+    vmodel = vmodel.replace("@value", vscore);
+    vinterior += vmodel;
+    console.log(
+      "vlp: " + vlp + ", " +
+      "vpx: " + vpx + ", " +
+      "");
+    vpx++;
+    console.log(
+      "vpx: " + vpx + ", " +
+      "vqnt: " + vqnt + ", " +
+      "vinterior: " + vinterior + ", " +
+      "vmodel: " + vmodel + ", " +
+      "");
+    vmodel = dhmCellar["question"];
+    vmodel = vmodel.replace("@question", vquestion);
+    vinterior += vmodel;
+    if (vmodname === "text") {
+      vmodel = dhmCellar[vmodname];
+      vmodel = vmodel.replace("@correct", vcorrect);
+      vmodel = vmodel.replace("@cortype", vcortype);
+      vinterior += vmodel;
+    }
+    vnx = vpx + vqnt;
+    console.log(
+      "vpx: " + vpx + ", " +
+      "vqnt: " + vqnt + ", " +
+      "vnx: " + vnx + ", " +
+      "a2sInterior: " + a2sInterior + ", " +
+      "");
+    console.log(" ");
+    console.log("for (let i = vpx; i < vnx; i++)");
+    for (let i = vpx; i < vnx; i++) {
+      vline = a2sInterior[i];
+      console.log(
+        "i: " + i + ", " +
+        "vpx: " + vpx + ", " +
+        "vline: " + vline + ", " +
+        "");
+      vmodel = dhmCellar[vmodname];
+      vmodel = vmodel.replace("@name", vline[0]);
+      vmodel = vmodel.replace("@value", vline[1]);
+      vmodel = vmodel.replace("@capture", vline[2]);
+      vinterior += vmodel;
+      vpx++;
+    }
+    vmodel = dhmCellar["message"];
+    vmodel = vmodel.replace("@message", vmessage);
+    vinterior += vmodel;
+    vmodel = dhmCellar["ngmessage"];
+    vinterior += vmodel;
+    vmodel = a1sCellarContainer[1];
+    vinterior += vmodel;
+    vinterior += "<br>";
+    console.log(
+      "vinterior: " + vinterior + ", " +
+      "");
+    elQuestionContainer.innerHTML += vinterior;
+    console.log(
+      "elQuestionContainer.innerHTML: " + elQuestionContainer.innerHTML + ", " +
+      "");
+    console.log(" ");
+  }
+
+  function QuestionRadio(self) {
+    console.log("QuestionRadio(self)");
+    let parent = self.parentNode;
+    let grandparents = parent.parentNode;
+    let score = grandparents.querySelector("*[name='nmScore']");
+    let message = grandparents.querySelector("*[name='nmMessage']");
+    let ngmessage = grandparents.querySelector("*[name='nmNGMessage']");
+    let vscore = Math.abs(score.value);
+    if (self.value) {
+      message.style.display = "";
+      ngmessage.style.display = "none";
+      score.value = vscore;
+    } else {
+      message.style.display = "none";
+      ngmessage.style.display = "";
+      score.value = -vscore;
+    }
+    console.log(
+      "score.value: " + score.value + ", " +
+      "");
+  }
+  function QuestionText(self) {
+    let parent = self.parentNode;
+    let grandparents = parent.parentNode;
+    let score = parent.querySelector("*[name='nmScore']");
+    let message = parent.querySelector("*[name='nmMessage']");
+    let ngmessage = parent.querySelector("*[name='nmNGMessage']");
+    let answer = parent.querySelector("*[name='nmAnswer']");
+    let correct = parent.querySelector("*[name='nmCorrect']");
+    let cortype = parent.querySelector("*[name='nmCorType']");
+    let vscore = Math.abs(score.value);
+    let vcorrect = Math.abs(correct.value);
+    let vcortype = Math.abs(cortype.value);
+    let vanswer = Math.abs(answer.value);
+    if (vcortype === "number") {
+      vcorrect = Number(vcorrect);
+    }
+    if (vcorrect == vanswer) {
+      message.style.display = "";
+      ngmessage.style.display = "none";
+      score.value = vscore;
+    } else {
+      message.style.display = "none";
+      ngmessage.style.display = "";
+      score.value = -vscore;
+    }
+  }
+</script>
+
+</html>

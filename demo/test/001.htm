@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    /*768px以上*/
+    body {
+      font-size: 1.5vw;
+      margin: 0.5vw;
+    }
+
+    .Border {
+      border: solid 0.05vw #000;
+    }
+
+    .Box {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      column-gap: 1vw;
+      row-gap: 1vw;
+    }
+
+    .E001 {
+      width: 48vw;
+    }
+
+    .E002 {
+      width: 48vw;
+    }
+
+    /*768px未満＝767px以下*/
+    @media screen and (max-width:767px) {
+      body {
+        font-size: 4.5vw;
+      }
+
+      .Box {
+        flex-wrap: wrap;
+      }
+
+      .E001 {
+        width: 98vw;
+      }
+
+      .E002 {
+        width: 98vw;
+        order: -1;
+        /*順番を「-1」に指定*/
+      }
+    }
+
+    /*576x未満＝575px以下*/
+    @media screen and (max-width:575px) {
+      body {
+        font-size: 7.5vw;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  【ユーザー･フレンドリー･デモ】
+  (「PCフレンドリー、モバイル･フレンドリー」を考慮しています)。<br>
+  <div class="Box">
+    <div class="E001 Border">
+      これは あくまでもデモなので縦スクロール･バーの幅を引いたりなどは していません。<br>
+      注意点としてはbodyのデフォルトmarginは0.5vwに変更しています。<br>
+      ブレイク･ポイントは「767px、575px」だけで、設定も超単純なページです。<br>
+      <br>
+      ●メディアクエリ「768px以上」：<br>
+      bodyタグで「font-size: 1.5vw;」を指定。<br>
+      「.E001」、「.E002」の横サイズを48vwに指定。<br>
+      <br>
+      ●メディアクエリ「768px未満＝767px以下」：<br>
+      bodyタグで「font-size: 4.5vw;」を指定。<br>
+      「.E001」、「.E002」の横サイズを98vwに指定。<br>
+      「.E002」(画像)の表示の順番を「-1」に指定。<br>
+      <br>
+      ●メディアクエリ「576x未満＝575px以下」：<br>
+      bodyタグで「font-size: 7.5vw;」を指定。<br>
+      <br>
+      font-sizeをvwで指定しているので、ブラウザによる変更を許容しません。<br>
+      「.Border」の幅は0.05vwに設定しています。<br>
+      「.Box」のcolumn-gapは1vwに設定しています。<br>
+      「.Box」のrow-gapは1vwに設定しています。<br>
+      他のサイズも一切 pxなどの絶対単位は使っていません。<br>
+      このページの要素には縦サイズは指定していませんが、当然 プロは縦サイズも指定します。<br>
+      Chromeモバイル･エミュレーターでビュー･エリアの縁をドラッグし、
+      280pxから最大幅までの間を、
+      小さくしたり大きくしたりグリグリと動かしてみると良いでしょう。<br>
+    </div>
+    <img src="img063.jpg" class="E002">
+  </div>
+  <br>
+</body>
+</html>

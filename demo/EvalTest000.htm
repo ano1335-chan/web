@@ -1,0 +1,27 @@
+「四則演算子、数字、括弧」以外は除去されます。<br>
+また式として成立しない文字列は計算できません。<br>
+<input type="text" name="gakunen" value="" onKeyPress="Calculator(this.value, event.keyCode)"><br>
+<br>
+
+<script type="text/javascript">
+<!--
+function Calculator(a, kcode){
+var r;
+if (!(13==kcode)){return;}
+// ↑「13：Enterキー」でない場合は「return」
+r = a;
+r = r.replace(/([^0-9\.\-\/\*\+\(\) ]+)/g, ' ');
+r = r.replace(/([\*\/])[ \+\-\*\/]*([\+\-])[ ]*([0-9\.\(]+)/g, '$1$2$3');
+r = r.replace(/[\+\-][ \+\-\*\/]*([\+\-])[ ]*([0-9\.\(]+)/g, '$1$2');
+r = r.replace(/(^|\()[ \+\-\*\/]*([\+\-])/g, '$1$2');
+r = r.replace(/(^|\()[ \+\-\*\/]*[\*\/]/g, '$1');
+r = r.replace(/([\+\-\*\/])[ \+\-\*\/]*[\*\/][ ]*([0-9\.\(]+)/g, '$1$2');
+r = r.replace(/([ ]+)/g, ' ');
+try{
+alert(r+' = '+eval(r)); // ←ここで「eval」を使ってます。
+}catch(ex){
+alert(ex.message+' : '+r);
+}
+}
+// -->
+</script>

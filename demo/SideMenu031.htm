@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+  -->
+  <title></title>
+  <!--
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://creator.aainc.co.jp/archives/4947
+スタイルの優先順位
+http://www.htmq.com/csskihon/007.shtml
+要素型セレクタ（タイプセレクタ） …… 特定の要素にスタイルを適用する
+http://www.htmq.com/selector/type.shtml
+全称セレクタ（ユニバーサルセレクタ） …… すべての要素にスタイルを適用する
+http://www.htmq.com/selector/universal.shtml
+  -->
+  <style>
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Display_Block {
+      display: block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Stealth {
+      /*CSS優先順位：10点*/
+      display: none;
+    }
+
+    .Body_Container .Stealth {
+      /*CSS優先順位：20点*/
+      display: none;
+    }
+
+    .Global_Container {
+      display: grid;
+      grid-template-columns: 2fr 1% auto 1fr;
+      gap: 0;
+    }
+
+    .Main_Container {
+      box-sizing: border-box;
+      border: solid thin #000;
+      grid-column: 1;
+      grid-row: 1 / span 2147483647;
+      height: 75vw;
+    }
+
+    .TabLabel {
+      display: block;
+      grid-column: 3;
+      grid-row: span 1;
+      box-sizing: border-box;
+      border: solid thin #000;
+      user-select: none;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+    }
+
+    .TabContent {
+      display: none;
+      grid-column: 4;
+      grid-row: 1 / span 2147483647;
+      box-sizing: border-box;
+      border: solid thin #000;
+      height: 75vw;
+    }
+
+    .TabSwitch:checked+label {
+      font-weight: bold;
+      color: #767;
+      /*#8f8 #7f7 #5fb*/
+      background: #8f8;
+    }
+
+    .TabSwitch:checked+label+.TabContent {
+      display: block;
+    }
+
+    .Global_Container>label:hover {
+      font-weight: bold;
+      color: #767;
+      /*#bef #aef #ede*/
+      background: #bef;
+    }
+
+    .TabSwitch:checked+.label:hover {
+      font-weight: bold;
+      color: #767;
+      background: #bef;
+    }
+
+    .TabLabel_Residue {
+      display: block;
+      grid-column: 3;
+      grid-row: span 2147483647;
+      box-sizing: border-box;
+      border: solid thin #000;
+      user-select: none;
+    }
+
+    .Global_Container>input[type='radio'] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body class="Body_Container">
+  <div class="Global_Container">
+    <div class="Main_Container"></div>
+
+    <input id='Tab-001' type='radio' name='Tab-001' class='TabSwitch' checked>
+    <label class="TabLabel Stealth" for="Tab-001"></label>
+    <div class="TabContent"></div>
+
+    <input id='Tab-001-001' type='radio' name='Tab-001' class='TabSwitch'>
+    <label class="TabLabel" for="Tab-001-001">
+      いろはに
+    </label>
+    <div class="TabContent">
+      いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <input id='Tab-001-002' type='radio' name='Tab-001' class='TabSwitch'>
+    <label class="TabLabel" for="Tab-001-002">
+      ほへと
+    </label>
+    <div class="TabContent">
+      ほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <input id='Tab-001-003' type='radio' name='Tab-001' class='TabSwitch'>
+    <label class="TabLabel" for="Tab-001-003">
+      ちりぬるを
+    </label>
+    <div class="TabContent">
+      ちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
+    </div>
+
+    <div class="TabLabel_Residue"></div>
+  </div>
+</body>
+</html>

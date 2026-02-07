@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preload" href="Human-001-00.png" as="image">
+  <link rel="preload" href="Human-001-01.png" as="image">
+  <link rel="preload" href="Human-001-02.png" as="image">
+
+  <link rel="preload" href="Human-001-10.png" as="image">
+  <link rel="preload" href="Human-001-11.png" as="image">
+  <link rel="preload" href="Human-001-12.png" as="image">
+
+  <link rel="preload" href="Human-001-20.png" as="image">
+  <link rel="preload" href="Human-001-21.png" as="image">
+  <link rel="preload" href="Human-001-22.png" as="image">
+
+  <link rel="preload" href="Human-001-30.png" as="image">
+  <link rel="preload" href="Human-001-31.png" as="image">
+  <link rel="preload" href="Human-001-32.png" as="image">
+
+  <link rel="preload" href="Dragon-001.png" as="image">
+  <link rel="preload" href="Slime-001.png" as="image">
+  <link rel="preload" href="Golem-001.png" as="image">
+  <link rel="preload" href="Wizard-001.png" as="image">
+  <link rel="preload" href="Python-001.png" as="image">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title>Roll Play</title>
+
+  <script>
+
+    window.onload = function () {
+      PreloadMan();
+    }
+    function PreloadMan() {
+      gnResourceDefective--;
+      console.log(`gnResourceDefective: ${gnResourceDefective}`);
+      if (!gnResourceDefective) {
+        OnAllLady();
+      }
+    }
+    preload = document.querySelectorAll('link[rel="preload"]');
+    gnResourceDefective = preload.length + 1;
+    for (let w of preload) {
+      w.onload = PreloadMan;
+    }
+
+    gwHTMLHead = document.head;
+    gwHTMLRoot = document.documentElement;
+    goHTMLRoot_ComputedStyle = getComputedStyle(gwHTMLRoot);
+    gnScreenWidth = screen.width;
+    gnScreenHeight = screen.height;
+    gnScreenMinimum = Math.min(gnScreenWidth, gnScreenHeight);
+    gnScreenMaximum = Math.max(gnScreenWidth, gnScreenHeight);
+    console.log('gnScreenWidth: ' + gnScreenWidth);
+    console.log('gnScreenHeight: ' + gnScreenHeight);
+    gnWindow_InnerWidth = window.innerWidth;
+    gnWindow_InnerHeight = window.innerHeight;
+    gnWindow_InnerMinimum = Math.min(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    gnWindow_InnerMaximum = Math.max(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    console.log('gnWindow_InnerWidth: ' + gnWindow_InnerWidth);
+    console.log('gnWindow_InnerHeight: ' + gnWindow_InnerHeight);
+    gwHTMLRoot.style.setProperty('--Window_InnerMinimum', gnWindow_InnerMinimum + 'px');
+    CSSValue_Window_InnerMinimum = goHTMLRoot_ComputedStyle.getPropertyValue('--Window_InnerMinimum');
+    console.log('CSSValue_Window_InnerMinimum: ' + CSSValue_Window_InnerMinimum);
+
+  </script>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 1vw;
+    }
+
+    .CanvasStyle {
+      /*
+      display: inline-block;
+      position: absolute;
+      */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Container">
+    <canvas id="idCanvas" class="CanvasStyle"></canvas>
+    <div id="idInformation" class="Border">
+    </div>
+  </div>
+
+</body>
+<script>
+  goInformation = document.getElementById('idInformation');
+  gnCanvasSize = gnWindow_InnerMinimum;
+  goCanvas = document.getElementById('idCanvas');
+  goCanvas.width = gnCanvasSize;
+  goCanvas.height = gnCanvasSize;
+  goCtx2d = goCanvas.getContext('2d');
+
+  gnWalkStride = 8;
+  gnCharModelSize = 32;
+  gnEnemyModelSize = 96;
+  gnFieldBlockSize = 64;
+  gnFieldMapSize = 50;
+  gd1sFieldBlockPalette = ["#0f0", "#5b0", "#890", "#980", "#a70"];
+  gnFieldBitMapSize = gnFieldMapSize * gnFieldBlockSize;
+  gnLastSystemTime = Date.now();
+
+  gnFieldModeSets = {
+    safety: 0,
+    normal: 1,
+    disaster: 2,
+    fight: 3,
+  };
+  gnFieldMode = gnFieldModeSets.normal;
+
+  gnViewEssenceScale = gnScreenMaximum * 1.1 / 1000;
+  console.log('gnViewEssenceScale: ' + gnViewEssenceScale);
+
+  gnFieldBitMapMin = 0;
+  gnFieldBitMapMax = (gnFieldMapSize) * gnFieldBlockSize - 1;
+  console.log('gnFieldBitMapMax: ' + gnFieldBitMapMax);
+  gnFieldEssenceMin = 0;
+  gnFieldEssenceMax = gnFieldBitMapMax * gnViewEssenceScale;
+  console.log('gnFieldEssenceMax: ' + gnFieldEssenceMax);
+  
+  gnViewEssenceDiameter = gnCanvasSize - 1;
+  gnViewEssenceRadius = gnViewEssenceDiameter / 2;
+  console.log('gnViewEssenceDiameter: ' + gnViewEssenceDiameter);
+  console.log('gnViewEssenceRadius: ' + gnViewEssenceRadius);
+  gnViewBitMapDiameter = (gnCanvasSize - 1) / gnViewEssenceScale;
+  gnViewBitMapRadius = gnViewBitMapDiameter / 2;
+  console.log('gnViewBitMapRadius: ' + gnViewBitMapRadius);
+  gnViewMapDiameter = gnViewBitMapDiameter / gnFieldBlockSize;
+  gnViewMapRadius = gnViewMapDiameter / 2;
+  console.log('gnViewMapRadius: ' + gnViewMapRadius);
+
+  gd2nFieldMapArea = new Array(gnFieldMapSize);
+  for (let i = 0; i < gd2nFieldMapArea.length; i++) {
+    gd2nFieldMapArea[i] = new Array(gnFieldMapSize);
+    for (let j = 0; j < gd2nFieldMapArea[i].length; j++) {
+      gd2nFieldMapArea[i][j] = Math.floor(Math.random() * gd1sFieldBlockPalette.length);
+    }
+  }
+
+  gd1nInpKeySets = {
+    left: 37,
+    right: 39,
+    down: 40,
+    up: 38,
+    space: 32,
+  };
+
+  gd2nMovKeySets = {
+    37: [-gnWalkStride, 0], //left
+    39: [gnWalkStride, 0], //right
+    40: [0, gnWalkStride], //down
+    38: [0, -gnWalkStride], //up
+  };
+
+  document.body.onkeydown = function (ev) {
+    console.log('body.onkeydown = function (ev)');
+    let time = Date.now();
+    let scale = 1;
+    let cm = goFigure_Walker;
+    let worth = 0;
+    if (20 < time - gnLastSystemTime) {
+      if (goFigure_Enemy
+        && gd1nInpKeySets.space === ev.keyCode) {
+        console.log('if (goFigure_Enemy && gd1nInpKeySets.space === ev.keyCode)');
+        goFigure_Enemy.hp--;
+        if (goFigure_Enemy.hp <= 0) {
+          console.log('if (goFigure_Enemy.hp <= 0)');
+          worth = goFigure_Enemy.worth;
+          goFigure_Enemy = null;
+        }
+      }
+      if (!goFigure_Enemy) {
+        console.log('if (!goFigure_Enemy)');
+        goFigure_Walker.KMove(ev.keyCode);
+        goFigure_Walker.level += worth;
+        goFigure_Walker.hp += worth;
+        goFigure_Walker.mp += worth;
+      }
+      if (goFigure_Enemy) {
+        console.log('if (goFigure_Enemy)');
+        cm = goFigure_Enemy;
+      }
+      FieldDraw(cm);
+    }
+    gnLastSystemTime = time;
+  }
+
+  class Figure {
+    size = 0;
+    x = 0;
+    y = 0;
+    hp = 0;
+    mp = 0;
+    image;
+    worth = 0;
+    level = 0;
+
+    constructor(fimg, size, x, y) {
+      this.setImage(fimg);
+      this.setSize(size);
+      this.setPos(x, y);
+    }
+
+    getImage1() {
+      return this.image;
+    }
+
+    setImage(fimg) {
+      let image;
+      if (Array.isArray(fimg)) {
+        this.image = new Array();
+        for (let i = 0; i < fimg.length; i++) {
+          if (Array.isArray(fimg)) {
+            this.image[i] = new Array();
+            for (let j = 0; j < fimg[i].length; j++) {
+              image = new Image();
+              image.src = fimg[i][j];
+              this.image[i][j] = image;
+            }
+          } else {
+            image = new Image();
+            image.src = fimg[i];
+            this.image[i] = image;
+          }
+        }
+      } else {
+        image = new Image();
+        image.src = fimg;
+        this.image = image;
+      }
+    }
+
+    setHP(hp) {
+      this.hp = hp;
+    }
+
+    setSize(size) {
+      this.size = size;
+    }
+
+    setPos(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    getShielding() {
+      return 0;
+    }
+
+    Information() {
+    }
+
+    Move(dx, dy) {
+      let x = this.x + dx;
+      let y = this.y + dy;
+      let sr = this.size / 2 - 1;
+      let fbmmin = gnFieldBitMapMin;
+      let fbmmax = gnFieldBitMapMax;
+      if (fbmmin <= (x - sr) && (x + sr) <= fbmmax &&
+        fbmmin <= (y - sr) && (y + sr) <= fbmmax) {
+        this.setPos(x, y);
+      }
+    }
+
+    Draw() {
+      let vbmx = this.x;
+      let vbmy = this.y;
+      let ves = this.size * gnViewEssenceScale;
+      let vex = vbmx * gnViewEssenceScale - gnVECXBias - ves / 2;
+      let vey = vbmy * gnViewEssenceScale - gnVECYBias - ves / 2;
+      console.log(`vex: ${vex}; vey: ${vey}; ves: ${ves}; `);
+      this.DrawFigure(vex, vey, ves);
+      this.Information();
+    }
+
+    // KMove(keyCode) { }
+
+    // DrawFigure(vex, vey, ves) { }
+  };
+
+  class Figure_Enemy extends Figure {
+    hpmax = 0;
+
+    constructor(fimg, size, x, y) {
+      super(fimg, size, x, y);
+      this.setHP(4);
+      this.worth = 0.0543;
+      if (!fimg) {
+        let fimg = ["Dragon-001.png", "Slime-001.png",
+          "Golem-001.png", "Python-001.png", "Wizard-001.png",];
+        let fix = Math.floor(Math.random() * fimg.length);
+        this.setImage(fimg[fix]);
+      }
+    }
+
+    setHP(hp) {
+      this.hpmax = hp;
+      super.setHP(hp);
+    }
+
+    getShielding() {
+      this.hp = 0 <= this.hp ? this.hp : 0;
+      return (this.hpmax - this.hp) / this.hpmax;
+    }
+
+    DrawFigure(vex, vey, ves) {
+      let image = this.getImage1();
+      console.log(`image: ${image}; `);
+      // goCtx2d.fillStyle = "#fff";
+      // goCtx2d.fillRect(vex, vey, ves, ves);
+      goCtx2d.drawImage(image, vex, vey, ves, ves);
+      let sh = this.getShielding();
+      if (0 < sh) {
+        goCtx2d.fillStyle = "rgba(" + [0, 0, 0, sh] + ")";
+        goCtx2d.fillRect(vex, vey, ves, ves);
+      }
+    }
+  };
+
+  class Figure_Walker extends Figure_Enemy {
+    direction = 0;
+    walk = 0;
+    feet = 3;
+
+    constructor(fimg, size, x, y, hp, mp, level) {
+      super(fimg, size, x, y);
+      this.setHP(hp);
+      this.mp = mp;
+      this.level = level;
+    }
+
+    getImage1() {
+      let idr = this.image[this.direction];
+      let image = idr[Math.floor(this.walk / this.feet)];
+      console.log(`image: ${image}; `);
+      this.walk++;
+      this.walk = this.walk % (idr.length * this.feet);
+      return image;
+    }
+
+    Information() {
+      goInformation.innerText = `
+名前：ラミー
+ステータス
+Level：${this.level}
+HP：${this.hp}
+MP：${this.mp}
+      `;
+    }
+
+    KMove(keyCode) {
+      if (gd2nMovKeySets[keyCode]) {
+        let mov = gd2nMovKeySets[keyCode];
+        this.Move(mov[0], mov[1]);
+        switch (keyCode) {
+          case gd1nInpKeySets.down:
+            this.direction = 0;
+            break;
+          case gd1nInpKeySets.left:
+            this.direction = 1;
+            break;
+          case gd1nInpKeySets.up:
+            this.direction = 2;
+            break;
+          case gd1nInpKeySets.right:
+            this.direction = 3;
+            break;
+          default:
+        }
+      }
+      if (gnFieldModeSets.disaster === gnFieldMode &&
+        0.98 < Math.random()) {
+        console.log("★★★ Fight? ★★★");
+        goFigure_Enemy = new Figure_Enemy(null, gnEnemyModelSize,
+          gnFieldBitMapSize / 2, gnFieldBitMapSize / 2);
+      }
+    }
+  };
+
+  let goFigure_Walker = new Figure_Walker(
+    [
+      ["Human-001-00.png", "Human-001-01.png", "Human-001-02.png",],
+      ["Human-001-10.png", "Human-001-11.png", "Human-001-12.png",],
+      ["Human-001-20.png", "Human-001-21.png", "Human-001-22.png",],
+      ["Human-001-30.png", "Human-001-31.png", "Human-001-32.png",],
+    ],
+    gnCharModelSize, gnFieldBitMapSize / 2, gnFieldBitMapSize / 2,
+    30, 20, 1);
+  let goFigure_Enemy;
+
+  function OnAllLady() {
+    FieldDraw(goFigure_Walker);
+  }
+
+  function FieldDraw(oCharModel) {
+    if (!gnResourceDefective) {
+      let vbmcx = oCharModel.x;
+      let vbmcy = oCharModel.y;
+
+      let vmcx = vbmcx / gnFieldBlockSize;
+      let vmcy = vbmcy / gnFieldBlockSize;
+      let vecx = vbmcx * gnViewEssenceScale;
+      let vecy = vbmcy * gnViewEssenceScale;
+
+      let vmcxmin = vmcx - gnViewMapRadius;
+      let vmcxmax = vmcx + gnViewMapRadius;
+      let vmcymin = vmcy - gnViewMapRadius;
+      let vmcymax = vmcy + gnViewMapRadius;
+
+      let vbmcxmin = 0;
+      let vbmcymin = 0;
+      gnFieldMode = gnFieldModeSets.disaster
+
+      let vmcxbias = vmcxmin;
+      let vbmcxbias = vmcxbias * gnFieldBlockSize;
+      vmcxmin = 0 <= vmcxmin ? Math.floor(vmcxmin) : vmcxmin;
+      vmcxmax = 0 <= vmcxmax ? Math.ceil(vmcxmax) : 0;
+      console.log(`(1): vmcxbias: ${vmcxbias}; vbmcxbias: ${vbmcxbias}; `);
+      console.log(`(1): vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      if (vmcxmin < 0) {
+        // gnFieldMode = gnFieldModeSets.safety;
+        vmcxmin = 0;
+        vmcxmax = Math.ceil(gnCanvasSize / gnFieldBlockSize);
+        vbmcxbias = 0;
+      }
+      if (gnFieldMapSize < vmcxmax) {
+        // gnFieldMode = gnFieldModeSets.safety;
+        vmcxmax = gnFieldMapSize - 1;
+        vbmcxmin = vmcxmax * gnFieldBlockSize - gnCanvasSize;
+        vmcxmin = vbmcxmin / gnFieldBlockSize;
+        // vmcxbias = gnPrevVMCXBias;
+        vmcxbias = gnFieldMapSize - (gnViewBitMapDiameter / gnFieldBlockSize);
+        vbmcxbias = vmcxbias * gnFieldBlockSize;
+        vmcxmin = 0 <= vmcxmin ? Math.floor(vmcxmin) : 0;
+      } else {
+        gnPrevVMCXBias = vmcxbias;
+      }
+      let vecxbias = vbmcxbias * gnViewEssenceScale;
+      console.log(`(2): vmcxbias: ${vmcxbias}; vbmcxbias: ${vbmcxbias}; `);
+      console.log(`(2): vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      console.log(`vecxbias: ${vecxbias}`);
+
+      let vmcybias = vmcymin;
+      let vbmcybias = vmcybias * gnFieldBlockSize;
+      vmcymin = 0 <= vmcymin ? Math.floor(vmcymin) : vmcymin;
+      vmcymax = 0 <= vmcymax ? Math.ceil(vmcymax) : 0;
+      console.log(`(1): vmcybias: ${vmcybias}; vbmcybias: ${vbmcybias}; `);
+      console.log(`(1): vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+      if (vmcymin < 0) {
+        // gnFieldMode = gnFieldModeSets.safety;
+        vmcymin = 0;
+        vmcymax = Math.ceil(gnCanvasSize / gnFieldBlockSize);
+        vbmcybias = 0;
+      }
+      if (gnFieldMapSize < vmcymax) {
+        // gnFieldMode = gnFieldModeSets.safety;
+        vmcymax = gnFieldMapSize - 1;
+        vbmcymin = vmcymax * gnFieldBlockSize - gnCanvasSize;
+        vmcymin = vbmcymin / gnFieldBlockSize;
+        // vmcybias = gnPrevVMCXBias;
+        vmcybias = gnFieldMapSize - (gnViewBitMapDiameter / gnFieldBlockSize);
+        vbmcybias = vmcybias * gnFieldBlockSize;
+        vmcymin = 0 <= vmcymin ? Math.floor(vmcymin) : 0;
+      } else {
+        gnPrevVMCXBias = vmcybias;
+      }
+      let vecybias = vbmcybias * gnViewEssenceScale;
+      console.log(`(2): vmcybias: ${vmcybias}; vbmcybias: ${vbmcybias}; `);
+      console.log(`(2): vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+      console.log(`vecybias: ${vecybias}`);
+
+      gnVECXBias = vecxbias;
+      gnVECYBias = vecybias;
+      let vbmcbx = vbmcx - vmcxmin * gnFieldBlockSize;
+      let vbmcby = vbmcy - vmcymin * gnFieldBlockSize;
+
+      let vecbx = vbmcbx * gnViewEssenceScale;
+      let vecby = vbmcby * gnViewEssenceScale;
+      console.log(`vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      console.log(`vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+
+      goCtx2d.fillStyle = "#fff";
+      goCtx2d.fillRect(0, 0, gnCanvasSize, gnCanvasSize);
+      let thick = vmcxmax - vmcxmin;
+      goCtx2d.fillStyle = "#000";
+      goCtx2d.fillRect(0, 0, gnCanvasSize, gnCanvasSize);
+      if (!goFigure_Enemy) {
+        if (Math.ceil(gnViewMapDiameter) + 1 < thick) {
+          console.log("Error(Math.ceil(gnViewMapDiameter) + 1 < thick)");
+          // console.log(`gnViewMapDiameter: ${gnViewMapDiameter}; `);
+          console.log(`thick: ${thick}; `);
+        }
+        for (let x = vmcxmin; x <= vmcxmax; x++) {
+          thick = vmcymax - vmcymin;
+          if (Math.ceil(gnViewMapDiameter) + 1 < thick) {
+            console.log("Error(Math.ceil(gnViewMapDiameter) + 1 < thick)");
+            console.log(`thick: ${thick}; `);
+          }
+          let xl = gd2nFieldMapArea.length;
+          if (0 <= x && x < xl) {
+            for (let y = vmcymin; y <= vmcymax; y++) {
+              let yl = gd2nFieldMapArea[x].length;
+              if (0 <= y && y < yl) {
+                // console.log(`x: ${x}; y: ${y}; `);
+                let vbmx = x * gnFieldBlockSize;
+                let vbmy = y * gnFieldBlockSize;
+                let vex = vbmx * gnViewEssenceScale - vecxbias;
+                let vey = vbmy * gnViewEssenceScale - vecybias;
+                let ves = gnFieldBlockSize * gnViewEssenceScale;
+                goCtx2d.fillStyle =
+                  gd1sFieldBlockPalette[gd2nFieldMapArea[x][y]];
+                goCtx2d.fillRect(vex, vey, ves, ves);
+              }
+            }
+          }
+        }
+        oCharModel.Draw();
+      } else {
+        goFigure_Enemy.Draw();
+        // goFigure_Enemy = null;
+      }
+    }
+  }
+
+</script>
+</html>

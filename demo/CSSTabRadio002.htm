@@ -1,0 +1,69 @@
+﻿<html>
+  <head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <TITLE>test</TITLE>
+    <style type='text/css'>
+    <!--
+.tab-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tab-label {
+  font-weight: bold;
+  color: #fef;
+  background: #0bb;
+  margin: 0.1em 0.3em 0.1em 0em;
+  padding: 0.2em 1em;
+  order: -1;
+}
+.tab-label:hover {
+  font-weight: bold;
+  color: #767;
+  background: #0ee;
+}
+.tab-content {
+  width: 100%;
+  display: none;
+}
+.tab-radio:checked + .tab-label {
+  font-weight: bold;
+  color: #767;
+  background: #0f7;
+}
+.tab-radio:checked + .tab-label+.tab-content {
+   display: block;
+}
+.tab-container > input[type='radio'] {
+  display: none;
+}
+    -->
+    </style>
+  </head>
+  <body>
+
+  <div class='tab-container'>
+    <input id='TAB-001-001UNIT' type='radio' name='TAB-001' class='tab-radio' checked>
+    <label class='tab-label' for='TAB-001-001UNIT'>001-001UNIT</label>
+    <div class='tab-content'>
+いろはにほへと ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+
+    <input id='TAB-001-002UNIT' type='radio' name='TAB-001' class='tab-radio' >
+    <label class='tab-label' for='TAB-001-002UNIT'>001-002UNIT</label>
+    <div class='tab-content'>
+ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+
+    <input id='TAB-001-003UNIT' type='radio' name='TAB-001' class='tab-radio' >
+    <label class='tab-label' for='TAB-001-003UNIT'>001-003UNIT</label>
+    <div class='tab-content'>
+つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+  </div>
+
+  </body>
+</html>

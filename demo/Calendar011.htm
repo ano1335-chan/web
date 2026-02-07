@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--
+  ↑metaタグでcharsetをUTF-8に設定しています。
+  モチロン他のキャラクターセットに変更しても良いですが、
+  必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+  -->
+  <title>test</title>
+</head>
+<body>
+
+  <button type="button" onclick="Calendar_Move(-7);">戻る</button>　
+  <button type="button" onclick="Calendar_Move(7);">進む</button>
+  <br>
+
+  <table border=border>
+    <thead>
+      <tr id="idDayOfWeekTR">
+        <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="idWeekTR">
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+  <!--
+  nDateBias = 0;
+  a1sDayOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
+  oDayOfWeekTR = document.getElementById('idDayOfWeekTR');
+  oWeekTR = document.getElementById('idWeekTR');
+  oNowDate = new Date();
+  console.log(oNowDate);
+  Calendar_Move(0);
+
+  function Calendar_Move(move) {
+    let nDayBias;
+    nDateBias += move;
+    if (nDateBias < 0) nDateBias = 0;
+    oNewDate = new Date(oNowDate.getTime());
+    oNewDate.setDate(oNowDate.getDate() + nDateBias);
+    nDayBias = oNewDate.getDay(); // 曜日(「0～6」の数値)
+    for (let i = 0; i < oWeekTR.cells.length; i++) {
+      oDayOfWeekTR.cells[i].innerHTML = a1sDayOfWeek[(nDayBias + i) % 7];
+      oWeekTR.cells[i].innerHTML = (oNewDate.getMonth() + 1) + "月" + oNewDate.getDate() +
+        "日";
+      console.log(oWeekTR.cells[i].innerHTML);
+      oNewDate.setDate(oNewDate.getDate() + 1);
+    }
+  }
+  // -->
+  </script>
+</body>
+</html>

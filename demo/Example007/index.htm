@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    font-size: 22px;
+  }
+
+  html {
+    /*width: 1235px*/
+  }
+
+  body {
+    margin: 8px;
+    width: 1200px
+  }
+
+  .Container {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 85px;
+  }
+
+  main {
+    width: 1020px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  .Block_001 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    column-gap: 30px;
+    row-gap: 20px;
+  }
+
+  .Block_001>div {
+    height: 45px;
+    box-sizing: border-box;
+    border: 2px solid black;
+  }
+
+  .Block_001>div {
+    width: 245px;
+  }
+
+  .Block_001>div:nth-child(1) {
+    margin-left: 775px;
+  }
+
+  .Block_001>div:nth-child(2) {
+    width: 470px;
+  }
+
+  .Block_001>div:nth-child(3) {}
+
+  .Block_001>div:nth-child(4) {}
+
+  .Profile-Name {
+    position: relative;
+  }
+
+  .Profile-Name>*:nth-child(1) {
+    position: absolute;
+    top: -33px;
+  }
+
+  .Block_003,
+  .Block_005,
+  .Block_006 {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+  }
+
+  .Block_003>div,
+  .Block_005>div,
+  .Block_006>div {
+    box-sizing: border-box;
+    border: 2px solid black;
+  }
+
+  .Block_003>div:nth-child(1),
+  .Block_005>div:nth-child(1),
+  .Block_006>div:nth-child(1) {
+    border-bottom: 0px none black;
+    width: 350px;
+    margin-right: 670px;
+    text-align: center;
+  }
+
+  .Block_003>div:nth-child(2) {
+    width: 720px;
+  }
+
+  .Block_003>div:nth-child(3) {
+    width: 270px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Block_003>:nth-child(n+2):nth-child(-n+3) {
+    height: 270px;
+  }
+
+  .Block_005>div:nth-child(2),
+  .Block_006>div:nth-child(2) {
+    width: 1020px;
+    height: 166px;
+  }
+
+  aside {
+    width: 95px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  aside>div {
+    width: 95px;
+    height: 95px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+</style>
+<body>
+
+  <div class="Container">
+    <main>
+      <div class="Block_001">
+        <div>
+        </div>
+        <div></div>
+        <div class="Profile-Name">
+          <div>プロフィール名</div>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="Block_003">
+        <div>
+          説明文
+        </div>
+        <div></div>
+        <div>
+          画像
+        </div>
+      </div>
+
+      <div class="Block_005">
+        <div>
+          解説
+        </div>
+        <div></div>
+      </div>
+
+      <div class="Block_006">
+        <div>
+          結果
+        </div>
+        <div></div>
+      </div>
+    </main>
+
+    <aside>
+      <div>a</div>
+      <div>i</div>
+      <div>u</div>
+      <div>e</div>
+      <div>o</div>
+    </aside>
+  </div>
+</body>
+</html>

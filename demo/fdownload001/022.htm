@@ -1,0 +1,45 @@
+<html>
+    <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+        <title>Sample</title>
+    </head>
+    <body>
+
+        <script type='text/javascript'>
+            DownloadFile = "images001.jpg";
+            document.write("<a id='download' href='JavaScript:;' download='"+DownloadFile+"' onclick='FDownload()'>ダウンロード</a>");
+            function FLoad(url) {
+                let reqXML, response;
+                reqXML = new XMLHttpRequest();
+                reqXML.open( "GET", url, false );
+                reqXML.overrideMimeType('text\/plain; charset=x-user-defined');
+// MIME タイプを上書きしてブラウザーに強制的に、ユーザー定義の文字セットを使用したプレインテキストとして扱わせます。
+// これにより、ブラウザーはこれを解釈せず、未処理のままバイト列を通します。
+                reqXML.send(null);
+                response = reqXML.responseText;
+                if( reqXML.status!=200 ) response = null;
+                return response;
+            }
+            function FDownload() {
+                let BinaryArray = StringToBinaryArray(FLoad(DownloadFile));
+                let blob = new Blob([BinaryArray], {type: "image/jpeg"}); // 画像がjpegの場合
+                if (window.navigator.msSaveBlob) { 
+                    window.navigator.msSaveBlob(blob, DownloadFile); 
+                    // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+                    window.navigator.msSaveOrOpenBlob(blob, DownloadFile); 
+                } else {
+                    document.getElementById("download").href = window.URL.createObjectURL(blob);
+                }
+            }
+            function StringToBinaryArray(s) {
+                let buf = new ArrayBuffer(s.length);
+                let BinaryInterface = new Uint8Array(buf);
+                for (let i=0; i<s.length; i++) {
+                    BinaryInterface[i] = s.charCodeAt(i);
+                }
+                return buf;
+            }  
+        </script>
+        
+    </body>
+</html>

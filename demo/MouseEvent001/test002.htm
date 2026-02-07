@@ -1,0 +1,142 @@
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+   <TITLE>test</TITLE>
+</head>
+   <body>
+
+      <script type="text/javascript">
+      <!--
+      d1MouseEvent_Switch = new Array();
+      d2MouseEvent_ImageFile = new Array();
+      d2MouseEvent_ImageObj = new Array();
+      vsMouseEvent_ClickStatus = "";
+      vsMouseEvent_ImageID = "";
+      vfMouseEvent_ImageFID = "MouseEvent_";
+      vfMouseEvent_SerialNumber = 0;
+      vfMouseEvent_GroupNumber = 0;
+      d1MouseEvent_ImagePreloadCache = new Array();
+      vfMouseEvent_ImagePreloadNumber = 0;
+      
+      document.write("<table border='0' cellpadding='7'>");
+      document.write("<tr><td>");
+      MouseEvent_Button001();
+      document.write("</td><td>");
+      MouseEvent_Button001();
+      document.write("</td></tr>");
+      document.write("<tr><td>");
+      MouseEvent_Button001();
+      document.write("</td><td>");
+      MouseEvent_Button001();
+      document.write("</td></tr>");
+      document.write("</table>");
+      
+      function MouseEvent_Button001(){
+         vfMouseEvent_GroupNumber = vfMouseEvent_SerialNumber;
+      
+         document.write("");
+         document.write("<table border='0' cellpadding='0' cellspacing='0' style='display: inline; '>");
+         document.write("<tr><td>");
+         
+         vsMouseEvent_ImageID = vfMouseEvent_ImageFID+vfMouseEvent_SerialNumber;
+         d2MouseEvent_ImageFile[vsMouseEvent_ImageID] = ["left.png", "left_on.png"];
+         vsImageFile = d2MouseEvent_ImageFile[vsMouseEvent_ImageID][0];
+         d1MouseEvent_ImagePreloadCache[vsImageFile] = new Image();
+         d1MouseEvent_ImagePreloadCache[vsImageFile].src = vsImageFile;
+         vsImageFile = d2MouseEvent_ImageFile[vsMouseEvent_ImageID][1];
+         d1MouseEvent_ImagePreloadCache[vsImageFile] = new Image();
+         d1MouseEvent_ImagePreloadCache[vsImageFile].src = vsImageFile;
+         d1MouseEvent_Switch[vsMouseEvent_ImageID] = false; // true // 
+         document.write("<a href='JavaScript:;' >");
+         document.write("<img border='0' id='"+vsMouseEvent_ImageID+"' src='"+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][1]+"' ");
+         document.write(" onmouseover='MouseEvent_Button001_MOverEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         document.write(" onmouseout='MouseEvent_Button001_MOutEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         document.write(" onmousedown='MouseEvent_Button001_MDowneEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         // document.write(" onmouseup='"+vfMouseEvent_MUpEvent+"' ");
+         document.write(" >");
+         document.write("</a>");
+         // document.write('<br>');
+         vfMouseEvent_SerialNumber++;
+      
+         document.write("");
+         document.write("</td><td>");
+      
+         vsMouseEvent_ImageID = vfMouseEvent_ImageFID+vfMouseEvent_SerialNumber;
+         d2MouseEvent_ImageFile[vsMouseEvent_ImageID] = ["right.png", "right_on.png"];
+         vsImageFile = d2MouseEvent_ImageFile[vsMouseEvent_ImageID][0];
+         d1MouseEvent_ImagePreloadCache[vsImageFile] = new Image();
+         d1MouseEvent_ImagePreloadCache[vsImageFile].src = vsImageFile;
+         vsImageFile = d2MouseEvent_ImageFile[vsMouseEvent_ImageID][1];
+         d1MouseEvent_ImagePreloadCache[vsImageFile] = new Image();
+         d1MouseEvent_ImagePreloadCache[vsImageFile].src = vsImageFile;
+         d1MouseEvent_Switch[vsMouseEvent_ImageID] = false; // true // 
+         document.write("<a href='JavaScript:;' >");
+         document.write("<img border='0' id='"+vsMouseEvent_ImageID+"' src='"+d2MouseEvent_ImageFile[vsMouseEvent_ImageID][0]+"' ");
+         document.write(" onmouseover='MouseEvent_Button001_MOverEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         document.write(" onmouseout='MouseEvent_Button001_MOutEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         document.write(" onmousedown='MouseEvent_Button001_MDowneEvent(\""+vfMouseEvent_ImageFID+"\", \""+vfMouseEvent_GroupNumber+"\", \""+vfMouseEvent_SerialNumber+"\");' ");
+         // document.write(" onmouseup='"+vfMouseEvent_MUpEvent+"' ");
+         document.write(" >");
+         document.write("</a>");
+         // document.write('<br>');
+         vfMouseEvent_SerialNumber++;
+      
+         document.write("");
+         document.write("</td></tr>");
+         document.write("</table>");
+      }
+      function MouseEvent_Button001_MOverEvent(ImageFID, vfGroupNumber, vfSerialNumber, vsOverImage){
+         var obj, vsImageID, vsGImageID, vfGNumber1;
+         vsImageID = vfMouseEvent_ImageFID+(vfSerialNumber);
+         obj = document.getElementById(vsImageID);
+         if( d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               obj.src = d2MouseEvent_ImageFile[vsImageID][1];
+            }
+         }else{ // if( ! d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber!=vfSerialNumber ){
+               obj.src = d2MouseEvent_ImageFile[vsImageID][1];
+            }
+         }
+      }
+      function MouseEvent_Button001_MOutEvent(ImageFID, vfGroupNumber, vfSerialNumber, vsOutImage){
+         var obj, vsImageID, vsGImageID, vfGNumber1;
+         vsImageID = vfMouseEvent_ImageFID+vfSerialNumber;
+         obj = document.getElementById(vsImageID);
+         if( d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+            }
+         }else{ // if( ! d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber!=vfSerialNumber ){
+               obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+            }
+         }
+         vsMouseEvent_ClickStatus = "";
+      }
+      function MouseEvent_Button001_MDowneEvent(ImageFID, vfGroupNumber, vfSerialNumber, vsDowneImage){
+         var obj, vsImageID, vsGImageID, vfGNumber1;
+          vsImageID = vfMouseEvent_ImageFID+vfSerialNumber;
+          vsMouseEvent_ClickStatus = vsImageID;
+         if( d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber==vfSerialNumber ){
+               d1MouseEvent_Switch[vfGroupNumber] = ! d1MouseEvent_Switch[vfGroupNumber];
+               vfGNumber1 = parseFloat(vfGroupNumber)+1;
+               vsImageID = vfMouseEvent_ImageFID+vfGNumber1;
+               obj = document.getElementById(vsImageID);
+               obj.src = d2MouseEvent_ImageFile[vsImageID][0];
+            }
+         }else{ // if( ! d1MouseEvent_Switch[vfGroupNumber] ){
+            if( vfGroupNumber!=vfSerialNumber ){
+               d1MouseEvent_Switch[vfGroupNumber] = ! d1MouseEvent_Switch[vfGroupNumber];
+               vsGImageID = vfMouseEvent_ImageFID+vfGroupNumber;
+               obj = document.getElementById(vsGImageID);
+               obj.src = d2MouseEvent_ImageFile[vsGImageID][0];
+            }
+         }
+      }
+      
+      // -->
+      </script>
+
+   </body>
+</html>

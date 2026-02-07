@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Width_100per {
+      width: 100%;
+    }
+
+    .Width_Auto {
+      width: auto;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+  <span class="Border Width_Auto ">
+    span class="Border Width_Auto " (display: inline)
+  </span><br>
+  <br>
+  <span class="Border Width_100per ">
+    span class="Border Width_100per " (display: inline)
+  </span><br>
+  <br>
+  <span class="Border Width_Auto Display_InlineBlock ">
+    span class="Border Width_Auto Display_InlineBlock "
+  </span><br>
+  <br>
+  <span class="Border Width_100per Display_InlineBlock ">
+    span class="Border Width_100per Display_InlineBlock "
+  </span><br>
+  <br>
+  <div class="Border Width_Auto ">
+    div class="Border Width_Auto " (display: block)
+  </div>
+  <br>
+  <div class="Border Width_100per ">
+    div class="Border Width_100per " (display: block)
+  </div>
+</body>
+</html>

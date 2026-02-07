@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <title></title>
+  <style>
+    .Tab_Container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .TabLink {
+      text-decoration: none;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin: 0.1em 0.3em 0.1em 0em;
+      padding: 0.2em 1em;
+      order: -1;
+    }
+
+    .Tab_Container>a:target {
+      font-weight: bold;
+      color: #767;
+      background: #0f7;
+    }
+
+    .Tab_Container>.TabContent {
+      display: none;
+    }
+
+    .Tab_Container>a:target+.TabContent {
+      display: block;
+    }
+
+    .TabContent {
+      width: 100%;
+    }
+
+    .TabLink:hover {
+      font-weight: bold;
+      color: #767;
+      background: #0ee;
+    }
+
+    .Dummy_Tail {
+      height: 100vh;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="Tab_Container">
+    <a id="Tab-001-001" class="TabLink" href="#Tab-001-001">Tab-001-001</a>
+    <div class="TabContent">
+      いろはにほへと ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+    <a id="Tab-001-002" class="TabLink" href="#Tab-001-002">Tab-001-002</a>
+    <div class="TabContent">
+      ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+    <a id="Tab-001-003" class="TabLink" href="#Tab-001-003">Tab-001-003</a>
+    <div class="TabContent">
+      つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす<br>
+    </div>
+  </div>
+  <br>
+  <footer>【Footer】</footer>
+  <div class="Dummy_Tail"></div>
+</body>
+</html>

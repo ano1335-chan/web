@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .Border {
+    border: thin solid black;
+  }
+
+  .SVG_AntiAliasing-Off {
+    shape-rendering: crispEdges;
+    /*エイリアシング：アンチエイリアシングOFF*/
+  }
+
+  .SVGUse_Heart {
+    fill: #f00;
+    stroke: #000;
+  }
+
+  .SVG_Heart_2 {
+    width: 220px;
+    height: 205px;
+  }
+
+</style>
+
+<svg display="none">
+  <defs>
+    <symbol id="idSVGSymbol_Heart" viewBox="-22, 0  44, 41">
+      <g>
+        <path stroke-linecap="round" stroke-linejoin="round" d="
+        M 0, 5 
+        C -9, -2 -16, 1 -19, 7 -23, 13 -16, 31 0, 40       
+        C 16, 31 23, 13 19, 7 16, 1 9, -2 0, 5 
+        Z" />
+      </g>
+    </symbol>
+  </defs>
+</svg>
+<body>
+
+  アンチエイリアシングON<br>
+  <svg class="SVG_Heart_2">
+    <use class="SVGUse_Heart" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+
+  <br>
+
+  アンチエイリアシングOFF<br>
+  <svg class="SVG_Heart_2">
+    <use class="SVGUse_Heart SVG_AntiAliasing-Off" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+
+</body>
+</html>

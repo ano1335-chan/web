@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <TITLE></TITLE>
+  <style>
+    :root {
+      --Border_Weight_1: calc(1rem / 16);
+      --Hamburger_Switch_Margin_Top: 0.175rem;
+      --Hamburger_Content_Padding_Horizon: 0.35rem;
+      --Hamburger_Content_Padding_Vertical: 0.1rem;
+      --Hamburger_Switch_Absolute_Horizon: calc(var(--Hamburger_Content_Padding_Horizon) + var(--Border_Weight_1));
+      --Hamburger_Switch_Absolute_Left: var(--Hamburger_Switch_Absolute_Horizon);
+      --Hamburger_Switch_Absolute_Right: var(--Hamburger_Switch_Absolute_Horizon);
+      --Hamburger_Switch_Absolute_Top: calc(var(--Hamburger_Switch_Margin_Top) + var(--Hamburger_Content_Padding_Vertical) + var(--Border_Weight_1));
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Border_Circle {
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .Position_Fixed_0_0 {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .Hamburger_Checkbox {
+      display: none;
+    }
+
+    .Hamburger_Container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .Hamburger_Switch {
+      display: inline-flex;
+      justify-content: center;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0ee;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      user-select: none;
+    }
+
+    .Hamburger_Opener {
+      position: absolute;
+      top: var(--Hamburger_Switch_Absolute_Top);
+      /*left: var(--Hamburger_Switch_Absolute_Horizon);*/
+      right: var(--Hamburger_Switch_Absolute_Horizon);
+    }
+
+    .Hamburger_Closer {
+      display: none;
+      position: absolute;
+      top: var(--Hamburger_Switch_Absolute_Top);
+      /*left: var(--Hamburger_Switch_Absolute_Horizon);*/
+      right: var(--Hamburger_Switch_Absolute_Horizon);
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Closer {
+      display: inline-flex;
+    }
+
+    .Hamburger_DummyCloser_Container {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .Hamburger_DummyCloser {
+      margin: var(--Hamburger_Switch_Margin_Top) 0 0 0;
+      visibility: hidden;
+    }
+
+    .Hamburger_Content {
+      display: inline-block;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0cc;
+      position: absolute;
+      left: 101vw;
+      top: 0;
+      white-space: nowrap;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: 0.5rem;
+      padding: var(--Hamburger_Content_Padding_Vertical) var(--Hamburger_Content_Padding_Horizon);
+      transform: translateX(0);
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Content {
+      left: 100%;
+      transform: translateX(-100%);
+      transition: 0.3s ease-in-out;
+    }
+
+    .Hamburger_Filter {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      width: 100%;
+      height: 100vh;
+      background-color: #000;
+      opacity: 0.5;
+    }
+
+    .Hamburger_Checkbox:checked~.Hamburger_Filter {
+      display: block;
+    }
+
+    .DummyTail {
+      width: 50vw;
+      height: 100vh;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="Hamburger_Container">
+      <input type="checkbox" id="Hamburger_Checkbox" class="Hamburger_Checkbox ">
+      <div class="Hamburger_Filter"></div>
+      <label name="Hamburger_Opener" for="Hamburger_Checkbox" class="Hamburger_Opener Hamburger_Switch">
+        ≡
+      </label>
+      <div class="Hamburger_Content UserSelect_None">
+        <div class="Hamburger_DummyCloser_Container">
+          <label for="Hamburger_Checkbox" class="Hamburger_Switch Hamburger_DummyCloser ">
+            ×
+          </label>
+        </div>
+        <label for="Hamburger_Checkbox" onclick="location='#iroha';">
+          いろはにほへと<br>
+        </label>
+        <label for="Hamburger_Checkbox" onclick="location='#tunena';">
+          つねならむ<br>
+        </label>
+        <label for="Hamburger_Checkbox" onclick="location='#ehimo';">
+          ゑひもせす<br>
+        </label>
+      </div>
+      <label name="Hamburger_Closer" for="Hamburger_Checkbox" class="Hamburger_Switch Hamburger_Closer ">
+        ×
+      </label>
+    </nav>
+  </header>
+
+  <br>
+  いろは歌<br>
+  <br>
+  <a id="iroha"></a>
+  いろはにほへと<br>
+  ちりぬるを<br>
+  わかよたれそ<br>
+  <a id="tunena"></a>
+  つねならむ<br>
+  うゐのおくやま<br>
+  けふこえて<br>
+  あさきゆめみし<br>
+  <a id="ehimo"></a>
+  ゑひもせす<br>
+  <br>
+  <footer>
+    【Footer】
+  </footer>
+  <div class="DummyTail "></div>
+</body>
+
+</html>

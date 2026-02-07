@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+</head>
+<style>
+  .SVG_AntiAliasing-Off {
+    shape-rendering: crispEdges;
+    /*エイリアシング：アンチエイリアシングOFF*/
+  }
+
+  .SVGUse_Heart {
+    fill: #f00;
+    stroke: #000;
+  }
+
+  .SVG_Heart_1 {
+    width: 110px;
+    height: 100px;
+  }
+
+  .SVG_Heart_2 {
+    width: 220px;
+    height: 200px;
+  }
+
+</style>
+
+<svg display="none">
+  <defs>
+    <symbol id="idSVGSymbol_Heart" viewBox="-110, 0  220, 201">
+      <g>
+        <path stroke-linecap="round" stroke-linejoin="round" d="
+        M 0, 27 
+        C -44, -10 -79, 6 -96, 36 -116, 66 -79,155 0,200
+        L 0,200 
+        C 79, 155 116, 66 96, 36 79, 6 44, -10 0, 27
+        Z" />
+      </g>
+    </symbol>
+  </defs>
+</svg>
+<body>
+
+  アンチエイリアシングON<br>
+  <svg class="SVG_Heart_2">
+    <use class="SVGUse_Heart" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+
+  <br>
+
+  アンチエイリアシングOFF<br>
+  <svg class="SVG_Heart_2">
+    <use class="SVGUse_Heart SVG_AntiAliasing-Off" xlink:href="#idSVGSymbol_Heart"></use>
+  </svg><br>
+
+</body>
+</html>

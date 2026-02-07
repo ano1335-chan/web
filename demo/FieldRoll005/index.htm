@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preload" href="Human-001-00.png" as="image">
+  <link rel="preload" href="Human-001-01.png" as="image">
+  <link rel="preload" href="Human-001-02.png" as="image">
+
+  <link rel="preload" href="Human-001-10.png" as="image">
+  <link rel="preload" href="Human-001-11.png" as="image">
+  <link rel="preload" href="Human-001-12.png" as="image">
+
+  <link rel="preload" href="Human-001-20.png" as="image">
+  <link rel="preload" href="Human-001-21.png" as="image">
+  <link rel="preload" href="Human-001-22.png" as="image">
+
+  <link rel="preload" href="Human-001-30.png" as="image">
+  <link rel="preload" href="Human-001-31.png" as="image">
+  <link rel="preload" href="Human-001-32.png" as="image">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <script>
+
+    window.onload = function () {
+      PreloadMan();
+    }
+    function PreloadMan() {
+      gnResourceDefective--;
+      console.log(`gnResourceDefective: ${gnResourceDefective}`);
+      if (!gnResourceDefective) {
+        OnAllLady();
+      }
+    }
+    preload = document.querySelectorAll('link[rel="preload"]');
+    gnResourceDefective = preload.length + 1;
+    for (let w of preload) {
+      w.onload = PreloadMan;
+    }
+
+    gwHTMLHead = document.head;
+    gwHTMLRoot = document.documentElement;
+    goHTMLRoot_ComputedStyle = getComputedStyle(gwHTMLRoot);
+    gnScreenWidth = screen.width;
+    gnScreenHeight = screen.height;
+    gnScreenMinimum = Math.min(gnScreenWidth, gnScreenHeight);
+    gnScreenMaximum = Math.max(gnScreenWidth, gnScreenHeight);
+    console.log('gnScreenWidth: ' + gnScreenWidth);
+    console.log('gnScreenHeight: ' + gnScreenHeight);
+    gnWindow_InnerWidth = window.innerWidth;
+    gnWindow_InnerHeight = window.innerHeight;
+    gnWindow_InnerMinimum = Math.min(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    gnWindow_InnerMaximum = Math.max(gnWindow_InnerWidth, gnWindow_InnerHeight);
+    console.log('gnWindow_InnerWidth: ' + gnWindow_InnerWidth);
+    console.log('gnWindow_InnerHeight: ' + gnWindow_InnerHeight);
+    gwHTMLRoot.style.setProperty('--Window_InnerMinimum', gnWindow_InnerMinimum + 'px');
+    CSSValue_Window_InnerMinimum = goHTMLRoot_ComputedStyle.getPropertyValue('--Window_InnerMinimum');
+    console.log('CSSValue_Window_InnerMinimum: ' + CSSValue_Window_InnerMinimum);
+
+  </script>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .CanvasStyle {
+      width: var(--Window_InnerMinimum);
+      height: var(--Window_InnerMinimum);
+    }
+
+  </style>
+</head>
+<body>
+  <canvas id="idCanvas" class="CanvasStyle Border"></canvas>
+
+</body>
+<script>
+  gnCanvasSize = gnWindow_InnerMinimum;
+  goCanvas = document.getElementById('idCanvas');
+  goCanvas.width = gnCanvasSize;
+  goCanvas.height = gnCanvasSize;
+  goCtx2d = goCanvas.getContext('2d');
+
+  gnWalkStride = 8;
+  gnCharModelSize = 32;
+  gnFieldBlockSize = 64;
+  gnFieldMapSize = 50;
+  gd1sFieldBlockPalette = ["#0f0", "#5b0", "#890", "#980", "#a70"];
+  gnFieldBitMapSize = gnFieldMapSize * gnFieldBlockSize;
+  gnLastSystemTime = Date.now();
+
+  gnViewEssenceScale = gnScreenMaximum * 1.1 / 1000;
+  console.log('gnViewEssenceScale: ' + gnViewEssenceScale);
+  gnViewEssenceDiameter = gnCanvasSize - 1;
+  gnViewEssenceRadius = gnViewEssenceDiameter / 2;
+  console.log('gnViewEssenceDiameter: ' + gnViewEssenceDiameter);
+  console.log('gnViewEssenceRadius: ' + gnViewEssenceRadius);
+  gnViewBitMapDiameter = (gnCanvasSize - 1) / gnViewEssenceScale;
+  gnViewBitMapRadius = gnViewBitMapDiameter / 2;
+  console.log('gnViewBitMapRadius: ' + gnViewBitMapRadius);
+  gnViewMapDiameter = gnViewBitMapDiameter / gnFieldBlockSize;
+  gnViewMapRadius = gnViewMapDiameter / 2;
+  console.log('gnViewMapRadius: ' + gnViewMapRadius);
+
+  gd2nFieldMapArea = new Array(gnFieldMapSize);
+  for (let i = 0; i < gd2nFieldMapArea.length; i++) {
+    gd2nFieldMapArea[i] = new Array(gnFieldMapSize);
+    for (let j = 0; j < gd2nFieldMapArea[i].length; j++) {
+      gd2nFieldMapArea[i][j] = Math.floor(Math.random() * gd1sFieldBlockPalette.length);
+    }
+  }
+
+  gd1nInpKeySet = {
+    left: 37,
+    right: 39,
+    down: 40,
+    up: 38,
+  };
+
+  gd2nMovKeySet = {
+    37: [-gnWalkStride, 0], //left
+    39: [gnWalkStride, 0], //right
+    40: [0, gnWalkStride], //down
+    38: [0, -gnWalkStride], //up
+  };
+
+  document.body.onkeydown = function (ev) {
+    // if (gd2nMovKeySet[ev.keyCode]) {
+    // let mov = gd2nMovKeySet[ev.keyCode];
+    // goCharModel.Move(mov[0], mov[1]);
+    let time = Date.now();
+    if (15<time - gnLastSystemTime) {
+      goCharModel.KMove(ev.keyCode);
+      FieldDraw();
+    }
+    gnLastSystemTime = time;
+  }
+
+  class Figure {
+    image = [[], [], [], [],];
+    direction = 0;
+    walk = 0;
+    feet = 3;
+    size = 0;
+    x = 0;
+    y = 0;
+
+    constructor(fimg, size, x, y) {
+      this.setImage(fimg);
+      this.setSize(size);
+      this.setPos(x, y);
+    }
+
+    setImage(fimg) {
+      for (let i = 0; i < fimg.length; i++) {
+        for (let j = 0; j < fimg[i].length; j++) {
+          let image = new Image();
+          image.src = fimg[i][j];
+          this.image[i][j] = image;
+        }
+      }
+    }
+
+    setSize(size) {
+      this.size = size;
+    }
+
+    setPos(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    Move(dx, dy) {
+      let x = this.x + dx;
+      let y = this.y + dy;
+      this.setPos(x, y);
+    }
+
+    KMove(keyCode) {
+      if (gd2nMovKeySet[keyCode]) {
+        let mov = gd2nMovKeySet[keyCode];
+        goCharModel.Move(mov[0], mov[1]);
+        switch (keyCode) {
+          case gd1nInpKeySet.down:
+            this.direction = 0;
+            break;
+          case gd1nInpKeySet.left:
+            this.direction = 1;
+            break;
+          case gd1nInpKeySet.up:
+            this.direction = 2;
+            break;
+          case gd1nInpKeySet.right:
+            this.direction = 3;
+            break;
+          default:
+        }
+      }
+    }
+
+    Draw() { // ダミー
+    }
+  };
+
+  class CharModel extends Figure {
+    constructor(fimg, size, x, y,) {
+      super(fimg, size, x, y,);
+    }
+
+    Draw() {
+      let vbmx = this.x;
+      let vbmy = this.y;
+      let ves = this.size * gnViewEssenceScale;
+      let vex = vbmx * gnViewEssenceScale - gnVECXBias - ves / 2;
+      let vey = vbmy * gnViewEssenceScale - gnVECYBias - ves / 2;
+      goCtx2d.fillStyle = "#fff";
+      console.log(`vex: ${vex}; vey: ${vey}; ves: ${ves}; `);
+      // goCtx2d.fillRect(vex, vey, ves, ves);
+      let idr = this.image[this.direction];
+      let image = idr[Math.floor(this.walk / this.feet)];
+      console.log(`image: ${image}; `);
+      // goCtx2d.scale(gnViewEssenceScale, gnViewEssenceScale);
+      goCtx2d.drawImage(image, vex, vey, ves, ves);
+      this.walk++;
+      this.walk = this.walk % (idr.length * this.feet);
+    }
+  };
+
+  let goCharModel = new CharModel(
+    [
+      ["Human-001-00.png", "Human-001-01.png", "Human-001-02.png",],
+      ["Human-001-10.png", "Human-001-11.png", "Human-001-12.png",],
+      ["Human-001-20.png", "Human-001-21.png", "Human-001-22.png",],
+      ["Human-001-30.png", "Human-001-31.png", "Human-001-32.png",],
+    ],
+    gnCharModelSize,
+    gnFieldBitMapSize / 2, gnFieldBitMapSize / 2);
+
+
+  function OnAllLady() {
+    FieldDraw();
+  }
+
+  function FieldDraw() {
+    if (!gnResourceDefective) {
+      let vbmcx = goCharModel.x;
+      let vbmcy = goCharModel.y;
+
+      let vmcx = vbmcx / gnFieldBlockSize;
+      let vmcy = vbmcy / gnFieldBlockSize;
+      let vecx = vbmcx * gnViewEssenceScale;
+      let vecy = vbmcy * gnViewEssenceScale;
+
+      let vmcxmin = vmcx - gnViewMapRadius;
+      let vmcxmax = vmcx + gnViewMapRadius;
+      let vmcymin = vmcy - gnViewMapRadius;
+      let vmcymax = vmcy + gnViewMapRadius;
+
+      let vbmcxmin = 0;
+      let vbmcymin = 0;
+
+      let vmcxbias = vmcxmin;
+      let vbmcxbias = vmcxbias * gnFieldBlockSize;
+      vmcxmin = 0 <= vmcxmin ? Math.floor(vmcxmin) : vmcxmin;
+      vmcxmax = 0 <= vmcxmax ? Math.ceil(vmcxmax) : 0;
+      console.log(`(1): vmcxbias: ${vmcxbias}; vbmcxbias: ${vbmcxbias}; `);
+      console.log(`(1): vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      if (vmcxmin < 0) {
+        vmcxmin = 0;
+        vmcxmax = Math.ceil(gnCanvasSize / gnFieldBlockSize);
+        vbmcxbias = 0;
+      }
+      if (gnFieldMapSize < vmcxmax) {
+        vmcxmax = gnFieldMapSize - 1;
+        vbmcxmin = vmcxmax * gnFieldBlockSize - gnCanvasSize;
+        vmcxmin = vbmcxmin / gnFieldBlockSize;
+        // vmcxbias = gnPrevVMCXBias;
+        vmcxbias = gnFieldMapSize - (gnViewBitMapDiameter / gnFieldBlockSize);
+        vbmcxbias = vmcxbias * gnFieldBlockSize;
+        vmcxmin = 0 <= vmcxmin ? Math.floor(vmcxmin) : 0;
+      } else {
+        gnPrevVMCXBias = vmcxbias;
+      }
+      let vecxbias = vbmcxbias * gnViewEssenceScale;
+      console.log(`(2): vmcxbias: ${vmcxbias}; vbmcxbias: ${vbmcxbias}; `);
+      console.log(`(2): vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      console.log(`vecxbias: ${vecxbias}`);
+
+      let vmcybias = vmcymin;
+      let vbmcybias = vmcybias * gnFieldBlockSize;
+      vmcymin = 0 <= vmcymin ? Math.floor(vmcymin) : vmcymin;
+      vmcymax = 0 <= vmcymax ? Math.ceil(vmcymax) : 0;
+      console.log(`(1): vmcybias: ${vmcybias}; vbmcybias: ${vbmcybias}; `);
+      console.log(`(1): vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+      if (vmcymin < 0) {
+        vmcymin = 0;
+        vmcymax = Math.ceil(gnCanvasSize / gnFieldBlockSize);
+        vbmcybias = 0;
+      }
+      if (gnFieldMapSize < vmcymax) {
+        vmcymax = gnFieldMapSize - 1;
+        vbmcymin = vmcymax * gnFieldBlockSize - gnCanvasSize;
+        vmcymin = vbmcymin / gnFieldBlockSize;
+        // vmcybias = gnPrevVMCXBias;
+        vmcybias = gnFieldMapSize - (gnViewBitMapDiameter / gnFieldBlockSize);
+        vbmcybias = vmcybias * gnFieldBlockSize;
+        vmcymin = 0 <= vmcymin ? Math.floor(vmcymin) : 0;
+      } else {
+        gnPrevVMCXBias = vmcybias;
+      }
+      let vecybias = vbmcybias * gnViewEssenceScale;
+      console.log(`(2): vmcybias: ${vmcybias}; vbmcybias: ${vbmcybias}; `);
+      console.log(`(2): vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+      console.log(`vecybias: ${vecybias}`);
+
+      gnVECXBias = vecxbias;
+      gnVECYBias = vecybias;
+      let vbmcbx = vbmcx - vmcxmin * gnFieldBlockSize;
+      let vbmcby = vbmcy - vmcymin * gnFieldBlockSize;
+
+      let vecbx = vbmcbx * gnViewEssenceScale;
+      let vecby = vbmcby * gnViewEssenceScale;
+      console.log(`vmcxmin: ${vmcxmin}; vmcxmax: ${vmcxmax}; `);
+      console.log(`vmcymin: ${vmcymin}; vmcymax: ${vmcymax}; `);
+
+      goCtx2d.fillStyle = "#fff";
+      goCtx2d.fillRect(0, 0, gnCanvasSize, gnCanvasSize);
+      let deep = vmcxmax - vmcxmin;
+      if (Math.ceil(gnViewMapDiameter) + 1 < deep) {
+        console.log("Error(Math.ceil(gnViewMapDiameter) + 1 < deep)");
+        // console.log(`gnViewMapDiameter: ${gnViewMapDiameter}; `);
+        console.log(`deep: ${deep}; `);
+      }
+      for (let x = vmcxmin; x <= vmcxmax; x++) {
+        deep = vmcymax - vmcymin;
+        if (Math.ceil(gnViewMapDiameter) + 1 < deep) {
+          console.log("Error(Math.ceil(gnViewMapDiameter) + 1 < deep)");
+          console.log(`deep: ${deep}; `);
+        }
+        let xl = gd2nFieldMapArea.length;
+        if (0 <= x && x < xl) {
+          for (let y = vmcymin; y <= vmcymax; y++) {
+            let yl = gd2nFieldMapArea[x].length;
+            if (0 <= y && y < yl) {
+              // console.log(`x: ${x}; y: ${y}; `);
+              let vbmx = x * gnFieldBlockSize;
+              let vbmy = y * gnFieldBlockSize;
+              let vex = vbmx * gnViewEssenceScale - vecxbias;
+              let vey = vbmy * gnViewEssenceScale - vecybias;
+              let ves = gnFieldBlockSize * gnViewEssenceScale;
+              goCtx2d.fillStyle =
+                gd1sFieldBlockPalette[gd2nFieldMapArea[x][y]];
+              goCtx2d.fillRect(vex, vey, ves, ves);
+            }
+          }
+        }
+      }
+      goCharModel.Draw();
+    }
+  }
+
+
+</script>
+</html>

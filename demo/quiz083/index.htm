@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<style>
+.border {
+  border: solid thin #000; 
+  border-radius: 0.35rem; 
+  padding: 0 0.35rem; 
+}
+.image {
+  width: 93vw;
+  object-position: 0 0;
+  object-fit: contain;
+}
+</style>
+</head>
+<body id="idBody" style="background: #fff;">
+
+  <div id="idQuestionContainer"></div>
+  <button type="button" id="idQuestionNext" style='display: none;' onclick="CreateQuestion()">Next!!</button><br>
+
+</body>
+<script>
+  let a2oInterior = [
+    [
+      {modtype: "radio", score: 10, },
+      {msgtype: "text", msg: "下記は富士山の写真ですか？\n", },
+      {msgtype: "text", msg: "〇\n", },
+      {msgtype: "text", msg: "×\n", },
+      {modtype: "image", height: 35, file: "huji.jpg", },
+      {msgtype: "text", msg:"〇×で答えて下さい\n", },
+      {modtype: "radio", msgtype: "text", msg: "〇　", corflag: 1, },
+      {modtype: "radio", msgtype: "text", msg: "×\n", },
+      {msgtype: "text", msg: "評価：", },
+    ],
+    
+    [
+      {modtype: "radio", score: 10, },
+      {msgtype: "text", msg: "今日は どんな天気ですか\n", },
+      {msgtype: "text", msg: "〇：正解、Goodな天気です\n", },
+      {msgtype: "text", msg: "×：不正解です\n", },
+      {modtype: "radio", msgtype: "text", msg: "１．みぞれ\n", },
+      {modtype: "radio", msgtype: "text", msg: "２．ヒョウ\n", },
+      {modtype: "radio", msgtype: "text", msg: "３．良い天気\n", corflag: 1, },
+      {msgtype: "text", msg:"どれか選んで下さい\n", },
+    ],
+    
+    [
+      {modtype: "radio", score: 10, },
+      {msgtype: "text", msg: "鎌倉幕府成立は「いい国（1192）作ろう」ではなくなった\n", },
+      {msgtype: "text", msg: "〇：正解、1185年です\n", },
+      {msgtype: "text", msg: "×：不正解です\n", },
+      {modtype: "radio", msgtype: "text", msg: "〇　", corflag: 1, },
+      {modtype: "radio", msgtype: "text", msg: "×\n", },
+      {msgtype: "text", msg:"〇×で答えて下さい\n", },
+    ],
+    
+    [
+      {modtype: "textbox", score: 10, cortype: "number", correct: 794, },
+      {msgtype: "text", msg: "平安時代のスタートは、鳴くようぐいす平安京\n", },
+      {msgtype: "text", msg: "正解、鳴くよ(794)うぐいす平安京\n", },
+      {msgtype: "text", msg: "不正解です\n", },
+      {msgtype: "text", msg: "数値を入力して下さい\n", },
+      {modtype: "textbox", },
+    ],
+    
+    [
+      {modtype: "textbox", score: 10, cortype: "number", correct: 1868, },
+      {msgtype: "text", msg: "明治維新のスタートは、一つやろうや明治維新\n", },
+      {msgtype: "text", msg: "正解、一つやろうや(1868)明治維新\n", },
+      {msgtype: "text", msg: "不正解です\n", },
+      {msgtype: "text", msg: "数値を入力して下さい\n", },
+      {modtype: "textbox", },
+    ],
+    
+  ];
+  
+  let vnScreenWidth = screen.width;
+  let vnScreenHeight = screen.height;
+  
+  let elQuestionContainer = document.getElementById("idQuestionContainer");
+  let elQuestionNext = document.getElementById("idQuestionNext");
+  let dhmCellar = {
+    image: "<img class='image' src='@file' style='height: @heightpx;' ><br>",
+    score: "<input type='hidden' name='nmScore' class='clScore' value='@value'>",
+    radio: "<label><input type='radio' name='nmRadioQst@serial' value='@value' onclick='QuestionRadio(this);'>@capture</label>",
+    textbox: "<input type='hidden' name='nmCorrect' class='clCorrect' value='@correct'>" +
+      "<input type='hidden' name='nmCorType' class='clCorType' value='@cortype'>" +
+      "<input type='text' name='nmAnswer' class='clAnswer' value=''> " +
+      "<button type='button' onclick='QuestionText(this);'>回答</button><br>",
+    question: "<div name='nmQuestion' class='clQuestion'>@message</div>",
+    correctmsg: "<div name='nmCorrectMsg' class='border clCorrectMsg' style='display: none; '>@message</div>",
+    incorrectmsg: "<div name='nmIncorrectMsg' class='border clIncorrectMsg' style='display: none; '>@message</div>",
+  };
+  let a1sQstSymbol = ["question", "correctmsg", "incorrectmsg", ];
+  let vmodtype, vmodel, vqnt, vinterior, value, html, vline;
+  let vmsgtype, vcorflag, vmsg, vmainmodtype;
+  let vmodmsg, vmodngmsg, vmessage, vquestion, vscore;
+  let vqsttype, vcorrectmsg, vincorrectmsg, tag;
+  let vcorrect, vcortype, vfile, current, elCellar, vheight;
+  let vpx, vlp, vnx, vp1, vp2;
+  vpx = 0;
+  CreateQuestion();
+
+  function CreateQuestion(){
+    if (vpx==a2oInterior.length-1) {
+      elQuestionNext.innerHTML = "終了";
+    }
+    if (vpx < a2oInterior.length) {
+      elQuestionNext.style.display = "none";
+      if(elCellar){
+        elCellar.style.display = "none";
+      }
+      console.log("while (vpx < a2oInterior.length) ");
+      vmainmodtype = a2oInterior[vpx][0]["modtype"];
+      vscore = -a2oInterior[vpx][0]["score"];
+      vcortype = a2oInterior[vpx][0]["cortype"];
+      vcorrect = a2oInterior[vpx][0]["correct"];
+      vquestion = new Array();
+      for(let i = 0; i<a1sQstSymbol.length; i++){
+        vquestion[i] = a2oInterior[vpx][i+1]["msg"];
+        vquestion[i] = a2oInterior[vpx][i+1]["msgtype"]==="html" ? vquestion[i] : Encode_HTML(vquestion[i]);
+      }
+      vquestion[2] = vquestion[2] ? vquestion[2] : Encode_HTML("不正解");
+      // 
+      elCellar = document.createElement("div");
+      elCellar.name = "nmCellar";
+      elQuestionContainer.appendChild(elCellar);
+      vinterior = "";
+      // vinterior += "<br>";
+      vmodel = dhmCellar["score"];
+      console.log(
+        "dhmCellar[score]: " + vmodel + ", " +
+        "");
+      vmodel = vmodel.replace("@value", vscore);
+      vinterior += vmodel;
+      console.log(
+        "vpx: " + vpx + ", " +
+        "1:vinterior: " + vinterior + ", " +
+        "vmodel: " + vmodel + ", " +
+        "");
+      
+      console.log(
+        "2:vinterior: " + vinterior + ", " +
+        "vmodtype: " + vmodtype + ", " +
+        "");
+      console.log(
+        "vpx: " + vpx + ", " +
+        "a2oInterior: " + a2oInterior + ", " +
+        "");
+      console.log(
+        "3:vinterior: " + vinterior + ", " +
+        "");
+      vmodel = dhmCellar[a1sQstSymbol[0]];
+      vmodel = vmodel.replace("@message", vquestion[0]);
+      vinterior += vmodel;
+      vp1 = 4;
+      while (vp1<a2oInterior[vpx].length){
+        vline = a2oInterior[vpx][vp1];
+        vmodtype = vline["modtype"];
+        vmsgtype = vline["msgtype"];
+        vfile = vline["file"];
+        vheight = vline["height"];
+        vheight = vheight ? vheight : 50;
+        vmsg = vline["msg"];
+        vmsg = vmsgtype==="html" ? vmsg : Encode_HTML(vmsg);
+        vcorflag = vline["corflag"];
+        vcorflag = vcorflag ? vcorflag : "";
+        console.log(
+          "vp1: " + vp1 + ", " +
+          "vline: " + vline + ", " +
+          "vmodtype: " + vmodtype + ", " +
+          "vmsgtype: " + vmsgtype + ", " +
+          "vfile: " + vfile + ", " +
+          "vmsg: " + vmsg + ", " +
+          "vcorflag: " + vcorflag + ", " +
+          "");
+        vmodel = "";
+        switch (vmodtype){
+          case "image":
+            vmodel = dhmCellar[vmodtype];
+            vmodel = vmodel.replace("@height", vnScreenHeight*vheight/100);
+            vmodel = vmodel.replace("@file", vfile);
+            break;
+          case "radio":
+            vmodel = dhmCellar[vmodtype];
+            vmodel = vmodel.replace("@serial", vpx);
+            vmodel = vmodel.replace("@value", vcorflag);
+            vmodel = vmodel.replace("@capture", vmsg);
+            break;
+          case "textbox":
+            vmodel = dhmCellar[vmodtype];
+            vmodel = vmodel.replace("@cortype", vcortype);
+            vmodel = vmodel.replace("@correct", vcorrect);
+            break;
+          default :
+            if(vmsg){
+              vmodel = vmsg;
+            }
+        }
+        vinterior += vmodel;
+        console.log(
+          "vmodel: " + vmodel + ", " +
+          "vinterior: " + vinterior + ", " +
+          "");
+        vp1++;
+      }
+      // vinterior += "<br>";
+      for(let i = 1; i<a1sQstSymbol.length; i++){
+        vmodel = dhmCellar[a1sQstSymbol[i]];
+        console.log(
+          "dhmCellar[a1sQstSymbol[i]]: " + vmodel + ", " +
+          "");
+        vmodel = vmodel.replace("@message", vquestion[i]);
+        vinterior += vmodel;
+      }
+      // 
+      vinterior += "<br>";
+      elCellar.innerHTML += vinterior;
+      console.log(
+        "5:vinterior: " + vinterior + ", " +
+        "");
+      console.log(
+        "elQuestionContainer.innerHTML: " + elQuestionContainer.innerHTML + ", " +
+        "");
+      console.log(" ");
+      vpx++;
+    }
+  }
+
+  function Encode_HTML(text){
+    console.log("Encode_HTML()");
+    if(text){
+      console.log(
+        "text: " + text + ", " +
+        "");
+      text = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&#34;')
+      .replace(/\'/g, '&#39;')
+      .replace(/(\x0D\x0A|\x0A|\x0D)/gs, '<br>');
+      // text.replace(new RegExp('(\x0D\x0A|\x0A|\x0D)', 'gs'), '<br>');
+      console.log(
+        "text: " + text + ", " +
+        "");
+    }
+    return text;
+  }
+  function QuestionRadio(self) {
+    console.log("QuestionRadio(self)");
+    elQuestionNext.style.display = ""; // "none";
+    let parent = self.parentNode;
+    let grandparents = parent.parentNode;
+    let score = grandparents.querySelector("*[name='nmScore']");
+    let correctmsg = grandparents.querySelector("*[name='nmCorrectMsg']");
+    let incorrectmsg = grandparents.querySelector("*[name='nmIncorrectMsg']");
+    let vscore = Math.abs(score.value);
+    console.log(
+      "correctmsg: " + correctmsg + ", " +
+      "incorrectmsg: " + incorrectmsg + ", " +
+      "");
+    if (self.value) {
+      correctmsg.style.display = "inline-block";
+      incorrectmsg.style.display = "none";
+      score.value = vscore;
+    } else {
+      correctmsg.style.display = "none";
+      incorrectmsg.style.display = "inline-block";
+      score.value = -vscore;
+    }
+    console.log(
+      "score.value: " + score.value + ", " +
+      "");
+  }
+  function QuestionText(self) {
+    elQuestionNext.style.display = ""; // "none";
+    let parent = self.parentNode;
+    let grandparents = parent.parentNode;
+    let score = parent.querySelector("*[name='nmScore']");
+    let correctmsg = parent.querySelector("*[name='nmCorrectMsg']");
+    let incorrectmsg = parent.querySelector("*[name='nmIncorrectMsg']");
+    let answer = parent.querySelector("*[name='nmAnswer']");
+    let correct = parent.querySelector("*[name='nmCorrect']");
+    let cortype = parent.querySelector("*[name='nmCorType']");
+    let vscore = Math.abs(score.value);
+    let vcorrect = Math.abs(correct.value);
+    let vcortype = Math.abs(cortype.value);
+    let vanswer = Math.abs(answer.value);
+    if (vcortype === "number") {
+      vcorrect = Number(vcorrect);
+    }
+    if (vcorrect == vanswer) {
+      correctmsg.style.display = "inline-block";
+      incorrectmsg.style.display = "none";
+      score.value = vscore;
+    } else {
+      correctmsg.style.display = "none";
+      incorrectmsg.style.display = "inline-block";
+      score.value = -vscore;
+    }
+  }
+</script>
+
+</html>

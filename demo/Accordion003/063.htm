@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <link rel="preload" href="huji001-0.jpg" as="image">
+  <link rel="preload" href="huji001-1.jpg" as="image">
+  <link rel="preload" href="huji001-2.jpg" as="image">
+  <script>
+    window.onload = function () {
+      PreloadMan();
+    }
+    function PreloadMan() {
+      gnResourceDefective--;
+      console.log(`gnResourceDefective: ${gnResourceDefective}`);
+      if (!gnResourceDefective) {
+        OnAllLady();
+      }
+    }
+    wPreload = document.querySelectorAll('link[rel="preload"]');
+    gnResourceDefective = wPreload.length + 1;
+    for (let w of wPreload) {
+      w.onload = PreloadMan;
+    }
+    function OnAllLady(){
+      let wBody = document.getElementsByTagName("body")[0];
+      wBody.className = "Background_Animation";
+    }
+  </script>
+  <TITLE></TITLE>
+  <style>
+    .Background_Animation {
+      background-image: url(huji001-0.jpg), url(huji001-1.jpg), url(huji001-2.jpg);
+      background-position: left 0 top 100vh, left 50% top 100vh, left 100% top 100vh;
+      /* ↑background-position: オフセット値　パーセンテージの場合 */
+      /* (コンテナーの幅 - 画像の幅) * (position x%) */
+      /* (コンテナーの高さ - 画像の高さ) * (position y%) */
+      background-size: 33.4% auto, 33.4% auto, 33.4% auto;
+      /* ↑誤差が有るようなので「0.1%」ぐらい増やした方が良い感じ。 */
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-attachment: fixed;
+      animation-name: BackgroundAccordion_Animation;
+      animation-duration: 1.5s;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes BackgroundAccordion_Animation {
+      0% {
+        background-position: left 0 top 100vh, left 50% top 100vh, left 100% top 100vh;
+      }
+
+      30% {
+        background-position: left 0 top 100vh, left 50% top 100vh, left 100% top 100vh;
+      }
+
+      44% {
+        background-position: left 0 top calc(100vh / 3 * 2 + 50% / 3), left 50% top 100vh, left 100% top 100vh;
+      }
+
+      58% {
+        background-position: left 0 top calc(100vh / 3 + 50% / 3 * 2), left 50% top calc(100vh / 3 * 2 + 50% / 3), left 100% top 100vh;
+      }
+
+      72% {
+        background-position: left 0 top 50%, left 50% top calc(100vh / 3 + 50% / 3 * 2), left 100% calc(100vh / 3 * 2 + 50% / 3);
+      }
+
+      86% {
+        background-position: left 0 top 50%, left 50% top 50%, left 100% top calc(100vh / 3 + 50% / 3 * 2);
+      }
+
+      100% {
+        background-position: left 0 top 50%, left 50% top 50%, left 100% top 50%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+</body>
+</html>

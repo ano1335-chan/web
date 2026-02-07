@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preload" href="img063.jpg" as="image">
+  <title></title>
+  <style>
+    .Container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .Sstage3D {
+      display: inline-block;
+      perspective: 50vw;
+    }
+
+    .Transform_Rotate3D {
+      display: inline-block;
+      transform: rotateY(0deg);
+      transition: transform 1s linear
+    }
+
+    .Rotate3D_ISwitch:checked+label+* .Transform_Rotate3D {
+      transform: rotateY(180deg);
+    }
+
+    .Sstage3D:hover>.Transform_Rotate3D {
+      transform: rotateY(180deg);
+    }
+
+    .ContentSize {
+      width: 50vw;
+      /*height: 36.238vw;*/
+    }
+
+    .Rotate3D_LSwitcher {
+      box-sizing: border-box;
+      border: solid thin #000;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+      margin: 0.25rem;
+      user-select: none;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+    }
+
+    .Rotate3D_ISwitch:checked+label {
+      font-weight: bold;
+      color: #767;
+      /*#0f7 #8f8 #7f7 #5fb*/
+      background: #0f7;
+    }
+
+    .D000_Rotate3D_ISwitch+label:hover {
+      font-weight: bold;
+      color: #767;
+      /*#0ee #bef #aef #ede*/
+      background: #0ee;
+    }
+
+    .Rotate3D_ISwitch {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <input id="TUnit-001" type="checkbox" name="TUnit-001" class="Rotate3D_ISwitch">
+  <label class="Rotate3D_LSwitcher" for="TUnit-001">Rotate3D</label>
+  <div class="Container">
+    <div class="Sstage3D">
+      <img src="img063.jpg" class="Transform_Rotate3D ContentSize" alt="img063.jpg">
+    </div>
+  </div>
+</body>
+</html

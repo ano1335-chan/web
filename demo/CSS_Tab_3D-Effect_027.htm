@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"> <!-- UTF-8 Shift_JIS -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title>Document</title>
+  <style>
+    :root {
+      --Tab_Grid-Column_Quantity: 12;
+      --Tab_Grid-Column_Size: calc(100% / var(--Tab_Grid-Column_Quantity));
+      --Tab_Animation-Duration: 0.6s;
+      --Tab_TransformOrigin-Z1: -160vw;
+      --Tab_TransformOrigin-Z2: -320vw;
+    }
+
+    body {
+      margin: 0.7vw;
+    }
+
+    .Body_Container .Visibility_Hidden {
+      /*CSS優先順位：20点*/
+      visibility: hidden;
+    }
+
+    .Stealth {
+      /*CSS優先順位：10点*/
+      display: none;
+    }
+
+    .Body_Container .Stealth {
+      /*CSS優先順位：20点*/
+      display: none;
+    }
+
+    .Tab_Stage {
+      perspective: 30vw;
+      perspective-origin: center center;
+      display: grid;
+      grid-template-columns: repeat(var(--Tab_Grid-Column_Quantity), var(--Tab_Grid-Column_Size));
+    }
+
+    .Tab_Stage>.Tab_Content {
+      grid-row: 2;
+      grid-column: 1 / span var(--Tab_Grid-Column_Quantity);
+      display: block;
+      box-sizing: border-box;
+      border: 0.1vw solid #000;
+      width: 97vw;
+      min-height: 100vh;
+      backface-visibility: hidden;
+      transform-origin: left center var(--Tab_TransformOrigin-Z1);
+    }
+
+    .Tab_Stage>.Border_None {
+      border: 0 none #000;
+    }
+
+    .Tab_Stage>input:checked+label+.Tab_Content,
+    .Tab_Stage>.Tab_ISwitch_Init:checked+input+label+.Tab_Content {
+      /*.Tab_Stage>input:checked+label+.Tab_Content*/
+      /*CSS優先順位：10+1+1+1+10=23点*/
+      /*.Tab_Stage>.Tab_ISwitch_Init:checked+input+label+.Tab_Content*/
+      /*CSS優先順位：10+10+1+1+1+10=33点*/
+      visibility: visible;
+      display: block;
+      animation-name: AnimKey_001;
+      animation-timing-function: ease-out;
+      animation-duration: var(--Tab_Animation-Duration);
+      animation-fill-mode: forwards;
+      transform-origin: left center var(--Tab_TransformOrigin-Z1);
+    }
+
+    @keyframes AnimKey_001 {
+      0% {
+        transform: rotateY(35deg);
+      }
+
+      100% {
+        transform: rotateY(0deg);
+      }
+    }
+
+    .Tab_Stage>input:not(:checked)+label+.Tab_Content {
+      /*CSS優先順位*/
+      /*10+1+1+1+1+10=24点*/
+      display: block;
+      animation-name: AnimKey_002;
+      animation-timing-function: ease-out;
+      animation-duration: var(--Tab_Animation-Duration);
+      animation-fill-mode: forwards;
+      transform-origin: right center var(--Tab_TransformOrigin-Z2);
+    }
+
+    .Tab_Stage>.Tab_ISwitch_Init:checked~.Tab_Content {
+      /*CSS優先順位*/
+      /*10+10+1+10=31点*/
+      visibility: hidden;
+    }
+
+    @keyframes AnimKey_002 {
+      0% {
+        transform: rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateY(-35deg);
+      }
+    }
+
+    .Tab_LOpener {
+      grid-row: 1;
+      display: inline-block;
+      box-sizing: border-box;
+      border: solid 0.1vw #000;
+      user-select: none;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #fef;
+      background: #0bb;
+      margin-bottom: 0.35vw;
+    }
+
+    .Tab_LOpener:hover {
+      font-weight: bold;
+      color: #767;
+      /*#0ee #bef #aef #ede*/
+      background: #0ee;
+    }
+
+    .Tab_ISwitch:checked+label,
+    .Tab_ISwitch_Init:checked+input+label {
+      font-weight: bold;
+      color: #767;
+      /*#0f7 #8f8 #7f7 #5fb*/
+      background: #0f7;
+    }
+
+    .Tab_Stage>input[type="radio"] {
+      display: none;
+    }
+
+  </style>
+</head>
+<body class="Body_Container">
+  <div class="Tab_Stage">
+
+    <input type="radio" id="TUnit-001" name="TUnit-001" class="Tab_ISwitch_Init" checked>
+
+    <input type="radio" id="TUnit-001-001" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-001" class="Tab_LOpener">001</label>
+    <div class="Tab_Content Tab_Content1" style="background-color: orangered;">
+      いろはにほへと　ちりぬるを　わかよたれそ　つねならむ　うゐのおくやま　けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-002" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-002" class="Tab_LOpener">002</label>
+    <div class="Tab_Content" style="background-color: orange;">
+      ちりぬるを　わかよたれそ　つねならむ　うゐのおくやま　けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-003" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-003" class="Tab_LOpener">003</label>
+    <div class="Tab_Content" style="background-color: yellow;">
+      わかよたれそ　つねならむ　うゐのおくやま　けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-004" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-004" class="Tab_LOpener">004</label>
+    <div class="Tab_Content" style="background-color: limegreen;">
+      つねならむ　うゐのおくやま　けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-005" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-005" class="Tab_LOpener">005</label>
+    <div class="Tab_Content" style="background-color: royalblue;">
+      うゐのおくやま　けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-006" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-006" class="Tab_LOpener">006</label>
+    <div class="Tab_Content" style="background-color: #BA55D3;">
+      けふこえて　あさきゆめみし　ゑひもせす
+    </div>
+
+    <input type="radio" id="TUnit-001-007" name="TUnit-001" class="Tab_ISwitch">
+    <label for="TUnit-001-007" class="Tab_LOpener">007</label>
+    <div class="Tab_Content" style="background-color: hotpink;">
+      あさきゆめみし　ゑひもせす
+    </div>
+
+  </div>
+</body>
+</html>

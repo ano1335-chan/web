@@ -1,0 +1,83 @@
+<html>
+    <head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <script type='text/javascript'>
+    <!--
+    // vlImgStatus = false; // true; //
+    viImg_MainStatus = 0;
+    viImg_SubCounter = 0;
+    viImg_Sub_FileIndex = -1;
+    viImg_Sub_AreaIndex = -1;
+    
+    d1sImg_Sub_File = ["animal_frog_icon.png","animal_chick_icon.png","animal_cock_icon.png","animal_penguin_icon.png","animal_elephant_icon.png"];
+    d1sImg_Sub_Area = ["idImage_Sub001","idImage_Sub002"]
+    
+    function Img_Switch(){
+        if(viImg_MainStatus<=1){
+            viImg_MainStatus++;
+            console.log(viImg_MainStatus); 
+        }
+        if(viImg_MainStatus===1){
+            let elmImage_Main = document.getElementById('idImage_Main');
+            elmImage_Main.src = 'light_on.jpg';
+        }
+        if(2<=viImg_MainStatus){
+            viImg_Sub_AreaIndex++;
+            viImg_Sub_AreaIndex %= d1sImg_Sub_Area.length;
+            console.log('viImg_Sub_AreaIndex='+viImg_Sub_AreaIndex); 
+            let idImg_Sub_Area = d1sImg_Sub_Area[viImg_Sub_AreaIndex];
+            console.log('idImg_Sub_Area='+idImg_Sub_Area); 
+            let elmImg_Sub_Area = document.getElementById(idImg_Sub_Area);
+            viImg_Sub_FileIndex++;
+            viImg_Sub_FileIndex %= d1sImg_Sub_File.length;
+            console.log('viImg_Sub_FileIndex='+viImg_Sub_FileIndex); 
+            let vsImg_Sub_File = d1sImg_Sub_File[viImg_Sub_FileIndex];
+            console.log('vsImg_Sub_File='+vsImg_Sub_File); 
+            elmImg_Sub_Area.src = vsImg_Sub_File;
+            elmImg_Sub_Area.style.visibility = 'visible';
+        }
+    }
+    // -->
+    </script>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+        <TITLE>test</TITLE>
+<link rel='preload' href='light_on.jpg' as='image' >
+<link rel='preload' href='light_off.jpg' as='image' >
+<link rel='preload' href='animal_frog_icon.png' as='image' >
+<link rel='preload' href='animal_chick_icon.png' as='image' >
+<link rel='preload' href='animal_cock_icon.png' as='image' >
+<link rel='preload' href='animal_penguin_icon.png' as='image' >
+<link rel='preload' href='animal_elephant_icon.png' as='image' >
+    </head>
+    <body style='background: #bbb; ' >
+
+<table style='width: 95vmin; height: 95vmin; ' >
+  <tr>
+    <td style='border: solid thin #000; ' >　</td>
+    <td style=' ' >　</td>
+    <td style='width: 25vmin; height: 25vmin; border: solid thin #000;  text-align: center; vertical-align: middle; ' >
+    <img id='idImage_Sub001' src='' style='visibility: hidden; width: 23vmin; height: 23vmin; object-fit: contain;' >
+    </td>
+  <tr style='width: 45vmin; height: 45vmin; ' >
+    <td style=' ' >　</td>
+    <td style='border: solid thin #000; text-align: center; vertical-align: middle; ' >
+    <img id='idImage_Main' src='light_off.jpg' style='width: 43vmin; height: 43vmin; object-fit: contain;' >
+    </td>
+    <td style=' ' >　</td>
+  </tr>
+  <tr>
+    <td style='width: 25vmin; height: 25vmin; border: solid thin #000;  text-align: center; vertical-align: middle; ' >
+    <img id='idImage_Sub002' src='' style='visibility: hidden; width: 23vmin; height: 23vmin; object-fit: contain;' >
+
+    </td>
+    <td style=' ' >　</td>
+    <td style='border: solid thin #000; text-align: center; vertical-align: middle; ' >
+    <button type='button' name='' value='' onclick='Img_Switch()'>Click!!</button>    </td>
+  </tr>
+</table>
+
+    </body>
+</html>

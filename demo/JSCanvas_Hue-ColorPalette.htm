@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>色相(Hue)帯状カラーパレット</title>
+</head>
+<style>
+  .CanvasBox001 {
+    margin: 0 auto;
+    width: 95vmin;
+    height: 30vmin;
+  }
+
+  .CanvasBox002 {
+    margin: 0 auto;
+    width: 95vmin;
+    height: 95vmin;
+  }
+
+</style>
+<body>
+
+  <h1>色相(Hue)帯状カラーパレット</h1>
+  <div class="CanvasBox001">
+    <canvas id="Canvas001" width="100%" height="100%"></canvas>
+  </div>
+  <script>
+    wCanvas001 = document.getElementById("Canvas001");
+    wCanvasBox = wCanvas001.parentNode;
+    oCanvasBox_CompStyle = window.getComputedStyle(wCanvasBox, null);
+    wCanvas001.width = parseInt(oCanvasBox_CompStyle.width);
+    wCanvas001.height = parseInt(oCanvasBox_CompStyle.height);
+    oContext001 = wCanvas001.getContext("2d");
+    StepQnt = 360;
+    StepMin = 0;
+    StepMax = StepQnt - 1;
+    x = 0;
+    y = 0;
+    w = wCanvas001.width / StepQnt;
+    h = wCanvas001.height;
+    for (hue = 0; hue < 360; hue += 1) {
+      saturation = 100;
+      lightness = 50;
+      oContext001.beginPath();
+      x = hue * w;
+      oContext001.rect(x, y, w, h);
+      oContext001.closePath();
+      oContext001.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      oContext001.fill();
+    }
+  </script>
+
+  <br><br>
+
+  <h1>色相(Hue)円形カラーパレット</h1>
+  <div class="CanvasBox002">
+    <canvas id="Canvas002" width="100%" height="100%"></canvas>
+  </div>
+  <script>
+    wCanvas002 = document.getElementById("Canvas002");
+    wCanvasBox = wCanvas002.parentNode;
+    oCanvasBox_CompStyle = window.getComputedStyle(wCanvasBox, null);
+    wCanvas002.width = parseInt(oCanvasBox_CompStyle.width);
+    wCanvas002.height = parseInt(oCanvasBox_CompStyle.height);
+    oContext002 = wCanvas002.getContext("2d");
+    centerX = wCanvas002.width / 2;
+    centerY = wCanvas002.height / 2;
+    radius = wCanvas002.width / 2;
+    for (angle = 0; angle < 360; angle += 1) {
+      hue = angle;
+      saturation = 100;
+      lightness = 50;
+      oContext002.beginPath();
+      oContext002.moveTo(centerX, centerY);
+      oContext002.arc(centerX, centerY, radius, (angle - 1) * Math.PI / 180, angle * Math.PI / 180);
+      oContext002.closePath();
+      oContext002.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      oContext002.fill();
+    }
+  </script>
+
+</body>
+</html>

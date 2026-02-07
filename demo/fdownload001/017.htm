@@ -1,0 +1,23 @@
+<html>
+    <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=Shift-JIS">
+        <title>Download Sample</title>
+    </head>
+    <body>
+        <script type='text/javascript'>
+            DownloadFile = "images001.jpg";
+            document.write("<a id='download' href='JavaScript:;' download='"+DownloadFile+"' onclick='handleDownload()'>ダウンロード</a>");
+            function handleDownload() {
+                var blob =  new Blob([DownloadFile], {type: "image/jpeg"}); // 画像がjpegの場合
+                if (window.navigator.msSaveBlob) { 
+                    window.navigator.msSaveBlob(blob, DownloadFile); 
+                    // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+                    window.navigator.msSaveOrOpenBlob(blob, DownloadFile); 
+                } else {
+                    document.getElementById("download").href = window.URL.createObjectURL(blob);
+                }
+            }
+        </script>
+        
+    </body>
+</html>

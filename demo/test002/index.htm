@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <link rel="preload" href="header.htm" as="script">
+  <link rel="preload" href="footer.htm" as="script">
+<!--
+  JavaScriptでファイルをロードする場合は、プリドーロを指定することで、
+  ファイルのロードが軽くなる可能性を期待できる。
+-->
+<title></title>
+  <style>
+    .test1 {
+      color: #0f0;
+    }
+
+    .test2 {
+      color: #0ff;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="idHeader"></div>
+  <div>
+    Main
+  </div>
+  <div id="idFooter"></div>
+
+</body>
+<script>
+  GetHTMLFile("UTF-8","header.htm","idHeader");
+  GetHTMLFile("UTF-8","footer.htm","idFooter");
+  function GetHTMLFile(sCharset,sFileName,sID) {
+    let wID = document.getElementById(sID);
+    let oAJAX = new XMLHttpRequest();
+    oAJAX.overrideMimeType('text/plain; charset=' + sCharset);
+    oAJAX.open("GET", sFileName, true);
+    oAJAX.onload = function () {
+      console.log("oAJAX.onload");
+      if (this.readyState === 4 && this.status === 200) {
+        console.log("this.readyState: " + this.readyState);
+        console.log("this.status: " + this.status);
+        let res = oAJAX.responseText;
+        wID.innerHTML = res;
+      }
+    };
+    oAJAX.send(null);
+  }
+</script>
+</html>

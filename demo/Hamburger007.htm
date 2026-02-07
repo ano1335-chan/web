@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <TITLE></TITLE>
+  <style>
+    :root {
+      --Border_Weight_1: calc(1rem / 16);
+      --Border_Weight_1p31: calc(var(--Border_Weight_1) * 1.31);
+      --Hamburger_Switcher_Margin_Top: 0.175rem;
+      --Hamburger_Switcher_Absolute_Horizon: 0.175rem;
+      --Hamburger_Content_Padding_Horizon: 0.35rem;
+      --Hamburger_Content_Padding_Horizon_Minus: -0.35rem;
+      --Hamburger_Content_Padding_Vertical: 0.1rem;
+      --Hamburger_Switcher_Absolute_Top: calc(var(--Hamburger_Switcher_Margin_Top) + var(--Hamburger_Content_Padding_Vertical));
+    }
+
+    .Border {
+      border: solid thin #000;
+    }
+
+    .Display_None {
+      display: none;
+    }
+
+    .Display_InlineBlock {
+      display: inline-block;
+    }
+
+    .Position_Relative {
+      position: relative;
+    }
+
+    .Position_Absolute {
+      position: absolute;
+    }
+
+    .WhiteSpace_Nowrap {
+      white-space: nowrap;
+    }
+
+    .UserSelect_None {
+      user-select: none;
+    }
+
+    .Visibility_Hidden {
+      visibility: hidden;
+    }
+
+    .Circle_Naked {
+      border: none 0 #000;
+      border-radius: 0.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .Circle_Border {
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: 0.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .Position_Fixed_0_0 {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .Radio_HamburgerButton {
+      display: none;
+    }
+
+    .Hamburger_Container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .Hamburger_BaseSwitcher {
+      display: inline-flex;
+      justify-content: center;
+      background-color: #0ee;
+      border: solid var(--Border_Weight_1) #000;
+      border-radius: 0.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      user-select: none;
+    }
+
+    .Hamburger_DummySwitcher {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_Switcher_Absolute_Horizon);
+      top: var(--Hamburger_Switcher_Absolute_Top);
+    }
+
+    .Hamburger_Opener {
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_Switcher_Absolute_Horizon);
+      top: var(--Hamburger_Switcher_Absolute_Top);
+    }
+
+    .Hamburger_Closer {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      left: var(--Hamburger_Switcher_Absolute_Horizon);
+      top: var(--Hamburger_Switcher_Absolute_Top);
+    }
+
+    .Radio_Hamburger_On:checked~.Hamburger_Closer {
+      display: inline-flex;
+    }
+
+    .Hamburger_Closer:hover {
+      display: inline-flex;
+    }
+
+    .Hamburger_DummyCloser_Container {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 var(--Border_Weight_1) var(--Border_Weight_1) 0;
+      margin: 0 0 0 var(--Hamburger_Content_Padding_Horizon_Minus);
+    }
+    
+    .Hamburger_DummyCloser {
+      border: none 0 #000;
+      background-color: #fff;
+      visibility: hidden;
+    }
+
+    .Hamburger_Content {
+      display: inline-block;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      background-color: #0cc;
+      left: var(--Hamburger_Switcher_Absolute_Horizon);
+      top: var(--Hamburger_Switcher_Absolute_Top);
+      margin: 0;
+      padding: 0 var(--Hamburger_Content_Padding_Horizon)
+      var(--Hamburger_Content_Padding_Vertical)
+      var(--Hamburger_Content_Padding_Horizon);
+      border: solid var(--Border_Weight_1p31) #000;
+      border-radius: 0.75rem;
+      white-space: nowrap;
+      transform: translateX(calc(-101% - var(--Hamburger_Switcher_Absolute_Horizon)));
+    }
+
+    .Radio_Hamburger_On:checked~.Hamburger_Content {
+      transform: translateX(0%);
+      transition: 0.3s ease-in-out;
+    }
+
+    .Radio_Hamburger_Switcher_On:checked~.Hamburger_DummySwitcher {
+      display: inline-flex;
+    }
+
+    .Hamburger_Filter {
+      display: none;
+      position: absolute;
+      z-index: 2147483647;
+      /* z-indexの最大値 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #000;
+      opacity: 0.5;
+    }
+
+    .Radio_Hamburger_On:checked~.Hamburger_Filter {
+      display: block;
+    }
+
+    .DummyTail {
+      width: 50vw;
+      height: 100vh;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="Hamburger_Container">
+      <input type="radio" name="Radio_Hamburger" id="idRadio_Hamburger_On" class="Radio_HamburgerButton Radio_Hamburger_On ">
+      <input type="radio" name="Radio_Hamburger" id="idRadio_Hamburger_Off" class="Radio_HamburgerButton Radio_Hamburger_Off ">
+      <div class="Hamburger_Filter" onmouseenter="MouseEvent_Hamburger_Switch('idRadio_Hamburger_Off');"></div>
+      <label name="Hamburger_Opener" for="idRadio_Hamburger_On" class="Hamburger_Opener Hamburger_BaseSwitcher"
+      onmouseover="MouseEvent_Hamburger_Switch('idRadio_Hamburger_On'); MouseEvent_Hamburger_Switch('idRadio_Hamburger_Switcher_On');" >
+        ≡
+      </label>
+      <div class="Hamburger_Content UserSelect_None">
+        <div class="Hamburger_DummyCloser_Container">
+          <label for="idRadio_Hamburger_Off" class="Hamburger_BaseSwitcher Hamburger_DummyCloser ">
+            <br>
+          </label>
+        </div>
+        <label for="idRadio_Hamburger_Off" onclick="location='#iroha';">
+          いろはにほへと<br>
+        </label>
+        <label for="idRadio_Hamburger_Off" onclick="location='#tunena';">
+          つねならむ<br>
+        </label>
+        <label for="idRadio_Hamburger_Off" onclick="location='#ehimo';">
+          ゑひもせす<br>
+        </label>
+      </div>
+      <label name="Hamburger_Closer" for="idRadio_Hamburger_Off" class="Hamburger_BaseSwitcher Hamburger_Closer ">
+        ×
+      </label>
+      <input type="radio" name="Radio_Hamburger_Switcher" id="idRadio_Hamburger_Switcher_On" class="Radio_HamburgerButton Radio_Hamburger_Switcher_On ">
+      <input type="radio" name="Radio_Hamburger_Switcher" id="idRadio_Hamburger_Switcher_Off" class="Radio_HamburgerButton Radio_Hamburger_Switcher_Off ">
+      <label name="Hamburger_DummySwitcher" for="" class="Hamburger_BaseSwitcher Hamburger_DummySwitcher" onclick="MouseEvent_Hamburger_Switch('idRadio_Hamburger_Switcher_Off');" onmouseout="MouseEvent_Hamburger_Switch('idRadio_Hamburger_Switcher_Off');">
+        <br>
+      </label>
+    </nav>
+  </header>
+
+  <br>
+  いろは歌<br>
+  <br>
+  <a id="iroha"></a>
+  いろはにほへと<br>
+  ちりぬるを<br>
+  わかよたれそ<br>
+  <a id="tunena"></a>
+  つねならむ<br>
+  うゐのおくやま<br>
+  けふこえて<br>
+  あさきゆめみし<br>
+  <a id="ehimo"></a>
+  ゑひもせす<br>
+  <br>
+  <footer>
+    【Footer】
+  </footer>
+  <div class="DummyTail "></div>
+</body>
+<script>
+  function MouseEvent_Hamburger_Switch(idHR) {
+    // event.stopPropagation();
+    let wHR = document.getElementById(idHR);
+    wHR.checked = true; // false; //
+    return true; // false; //
+  }
+</script>
+</html>

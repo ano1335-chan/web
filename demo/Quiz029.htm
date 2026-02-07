@@ -1,0 +1,87 @@
+﻿<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+        <TITLE>test</TITLE>
+    </head>
+   <body bgcolor="#d3e7cb" text="#000000" link="#004bff" vlink="#a300a3" alink="#00ffff" >
+    
+三択問題は下記サイト様から引用。<br>
+<br>
+【動物クイズ】動物の知識が身につく三択問題<br>
+https://pedant19.com/animal-quiz/<br>
+<br>
+<br>
+ダチョウの脳みそのサイズはどれくらい？<br>
+ヒント：人間の脳みそは1200～1400グラムくらい。<br>
+<a href='JavaScript:CheckAnswer("idOstrich_Brain",true);'>40グラム</a><br>
+<a href='JavaScript:CheckAnswer("idOstrich_Brain",false);'>400グラム</a><br>
+<a href='JavaScript:CheckAnswer("idOstrich_Brain",false);'>1400グラム</a><br>
+<br>
+<div id='idOstrich_Brain_NG' style='display: none; ' >
+不正解です。<br>
+</div>
+<div id='idOstrich_Brain' style='display: none; ' >
+正解です。<br>
+１ばんの「40グラム」<br>
+</div>
+<br>
+<br>
+
+動物の赤ちゃんのサイズ<br>
+つぎのうちで、生まれたての赤ちゃんのサイズが１ばん小さい動物はどれ？<br>
+<a href='JavaScript:CheckAnswer("idKangaroo_Baby",false);'>トイプードル</a><br>
+<a href='JavaScript:CheckAnswer("idKangaroo_Baby",true);'>カンガルー</a><br>
+<a href='JavaScript:CheckAnswer("idKangaroo_Baby",false);'>キリン</a><br>
+<br>
+<div id='idKangaroo_Baby_NG' style='display: none; ' >
+不正解です。<br>
+</div>
+<div id='idKangaroo_Baby' style='display: none; ' >
+正解です。<br>
+２ばんの「カンガルー」<br>
+カンガルーの赤ちゃんはわずか２センチ程度の大きさで生まれてくる。<br>
+</div>
+<br>
+<br>
+
+つぎのうちで本当にある恐竜の名前はどれ？<br>
+<a href='JavaScript:CheckAnswer("idDinosaur_Godzilla",true);'>ゴジラサウルス</a><br>
+<a href='JavaScript:CheckAnswer("idDinosaur_Godzilla",false);'>デジモンサウルス</a><br>
+<a href='JavaScript:CheckAnswer("idDinosaur_Godzilla",false);'>ポケモンサウルス</a><br>
+<br>
+<div id='idDinosaur_Godzilla_NG' style='display: none; ' >
+不正解です。<br>
+</div>
+<div id='idDinosaur_Godzilla' style='display: none; ' >
+正解です。<br>
+１ばんの「ゴジラサウルス」<br>
+化石を発見した人がゴジラの大ファンだったのでゴジラサウルスと名付けられた。<br>
+</div>
+<br>
+<br>
+<div style='width: 90vw; height: 100vh; '  >
+　<br>
+</div>
+    </body>
+    <script type='text/javascript'>
+    <!--
+    function CheckAnswer(huga, OK){
+        let elmNG, elmOK;
+        elmNG = null;
+        elmOK = document.getElementById(huga);
+        elmNG = document.getElementById(huga+"_NG");
+        elmOK.style.display = "none";
+        elmNG.style.display = "none";
+        if( OK ){
+            elmOK.style.display = "block";
+        }else{
+            elmNG.style.display = "block";
+        }
+    }
+    // -->
+    </script>
+</html>

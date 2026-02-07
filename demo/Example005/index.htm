@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+</head>
+<!--
+  参考
+意外と知らない!?CSSセレクタ20個のおさらい
+http://weboook.blog22.fc2.com/blog-entry-268.html
+
+!importantはもう使わない！CSSの優先順位をおさらいしよう
+http://creator.aainc.co.jp/archives/4947
+※↑ページ後半にCSS優先順位表が掲載されています。
+-->
+<style>
+  .Shell {
+    padding: 1vw;
+    background-color: #d66;
+    width: 25vw;
+    height: 40vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vw;
+  }
+
+  .Display {
+    width: 25vw;
+    height: 15vw;
+    background-color: #fff;
+  }
+
+  .LButton {
+    user-select: none;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    border: thin solid black;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Display {
+    display: none;
+    order: -1;
+  }
+
+  .Shell>input:checked+label+.Display {
+    display: block;
+  }
+
+  .Shell>input:checked+label {
+    color: #767;
+    background-color: #0f7;
+  }
+
+  .Shell>input+label:hover {
+    color: #767;
+    background: #0ee;
+  }
+
+  .Shell>input[type='radio'] {
+    display: none;
+  }
+
+  .LButton:nth-of-type(1) {
+    display: none;
+  }
+
+  .Container {
+    display: flex;
+    column-gap: 3vw;
+    justify-content: center;
+  }
+
+</style>
+<body>
+  <div class="Container">
+
+    <div class="Shell">
+      <input type="radio" name="Radio_U001" id="IButton_U001-000" checked>
+      <label class="LButton" for="IButton_U001-000">0</label>
+      <div class="Display"></div>
+      <input type="radio" name="Radio_U001" id="IButton_U001-001">
+      <label class="LButton" for="IButton_U001-001">1</label>
+      <div class="Display">
+        ベスト1
+      </div>
+      <input type="radio" name="Radio_U001" id="IButton_U001-002">
+      <label class="LButton" for="IButton_U001-002">2</label>
+      <div class="Display">
+        ベスト2
+      </div>
+      <input type="radio" name="Radio_U001" id="IButton_U001-003">
+      <label class="LButton" for="IButton_U001-003">3</label>
+      <div class="Display">
+        ベスト3
+      </div>
+    </div>
+
+    <div class="Shell">
+      <input type="radio" name="Radio_U002" id="IButton_U002-000" checked>
+      <label class="LButton" for="IButton_U002-000">0</label>
+      <div class="Display"></div>
+      <input type="radio" name="Radio_U002" id="IButton_U002-001">
+      <label class="LButton" for="IButton_U002-001">1</label>
+      <div class="Display">
+        ワースト1
+      </div>
+      <input type="radio" name="Radio_U002" id="IButton_U002-002">
+      <label class="LButton" for="IButton_U002-002">2</label>
+      <div class="Display">
+        ワースト2
+      </div>
+      <input type="radio" name="Radio_U002" id="IButton_U002-003">
+      <label class="LButton" for="IButton_U002-003">3</label>
+      <div class="Display">
+        ワースト3
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

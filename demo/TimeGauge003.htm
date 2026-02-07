@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'>
+<!--
+↑metaタグでcharsetをUTF-8に設定しています。
+キャラクターセット(エンコード)が違うと全角文字が文字化けします。
+-->
+<body>
+<div id='idTimeGauge' style='background: #0f0; width: 100%;' ><br></div>
+<button type="button" onclick="SetTime()">Start</button>
+<button type="button" onclick="StopTime()">Stop </button>
+<button type="button" onclick="ResetTime()">Reset</button>
+<br>
+<script>
+oTimeGauge = document.getElementById('idTimeGauge');
+oCmpSte_TimeGauge = getComputedStyle(oTimeGauge);
+nTimeGaugeMax = parseInt(oTimeGauge.style.width);
+console.log('nTimeGaugeMax:'+nTimeGaugeMax);
+ResetTime();
+function TimeCount(){
+  // console.log('TimeCount()');
+  nTimeCount += nTimeInc;
+  let nRatio = nTimeCount/nTimeMax;
+  oTimeGauge.style.width = (nTimeGaugeMax*nRatio)+'%';
+  // console.log('oTimeGauge.style.width:'+oTimeGauge.style.width);
+  if(0<nTimeCount){
+    oTimeoutID = setTimeout(TimeCount, nTimePulse);
+  }
+}
+function SetTime(){
+  console.log('SetTime()');
+  // ResetTime();
+  oTimeoutID = setTimeout(TimeCount, nTimePulse);
+}
+function ResetTime(){
+  console.log('ResetTime()');
+  StopTime();
+  // 注．変数はグローバルスコープ
+  oTimeGauge.style.width = nTimeGaugeMax+'%';
+  nTimeMax = 150;
+  nTimeInc = -1;
+  nTimeCount = nTimeMax;
+  nTimePulse = 50; // ms
+}
+function StopTime(){
+  if("undefined"!==typeof(oTimeoutID)){
+    console.log('if("undefined"!==typeof(oTimeoutID))');
+    clearTimeout(oTimeoutID);
+  }
+}
+</script>
+</body>
+</html>

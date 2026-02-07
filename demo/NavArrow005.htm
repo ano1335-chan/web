@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+    <meta charset='UTF-8'>
+    <TITLE></TITLE>
+    <style>
+
+:root {
+  --Arrow-Standard: 1rem;
+  --Arrow-FontSize: 1rem;
+  --Arrow-BackColor: #f77;
+  --Arrow-Border-Width: calc(var(--Arrow-FontSize) / 16 * 1);
+  --Arrow-Stroke-Width: 1;
+  --Arrow-Row-Gap: calc(var(--Arrow-Standard) / 16 * 4);
+  --Arrow-Column-Gap: calc(var(--Arrow-Standard) / 16 * 6);
+}
+
+.Text_CenterMiddle {
+  position: relative;
+  display: inline-flex;
+  vertical-align: center;
+}
+
+.Nav_Container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: var(--Arrow-Row-Gap) var(--Arrow-Column-Gap);
+  padding: 0 calc(var(--Arrow-FontSize) / 16 * 20) 0 0;
+}
+.Nav_Item_Box {
+  display: inline-block;
+  position: relative;
+}
+ 
+.ArrowBody {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--Arrow-FontSize);
+  box-sizing : border-box ;
+  height: calc(var(--Arrow-FontSize) / 16 * 33);
+  background: var(--Arrow-BackColor);
+  border-style: solid none solid solid ;
+  border-width: var(--Arrow-Border-Width);
+  border-color: #000;
+  padding: 0 calc(var(--Arrow-FontSize) / 16 * 16) 0 calc(var(--Arrow-FontSize) / 16 * 16);
+}
+
+.SVGUse_Arrow {
+  fill: var(--Arrow-BackColor);
+  stroke: #000;
+  stroke-width: var(--Arrow-Stroke-Width);
+}
+.SVG_ArrowBody {
+  height: calc(var(--Arrow-FontSize) / 16 * 33);
+  position: relative;
+  padding: 0 calc(var(--Arrow-FontSize) / 16 * 16) 0 calc(var(--Arrow-FontSize) / 16 * 16);
+}
+.SVG_ArrowCast {
+  width: calc(var(--Arrow-FontSize) / 16 * 17);
+  height: calc(var(--Arrow-FontSize) / 16 * 33);
+  position: absolute;
+}
+.SVG_ArrowMold {
+  width: calc(var(--Arrow-FontSize) / 16 * 17);
+  height: calc(var(--Arrow-FontSize) / 16 * 33);
+}
+
+    </style>
+    </head>
+       
+      <svg  display="none" >
+      <defs>
+        <symbol id="idSVGSymbol_ArrowCast"  viewBox="0 -0.5, 17 33">
+          <g>
+          <path stroke-width="0" 
+          d="M 0 0, 16 16, 0 32 Z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" 
+          d="M -1 0, 0 0, 16 16, 0 32, -1 32,"/>
+          </g>
+        </symbol>
+      </defs>
+      </svg>    
+      
+    <body>
+    
+     <div class="Nav_Container">
+
+     <div class="Nav_Item_Box" style="z-index: -1; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -2; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -3; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -4; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -5; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -6; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -7; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -8; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+     <div class="Nav_Item_Box" style="z-index: -9; " > 
+       <div class="ArrowBody Text_CenterMiddle">
+         QWERTY
+       </div> 
+       <svg class="SVG_ArrowCast" >
+         <use class="SVGUse_Arrow"  xlink:href="#idSVGSymbol_ArrowCast"></use>
+       </svg>
+     </div> 
+     
+    </div> 
+     <br>   
+       
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--
+metaタグでcharsetをUTF-8に設定しています。
+(モチロン他のキャラクターセットに変更しても良いですが)必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+-->
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    /*PC Screen*/
+    /*Media Query：Default*/
+    body {
+      font-size: 1.5vw;
+      margin: 0.5vw;
+    }
+
+    .Border {
+      border: solid 0.05vw #000;
+    }
+
+    .Box {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      column-gap: 1vw;
+      row-gap: 1vw;
+    }
+
+    .E001 {
+      width: 48vw;
+    }
+
+    .E002 {
+      width: 48vw;
+    }
+
+    /*Tablet Screen*/
+    /*Media Query：992px未満＝991px以下*/
+    @media screen and (max-width:991px) {
+      body {
+        font-size: 3vw;
+      }
+
+      .Box {
+        flex-wrap: wrap;
+      }
+
+      .E001 {
+        width: 98vw;
+      }
+
+      .E002 {
+        width: 98vw;
+        order: -1;
+        /*順番を「-1」に指定*/
+      }
+    }
+
+    /*Smartphone Screen*/
+    /*Media Query：576x未満＝575px以下*/
+    @media screen and (max-width:575px) {
+      body {
+        font-size: 4.5vw;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  【ユーザー･フレンドリー･デモ】
+  (「PCフレンドリー、モバイル･フレンドリー」を考慮しています)。<br>
+  下記の文章にも意味があるのでチャント読んで下さい。<br>
+  <div class="Box">
+    <div class="E001 Border">
+      このページは超単純なレスポンシブ･デザインなので、とりあえずChromeモバイル･エミュレーターで一般的には約「300px～3000px」解像度ぐらいをチェックしておけば良いでしょう(プロなら6k解像度ぐらいは使ってるかもしれませんので、ポートフォリオを作成するなら約「280px～6000px」解像度ぐらいには対応すると良いでしょう)。<br>
+      このページのコードを参照したい場合は、必ずブラウザの開発者ツール(デベロッパー･ツール)で参照して下さい(ダウンロードするとブラウザ？によってコードが改変されてしまう場合があるようなので)。<br>
+      このページのコードは非常に単純なので理解しやすいでしょう。<br>
+      これは あくまでもデモなので縦スクロール･バーの幅を引いたりなどは していません。<br>
+      【注意点】<br>
+      このページの「要素サイズ、font-size、margin、border、column-gap、row-gap」など、全てのサイズをvw単位で指定しています、(メディアクエリは除き)pxなどの絶対単位は一切 使っていません。<br>
+      bodyのデフォルトmarginは0.5vwに変更しています。<br>
+      「.Border」の幅は0.05vwに設定しています。<br>
+      「.Box」のcolumn-gapは1vwに設定しています。<br>
+      「.Box」のrow-gapは1vwに設定しています。<br>
+      font-sizeもvwで指定しているので、ブラウザによる変更を許容しません。<br>
+      ブレイク･ポイントは「991px、575px」だけで、設定も超単純なページです。<br>
+      <br>
+      ●メディアクエリ「デフォルト」：<br>
+      bodyタグで「font-size: 1.5vw;」を指定。<br>
+      「.E001」、「.E002」の横サイズを48vwに指定。<br>
+      <br>
+      ●メディアクエリ「992px未満＝991px以下」：<br>
+      bodyタグで「font-size: 3vw;」を指定。<br>
+      「.E001」、「.E002」の横サイズを98vwに指定。<br>
+      「.E002」(画像)の表示の順番を「-1」に指定。<br>
+      <br>
+      ●メディアクエリ「576x未満＝575px以下」：<br>
+      bodyタグで「font-size: 4.5vw;」を指定。<br>
+      <br>
+      このページの要素には縦サイズは指定していませんが、当然 プロは縦サイズも指定します。<br>
+    </div>
+    <img src="img063.jpg" class="E002">
+  </div>
+  <br>
+</body>
+</html>

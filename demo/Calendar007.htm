@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--
+    ↑metaタグでcharsetをUTF-8に設定しています。
+    モチロン他のキャラクターセットに変更しても良いですが、
+    必ずcharsetに設定されているキャラクターセットでセーブして下さい。
+    -->
+    <title>test</title>
+    </head>
+    <body>
+    
+    <table border=border>
+    <thead>
+      <tr id="idDayOfWeekTR">
+        <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+      </tr>
+    </thead>
+    <tbody id="idWeekTBody">
+    </tbody>
+  </table>
+
+    <script type="text/javascript">
+    <!--
+    a1sDayOfWeek = ["日","月","火","水","木","金","土"];
+    oDayOfWeekTR = document.getElementById('idDayOfWeekTR');
+    oWeekTBody = document.getElementById('idWeekTBody');
+    oNewDate = new Date();
+    nNowDay = oNewDate.getDay(); 
+    k = 0;
+    for(let i = 0; i<=6; i++){
+    oDayOfWeekTR.cells[i].innerHTML = a1sDayOfWeek[i];
+    }
+    for(let i = 0; i<=6; i++){
+    oWeekTBody.insertRow(-1);
+    for(let j = 0; j<=6; j++){
+    oRow = oWeekTBody.rows[i];
+    oRow.insertCell(-1);
+    sDate = "　";
+    if(nNowDay<=k){
+    sDate = (oNewDate.getMonth()+1)+"月"+oNewDate.getDate()+"日";
+        oNewDate.setDate(oNewDate.getDate()+1);
+    }
+    oRow.cells[j].innerHTML = sDate;
+    k++;
+    }
+    }
+    // -->
+    </script>
+    
+    </body>
+</html>
