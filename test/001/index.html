@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 基本リセット */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* 横スクロール防止 */
+            font-family: sans-serif;
+        }
+
+        /* 共通設定：コンテンツの器を97.4vwに制限 */
+        .content-inner {
+            width: 97.4vw;
+            display: flex;
+            box-sizing: border-box;
+        }
+
+        /* --- ヘッダー領域 --- */
+        .header-outer {
+            background-color: #121c35; /* 濃紺 */
+            width: 100%;
+        }
+        header {
+            height: 10vw;
+            align-items: center;
+            padding-left: 3vw;
+        }
+        .logo-pink {
+            width: 4vw;
+            height: 4vw;
+            background-color: #e91e63;
+        }
+
+        /* --- メインコンテンツ領域 --- */
+        .main-outer {
+            background-color: #8b2e29; /* 右側の空白を埋めるメイン背景色 */
+            width: 100%;
+        }
+        .main-wrapper {
+            height: 60vw;
+        }
+        
+        /* サイドバー */
+        aside {
+            width: 28vw;
+            background-color: #8bc3aa; /* 薄緑 */
+            padding: 4vw 2vw;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+        .side-item { margin-bottom: 4vw; }
+        .side-title { font-weight: bold; font-size: 2.5vw; margin-bottom: 1vw; }
+        .side-text { font-size: 1.5vw; line-height: 1.5; }
+
+        /* メイン記事部分 */
+        main {
+            flex: 1;
+            padding: 4vw 3vw;
+        }
+        .row {
+            display: flex;
+            gap: 2.5vw;
+            margin-bottom: 3.5vw;
+        }
+        .green-box {
+            width: 15vw;
+            height: 10vw;
+            background-color: #38a126;
+            flex-shrink: 0;
+        }
+        .description {
+            font-size: 1.2vw;
+            line-height: 1.4;
+            color: #000;
+        }
+
+        /* --- フッター領域 --- */
+        .footer-outer {
+            background-color: #df9432; /* オレンジ */
+            width: 100%;
+        }
+        footer {
+            height: 12vw;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3vw;
+        }
+        .gray-box { background-color: #d1d1d1; }
+        .box-sm { width: 8vw; height: 5vw; }
+        .box-lg { width: 16vw; height: 5vw; }
+
+        /* --- 最下部領域 --- */
+        .bottom-outer {
+            background-color: #ffffff;
+            width: 100%;
+        }
+        .bottom-space {
+            height: 8vw;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-outer">
+        <header class="content-inner">
+            <div class="logo-pink"></div>
+        </header>
+    </div>
+
+    <div class="main-outer">
+        <div class="main-wrapper content-inner">
+            <aside>
+                <div class="side-item">
+                    <div class="side-title">見出し</div>
+                    <div class="side-text">テキスト<br>テキスト</div>
+                </div>
+                <div class="side-item">
+                    <div class="side-title">見出し</div>
+                    <div class="side-text">テキスト<br>テキスト</div>
+                </div>
+            </aside>
+            <main>
+                <div class="row">
+                    <div class="green-box"></div>
+                    <div class="description">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</div>
+                </div>
+                <div class="row">
+                    <div class="green-box"></div>
+                    <div class="description">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="footer-outer">
+        <footer class="content-inner">
+            <div class="gray-box box-sm"></div>
+            <div class="gray-box box-lg"></div>
+        </footer>
+    </div>
+
+    <div class="bottom-outer">
+        <div class="bottom-space content-inner"></div>
+    </div>
+
+</body>
+</html>

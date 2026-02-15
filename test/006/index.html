@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>layout vw sample</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: system-ui, sans-serif;
+      background: #f0f0f0;           /* 右側の余白部分の色（左の背景と同色にする） */
+    }
+
+    .container {
+      width: 97.4vw;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #8B0000;            /* メインの赤い背景（ maroon系） */
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 上部の薄緑のサイドバーエリア */
+    .sidebar {
+      width: 100%;
+      background: #90EE90;            /* lightgreen */
+      padding: 3vw 4vw;
+      font-size: 3.2vw;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      position: relative;
+    }
+
+    /* 左側の縦長緑エリア */
+    .left-green {
+      width: 28vw;                    /* おおよその比率で調整 */
+      background: #98FB98;            /* palegreen */
+      padding: 4vw 3vw;
+    }
+
+    /* 右側のメイン赤エリア */
+    .main-red {
+      flex: 1;
+      background: #8B0000;
+      padding: 4vw;
+      color: white;
+      font-size: 2.4vw;
+      line-height: 1.5;
+    }
+
+    /* 下部のオレンジ帯 */
+    .footer-orange {
+      width: 100%;
+      height: 10vw;
+      background: #FFA500;            /* orange */
+      display: flex;
+      gap: 3vw;
+      padding: 0 4vw;
+      align-items: center;
+    }
+
+    .footer-block {
+      height: 6vw;
+      flex: 1;
+      max-width: 46vw;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    /* 見出しテキストの例（必要に応じて調整） */
+    h2 {
+      margin-bottom: 2vw;
+      font-size: 3.6vw;
+    }
+
+    p {
+      margin-bottom: 2.2vw;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 上部の見出しエリア（薄緑） -->
+  <div class="sidebar">
+    見出しし<br>ャネル<br>見出しし<br>ャネル
+  </div>
+
+  <!-- メインコンテンツ部分 -->
+  <div class="content-wrapper">
+
+    <!-- 左の緑の縦長エリア -->
+    <div class="left-green">
+      見出しし<br>ャネル<br><br>
+      見出しし<br>ャネル
+    </div>
+
+    <!-- 右側のメイン赤エリア -->
+    <div class="main-red">
+      <h2>ここに本文が入ります</h2>
+      <p>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        （縦に長くなってもスクロールします）
+      </p>
+      <p>
+        さらに長い文章……<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト<br>
+        テキストテキストテキストテキストテキストテキスト
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 下部のオレンジ帯 -->
+  <div class="footer-orange">
+    <div class="footer-block"></div>
+    <div class="footer-block"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

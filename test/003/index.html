@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>レイアウト画像をHTML/CSSで再現</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: #4cc7c0; /* 左サイドバーと同色（右側余白も同色に見せる） */
+  }
+
+  .wrapper {
+    width: 97.4vw;          /* 横幅は97.4%相当（vwで指定） */
+    margin: 0;
+  }
+
+  .header {
+    width: 97.4vw;
+    height: 8vw;
+    background-color: #123a6b;
+    display: flex;
+    align-items: center;
+    padding-left: 2vw;
+  }
+
+  .header-icon {
+    width: 3vw;
+    height: 3vw;
+    background-color: #ff6aa0;
+  }
+
+  .main {
+    width: 97.4vw;
+    height: 50vw;
+    display: flex;
+  }
+
+  .sidebar {
+    width: 18vw;
+    height: 50vw;
+    background-color: #4cc7c0;
+    padding: 2vw 1.5vw;
+    color: #000;
+    font-size: 1.4vw;
+    line-height: 2.2vw;
+  }
+
+  .sidebar h2 {
+    margin: 0 0 1vw 0;
+    font-size: 1.6vw;
+  }
+
+  .sidebar p {
+    margin: 0 0 1vw 0;
+  }
+
+  .sidebar-section {
+    margin-bottom: 3vw;
+  }
+
+  .content-wrapper {
+    flex: 1;
+    height: 50vw;
+    background-color: #4cc7c0; /* 右側余白もサイドバーと同色 */
+    display: flex;
+    padding: 2vw 2vw 2vw 2vw;
+  }
+
+  .content {
+    width: 50vw;
+    height: 100%;
+    background-color: #7b1b2a;
+    padding: 2vw;
+    color: #ffb3b3;
+    font-size: 1.3vw;
+  }
+
+  .content-box {
+    width: 18vw;
+    height: 6vw;
+    background-color: #4aa84a;
+    margin-bottom: 2vw;
+  }
+
+  .content-text-block {
+    margin-bottom: 2vw;
+  }
+
+  .footer {
+    width: 97.4vw;
+    height: 10vw;
+    background-color: #f28b2c;
+    display: flex;
+    align-items: center;
+    padding: 0 4vw;
+    gap: 4vw;
+  }
+
+  .footer-box {
+    width: 18vw;
+    height: 4vw;
+    background-color: #d0d0d0;
+  }
+
+  .bottom-strip {
+    width: 97.4vw;
+    height: 3vw;
+    background-color: #ffffff;
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-icon"></div>
+    </header>
+
+    <main class="main">
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h2>見出し</h2>
+          <p>テキスト</p>
+          <p>テキスト</p>
+        </div>
+        <div class="sidebar-section">
+          <h2>見出し</h2>
+          <p>テキスト</p>
+          <p>テキスト</p>
+        </div>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="content-box"></div>
+          <div class="content-box"></div>
+
+          <div class="content-text-block">
+            テキストテキストテキストテキストテキストテキストテキストテキスト
+          </div>
+          <div class="content-text-block">
+            テキストテキストテキストテキストテキストテキストテキストテキスト
+          </div>
+          <div class="content-text-block">
+            テキストテキストテキストテキストテキストテキストテキストテキスト
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-box"></div>
+      <div class="footer-box"></div>
+    </footer>
+
+    <div class="bottom-strip"></div>
+  </div>
+</body>
+</html>

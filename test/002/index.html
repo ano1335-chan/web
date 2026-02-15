@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Layout</title>
+<style>
+
+body{
+  margin:0;
+  background:#1b2a4a; /* ヘッダーと同色（右余白対策） */
+}
+
+.wrapper{
+  width:97.4vw;
+  margin:0;
+  border-radius:0;
+}
+
+/* ===== ヘッダー ===== */
+.header{
+  width:97.4vw;
+  height:6vw;
+  background:#1b2a4a;
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  width:2vw;
+  height:2vw;
+  background:#ff2f7d;
+  margin-left:1vw;
+}
+
+/* ===== メイン ===== */
+.main{
+  width:97.4vw;
+  height:40vw;
+  display:flex;
+}
+
+/* 左メニュー */
+.sidebar{
+  width:22vw;
+  height:40vw;
+  background:#7fb3a6;
+  padding-top:4vw;
+}
+
+.menu-item{
+  width:18vw;
+  height:3vw;
+  margin-left:2vw;
+  margin-bottom:2vw;
+  background:transparent;
+  color:#000;
+  font-size:1.2vw;
+  line-height:3vw;
+}
+
+/* 右コンテンツ */
+.content{
+  width:75.4vw;
+  height:40vw;
+  background:#992b2b;
+  padding-top:4vw;
+}
+
+/* コンテンツ行 */
+.row{
+  width:65vw;
+  height:5vw;
+  margin-left:5vw;
+  margin-bottom:4vw;
+  display:flex;
+  align-items:flex-start;
+}
+
+.green-box{
+  width:10vw;
+  height:3vw;
+  background:#2ecc40;
+  margin-right:3vw;
+}
+
+.text-block{
+  width:45vw;
+  height:3vw;
+  background:repeating-linear-gradient(
+    to right,
+    #111,
+    #111 0.3vw,
+    transparent 0.3vw,
+    transparent 0.6vw
+  );
+}
+
+/* ===== フッター ===== */
+.footer{
+  width:97.4vw;
+  height:5vw;
+  background:#d0892d;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.footer-left{
+  width:5vw;
+  height:2vw;
+  background:#e6e6e6;
+  margin-left:2vw;
+}
+
+.footer-right{
+  width:8vw;
+  height:2vw;
+  background:#e6e6e6;
+  margin-right:2vw;
+}
+
+.bottom-bar{
+  width:97.4vw;
+  height:2vw;
+  background:#e6e6e6;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo"></div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar">
+      <div class="menu-item">見出し</div>
+      <div class="menu-item">見出し</div>
+      <div class="menu-item">テキスト</div>
+    </div>
+
+    <div class="content">
+      <div class="row">
+        <div class="green-box"></div>
+        <div class="text-block"></div>
+      </div>
+
+      <div class="row">
+        <div class="green-box"></div>
+        <div class="text-block"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right"></div>
+  </div>
+
+  <div class="bottom-bar"></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Layout Sample</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  .wrapper {
+    width: 97.4vw;
+    margin: 0 auto;
+    background: #000000;
+  }
+
+  /* 上部ナビバー */
+  .top-bar {
+    width: 97.4vw;
+    height: 6vw;
+    background: #0c2340;
+    position: relative;
+  }
+
+  .top-square {
+    width: 2.5vw;
+    height: 2.5vw;
+    background: #ff0080;
+    position: absolute;
+    top: 1.5vw;
+    left: 1.5vw;
+  }
+
+  /* メインエリア */
+  .main {
+    width: 97.4vw;
+    display: flex;
+  }
+
+  .left-column {
+    width: 18vw;
+    min-height: 30vw;
+    background: #8fd3c1;
+    padding-top: 3vw;
+    padding-left: 2vw;
+  }
+
+  .left-title {
+    font-size: 1.2vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .left-sub {
+    font-size: 0.9vw;
+    line-height: 1.4;
+  }
+
+  .right-column {
+    width: 79.4vw; /* 97.4 - 18 */
+    min-height: 30vw;
+    background: #7b251e;
+    padding: 4vw 5vw;
+  }
+
+  .green-box {
+    width: 15vw;
+    height: 3vw;
+    background: #31a634;
+    margin-bottom: 2vw;
+  }
+
+  .text-area {
+    width: 50vw;
+    height: 3vw;
+    background: #7b251e;
+    border: 0.2vw dotted #000000;
+    margin-bottom: 2vw;
+  }
+
+  /* 下部バー */
+  .bottom-bar-wrapper {
+    width: 97.4vw;
+    background: #ffffff;
+  }
+
+  .bottom-bar {
+    width: 97.4vw;
+    height: 5vw;
+    background: #c97916;
+    position: relative;
+  }
+
+  .bottom-box-left,
+  .bottom-box-right {
+    width: 8vw;
+    height: 2.5vw;
+    background: #f0f0f0;
+    position: absolute;
+    top: 1.25vw;
+  }
+
+  .bottom-box-left {
+    left: 2vw;
+  }
+
+  .bottom-box-right {
+    right: 2vw;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- 上部ナビバー -->
+  <div class="top-bar">
+    <div class="top-square"></div>
+  </div>
+
+  <!-- メインエリア -->
+  <div class="main">
+
+    <!-- 左カラム -->
+    <div class="left-column">
+      <div class="left-title">見出し</div>
+      <div class="left-sub">
+        テキスト<br>
+        テキスト<br>
+        テキスト
+      </div>
+
+      <div style="height:3vw;"></div>
+
+      <div class="left-title">見出し</div>
+      <div class="left-sub">
+        テキスト<br>
+        テキスト<br>
+        テキスト
+      </div>
+    </div>
+
+    <!-- 右カラム -->
+    <div class="right-column">
+      <div class="green-box"></div>
+      <div class="text-area"></div>
+
+      <div class="green-box"></div>
+      <div class="text-area"></div>
+    </div>
+
+  </div>
+
+  <!-- 下部バー -->
+  <div class="bottom-bar-wrapper">
+    <div class="bottom-bar">
+      <div class="bottom-box-left"></div>
+      <div class="bottom-box-right"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
