@@ -1,0 +1,282 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>PassiveMenuMessage View</title>
+      
+      <script language="JavaScript">
+         <!--
+         sRootRelativeLocation = "../"; // "../"*n
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"common0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmsg0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmsg01.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"timer0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmen0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmen01.js?LoadCheck_JavaScript'></script>");
+         // -->
+      </script>
+      
+      <link rel="stylesheet" type="text/css" href="../default.css">
+      
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- // --　▼▼▼　Load Check："JS" File Version 0.J　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sLocatPath.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sLocatPath.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.J　▲▲▲　-- // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            // onresize = ResizeWindow; 
+            InitViewBoundary( );
+            
+         }
+            
+         function Finalize( ){
+            
+         }
+         
+         function BodyLoad( ){ 
+            
+            try { Initialize_common0( ); }
+            catch (sExp){ } // throw null;
+            finally{ }
+            
+         }
+         
+         function ResizeWindow( ){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         // sRootRelativeLocation = "";
+         
+         document.write("<a href='"+sRootRelativeLocation+"index.htm' target='_top'>");
+         document.write("<img src='"+sRootRelativeLocation+"b4link6.gif' border='0' alt='トップ・ページの表示'></a><br>");
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         d1LocationSearch_Tradition_OperatorList = new Array("@Image","@Zoom");
+         // vPassiveMessage_Presence
+         
+         d2MessageMatrix = new Array();
+         sObjProperNoun = "PassiveMenuMessage/";
+         vLowerLeveru = 0;
+         
+         sImageName = "tree_of_knowledge.jpg";
+         vOriginalW = 1021;
+         vOriginalH = 1212;
+         
+         vAspectOriginal = vOriginalH/vOriginalW;
+         vAspectFrame = vFrameHeight/vFrameWidth;
+         
+         W = vOriginalW;  H = vOriginalH;
+         
+         // SW = vDisplayWidth/W;
+         // SH = vDisplayHeight/H;
+         // SD = Math.min(SH,SW);
+         
+         SW = vFrameWidth/W;
+         SH = vFrameHeight/H;
+         SF = Math.min(SH,SW);
+         
+         MS = 1/SF;
+         
+         if( MS<2 ){
+            MS = 2;
+         }
+         
+         d1ZoomModeSets  = new Array( "S", "M", "L", "2L", "3L" );
+         d1ZoomCardinalSets = new Array( 1, 1.333, 1.8,  2.7, 3.6 );
+         
+         i = 0; j = true; // false; //
+         while ( j && i < d1ZoomCardinalSets.length ){
+            
+            if( MS<=d1ZoomCardinalSets[i] ){
+               
+               j = false; // true; //
+               
+            }
+            
+            vZoomQnt_Default = i+1;
+            
+            i++;
+            
+         }
+         
+         
+         PassiveMenuMessage_Entry_Content(sObjProperNoun,sImageName,vOriginalW,vOriginalH,vZoomQnt_Default,d1ZoomModeSets,d1ZoomCardinalSets,vLowerLeveru,d2MessageMatrix);
+         
+         
+         // document.write("<br>");
+         document.write("<table border='0' cellpadding='0' cellspacing='0'><tr><td>");
+         document.write("☆この画像は『ムー』（２００８年８月号）｛＜発行所＞（株）学習研究社｝（＜目次名＞カバラの奥義「生命の木」　＜文＞ダニエル・ベン・ヨセフ）より．<br>");
+         document.write("<br>");
+         document.write("</td></tr></table>");
+         // document.write("<br>");
+         
+         
+         // -->
+      </script>
+
+
+旧約聖書に記述されている ”エデンの園”には ”生命の木”と ”知恵の木”植えられており，それらは陰陽の関係であり， ”生命の木”が ”陽”， ”知恵の木”が ”陰”に対応します．<br>
+この絵は１本の木で ”生命の木”と ”知恵の木”が表現されていると言う事です．<br>
+<br>
+<br>
+『旧約聖書 創世記｛第１章 第２６節～第３章 第２４節｝』より．<br>
+<a target="_blank" href="http://bible.monochro.com/index/2/#ln31">http://bible.monochro.com/index/2/#ln31<br></a>
+『創世記注解データベース』参考．<br>
+<a target="_blank" href="http://theology.doshisha.ac.jp/nomoto/genesis/GNSN.html">http://theology.doshisha.ac.jp/nomoto/genesis/GNSN.html<br></a>
+<br>
+第１章<br>
+<br>
+26）神はまた言われた、「われわれのかたちに、われわれにかたどって人を造り、これに海の魚と、空の鳥と、家畜と、地のすべての獣と、地のすべての這うものとを治めさせよう」。<br>
+27）神は自分のかたちに人を創造された。すなわち、神のかたちに創造し、男と女とに創造された。<br>
+28）神は彼らを祝福して言われた、「生めよ、ふえよ、地に満ちよ、地を従わせよ。また海の魚と、空の鳥と、地に動くすべての生き物とを治めよ」。<br>
+29）神はまた言われた、「わたしは全地のおもてにある種をもつすべての草と、種のある実を結ぶすべての木とをあなたがたに与える。これはあなたがたの食物となるであろう。<br>
+30）また地のすべての獣、空のすべての鳥、地を這うすべてのもの、すなわち命あるものには、食物としてすべての青草を与える」。そのようになった。<br>
+31）神が造ったすべての物を見られたところ、それは、はなはだ良かった。夕となり、また朝となった。第六日である。<br>
+<br>
+第２章<br>
+<br>
+1）こうして天と地と、その万象とが完成した。<br>
+2）神は第七日にその作業を終えられた。すなわち、そのすべての作業を終って第七日に休まれた。<br>
+3）神はその第七日を祝福して、これを聖別された。神がこの日に、そのすべての創造のわざを終って休まれたからである。<br>
+4）これが天地創造の由来である。主なる神が地と天とを造られた時、<br>
+5）地にはまだ野の木もなく、また野の草もはえていなかった。主なる神が地に雨を降らせず、また土（アダマ）を耕す人（アダム）もなかったからである。<br>
+6）しかし地から泉がわきあがって土の全面を潤していた。<br>
+7）主なる神は土（アダマ）の塵（ちり）で人（アダム）を造り、命の息をその鼻に吹きいれられた。そこで人は生きた者となった。<br>
+8）主なる神は東のかた、エデンに一つの園を設けて、その造った人をそこに置かれた。<br>
+9）また主なる神は、見て美しく、食べるに良いすべての木を土からはえさせ、更に園の中央に命の木と、善悪を知る木とをはえさせられた。<br>
+（略）<br>
+15）主なる神は人を連れて行ってエデンの園に置き、これを耕させ、これを守らせられた。<br>
+16）主なる神はその人に命じて言われた、「あなたは園のどの木からでも心のままに取って食べてよろしい。<br>
+17）しかし善悪を知る木からは取って食べてはならない。それを取って食べると、きっと死ぬであろう」。<br>
+18）また主なる神は言われた、「人がひとりでいるのは良くない。彼のために、ふさわしい助け手を造ろう」。<br>
+19）そして主なる神は野のすべての獣と、空のすべての鳥とを土で造り、人のところへ連れてきて、彼がそれにどんな名をつけるかを見られた。人が、生き物に呼びかけると、すべてそれがそのものの名前となるのであった。<br>
+20）それで人は、すべての家畜と、空の鳥と、野のすべての獣とに名をつけたが、人にはふさわしい助け手が見つからなかった。<br>
+21）そこで主なる神は人を深く眠らせ、眠った時に、そのあばら骨の一つを取って、その所を肉でふさがれた。<br>
+22）主なる神は人から取ったあばら骨でひとりの女を造り、人のところへ連れてこられた。<br>
+23）そのとき、人は言った。「これこそ、ついにわたしの骨の骨、わたしの肉の肉。男（イーシュ）から取ったものだから、これを女（イッシャー）と名づけよう」。<br>
+24）それで人はその父と母を離れて、妻と結び合い、一体となるのである。<br>
+25）人とその妻とは、ふたりとも裸であったが、恥ずかしいとは思わなかった。<br>
+<br>
+第３章<br>
+<br>
+1）さて主なる神が造られた野の生き物のうちで、へびが最も狡猾であった。へびは女に言った、「園にあるどの木からも取って食べるなと、ほんとうに神が言われたのですか」。<br>
+2）女はへびに言った、「わたしたちは園の木の実を食べることは許されていますが、<br>
+3）ただ園の中央にある木の実については、これを取って食べるな、これに触れるな、死んではいけないからと、神は言われました」。<br>
+4）へびは女に言った、「あなたがたは決して死ぬことはないでしょう。<br>
+5）それを食べると、あなたがたの目が開け、神のように善悪を知る者となることを、神は知っておられるのです」。<br>
+6）女がその木を見ると、それは食べるに良く、目には美しく、賢くなるには好ましいと思われたから、その実を取って食べ、また共にいた夫にも与えたので、彼も食べた。<br>
+7）すると、ふたりの目が開け、自分たちの裸であることがわかったので、いちじくの葉をつづり合わせて、腰に巻いた。<br>
+8）彼らは、日の涼しい風の吹くころ、園の中に主なる神の歩まれる音を聞いた。そこで、人とその妻とは主なる神の顔を避けて、園の木の間に身を隠した。<br>
+9）主なる神は人に呼びかけて言われた、「あなたはどこにいるのか」。<br>
+10）彼は答えた、「園の中であなたの歩まれる音を聞き、わたしは裸だったので、恐れて身を隠したのです」。<br>
+11）神は言われた、「あなたが裸であるのを、だれが知らせたのか。食べるなと、命じておいた木から、あなたは取って食べたのか」。<br>
+12）人は答えた、「わたしと一緒にしてくださったあの女が、木から取ってくれたので、わたしは食べたのです」。<br>
+13）そこで主なる神は女に言われた、「あなたは、なんということをしたのです」。女は答えた、「へびがわたしをだましたのです。それでわたしは食べました」。<br>
+14）主なる神はへびに言われた、「おまえは、この事を、したので、すべての家畜、野のすべての獣のうち、最ものろわれる。おまえは腹で、這いあるき、一生、塵（ちり）を食べるであろう。<br>
+15）わたしは恨みをおく、おまえと女とのあいだに、おまえのすえと女のすえとの間に。彼はおまえのかしらを砕き、おまえは彼のかかとを砕くであろう」。<br>
+16）つぎに女に言われた、「わたしはあなたの産みの苦しみを大いに増す。あなたは苦しんで子を産む。それでもなお、あなたは夫を慕い、彼はあなたを治めるであろう」。<br>
+17）更に人に言われた、「あなたが妻の言葉を聞いて、食べるなと、わたしが命じた木から取って食べたので、地はあなたのためにのろわれ、あなたは一生、苦しんで地から食物を取る。<br>
+18）地はあなたのために、いばらとあざみとを生じ、あなたは野の草を食べるであろう。<br>
+19）あなたは顔に汗してパンを食べ、ついに土に帰る、あなたは土から取られたのだから。あなたは、塵（ちり）だから、塵（ちり）に帰る」。<br>
+20）さて、人はその妻の名をエバ（命）と名づけた。それは、彼女が命のあるすべての者の母となったからである。<br>
+21）主なる神は人とその妻とのために皮の着物を造って、彼らに着せられた。<br>
+22）主なる神は言われた、「見よ、人はわれわれのひとりのようになり、善悪を知るものとなった。彼は手を伸べ、命の木からも取って食べ、永久に生きるかも知れない」。<br>
+23）そこで主なる神は彼をエデンの園から追い出して、人が造られたその土を耕させられた。<br>
+24）神は人を追い出し、エデンの園の東に、ケルビムと、回る炎のつるぎとを置いて、命の木の道を守らせられた。<br>
+<br>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

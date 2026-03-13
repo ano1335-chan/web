@@ -1,0 +1,210 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>PassiveMenuMessage View</title>
+      
+      <script language="JavaScript">
+         <!--
+         sRootRelativeLocation = "../"; // "../"*n
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"common0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmsg0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmsg01.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"timer0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmen0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootRelativeLocation+"pasmen01.js?LoadCheck_JavaScript'></script>");
+         // -->
+      </script>
+      
+      <link rel="stylesheet" type="text/css" href="../default.css">
+      
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- // --　▼▼▼　Load Check："JS" File Version 0.J　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sLocatPath.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sLocatPath.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.J　▲▲▲　-- // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            // onresize = ResizeWindow; 
+            InitViewBoundary( );
+            
+         }
+            
+         function Finalize( ){
+            
+         }
+         
+         function BodyLoad( ){ 
+            
+            try { Initialize_common0( ); }
+            catch (sExp){ } // throw null;
+            finally{ }
+            
+         }
+         
+         function ResizeWindow( ){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         // sRootRelativeLocation = "";
+         
+         document.write("<a href='"+sRootRelativeLocation+"index.htm' target='_top'>");
+         document.write("<img src='"+sRootRelativeLocation+"b4link6.gif' border='0' alt='トップ・ページの表示'></a><br>");
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         d1LocationSearch_Tradition_OperatorList = new Array("@Image","@Zoom");
+         // vPassiveMessage_Presence
+         
+         d2MessageMatrix = new Array();
+         sObjProperNoun = "PassiveMenuMessage/";
+         vLowerLeveru = 0;
+         
+         sImageName = "tree_of_life.jpg";
+         vOriginalW = 1067;
+         vOriginalH = 1627;
+         
+         vAspectOriginal = vOriginalH/vOriginalW;
+         vAspectFrame = vFrameHeight/vFrameWidth;
+         
+         W = vOriginalW;  H = vOriginalH;
+         
+         // SW = vDisplayWidth/W;
+         // SH = vDisplayHeight/H;
+         // SD = Math.min(SH,SW);
+         
+         SW = vFrameWidth/W;
+         SH = vFrameHeight/H;
+         SF = Math.min(SH,SW);
+         
+         MS = 1/SF;
+         
+         if( MS<2 ){
+            MS = 2;
+         }
+         
+         d1ZoomModeSets  = new Array( "S", "M", "L", "2L", "3L" );
+         d1ZoomCardinalSets = new Array( 1, 1.333, 1.8,  2.7, 3.6 );
+         
+         i = 0; j = true; // false; //
+         while ( j && i < d1ZoomCardinalSets.length ){
+            
+            if( MS<=d1ZoomCardinalSets[i] ){
+               
+               j = false; // true; //
+               
+            }
+            
+            vZoomQnt_Default = i+1;
+            
+            i++;
+            
+         }
+         
+         
+         PassiveMenuMessage_Entry_Content(sObjProperNoun,sImageName,vOriginalW,vOriginalH,vZoomQnt_Default,d1ZoomModeSets,d1ZoomCardinalSets,vLowerLeveru,d2MessageMatrix);
+         
+         // document.write("<br>");
+         document.write("<table border='0' cellpadding='0' cellspacing='0' width='"+vPassiveMenu__ContainerW+"'><tr><td>");
+         document.write("");
+         document.write("</td></tr></table>");
+         // document.write("<br>");
+         
+         
+         // -->
+      </script>
+
+<br>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

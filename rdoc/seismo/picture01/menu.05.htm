@@ -1,0 +1,660 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=x-sjis">
+      <title>Menu</title>
+      <script language="JavaScript">
+         <!--
+         
+         sRootPath = "../../"; // "../"*n
+         
+         sLocationPath = location.pathname;
+         sLocationAbsPath = location.protocol+"//"+location.hostname+sLocationPath.substring( 0, sLocationPath.lastIndexOf( "/" )+1 );
+         sLRel = sLocationAbsPath; iLRPos = 0;
+         sRPSeparat = "../"; iRPSep = sRootPath.split( "../" ).length-1;
+         while ( 0<iRPSep && 0<=iLRPos ){
+            iRPSep--; iLRPos = sLRel.lastIndexOf( "/", sLRel.length-2 );
+            if( 0<=iLRPos ) sLRel = sLRel.substring( 0, iLRPos+1 );
+         }
+         if( 0<=iLRPos ) sLocationRelPath = sLRel;
+         else alert("Location 相対パスを設定できませんでした。");
+         
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"root.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"common0.js?LoadCheck_JavaScript'></script>");
+         
+         // -->
+      </script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- 
+         // --　▼▼▼　Load Check："JS" File Version 0.M　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sProtocol = location.protocol;
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sProtocol.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")[i].src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")[i].document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = lInteractive && 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sProtocol.indexOf("http:") ){ // true | 
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.M　▲▲▲　-- //
+         // -->
+      </script>
+
+      <!-- 
+      <script language="JavaScript">
+         var sJScript = document.createElement("script");
+         sJScript.type = "text/javascript";
+         sJScript.src = "../../root.js?LoadCheck_JavaScript";
+         oTagHeadElements = document.getElementsByTagName("head");
+         oTagHeadElements[oTagHeadElements.length-1].appendChild(sJScript);
+      </script>
+      // -->
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            InitViewBoundary( );
+            
+            sRadioSwitch_Menu_Group_ImageObjName = "Image/RadioSwitch/Menu/";
+            sImageObjName = sGet_LocationSearch_Operand("@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName,0);
+            // sStatus = sGet_LocationSearch_Operand("@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName,1);
+            sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+            
+         }
+         
+         function Finalize( ){ }
+         
+         function BodyLoad( ){
+            
+            if( 0<vGet_LocationSearch_Operand_Quantity("@Scroll") ){
+               
+               // alert("vGet_LocationSearch_Operand_Quantity(@Scroll):"+vGet_LocationSearch_Operand_Quantity("@Scroll"));
+               
+               if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+                  // Netscape
+                  
+                  vViewOffsetX = window.pageXOffset;
+                  vViewOffsetY = window.pageYOffset;
+                  
+               }
+               
+               else{ 
+                  // Explorer
+                  
+                  vViewOffsetX = document.body.scrollLeft;
+                  vViewOffsetY = document.body.scrollTop;
+                  
+               }
+               
+               sScrollX = sGet_LocationSearch_Operand("@Scroll",0);
+               sScrollY = sGet_LocationSearch_Operand("@Scroll",1);
+               
+               if(sScrollX!="") vScrollX = eval(sScrollX);
+               else vScrollX = vViewOffsetX;
+               
+               if(sScrollY!="") vScrollY = eval(sScrollY);
+               else vScrollY = vViewOffsetY;
+               
+               // alert("vViewOffsetX:"+vViewOffsetX+"; "+"vViewOffsetY:"+vViewOffsetY+"; "+"vScrollX:"+vScrollX+"; "+"vScrollY:"+vScrollY+"; "+"");
+               
+               window.scrollBy(vScrollX - vViewOffsetX, vScrollY - vViewOffsetY);
+               // window.scroll(vScrollX, vScrollY);
+               
+            }
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               onresize = ResizeWindow; 
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         function ResizeWindow(){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               // alert("location.reload");
+               // location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+               vViewOffsetX = window.pageXOffset;
+               vViewOffsetY = window.pageYOffset;
+               
+               vID = vGet_RadioSwitch_ActiveID(sRadioSwitch_Menu_Group_ImageObjName);
+               sImageObjName = d1sList_ImageObjName[vID];
+               
+               sParameter = "@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName+";"+sImageObjName+";";
+               // sParameter = "@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName+";"+sImageObjName+";"+"@Scroll;"+vViewOffsetX+";"+vViewOffsetY+";";
+               
+               // alert("location:"+sSelfName+"?"+sParameter);
+               // alert("vViewOffsetX:"+vViewOffsetX+"; "+"vViewOffsetY:"+vViewOffsetY+"; "+"");
+               
+               location = sSelfName+"?"+sParameter+"#"+sImageObjName;
+               // location = sSelfName+"?"+sParameter;
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+<table align="center"  width="100%" cellpadding="0">
+
+   <tr>
+      <td nowrap>
+
+<a href="../../index.htm" target="_top">
+   <img src="../../b4link6.gif" border="0" alt="トップ・ページの表示"></a>
+
+<a href="../../picture~.htm" target="ImageContent">
+   <img src="../../b4link4.gif" border="0" alt="Help">
+Picture</a><br>
+<br>
+
+         <!--
+         
+         *** Image/Switch Templet ***
+         
+         sLink = "JavaScript:;";
+         sLink = "JavaScript:void window.focus();";
+         sClient = "";
+         sImageName_MouseOver = "";
+         sImageName_MouseDown = "";
+         sImageName_MouseUp = "";
+         sImageName_MouseOut = "";
+         sTag_ImageWidth = "";
+         sTag_ImageHeight = "";
+         sTag_ImageMessage = "";
+         sTag_Client = "";
+         vImageWidth = -1;
+         vImageHeight = -1;
+         sImageMessage = "";
+         sImageName_First = "";
+         
+         sImageObjName = "Image/Switch/001/";
+         sImageName_Default = "st07_i3.gif";
+         sImageName_MouseOver = "st07_i1.gif";
+         sImageName_MouseDown = "st07_i2.gif";
+         sImageName_MouseUp = "st07_i5.gif";
+         sImageName_MouseOut = "st07_i3.gif";
+         
+         // sImageMessage = "";
+         // sClient = ""; // _blank
+         // sLink = "";
+         // document.write("<a name='"+sImageObjName+"'></a>");
+         
+         if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+         if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+         if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+         if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+         
+         Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+         
+         sImageName_First = sImageName_Default;
+         
+         document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+         document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+         document.write(" onmousedown='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+         document.write(" onmouseup='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseUp+"\");' ");
+         document.write(" onmouseout='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOut+"\");' ");
+         document.write(" >");
+         document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+         document.write("</a>");
+         
+         oCacheImageObj = oGet_Find_Image(document, sImageObjName);
+         
+         document.write("<br>");
+         
+         
+         
+         *** Image/RadioSwitch Templet ***
+         
+         
+         sLink = "JavaScript:;";
+         sClient = "";
+         sImageName_MouseOver = "";
+         sImageName_MouseDown = "";
+         sImageName_MouseUp = "";
+         sImageName_MouseOut = "";
+         sTag_ImageWidth = "";
+         sTag_ImageHeight = "";
+         sTag_ImageMessage = "";
+         sTag_Client = "";
+         vImageWidth = -1;
+         vImageHeight = -1;
+         sImageMessage = "";
+         sImageName_First = "";
+         
+         sRadioSwitch_Menu_Group_ImageObjName = "Image/RadioSwitch/";
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + "001/";
+         sImageName_Default = "buttonb010.gif";
+         sImageName_MouseOver = "buttonb020.gif";
+         sImageName_MouseDown = "buttonb000.gif";
+         
+         // sImageMessage = "";
+         // sClient = "";
+         // sLink = "";
+         
+         if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+         if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+         if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+         if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+         
+         Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+         
+         sImageName_First = sImageName_Default;
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         
+         if(sImageObjName==sFirstStrike_RadioSwitch_ImageObjName){
+            
+            sImageName_First = sImageName_MouseDown;
+            d1sList_ImageNatureStatus[sImageObjName] = sImageName_First;
+            
+         }
+         
+         document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+         document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+         document.write(" onmousedown='RadioSwitch_Image(\""+sRadioSwitch_Menu_Group_ImageObjName+"\", \""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+         document.write(" onmouseout=' RadioSwitch_RestorationImage(\""+sImageObjName+"\");' ");
+         document.write(" >");
+         document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+         document.write("</a>");
+         
+         oCacheImageObj = oGet_Find_Image(document, sImageObjName);
+         
+         // document.write("<br>");
+         
+         
+         
+         // -->
+
+
+
+      <script language="JavaScript">
+         <!--
+         
+         sRootDir = "../../";
+         sRelativeDir = "seismo/picture.01/";
+         
+         vNumber = 0;
+         iViewZoom_MaxLevel = 3;
+         vSumNail_MaxWidth = 100; vSumNail_MaxHeight = 100;
+         
+         
+         
+         // vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "NANKAI_trough_010.gif";
+         vViewImageWidth = 600; vViewImageHeight = 338;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "NIHON-kaikou_020.jpg";
+         vViewImageWidth = 270; vViewImageHeight = 500;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "inter-plate_010.jpg";
+         vViewImageWidth = 1145; vViewImageHeight = 959;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "NIHON-kaikou_030.gif";
+         vViewImageWidth = 391; vViewImageHeight = 450;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "inter-plate_010.png";
+         vViewImageWidth = 821; vViewImageHeight = 898;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_TATIKAWA_dansou_010.jpg";
+         vViewImageWidth = 310; vViewImageHeight = 240;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_dansou_010.jpg";
+         vViewImageWidth = 500; vViewImageHeight = 360;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_020.jpg";
+         vViewImageWidth = 450; vViewImageHeight = 378;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_SAGAMI_trough_010.jpg";
+         vViewImageWidth = 449; vViewImageHeight = 284;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_SAGAMI_trough_020.jpg";
+         vViewImageWidth = 500; vViewImageHeight = 323;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_tyokka_inter-plate_010.jpg";
+         vViewImageWidth = 500; vViewImageHeight = 371;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_tyokka_inter-plate_030.jpg";
+         vViewImageWidth = 400; vViewImageHeight = 283;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sViewImageName = "syutoken_tyokka_inter-plate_050.jpg";
+         vViewImageWidth = 570; vViewImageHeight = 310;
+         sSumNailName = "";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight);
+         
+         
+         
+         function Define_RadioSwitch_Menu_V020(sRadioSwitch_Menu_Group_ImageObjName,sNumber,iViewZoom_MaxLevel,sViewImageName,vViewImageWidth,vViewImageHeight,sSumNailName,vSumNail_MaxWidth,vSumNail_MaxHeight){
+            
+            var sClient = "";
+            var sImageName_MouseOver = "";
+            var sImageName_MouseDown = "";
+            var sImageName_MouseUp = "";
+            var sImageName_MouseOut = "";
+            var sTag_ImageWidth = "";
+            var sTag_ImageHeight = "";
+            var sTag_ImageMessage = "";
+            var sTag_SumNailWidth = "";
+            var sTag_SumNailHeight = "";
+            var sTag_Client = "";
+            var vImageWidth = -1;
+            var vImageHeight = -1;
+            var sImageMessage = "";
+            var sImageName_First;
+            
+            var vSW,vSH,vS;
+            
+            var sLink = "../../pm2view0.htm?@Image;seismo/picture.01/"+sViewImageName+";"+vViewImageWidth+";"+vViewImageHeight+";@Zoom;"+iViewZoom_MaxLevel+";";
+            
+            sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+            sImageName_Default = "../../b4buttj.gif";
+            sImageName_MouseOver = "../../b4butte.gif";
+            sImageName_MouseDown = "../../b4buttg.gif";
+            
+            // sImageMessage = "";
+            sClient = "ImageContent";
+            
+            if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+            if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+            if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+            if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+            
+            Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+            
+            sImageName_First = sImageName_Default;
+            
+            if(sImageObjName==sFirstStrike_RadioSwitch_ImageObjName){
+               
+               sImageName_First = sImageName_MouseDown;
+               d1sList_ImageNatureStatus[sImageObjName] = sImageName_First;
+               
+            }
+            
+            if( typeof sSumNailName=="string" ) if( ""<sSumNailName ){
+               
+            }
+            
+            else{
+               
+               sSumNailName = sViewImageName;
+               
+               if( typeof vSumNail_MaxWidth=="number" && typeof vSumNail_MaxHeight=="number" ){
+                  
+                  vSW = vSumNail_MaxWidth /vViewImageWidth ;
+                  vSH = vSumNail_MaxHeight/vViewImageHeight;
+                  vS = Math.min( vSW,vSH );
+                  sTag_SumNailWidth  = "Width=\"" +Math.round(vViewImageWidth *vS)+"\"; ";
+                  sTag_SumNailHeight = "Height=\""+Math.round(vViewImageHeight*vS)+"\"; ";
+                  
+               }
+               
+            }
+            
+            document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+            document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+            document.write(" onmousedown='RadioSwitch_Image(\""+sRadioSwitch_Menu_Group_ImageObjName+"\", \""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+            document.write(" onmouseout=' RadioSwitch_RestorationImage(\""+sImageObjName+"\");' ");
+            document.write(" >");
+            
+            document.write("<img border='0' "+sTag_SumNailWidth+sTag_SumNailHeight+"src='"+sSumNailName+"'><br>");
+            document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+            
+            document.write(" No."+sNumber);
+            
+            document.write("</a>");
+            
+            oCacheImageObj = oGet_Find_Image(document, sImageObjName);
+            
+            document.write("<br>");
+            
+         }
+         
+         // -->
+      </script>
+
+      </td>
+   </tr>
+
+</table>
+
+      <script language="JavaScript">
+         <!--
+         
+         Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

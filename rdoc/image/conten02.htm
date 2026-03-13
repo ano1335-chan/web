@@ -1,0 +1,261 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>Image（ＵＦＯ）</title>
+      <script language=JavaScript type=Text/JavaScript src="../common0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../timer0.js?LoadCheck_JavaScript"></script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- // --　▼▼▼　Load Check："JS" File Version 0.J　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sLocatPath.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sLocatPath.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.J　▲▲▲　-- // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function lIs_Open(sConditionName,sTargetName){
+            
+            return lCheckFirstFit(sTargetName, sConditionName);
+            
+         }
+         
+         function Initialize( ){
+            d1LocationSearch_Tradition_OperatorList = new Array("@Open","@Jump");
+            InitViewBoundary( );
+            sJump = sGet_LocationSearch_Operand("@Jump",0);
+            sOpen = sGet_LocationSearch_Operand("@Open",0);
+            if( (sJump!="")&&(location.hash!="#"+sJump) ){
+               sJumpLocation = sJump;
+            }
+            if( ( sOpen != "" )  && ( ! lIs_Jump( ) ) ){
+               sJumpLocation = sOpen;
+            }
+            if( ! lIs_Jump() ){
+               // sJumpLocation = "Begin";
+            }
+            if(sJumpLocation!=""){
+               sParameter = sGet_Except_LocationSearch_Stream( );
+               sJump = sJumpLocation;
+               if( sParameter != "" ){
+                  sParameter = "?" + sParameter;
+               }
+               if( sJump != "" ){
+                  sJump = "#" + sJump;
+               }
+               if( ! ( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ) ){
+                  // Explorer
+                  location = sSelfName+sParameter+sJump;
+               }
+               else{
+                  // location.search = sParameter+sJump;
+               }
+            }
+         }
+         
+         function Finalize( ){ }
+         
+         function BodyLoad( ){
+            if( ( typeof nTimerInterval ) != "undefined" ){
+               setTimeout("TimerHandler()",nTimerInterval);
+            }
+            if(sJumpLocation!=""){
+               sParameter = sGet_Except_LocationSearch_Stream( );
+               sJump = sJumpLocation;
+               if( sParameter != "" ){
+                  sParameter = "?" + sParameter;
+               }
+               if( sJump != "" ){
+                  sJump = "#" + sJump;
+               }
+               if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+                  // Netscape
+                  location.search = sParameter+sJump;
+               }
+            }
+         }
+         
+         // -->
+      </script>
+
+      <a href="../index.htm" target="_top">
+         <img src="../b4link6.gif" border="0" alt="トップ・ページの表示"></a>
+
+      <div align="center">
+               <h2>
+<nobr>”ＵＦＯ”</nobr><br>
+               </h2>
+      </div>
+
+▲《 ”ＵＦＯ”》<br>
+◎ニューヨーク上空に”エイリアン”達の無数（むすう）の｛＃０１｝：”ＵＦＯ”が おとずれ，公然（こうぜん）と我々 人類の眼前（がんぜん）に その存在を現わすのだと思われる．<br>
+☆ノストラダムス「白い箱の女王」”諸世紀”未収録・予言詩「第１２巻 ナンバー不明」：<br>
+▽『＜（金属製の）サルヴァー（＝盆（ぼん））＞（ＵＦＯ）が飛び，＜新しい都＞（ニューヨーク）へ休息に やって来る．… 』
+      <a target="_parent" href="../nstrdm1.htm#Queen/Salver">
+参照
+      </a>
+．<br>
+☆ノストラダムス「白い箱の女王」”諸世紀”未収録・予言詩「第１２巻 ナンバー不明」：<br>
+▽『＜尾（お）の ない彗星（すいせい）＞（ＵＦＯ）の群（む）れが天空（てんくう）に満（み）ち，音も なく飛ぶ．…』
+      <a target="_parent" href="../nstrdm1.htm#Queen/Comet">
+参照
+      </a>
+．<br>
+<br>
+○（＃０１）．”ＵＦＯ”．　<br>
+
+      <a name="UFO"></a>
+
+      <script language="JavaScript">
+         <!--
+         
+         // var sMenuItem,sMenuOpenLabel,sMenuCloseLabel,sMenuCaption // 
+         sConditionName = sGet_LocationSearch_Operand("@Open",0);
+         
+         sMenuItem = "Slideshow";
+         sMenuOpenLabel = "Slideshow/UFO/";
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         // document.write("");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<nobr>");
+               document.write("<a href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='../b4fold6.png' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</nobr>");
+            
+         }
+         
+         else{
+            
+            
+            sMenuCloseLabel = "/";
+            sMenuCloseJump = sMenuOpenLabel;
+            
+            
+            document.write("<nobr>");
+               document.write("<a href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseJump+"'>");
+            document.write("<img border='0' src='../b4fold7.png' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</nobr>");
+            
+               document.write("<table align='center' width='100%' cellpadding='7' border=1>");
+            document.write("<tr>");
+            document.write("<td>");
+            
+            // document.write("");
+            
+            document.write("※「順方向･再生：画像の右側をクリック」、&#13;&#10;「逆方向･再生：画像の左側をクリック」、&#13;&#10;「停止：画像の真ん中をクリック、&#13;&#10;又は順方向･再生時は画像の右側をクリックか、&#13;&#10;逆方向･再生時は画像の左側をクリックでも可」、&#13;&#10;「先頭画像にセット：画像の上側をクリック」、&#13;&#10;「末尾画像にセット：画像の下側をクリック」．<br>");
+            
+            document.write("</td>");
+            document.write("</tr>");
+            document.write("</table>");
+            
+         }
+         
+         document.write("<br>");
+         
+         //-->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         document.write("<div align='center'>");
+         
+         sImageObjName = "Image/SlideShow/UFO/";
+         nInterval = 15;
+         lLoop = false; // true; //
+         // sLink = "JavaScript:;";
+         sLink = "";
+         
+         W = 100;  H = 100;
+         SW = vDisplayWidth/W;
+         SH = vDisplayHeight/H;
+         // SW = vFrameWidth/W;
+         // SH = vFrameHeight/H;
+         S = Math.min(SH,SW);
+         vImageWidth = W*S;
+         vImageHeight = H*S;
+         
+         sImagePath = "ufo/";
+         d1sList_ImageName = new Array("i0001.gif","i0002.gif","i0003.gif","i0004.gif","i0005.gif","i0006.gif","i0007.gif","i0008.gif","i0009.gif","i0010.gif","i0011.gif","i0012.gif","i0013.gif","i0014.gif","i0015.gif","i0016.gif","i0017.gif","i0018.gif","i0019.gif","i0020.gif","i0021.gif","i0022.gif","i0023.gif","i0024.gif","i0025.gif","i0026.gif","i0027.gif","i0028.gif","i0029.gif","i0030.gif");
+         
+         Entry_SlideShow_Image( nInterval, lLoop, sImageObjName, sImagePath, d1sList_ImageName, vImageWidth, vImageHeight, sLink );
+         document.write("<br>");
+         
+         document.write("</div>");
+         // -->
+      </script>
+<br>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

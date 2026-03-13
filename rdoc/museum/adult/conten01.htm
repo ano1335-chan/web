@@ -1,0 +1,180 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>PassiveMenuMessage View</title>
+      <script language=JavaScript type=Text/JavaScript src="../../common0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../timer0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmsg0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmsg00.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmen0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmen01.js?LoadCheck_JavaScript"></script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- // --　▼▼▼　Load Check："JS" File Version 0.J　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sLocatPath.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sLocatPath.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.J　▲▲▲　-- // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            // onresize = ResizeWindow; 
+            InitViewBoundary( );
+            
+         }
+            
+         function Finalize( ){ }
+         
+         function BodyLoad( ){ 
+            
+            if( ( typeof nTimerInterval ) != "undefined" ){
+               
+               setTimeout("TimerHandler()",nTimerInterval);
+               
+            }
+            
+         }
+         
+         function ResizeWindow( ){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+      <a href="../../index.htm" target="_top">
+         <img src="../../b4link6.gif" border="0" alt="トップ・ページの表示"></a>
+
+      <script language="JavaScript">
+         <!--
+         
+         vFooterHeight = 0;
+         
+         // if(lIs_Jump()){
+            
+            vFooterHeight = vFrameHeight;
+            
+         // }
+         
+         
+         
+         document.write("<div align='center'>");
+         
+         
+         
+         sImageObjName = "Image/SlideShow/Name01/";
+         
+         W = 757;  H = 864;
+         SW = vDisplayWidth/W;
+         SH = vDisplayHeight/H;
+         SD = Math.min(SH,SW);
+         SW = vFrameWidth/W;
+         SH = vFrameHeight/H;
+         SF = Math.min(SH,SW)
+         S = SF;
+         vImageWidth = W*S;
+         vImageHeight = H*S;
+         
+         sImagePath = "tukiyomi/";
+         
+         d1sList_ImageName = new Array("tukiyomi08.jpg","tukiyomi09.jpg","tukiyomi10.jpg");
+         
+         // nInterval = 10;
+         nInterval = -1;
+         lLoop = false; // true; //
+         // sLink = "JavaScript:;";
+         sLink = "";
+         
+         Entry_SlideShow_Image( nInterval, lLoop, sImageObjName, sImagePath, d1sList_ImageName, vImageWidth, vImageHeight, sLink );
+         
+         document.write("<br>");
+         
+         
+         document.write("</div>");
+         
+         
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

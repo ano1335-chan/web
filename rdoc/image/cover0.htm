@@ -1,0 +1,91 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>イメージ「Applet」（Cover）</title>
+      <script language=JavaScript type=Text/JavaScript src="common0.js"></script>
+         <!--
+         //Seting Begin.
+         var DisplayWidthMin = 240;
+         var DisplayHeightMin = 200;
+         //Seting End.
+         //
+         //Define Begin.
+         onresize = ResizeWindow; 
+         var FrameWidth,FrameHeight;
+         var DisplayWidth,DisplayHeight;
+         var VerInternetExplorer5_0 = "MSIE 5.0";
+         var InternetExplorer = "Microsoft Internet Explorer";
+         var NetscapeNavigator = "Netscape";
+         var Version = navigator.appVersion;
+         //Define End.
+         //
+         //Function Begin.
+         function Initialize(){
+            InitViewBoundary();
+         }
+         function ResizeWindow(){
+            location.reload();
+         }
+         function InitViewBoundary(){
+            if( navigator.appName==InternetExplorer ){
+                //document.write("InternetExplorer"+"<br>");
+                FrameWidth = document.body.clientWidth;
+                FrameHeight = document.body.clientHeight;
+            } 
+            else{ // NetscapeNavigator
+               //document.write("NetscapeNavigator"+"<br>");
+               FrameWidth = window.innerWidth;
+               FrameHeight = window.innerHeight;
+            }  
+            DisplayWidth = Math.max(FrameWidth-50,DisplayWidthMin);
+            DisplayHeight = Math.max(FrameHeight-30,DisplayHeightMin);
+         }   
+         var StrWidth,StrHeight;
+         var ObjHTMLTitle;
+         function GetAppletTitle(){
+            var StrHTML =  
+             "<div align='center'>"
+             +"<applet archive='j1video.jar' code='AppVideo09.class' width='"+DisplayWidth+"' height='"+DisplayHeight+"'>"
+             +"<param name='WindowManner' value='Builtin'>"
+             +"<param name='HexBackground' value='0000ff'>"
+             +"<param name='Message' value='Title'>"
+             +"<param name='PanelWidth' value='"+DisplayWidth+"'>"
+             +"<param name='PanelHeight' value='"+DisplayHeight+"'>"
+             +"<param name='ExpressMode' value='Picture'>"
+             +"<param name='ImageWidth' value='43'>"
+             +"<param name='ImageHeight' value='10'>"
+             +"<param name='File' value='title04.gif'>"
+             +"</applet>"
+             +"</div>";
+             //+"<br>";
+            return StrHTML;
+         }   
+         //Function End.
+         // -->
+      </script>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff">
+      <script language="JavaScript">
+         <!--
+         Initialize();
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         if( navigator.appName==InternetExplorer){
+            //document.all.form1.textfield.value = "test";
+            StrWidth = ""+100+"%";
+            StrHeight = ""+(Math.ceil(DisplayHeight/FrameHeight*100))+"%";
+            //window.status = "W:"+StrWidth+" H:"+StrHeight;
+         }
+         else{ // navigator.appName==NetscapeNavigator
+            StrWidth = ""+FrameWidth+"px";
+            StrHeight = ""+DisplayHeight+"px";
+         }
+         document.write(GetAppletTitle());
+         // -->
+      </script>
+
+   </body>
+</html>

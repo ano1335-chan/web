@@ -1,0 +1,244 @@
+<html>
+   <head>
+      <title>PassiveMenuMessage View</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=x-sjis">
+      
+      <script language="JavaScript">
+         <!--
+         sRootPath = ""; // "../"*n
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"common0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"pasmsg0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"pasmsg01.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"timer0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"pasmen0.js?LoadCheck_JavaScript'></script>");
+         document.write("<script language=JavaScript type=Text/JavaScript src='"+sRootPath+"pasmen00.js?LoadCheck_JavaScript'></script>");
+         // -->
+      </script>
+      
+      <link rel="stylesheet" type="text/css" href="default.css">
+      
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#8F9FFF" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- 
+         // --　▼▼▼　Load Check："JS" File Version 0.N　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            lInteractive =  true; // false; //
+            sProtocol = location.protocol;
+            sLocatPath = location.pathname; vReloadMax = 16; // 16;
+            if( -1==sProtocol.indexOf("http:") ){ vReloadMax = 32; } // 32;
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand;
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")[i].src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")[i].document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  // alert("sFirstNeme="+sFirstNeme+";\n"+"lExist_JavaScript_"+sFirstNeme+"="+eval("lExist_JavaScript_"+sFirstNeme+"( );")+";\n"+"");
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ lInteractive = lInteractive && (0<document.body.clientWidth)&&(0<document.body.clientHeight); InitViewBoundary( ); lInteractive = lInteractive && 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sProtocol.indexOf("http:") ){ // true | 
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.N　▲▲▲　-- //
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize();
+         // Header();
+         // Headline();
+         
+         function Initialize(){
+            
+            InitViewBoundary();
+            
+         }
+            
+         function Finalize(){
+            
+         }
+         
+         function BodyLoad( ){ 
+            
+            try { Initialize_common0( ); }
+            catch (sExp){ } // throw null;
+            finally{ }
+            
+         }
+         
+         function ResizeWindow(){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         //-->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         document.write("sSelfName:"+sSelfName+"<br>");
+         
+         
+         
+         sRootRelativeLocation = "";
+         d1LocationSearch_Tradition_OperatorList = new Array("@Image","@Zoom");
+         
+         vDefContainerW = -1;
+         vDefContainerH = 0;
+         
+         vDefZoomQnt = -1;
+         
+         vDefScale = 0;
+         
+         vLowerLeveru = 0;
+         
+         document.write("sGet_Except_LocationSearch_Stream():"+"<br>");
+         document.write(sGet_Except_LocationSearch_Stream()+"<br>");
+         
+         
+         
+         d1ZoomModeSets     = new Array( "S",   "M",   "L",   "2L" );
+         d1ZoomCardinalSets = new Array(   1, 1.333, 1.786,  2.661 );
+         
+         
+         
+         d2MessageMatrix = new Array();
+         sObjProperNoun = "PassiveMenuMessage/";
+         vLowerLeveru = 0;
+         
+         sImageName = sGet_LocationSearch_Operand("@Image",0);
+         vOriginalW = sGet_LocationSearch_Operand("@Image",1);
+         vOriginalH = sGet_LocationSearch_Operand("@Image",2);
+         
+         // document.write("sGet_LocationSearch_Operand(@Image,0):"+sGet_LocationSearch_Operand("@Image",0)+"<br>");
+         
+         if(sImageName==""){
+            
+            sImageName = "03112805.png";
+            vOriginalW = 750;
+            vOriginalH = 1190;
+            
+         }
+         
+         document.write("sImageName:"+sImageName+"; "+"vOriginalW:"+vOriginalW+"; "+"vOriginalH:"+vOriginalH+"; "+"<br>");
+         
+         // alert("sImageName:"+sImageName+"; "+"vOriginalW:"+vOriginalW+"; "+"vOriginalH:"+vOriginalH+"; "+"");
+         
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "はな";
+         // 147,128,183,159 // 147,124,184,160
+         d2MessageMatrix[q] = new Array( 147,124,184,160, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Oval_Inner);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "右目";
+         d2MessageMatrix[q] = new Array( 139,103,168,137, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Oval_Inner);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "左目";
+         d2MessageMatrix[q] = new Array( 195,125,237,159, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Oval_Inner);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "くち";
+         // 149,154,184,182 // 152,157,181,184 // 149,154,184,184
+         d2MessageMatrix[q] = new Array( 149,154,184,184, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Oval_Inner);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "かお";
+         d2MessageMatrix[q] = new Array( 305,165,448,326, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Oval_Inner,2);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         q = d2MessageMatrix.length;
+         sHotSpotMsg = "だっちゃ";
+         d2MessageMatrix[q] = new Array( 305,165,448,326, sChange_HTMLSymbol(sHotSpotMsg),nPassiveMessage_HotSpotType_Rectangle,0.5);
+         // nPassiveMessage_HotSpotType_Rectangle // nPassiveMessage_HotSpotType_Oval_Inner // nPassiveMessage_HotSpotType_Oval_Outer // 
+         
+         
+         // PassiveMessage_Entry_Content(sObjProperNoun,sImageName,vOriginalW,vOriginalH,vLowerLeveru,d2MessageMatrix);
+         
+         PassiveMenuMessage_Entry_Content(sObjProperNoun,sImageName,vOriginalW,vOriginalH,d1ZoomModeSets,d1ZoomCardinalSets,vLowerLeveru,d2MessageMatrix);
+         
+         
+         
+         
+         document.write("<br>");
+         
+         
+         
+         //-->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer();
+         Finalize();
+         
+         //-->
+      </script>
+
+   </body>
+</html>

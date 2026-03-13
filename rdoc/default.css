@@ -1,0 +1,15 @@
+a:hover {
+	color:#ff2f5f;
+}
+
+.border_default-outer {
+	border-color: #ffffff #7f7f7f #7f7f7f #ffffff;
+	border-style: solid solid solid solid;
+	border-width: 1px 1px 1px 1px;
+}
+.border_default-inner {
+	border-color: #7f7f7f #ffffff #ffffff #7f7f7f;
+	border-style: solid solid solid solid;
+	border-width: 1px 1px 1px 1px;
+}
+

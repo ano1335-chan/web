@@ -1,0 +1,487 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>（Museum／Normal／Menu）</title>
+      <meta name="robots" content="noindex,follow">
+      <link rel="Index" title="ROR" href="main.htm">
+      <link rel="Index" title="ROR" href="../../index.htm">
+      <script language=JavaScript type=Text/JavaScript src="../../common0.js"></script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            InitViewBoundary( );
+            
+            sRadioSwitch_Menu_Group_ImageObjName = "Image/RadioSwitch/Menu/";
+            sImageObjName = sGet_LocationSearch_Operand("@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName,0);
+            // sStatus = sGet_LocationSearch_Operand("@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName,1);
+            sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+            
+         }
+         
+         function Finalize( ){ }
+         
+         function BodyLoad( ){
+            
+            if( 0<vGet_LocationSearch_Operand_Quantity("@Scroll") ){
+               
+               // alert("vGet_LocationSearch_Operand_Quantity(@Scroll):"+vGet_LocationSearch_Operand_Quantity("@Scroll"));
+               
+               if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+                  // Netscape
+                  
+                  vViewOffsetX = window.pageXOffset;
+                  vViewOffsetY = window.pageYOffset;
+                  
+               }
+               
+               else{ 
+                  // Explorer
+                  
+                  vViewOffsetX = document.body.scrollLeft;
+                  vViewOffsetY = document.body.scrollTop;
+                  
+               }
+               
+               sScrollX = sGet_LocationSearch_Operand("@Scroll",0);
+               sScrollY = sGet_LocationSearch_Operand("@Scroll",1);
+               
+               if(sScrollX!="") vScrollX = eval(sScrollX);
+               else vScrollX = vViewOffsetX;
+               
+               if(sScrollY!="") vScrollY = eval(sScrollY);
+               else vScrollY = vViewOffsetY;
+               
+               // alert("vViewOffsetX:"+vViewOffsetX+"; "+"vViewOffsetY:"+vViewOffsetY+"; "+"vScrollX:"+vScrollX+"; "+"vScrollY:"+vScrollY+"; "+"");
+               
+               window.scrollBy(vScrollX - vViewOffsetX, vScrollY - vViewOffsetY);
+               // window.scroll(vScrollX, vScrollY);
+               
+            }
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               onresize = ResizeWindow; 
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         function ResizeWindow(){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               // alert("location.reload");
+               // location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+               vViewOffsetX = window.pageXOffset;
+               vViewOffsetY = window.pageYOffset;
+               
+               vID = vGet_RadioSwitch_ActiveID(sRadioSwitch_Menu_Group_ImageObjName);
+               sImageObjName = d1sList_ImageObjName[vID];
+               
+               sParameter = "@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName+";"+sImageObjName+";";
+               // sParameter = "@RadioSW/"+sRadioSwitch_Menu_Group_ImageObjName+";"+sImageObjName+";"+"@Scroll;"+vViewOffsetX+";"+vViewOffsetY+";";
+               
+               // alert("location:"+sSelfName+"?"+sParameter);
+               // alert("vViewOffsetX:"+vViewOffsetX+"; "+"vViewOffsetY:"+vViewOffsetY+"; "+"");
+               
+               location = sSelfName+"?"+sParameter+"#"+sImageObjName;
+               // location = sSelfName+"?"+sParameter;
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+<table align="center"  width="100%" cellpadding="0">
+
+   <tr>
+      <td nowrap>
+
+<a href="../../index.htm" target="_top">
+   <img src="../../b4link6.gif" border="0" alt="トップ・ページの表示"></a>
+
+<a href="../picture.htm" target="ImageContent">
+   <img src="../../b4link4.gif" border="0" alt="Help">
+Picture</a><br>
+<br>
+
+         <!--
+         
+         *** Image/Switch Templet ***
+         
+         sLink = "JavaScript:;";
+         sLink = "JavaScript:void window.focus();";
+         sClient = "";
+         sImageName_MouseOver = "";
+         sImageName_MouseDown = "";
+         sImageName_MouseUp = "";
+         sImageName_MouseOut = "";
+         sTag_ImageWidth = "";
+         sTag_ImageHeight = "";
+         sTag_ImageMessage = "";
+         sTag_Client = "";
+         vImageWidth = -1;
+         vImageHeight = -1;
+         sImageMessage = "";
+         sImageName_First = "";
+         
+         sImageObjName = "Image/Switch/001/";
+         sImageName_Default = "st07_i3.gif";
+         sImageName_MouseOver = "st07_i1.gif";
+         sImageName_MouseDown = "st07_i2.gif";
+         sImageName_MouseUp = "st07_i5.gif";
+         sImageName_MouseOut = "st07_i3.gif";
+         
+         // sImageMessage = "";
+         // sClient = ""; // _blank
+         // sLink = "";
+         // document.write("<a name='"+sImageObjName+"'></a>");
+         
+         if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+         if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+         if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+         if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+         
+         Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+         
+         sImageName_First = sImageName_Default;
+         
+         document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+         document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+         document.write(" onmousedown='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+         document.write(" onmouseup='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseUp+"\");' ");
+         document.write(" onmouseout='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOut+"\");' ");
+         document.write(" >");
+         document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+         document.write("</a>");
+         document.write("<br>");
+         
+         
+         
+         *** Image/RadioSwitch Templet ***
+         
+         
+         sLink = "JavaScript:;";
+         sClient = "";
+         sImageName_MouseOver = "";
+         sImageName_MouseDown = "";
+         sImageName_MouseUp = "";
+         sImageName_MouseOut = "";
+         sTag_ImageWidth = "";
+         sTag_ImageHeight = "";
+         sTag_ImageMessage = "";
+         sTag_Client = "";
+         vImageWidth = -1;
+         vImageHeight = -1;
+         sImageMessage = "";
+         sImageName_First = "";
+         
+         sRadioSwitch_Menu_Group_ImageObjName = "Image/RadioSwitch/";
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + "001/";
+         sImageName_Default = "buttonb010.gif";
+         sImageName_MouseOver = "buttonb020.gif";
+         sImageName_MouseDown = "buttonb000.gif";
+         
+         // sImageMessage = "";
+         // sClient = "";
+         // sLink = "";
+         
+         if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+         if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+         if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+         if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+         
+         Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+         
+         sImageName_First = sImageName_Default;
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         
+         if(sImageObjName==sFirstStrike_RadioSwitch_ImageObjName){
+            
+            sImageName_First = sImageName_MouseDown;
+            d1sList_ImageNatureStatus[sImageObjName] = sImageName_First;
+            
+         }
+         
+         document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+         document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+         document.write(" onmousedown='RadioSwitch_Image(\""+sRadioSwitch_Menu_Group_ImageObjName+"\", \""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+         document.write(" onmouseout=' RadioSwitch_RestorationImage(\""+sImageObjName+"\");' ");
+         document.write(" >");
+         document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+         document.write("</a>");
+         // document.write("<br>");
+         
+         
+         
+         // -->
+
+
+
+      <script language="JavaScript">
+         <!--
+         
+         vNumber = 0;
+         
+         
+         
+         // vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "i0.gif";
+         sLink = "pm2view0.htm?@Image;i02.gif;500;500;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         // if(sFirstStrike_RadioSwitch_ImageObjName=="") sFirstStrike_RadioSwitch_ImageObjName = sImageObjName;
+         // else alert("FirstStrike:"+sFirstStrike_RadioSwitch_ImageObjName);
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "i1.gif";
+         sLink = "pm2view0.htm?@Image;i11.gif;500;500;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0312040.gif";
+         sLink = "pm2view0.htm?@Image;03120401.gif;500;1240;@Zoom;4;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0312060.gif";
+         sLink = "pm2view0.htm?@Image;03120603.png;500;500;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "i9.gif";
+         sLink = "pm2view0.htm?@Image;i90.gif;600;600;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "ic.gif";
+         sLink = "pm2view0.htm?@Image;ic1.gif;600;600;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0311280.gif";
+         sLink = "pm2view0.htm?@Image;03112805.png;750;1190;@Zoom;4;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0312010.gif";
+         sLink = "pm2view0.htm?@Image;03120102.gif;510;1170;@Zoom;4;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0311210.gif";
+         sLink = "pm2view0.htm?@Image;03112109.png;400;1150;@Zoom;4;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0311220.gif";
+         sLink = "pm2view0.htm?@Image;03112204.png;570;790;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0311240.gif";
+         sLink = "pm2view0.htm?@Image;03112402.png;940;1170;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         vNumber++;
+         sNumber = sZeroPrefix(vNumber, 3);
+         
+         sSumNailName = "0401040.gif";
+         sLink = "pm2view0.htm?@Image;04010401.gif;1140;890;@Zoom;3;";
+         
+         sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+         document.write("<a name='"+sImageObjName+"'></a>");
+         
+         Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink);
+         
+         
+         
+         function Define_RadioSwitch_Menu(sRadioSwitch_Menu_Group_ImageObjName,sNumber,sSumNailName,sLink){
+            
+            var sClient = "";
+            var sImageName_MouseOver = "";
+            var sImageName_MouseDown = "";
+            var sImageName_MouseUp = "";
+            var sImageName_MouseOut = "";
+            var sTag_ImageWidth = "";
+            var sTag_ImageHeight = "";
+            var sTag_ImageMessage = "";
+            var sTag_Client = "";
+            var vImageWidth = -1;
+            var vImageHeight = -1;
+            var sImageMessage = "";
+            var sImageName_First;
+            
+            sImageObjName = sRadioSwitch_Menu_Group_ImageObjName + sNumber + "/";
+            sImageName_Default = "../../b4buttj.gif";
+            sImageName_MouseOver = "../../b4butte.gif";
+            sImageName_MouseDown = "../../b4buttg.gif";
+            
+            // sImageMessage = "";
+            sClient = "ImageContent";
+            
+            if(0<=vImageWidth) sTag_ImageWidth = " width='"+vImageWidth+"' ";
+            if(0<=vImageHeight) sTag_ImageHeight = " height='"+vImageHeight+"' ";
+            if(""!=sImageMessage) sTag_ImageMessage = " alt='"+sImageMessage+"' ";
+            if(""!=sClient) sTag_Client = " target='"+sClient+"' ";
+            
+            Entry_Image(sImageObjName, sImageName_Default, sImageName_MouseOver, sImageName_MouseDown, sImageName_MouseUp, sImageName_MouseOut);
+            
+            sImageName_First = sImageName_Default;
+            
+            if(sImageObjName==sFirstStrike_RadioSwitch_ImageObjName){
+               
+               sImageName_First = sImageName_MouseDown;
+               d1sList_ImageNatureStatus[sImageObjName] = sImageName_First;
+               
+            }
+            
+            document.write("<a "+sTag_Client+" href='"+sLink+"' ");
+            document.write(" onmouseover='Switch_Image(\""+sImageObjName+"\", \""+sImageName_MouseOver+"\");' ");
+            document.write(" onmousedown='RadioSwitch_Image(\""+sRadioSwitch_Menu_Group_ImageObjName+"\", \""+sImageObjName+"\", \""+sImageName_MouseDown+"\");' ");
+            document.write(" onmouseout=' RadioSwitch_RestorationImage(\""+sImageObjName+"\");' ");
+            document.write(" >");
+            document.write("<img border='0' src='"+sSumNailName+"'><br>");
+            document.write("<img "+" name='"+sImageObjName+"' "+" src='"+sImageName_First+"' "+sTag_ImageWidth+sTag_ImageHeight+sTag_ImageMessage+" border='0' "+" >");
+            document.write("No."+sNumber);
+            document.write("</a>");
+            document.write("<br>");
+            
+         }
+         
+         // -->
+      </script>
+
+      </td>
+   </tr>
+
+</table>
+
+      <script language="JavaScript">
+         <!--
+         
+         Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

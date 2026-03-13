@@ -1,0 +1,762 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>近未来・予言集 ”Pandora の扉”（Menu）</title>
+      <meta name="robots" content="noindex,follow">
+      <link rel="Index" title="ROR" href="index.htm">
+      <script language=JavaScript type=Text/JavaScript src="common0.js?LoadCheck_JavaScript"></script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#bfc7ef" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- // --　▼▼▼　Load Check："JS" File Version 0.J　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sLocatPath.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sLocatPath.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.J　▲▲▲　-- // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            d1LocationSearch_Tradition_OperatorList = new Array("@Open","@Jump");
+            
+            InitViewBoundary( );
+            
+            sJump = sGet_LocationSearch_Operand("@Jump",0);
+            sOpen = sGet_LocationSearch_Operand("@Open",0);
+            
+            if( (sJump!="")&&(location.hash!="#"+sJump) ){
+               
+               sJumpLocation = sJump;
+               
+            }
+            
+            if( ( sOpen != "" )  && ( ! lIs_Jump( ) ) ){
+               
+               sJumpLocation = sOpen;
+               
+            }
+            
+            if( ! lIs_Jump() ){
+               
+               // sJumpLocation = "Begin";
+               
+            }
+            
+            if( 
+             (sJumpLocation!="")
+             // (""!=sGet_LocationSearch_Operand("@Jump",0))
+             // || (sJumpLocation=="Begin") && (location.hash!="#"+"Begin")
+             // (""!=sJumpLocation) && (location.hash!="#"+sJumpLocation)
+            ){
+               
+               sParameter = sGet_Except_LocationSearch_Stream( );
+               sJump = sJumpLocation;
+               
+               if( sParameter != "" ){
+                  
+                  sParameter = "?" + sParameter;
+                  
+               }
+               
+               if( sJump != "" ){
+                  
+                  sJump = "#" + sJump;
+                  
+               }
+               
+               if( ! ( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ) ){
+                  // Explorer
+                  
+                  // location.search = sParameter+sJump;
+                  location = sSelfName+sParameter+sJump;
+                  
+               }
+               
+               else{
+                  
+                  // location.search = sParameter+sJump;
+                  
+               }
+               
+            }
+            
+         }
+         
+         function Finalize( ){ }
+         
+         function BodyLoad( ){
+            
+            if( 
+             (sJumpLocation!="")
+             // (""!=sGet_LocationSearch_Operand("@Jump",0))
+             // || (sJumpLocation=="Begin") && (location.hash!="#"+"Begin")
+             // (""!=sJumpLocation) && (location.hash!="#"+sJumpLocation)
+            ){
+               
+               sParameter = sGet_Except_LocationSearch_Stream( );
+               sJump = sJumpLocation;
+               
+               if( sParameter != "" ){
+                  
+                  sParameter = "?" + sParameter;
+                  
+               }
+               
+               if( sJump != "" ){
+                  
+                  sJump = "#" + sJump;
+                  
+               }
+               
+               if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+                  // Netscape
+                  
+                  location.search = sParameter+sJump;
+                  
+               }
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+<a name="Begin"></a>
+
+<!-- <br> -->
+
+      <script language="JavaScript">
+         <!--
+         
+         // var sMenuItem,sMenuOpenLabel,sMenuCloseLabel; // sMenuCaption // 
+         
+         // （"lCheckFirstFit"の判定に依存するので）"@Open"パラメーターの末尾には必ず区切りの "/"を付加しなければ、正しくメニューがオープンできない場合がある
+         
+         sConditionName = sGet_LocationSearch_Operand("@Open",0);
+         
+         if( sConditionName == "" ){
+            
+            sConditionName = sLHash;
+            
+         }
+         
+         document.write("<a name='/'></a>");
+         
+         BehaviorFooter(false); // false // true //
+         
+         document.write("<table align='center' width='100%' cellpadding='0'>");
+         document.write("<tr>");
+         document.write("<td nowrap>");
+         
+         document.write("<dl>"); // レベル０ Definition List（定義リスト）Block Element
+         
+         sMenuItem = "Prophetic";
+         sMenuOpenLabel = "Prophetic/";
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='b4fold0.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+         }
+         
+         else{
+            
+            BehaviorFooter(false); // false // true //
+            
+            sMenuCloseLabel = "/";
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseLabel+"'>");
+            document.write("<img border='0' src='b4fold1.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='prolog1.htm'>");
+            document.write("<img border='0' src='b4link8.gif' alt='約１８KByte'>");
+            document.write(" 初めに この”注意書き”を必ず お読み下さい．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='essent3.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約５２KByte'></a> ");
+            document.write("<a target='TopContent' href='essent3.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約５２KByte'>");
+            document.write(" 近未来ビジョン（Model ３ Version ９<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='revela1.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約３６KByte'></a> ");
+            document.write("<a target='TopContent' href='revela1.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約３６KByte'>");
+            document.write(" 新約聖書 ”ヨハネの黙示録（もくしろく）”（Model １ Version ５<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='nstrdm1.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約２８３KByte'></a> ");
+            document.write("<a target='TopContent' href='nstrdm1.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約２８３KByte'>");
+            document.write(" ノストラダムス”諸世紀”Part １（Model １ Version A<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='nstrdm2.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約２１９KByte'></a> ");
+            document.write("<a target='TopContent' href='nstrdm2.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約２１９KByte'>");
+            document.write(" ノストラダムス”諸世紀”Part ２（Model ２ Version B<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='taisi0.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約４２KByte'></a> ");
+            document.write("<a target='TopContent' href='taisi0.htm'>");
+            document.write("<img border='0' src='b4link0.gif'  alt='約４２KByte'>");
+            document.write(" 神話･予言「古事記，先代旧辞，先代旧辞本紀」（Model ０ Version ６<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='hihumi2.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約２５KByte'></a> ");
+            document.write("<a target='TopContent' href='hihumi2.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約２５KByte'>");
+            document.write(" 日月神示（ひつきしんじ）（Model ２ Version ５<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='bible0.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約２１KByte'></a> ");
+            document.write("<a target='TopContent' href='bible0.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約２１KByte'>");
+            document.write(" 聖書「福音書（ふくいんしょ），ダニエル書，申命記（しんめいき），民数記」抜粋（Model ０ Version ３<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='_blank' href='mhbrt0.htm'>");
+            document.write("<img border='0' src='b4link1.gif' alt='約５KByte'></a> ");
+            document.write("<a target='TopContent' href='mhbrt0.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約５KByte'>");
+            document.write(" 古代インド叙事詩（じょじし）”マハーバーラタ”抜粋（ばっすい）（Model ０ Version １<!-- Release -->）．<br>");
+            document.write("</a>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a name='Prophetic/Image/'></a>");
+            document.write("<a target='_blank' href='~slideshow0~.htm'>");
+            document.write("<img border='0' src='b4link5.gif' alt='約１KByte'></a> ");
+            document.write("<a target='TopContent' href='~slideshow0~.htm'>");
+            document.write("<img border='0' src='b4link4.gif' alt='約１KByte'></a> ");
+            document.write("<a target='TopContent' href='image/main.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約７４KByte'>");
+            document.write(" Image．<br>");
+            document.write("</a>");
+            document.write("<a target='TopContent' href='faq1.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約？KByte'>");
+            document.write(" Frequently Asked Questions（Model ０ Version ０ Release ４）．<br>");
+            document.write("</a>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            
+            // document.write("");
+            
+         }
+         
+         sMenuItem = "Pandora Log";
+         sMenuOpenLabel = "PandoraLog/";
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='b4fold0.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+         }
+         
+         else{
+            
+            BehaviorFooter(false); // false // true //
+            
+            sMenuCloseLabel = "/";
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseLabel+"'>");
+            document.write("<img border='0' src='b4fold1.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/help.htm'>");
+            document.write("<img border='0' src='b4link8.gif' alt='約８KByte'>");
+            document.write(" この ページ の Indication（表示）の意味．<br>");
+            document.write("</a>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000p.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２.７MByte'>");
+            document.write(" \"首都圏\"地震災害．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000y.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２６４kByte'>");
+            document.write(" 「伊豆・マリアナ、房総、東北アウターライズ」震源域．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000z.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２６４kByte'>");
+            document.write(" 「動く可能性があるプレート境界」 ．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000x.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約６kByte'>");
+            document.write(" 富士山が活動期に？．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000011.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約１１kByte'>");
+            document.write(" 首都圏のライフライン麻痺(「ブラックアウト(電源喪失)、水道の給水停止、交通網の麻痺」など)の危機．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000003.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約１１KByte'>");
+            document.write(" バー・コード ．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000004.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約３５KByte'>");
+            document.write(" 水星の軌道・計算に相対性理論を使うのは おかしい？．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000r.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２９KByte'>");
+            document.write(" 未確認生物 UMA「ニンゲン」．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000n.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約７KByte'>");
+            document.write(" 未確認・飛行生物 UFC「スペース・キャタピラー」．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000u.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約７２KByte'>");
+            document.write(" 未確認・飛行生物 UFC「スペース・キャタピラー」．<br>");
+            document.write("</a> ");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000t.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約３２KByte'>");
+            document.write(" 「サンド・ワーム」．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000006.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約５９KByte'>");
+            document.write(" ノストラダムス．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000005.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約４３KByte'>");
+            document.write(" ”諸世紀”．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000j.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約４KByte'>");
+            document.write(" 占星学（術）の基準（お詫びと訂正）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000i.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約６KByte'>");
+            document.write(" ユリウス暦とグレゴリオ暦の差．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000k.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約６KByte'>");
+            document.write(" ”旬（しゅん）”の策定．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000007.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約２４KByte'>");
+            document.write(" ”秘数（ひすう）”．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000e.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約５KByte'>");
+            document.write(" ”恐怖の大王”の訳（やく）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000002.htm'> ");
+            document.write("<img border='0' src='b4linka.gif' alt='約３３KByte'>");
+            document.write(" ノストラダムス ”諸世紀”「第１巻 １６番」の訳（やく）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000a.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約４KByte'>");
+            document.write(" 富士山・上空に顕現（けんげん）する ”十字形の地震雲”？．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000g.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２３KByte'>");
+            document.write(" 天上界の神々が それらの徴（しるし）を人類に示（しめ）したもう．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000m.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約１９KByte'>");
+            document.write(" 恐怖の疫病が世界に蔓延するだろう．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000f.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２１KByte'>");
+            document.write(" ”３００人委員会”による テロ．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/0000009.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約２７KByte'>");
+            document.write(" ホピの予言．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000h.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約８２KByte'>");
+            document.write(" フリー・メーソン．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='pandor/000000d.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約６KByte'>");
+            document.write(" 聖書の秘密．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<br>");
+            document.write("</dd>");
+            
+         }
+         
+         
+         sMenuItem = "地震関連";
+         sMenuOpenLabel = "Seismo/";
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='b4fold0.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+         }
+         
+         else{
+            
+            BehaviorFooter(false); // false // true //
+            
+            sMenuCloseLabel = "/";
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseLabel+"'>");
+            document.write("<img border='0' src='b4fold1.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='seismo/picture01/index.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt=''>");
+            document.write(" Picture．<br>");
+            document.write("</a>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            
+            // document.write("");
+            
+         }
+         
+         
+         sMenuItem = "Spiritual";
+         sMenuOpenLabel = "Spiritual/";
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='b4fold0.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+         }
+         
+         else{
+            
+            BehaviorFooter(false); // false // true //
+            
+            sMenuCloseLabel = "/";
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseLabel+"'>");
+            document.write("<img border='0' src='b4fold1.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='word0.htm'>");
+            document.write("<img border='0' src='b4link0.gif' alt='約４KByte'>");
+            document.write(" 言霊（ことだま）（Model ０ Version ０）．<br>");
+            document.write("</a>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='ghost0.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約１０KByte'>");
+            document.write(" チベット密教「バルドゥ・トェ・ドル（死者の書）」抜粋（Model ０ Version ０）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='hihumi5.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約１１KByte'>");
+            document.write(" 日月神示（ひつきしんじ）／岩戸閉（いわとし）め（Model ５ Version １）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='hihumi8.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約４８KByte'>");
+            document.write(" 日月神示（ひつきしんじ）／日の出（Model ８ Version Ａ）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='hihumi3h.htm'>");
+            document.write("<img border='0' src='b4link4.gif' alt='約７KByte'></a> ");
+            document.write("<a target='TopContent' href='hihumi3.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt='約７７KByte'>");
+            document.write(" 日月神示（ひつきしんじ）／教理（きょうり）（Model ３ Version ９）．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            
+            // document.write("");
+            
+         }
+         
+         
+         document.write("<dt>"); // レベル０ Definition Term（定義語）
+         document.write(" <a target='TopContent' href='picture/main.htm'>");
+         document.write("<img alt='' src='b4link0.gif' border=0>");
+         document.write(" Picture．<br>");
+         document.write("</a>");
+         document.write("</dt>");
+         sMenuItem = "Museum";
+         sMenuOpenLabel = "Museum/";
+         
+         
+         document.write("<a name='"+sMenuOpenLabel+"'></a>");
+         
+         if( ! lIs_Open(sConditionName,sMenuOpenLabel)){
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuOpenLabel+";#"+sMenuOpenLabel+"'>");
+            document.write("<img border='0' src='b4fold0.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+         }
+         
+         else{
+            
+            BehaviorFooter(false); // false // true //
+            
+            sMenuCloseLabel = "/";
+            
+            document.write("<dt>"); // レベル０ Definition Term（定義語）
+            document.write("<a target='TopMenu' href='"+sSelfName+"?@Open;"+sMenuCloseLabel+";#"+sMenuCloseLabel+"'>");
+            document.write("<img border='0' src='b4fold1.gif' alt=''>");
+            document.write(" "+sMenuItem+"．<br>");
+            document.write("</a>");
+            document.write("</dt>");
+            
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<a target='TopContent' href='museum/mypicture/main.htm'> ");
+            document.write("<img border='0' src='b4link0.gif' alt=''>");
+            document.write(" ”MyPicture．<br>");
+            document.write("</a> ");
+            document.write("</dd>");
+            document.write("<dd>"); // レベル１ Definition Description（定義の説明）
+            document.write("<br>");
+            document.write("</dd>");
+            
+            // document.write("");
+            
+         }
+         
+         document.write("<dt>"); // レベル０ Definition Term（定義語）
+         document.write("<a href='mailto:amanojaku1335@yahoo.co.jp'>");
+         document.write("<img border='0' src='b4mail3.gif' alt=''>");
+         document.write(" Mail．<br>");
+         document.write("</a>");
+         document.write("</dt>");
+         document.write("<dt>"); // レベル０ Definition Term（定義語）
+         document.write("<a target='TopContent' href='link0.htm'>");
+         document.write("<img border='0' src='b4link0.gif' alt='約？KByte'>");
+         document.write(" Link．<br>");
+         document.write("</a>");
+         document.write("</dt>");
+         
+         document.write("</dl>");
+         
+         // document.write("");
+         
+         document.write("</td>");
+         document.write("</tr>");
+         document.write("</table>");
+         
+         // document.write("<br>");
+         
+         function lIs_Open(sConditionName,sTargetName){
+            
+            return lCheckFirstFit(sTargetName, sConditionName);
+            
+         }
+         
+         //-->
+      </script>
+
+<!--
+//-->
+
+      <script language="JavaScript">
+         <!--
+         
+         // BehaviorFooter(true, lIs_Jump( )); // false // true //
+         BehaviorFooter(true, true); // false // true //
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

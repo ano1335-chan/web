@@ -1,0 +1,166 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="Text/HTML; charset=Shift_JIS">
+      <title>PassiveMenuMessage View</title>
+      <script language=JavaScript type=Text/JavaScript src="../../common0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../timer0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmsg0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmsg00.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmen0.js?LoadCheck_JavaScript"></script>
+      <script language=JavaScript type=Text/JavaScript src="../../pasmen00.js?LoadCheck_JavaScript"></script>
+      <style type="text/css">
+         <!--
+         a:hover { color: #ffff00 }
+         -->
+      </style>
+   </head>
+   <body bgcolor="#8f9fff" text="#000000" link="#2f2fff" vlink="#d700d7" alink="#00ffff" onLoad="BodyLoad()">
+
+      <script language="JavaScript">
+         <!-- 
+         // --　▼▼▼　Load Check："JS" File Version 0.L　▼▼▼　-- //
+         if( navigator.appName=="Microsoft Internet Explorer" ){
+            LoadCheck_JavaScript_InternetExplorer( );
+         }
+         function LoadCheck_JavaScript_InternetExplorer( ){
+            sProtocol = location.protocol;
+            sLocatPath = location.pathname; vReloadMax = 12;
+            if( -1==sProtocol.indexOf("http:") ){ vReloadMax = 32; }
+            vOperand = 1; sParameter = location.search;
+            sSelfFileName = sLocatPath.substring(Math.max(sLocatPath.lastIndexOf("/"),sLocatPath.lastIndexOf(unescape("%5c")))+1,sLocatPath.length);
+            vParamReload = sParameter.lastIndexOf("@Reload=");
+            // unescape("%5c") の変わりに"\\"を記述した場合，Perl の ソースとして移植すると"\"に変換されてしまうが、それは仕様のようだ．
+            if(0<=vParamReload){
+               vOperand = Number( sParameter.substring(vParamReload+8) )+1;
+               sParameter = sParameter.substring(0,vParamReload);
+            }
+            if( sParameter=="" ) sParameter = "?";
+            if( 2<=sParameter.length && sParameter.charAt(sParameter.length-1)!=";" ){
+               sParameter += ";";
+            }
+            sParameter += "@Reload="+vOperand; 
+            lInteractive = (0<document.body.clientWidth)&&(0<document.body.clientHeight); // true; // false; //
+            for( i = 0; i < document.all.tags("script").length; i++ ){
+               sScriptPathName = document.all.tags("script")(i).src;
+               sScriptLeafName = sScriptPathName.substring(sScriptPathName.lastIndexOf("/")+1,sScriptPathName.length); 
+               if(sScriptLeafName!=""){
+                  // lInteractive = lInteractive && document.all.tags("script")(i).document.readyState=="interactive";
+                  // ドキュメントのダウンロード状態を "uninitialized", "loading", "interactive", "complete" のいずれかの文字列で返す。
+                  sFirstNeme = sScriptLeafName.substring(0,sScriptLeafName.lastIndexOf("."));
+                  if( 0<=sScriptLeafName.lastIndexOf("LoadCheck_JavaScript") ){
+                     try{ lInteractive = lInteractive && eval("lExist_JavaScript_"+sFirstNeme+"( );"); }
+                     catch(sExp){ lInteractive = false; } // true; //
+                  }
+               }
+            }
+            try{ InitViewBoundary( ); lInteractive = lInteractive && 0<vFrameWidth && 0<vFrameHeight; }
+            catch(sExp){ lInteractive = false; } // true; //
+            // alert("sSelfFileName+sParameter+location.hash="+sSelfFileName+sParameter+location.hash); lInteractive = false; // true; //
+            if( ! lInteractive ){
+               if( vOperand<=vReloadMax ){
+                  location.reload(sSelfFileName+sParameter+location.hash); 
+                  // location.reload( ); // false // キャシュ から リロード．
+                  // location.reload(true); // サーバ から リロード．
+               }
+               else if( 0==sProtocol.indexOf("http:") ){
+                  alert("★ Time-Out：\"JS\"ファイルが存在しない，または設置場所が間違ってるか，\"JS\"ファイルがサーバー側の問題によってロード遅延となってるか，無料サイトの広告用 JavaScript で致命的なエラーが発生し\"JS\"ファイルが正常に実行できない可能性があります．");
+               }
+            }
+         }
+         // --　▲▲▲　Load Check："JS" File Version 0.L　▲▲▲　-- //
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         Initialize( );
+         
+         function Initialize( ){
+            
+            // onresize = ResizeWindow; 
+            InitViewBoundary( );
+            
+         }
+            
+         function Finalize( ){ }
+         
+         function BodyLoad( ){ 
+            
+            if( ( typeof nTimerInterval ) != "undefined" ){
+               
+               setTimeout("TimerHandler()",nTimerInterval);
+               
+            }
+            
+         }
+         
+         function ResizeWindow( ){
+            
+            if( (navigator.appName==sNetscapeNavigator) && (vVerCompatible<5) ){
+               // Netscape
+               
+               location.reload(); // false // キャシュ から リロード．
+               // location.reload(true); // サーバ から リロード．
+               
+            }
+            
+            else{ 
+               // Explorer
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+   <a href="../../index.htm" target="_top">
+      <img src="../../b4link6.gif" border="0" alt="トップ・ページの表示"></a><br>
+
+      <script language="JavaScript">
+         <!--
+         
+         sRootRelativeLocation = "../../";
+         d1LocationSearch_Tradition_OperatorList = new Array("@Image","@Zoom");
+         // vPassiveMessage_Presence
+         
+         
+         
+         d1ZoomModeSets     = new Array( "S",   "M",   "L",   "2L" );
+         d1ZoomCardinalSets = new Array(   1, 1.333, 1.786,  2.661 );
+         
+         
+         
+         d2MessageMatrix = new Array();
+         sObjProperNoun = "PassiveMenuMessage/";
+         vLowerLeveru = 0;
+         
+         sImageName = sGet_LocationSearch_Operand("@Image",0);
+         vOriginalW = sGet_LocationSearch_Operand("@Image",1);
+         vOriginalH = sGet_LocationSearch_Operand("@Image",2);
+         
+         
+         
+         PassiveMenuMessage_Entry_Content(sObjProperNoun,sImageName,vOriginalW,vOriginalH,d1ZoomModeSets,d1ZoomCardinalSets,vLowerLeveru,d2MessageMatrix);
+         
+         
+         
+         document.write("<br>");
+         
+         
+         
+         // -->
+      </script>
+
+      <script language="JavaScript">
+         <!--
+         
+         // Footer( );
+         Finalize( );
+         
+         // -->
+      </script>
+
+   </body>
+</html>

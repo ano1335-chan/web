@@ -1,0 +1,3042 @@
+﻿Charset=漢←この１行目の"Charset="に定義されている"漢"で このファイルのキャラクターセットを判定していますので，この行は｛削除，変更｝しないで下さい．
+
+"utility.js"内に独自の EncodePassword ルーチン を実装する場合は この マルチ･ファイル 内の EncodePassword～ の変更も必要になります．
+
+-------------------- <&&popular.cfg&&> --------------------
+
+# ◆変数に代入する"="（イコール）の前後に不要な ブランク は付けないで下さい．
+# １桁目の文字が"#"の場合は コメント になります．
+
+# ▼"掲示板"･"標準"モード「HTML Body」の装飾．
+# Board_Standard_HTML-Body_Decoration=bgcolor='#d3e7cb' text='#000000' link='#004bff' vlink='#a300a3' alink='#00ffff'
+# ▼"掲示板"･"検索"モード「HTML Body」の装飾．
+# Board_Search_HTML-Body_Decoration=bgcolor='#dbd7f3' text='#000000' link='#004bff' vlink='#a300a3' alink='#00ffff'
+# ▼"掲示板"･"過去･ログ"モード「HTML Body」の装飾．
+# Board_History_HTML-Body_Decoration=bgcolor='#bfc7ef' text='#000000' link='#004bff' vlink='#a300a3' alink='#00ffff'
+# ▼"掲示板"･"管理者"モード「HTML Body」の装飾．
+# Board_Administra_HTML-Body_Decoration=bgcolor='#cbb7e7' text='#000000' link='#004bff' vlink='#a300a3' alink='#00ffff'
+# "body"タグの「bgcolor='～' text='～' link='～' vlink='～' alink='～'」の値が設定可能です．
+# なお、「bgcolor」の値は、下記の「CSS-Class_Board_Standard_HTML-Body_Decoration、CSS-Class_Board_Search_HTML-Body_Decoration、CSS-Class_Board_History_HTML-Body_Decoration、CSS-Class_Board_Administra_HTML-Body_Decoration」に設定されている値が優先されます．
+# また、「text、link、vlink、alink」の値は、下記 "html_head_inner.cfg"仮想ファイル内の「body、a:link、a:visited、a:active」に設定されている"color"の値が優先されます．
+# 「$board_default__html_body__decoration」は"smt.cgi"内で設定できます．
+
+# ▼「CSS Class」"掲示板"･"標準"モード「HTML Body」の装飾．
+CSS-Class_Board_Standard_HTML-Body_Decoration=html-body_yellow-green_decoration
+# ▼「CSS Class」"掲示板"･"検索"モード「HTML Body」の装飾．
+CSS-Class_Board_Search_HTML-Body_Decoration=html-body_light-violet_decoration
+# ▼「CSS Class」"掲示板"･"過去･ログ"モード「HTML Body」の装飾．
+CSS-Class_Board_History_HTML-Body_Decoration=html-body_light-blue_decoration
+# ▼「CSS Class」"掲示板"･"管理者"モード「HTML Body」の装飾．
+CSS-Class_Board_Administra_HTML-Body_Decoration=html-body_violet_decoration
+# 注．掲示板の「HTML Body」｛"標準"モード、"検索"モード、"過去･ログ"モード、"管理者"モード｝の装飾は、下記"html_head_inner.cfg"仮想ファイル内で定義された「CSS Class 名」を設定して下さい．
+# 下記"html_head_inner.cfg"仮想ファイル内で自分で新たに定義した「CSS Class 名」も(掲示板の「HTML Body」｛"標準"モード、"検索"モード、"過去･ログ"モード、"管理者"モード｝の装飾として)設定できます。
+# 注．「$css__board_default__html_body__decoration」は"smt.cgi"内で設定されています．
+
+############################################################
+
+# ▼掲示板に書き込まれる引用文の装飾は、下記"html_head_inner.cfg"仮想ファイル内の"quotation_decoration"で設定されます。
+
+# ▼掲示板に書き込まれるアイ･キャッチの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"eye-catching_decoration"で設定されます。
+
+# ▼掲示板に書き込まれる掲示板用 ハンドルネームの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_handle-name_decoration"で設定されます。
+
+# ▼掲示板に書き込まれる掲示板用 コメント･タイトルの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_comment-title_decoration"で設定されます。
+
+# ▼掲示板の検索･モード「真のスレッド」の装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_search_true-thread_decoration"で設定されます。
+# ▼掲示板の検索･モード「偽のスレッド」の装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_search_false-thread_decoration"で設定されます。
+## background color： #bbdfcf #bfe3d3 #c7e7d3 #c7ebcf #cbebd7 #d3e7cb 
+## #d3e7cb #bfe3d3 
+
+# ▼掲示板に書き込まれる管理者 アイ･キャッチの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_administra_eye-catching_decoration"で設定されます。
+
+############################################################
+
+# ▼コメント．
+HTMLRemark=
+# 次のように TEXT を HTML･シンボル に変換する必要があります。
+# 「&」→「&amp;」、「<」→「&lt;」、「>」→「&gt;」、改行は「<br>」です。
+# 連続したブランクを表示する場合は「&nbsp;」とブランク文字を交互に記述して下さい。
+## HTMLRemark=<div align='center' ><table cellspacing='0' cellpadding='0' border=0><tr><td>★この掲示板は ASCII Art 専用の掲示板です 。<br><br></td></tr></table></div>
+## HTMLRemark=<div align='center' ><table cellspacing='0' cellpadding='0' border=0><tr><td>★この旧･掲示板は書き込みを停止いたしました 。<br>記事の書き込みは Main サイト <a target="_blank" href="http://www23.atpages.jp/ashtarte/menu/comm/"><img border="0" src="*&$EmployResourceLocation&;b4link1.gif" alt="<&=リンク･ページの表示=&>"></a> <a href="http://www23.atpages.jp/ashtarte/menu/comm/" target="_top"><img src="*&$EmployResourceLocation&;b4link0.gif" border="0" alt="<&=リンク･ページの表示=&>"></a> http://www23.atpages.jp/ashtarte/menu/comm/ を ご利用 下さい。<br><br></td></tr></table></div>
+## HTMLRemark=<div align='center' ><table cellspacing='0' cellpadding='0' border=0><tr><td>★この掲示板は Administra 以外による記事の｛入力；追加；削除｝は実行できません 。<br></td></tr></table></div>
+
+# ◆無料 サーバー の場合，あまり負荷の かからないように下記の「VolumeSizeMax，VolumeBlockMax」などは むやみに大きな値にしない方が無難でしょう（ readme.htm 参照）．
+
+# ▼ディスク･領域･サイズ･最大値．
+## 1kByte=1024Byte
+## 1024*1024=1048576=1MByte
+DiskAreaSizeMax=41943040
+# 1024*1024*5=5242880=5MByte
+# 1024*1024*10=10485760=10MByte
+# 1024*1024*40=41943040=40MByte
+# ↑この"DiskAreaSizeMax"の条件式は「VolumeSizeMax、AppendixSaveSizeMax」の条件式とは OR 条件となり、実際に消費されるディスク領域のサイズが小さい方が優先されます．
+# "DiskAreaSizeMax"による条件は「記事と添付ファイル」のディスク領域の消費量を合わせて その合計のサイズを制限します、又 記事のバックアックが作成される場合「オリジナル記事とバックアック記事と添付ファイル」のディスク領域の消費量を合わせて その合計のサイズを制限します、なお過去ログに関しては一切関知しません．
+# これは1つの掲示板に対する制限です、複数の掲示板を設置した場合は、ディスク領域サイズの最大値は その掲示板の個数倍となります．
+# "DiskAreaSizeMax"を設定する場合、"Host Server"において掲示板で利用可能なディスク･スペースと設置する掲示板の個数から算出して下さい(一例は"readme.htm"の「SMT 掲示板・構築時の留意点」の「"DiskAreaSizeMax"の設定の一例」を参照)．
+
+# ▼記事･ファイルのサイズ･最大値．
+## 1kByte=1024Byte
+## 1024*1024=1048576=1MByte
+VolumeSizeMax=5242880
+# 1024*1024*5=5242880=5MByte
+# ↑この「記事･ファイルのサイズ･最大値」はオリジナルの記事に対する設定です、記事のバックアックが作成される場合 ディスク･スペースはオリジナルの記事と合わせて 2倍 消費されます．
+
+# Perl（Version 5.6） は（"%"配列の方は どうなのか わかりませんが）要素数の デカイ"@"配列を生成すると負荷が かかるようですので、（特に無料 サーバー の場合は）下記の「VolumeBlockMax、BlockThreadMax」は むやみに大きな値にしない方が無難でしょう（どこの サイト だったか？憶えてませんが 3000 ぐらいは いけるらしいです）．
+
+# ▼記事･ファイル内のブロック数･最大値．
+VolumeBlockMax=3072
+# ↑シングル･スレッド時において（スレッド は実質的には単一の ブロック なので）ファイル内の スレッド数･制限は VolumeBlockMax の値によって制限されます．
+# Perl（Version 5.6） は（"%"配列の方は どうなのか わかりませんが）要素数の デカイ"@"配列を生成すると負荷が かかるようですので，この値は あまり大きくしない方が無難でしょう（どこの サイト だったか？憶えてませんが 3000 ぐらいは いけるらしいです）．
+
+# ▼ブロック内のスレッド数･最大値．
+BlockThreadMax=128
+# ↑マルチ･スレッド時における１ブロック内のスレッド最大値 ．
+# VolumeItemMax よりも1桁ぐらいは小さくして下さい．
+
+# ▼記事･ファイルの要素数･最大値．
+VolumeItemMax=4096
+# ↑マルチ･スレッド時における ボリューム（ファイル）内･要素数（全スレッド数）の最大値．
+# シリアル･ナンバー の整合性との からみもあるのですが、実質的には「VolumeItemMax=4096」程度で OK ( VolumeItemMax を むやみに大きくすると、シリアル･ナンバー に不整合が生じてしまう可能性があります)．
+
+# ▼ Comment の長さの最大バイト数．
+## 1kByte=1024Byte
+UserCommentLengthMax=8192
+## UserCommentLengthMax=12288
+## UserCommentLengthMax=16384
+## UserCommentLengthMax=20480
+## UserCommentLengthMax=24576
+## UserCommentLengthMax=28672
+# ↑この「User 用 Comment 長 の最大バイト数」を「UserCommentLengthMax<=0」に設定すると エラー となりますので ご注意 下さい．
+# 「User 用 Comment 長 の最大バイト数」は JavaScript でチェックしているので、"UserCommentLengthMax"に あまり大きな値を設定すると記事投稿時の処理が重くなります。
+
+# ▼管理者用 Comment の最大･文字数．
+## 1k文字=1024文字
+AdministraCommentCharLengthMax=131072
+# ↑管理者モード時の投稿記事の"Comment"長をバイト数ではなく文字数で制限します「半角、全角」どちらも1文字として計算されます(この場合、大きな値を指定しても処理は重くなりません)．
+# 「AdministraCommentCharLengthMax=-1」とすると無指定となって、"UserCommentLengthMax"の条件により"Comment"長が制限されます(「AdministraCommentLengthMax=0」は設定できません)．
+
+# ▼ブランク行･連続数の最大値．
+NullLine_SeriesChainMax=3
+## NullLine_SeriesChainMax=5
+## NullLine_SeriesChainMax=7
+# ↑テキスト の無い連続した改行を この NullLine_SeriesChainMax の行数に制限します，ただし この NullLine_SeriesChainMax の設定とは無関係に先頭と末尾の テキスト の無い連続した改行は強制的に削除されます．
+# この「ブランク行･連続数の最大値」を「NullLine_SeriesChainMax=-1」と指定すると，ブランク行･連続数は無制限になります，ただし「NullLine_SeriesChainMax=-1」でも その設定とは無関係に先頭と末尾の テキスト の無い連続した改行は強制的に削除されます，なお「NullLine_SeriesChainMax=0」は エラー となりますので ご注意 下さい．
+# 例えば"3"に設定した場合，３行を超える テキスト の無い連続した改行は３行に省略されます．
+# （HTML，CGI などの ソース の投稿が想定される）PC 関連の掲示板の場合，NullLine_SeriesChainMax は"5"程度ぐらいにしたほうが良いかも しれません．
+# ASCII Art 掲示板の場合，NullLine_SeriesChainMax は"7"程度ぐらいにしたほうが良いかも しれません．
+
+# ▼ Comment の折り返し禁止 指定．
+CommentTableCellStyle=
+## CommentTableCellStyle=nowrap
+# nowrap：折り返し 禁止．
+#↑ ASCII Art 掲示板なら CommentTableCellStyle は「nowrap」にしたほうが良いでしょう．
+
+# ▼ アップロード 添付ファイル･サイズ 最大値 Byte．
+## 1024=1kByte
+FUploadAppendixSizeMax=524288
+# 512kByte:512*1024=524288
+
+# ▼ アップロード 添付ファイル数 最大値．
+FUploadAppendixQuantityMax=9
+# （条件によって変わることもありますが）通常１行で３つの画像が表示できるハズですので、この値は３の倍数がキリが良いでしょう．
+# （ディスク容量の制限が厳しい場合など）ファイルのアップロードを使用したくない場合は、この FUploadAppendixQuantityMax を"0"に設定して下さい．
+
+# ▼ 添付ファイル 保存サイズ 最大値 Byte．
+## 1024=1kByte
+## 1024*1024=1048576=1MByte
+AppendixSaveSizeMax=-1
+# ↑この「添付ファイル 保存サイズ 最大値 Byte」を「AppendixSaveSizeMax=-1」と指定した場合は無指定となります、"0"は設定できません．
+
+# ▼ GMT(グリニッジ標準時) 時差．
+GMTDifference=9
+# ↑この"GMTDifference"に値が設定されると「GMT(グリニッジ標準時)」を基準として時間を算出します、(秒数ではなく)時間を指定して下さい(小数点･以下も指定可)、サマー･タイムには対応していません。
+# 「GMT(グリニッジ標準時) 時差」がゼロの場合は"0"を指定して下さい、NULL 文字が指定された場合にはサーバーに設定されている時間が使用されます、国内サーバーなら NULL 文字で問題ありませんが、国外サーバーを使用している場合は日本との時差が生じてしまうので この"GMTDifference"に「GMT(グリニッジ標準時) 時差」を設定して下さい。
+# 「GMT(グリニッジ標準時) 時差」は下記のサイトで確認できます(マウス･カーソルを自分の国の上に重ねると地図の左上の方に「GMT(グリニッジ標準時) 時差」が表示されます)。
+# http://m.artjoey.com/map/lang-ja.php
+
+# ▼ヘルプ･ファイル･ネーム．
+HelpFileName=bbs0h.htm
+
+########################################
+
+# ◆無料 サーバー の場合，あまり負荷の かからないように下記の（ VolumeSerialNumberMaxHex ）は むやみに大きな値にしない方が無難でしょう（ readme.htm 参照）．
+
+# ▼ボリューム･シリアル･ナンバー･最大値（１６進数）．
+VolumeSerialNumberMaxHex=3FF
+# ↑この VolumeSerialNumberMaxHex の数まで 過去･ログ の ボリューム が作成され，この数を オーバー した場合は 過去･ログ 内の最古の ボリューム･データ が消去され，そこに新しい ボリューム が作成されます．
+# なお，この「VolumeSerialNumberMaxHex」は過去･ログ（カタログ･ファイル など）との絡（から）みも有りますので，運用中に変更しないで下さい．
+
+# ▼シリアル･ナンバー･最大値（１６進数）．
+SerialNumberMaxHex=FFFFFFFF
+# ↑この SerialNumberMaxHex は FFFFFFFF(１６進数)以下にして下さい（ちなみに FFFFFFFF(１６進数)を超えると Integer overflow になってしまいます）。
+
+# ▼ブロック･標準･表示のスレッド数･最大値．
+BlockDefaultDisplay_ThreadMax=5
+# ↑この BlockDefaultDisplay_ThreadMax は 2 以上の値が"必須"です，なお最大値は（通常）PageThreadMax_CBFirst 以下となる値が推奨されます．
+
+# ▼CommentTitleの長さの最大バイト数．
+UserCommentTitleLengthMax=256
+
+# ▼HandleNameの長さの最大バイト数．
+UserHandleNameLengthMax=128
+
+# ▼Passwordの長さの最大バイト数．
+UserPasswordLengthMax=32
+# ↑この UserPasswordLengthMax は ユーザー の Password の最大長，ただし管理者の Password の最大長は 64 バイト に固定されています．
+
+# ▼マルチ･スレッド化の制限．
+MultiThreadRestrict=Multi
+## Single,Self,Multi
+# Single：シングル･スレッド．
+# Self：制限型 マルチ･スレッド，自分の スレッド にしか連結できません．
+# Multi：通常の マルチ･スレッド．
+
+# ▼書き込みの制限．
+WriteRestrictMode=Public
+## Public,Administra
+# Public：通常の掲示板．
+# Administra：管理者しか書き込めない掲示板，つまり（公開用の）日記として使いたい場合や，使用しない旧･掲示板を（一般 ユーザー に対して）書込み禁止にしたい場合．
+
+############################################################
+
+# ▼記事･Index 表示･モード．
+ArticleIndexDisplay=Behavior
+## Static,Behavior
+# Static：静的･表示･モード．
+# Behavior：適応型･表示･モード．
+# 「ArticleIndexDisplay=」（未指定）に設定すれば「記事･Index」は表示されません．
+# ▼記事･Index Item 数･最大値．
+ArticleIndexItemMax=1024
+# ArticleIndexItemMax に"-1"を設定する事により、 ArticleIndexItemMax は無制限になります（"0"は設定できません）．
+
+# ▼掲示板に書き込まれる掲示板用 記事･Index ハンドル･ネームの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_article-index_handle-name_decoration"で設定されます。
+
+# ▼掲示板に書き込まれる掲示板用 記事･Index コメント･タイトルの装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_article-index_comment-title_decoration"で設定されます。
+
+# ▼新規投稿記事･表示の有効期限（日）．
+NewArticleDisplayLifeDate=7
+# 「記事 Index、新規投稿記事」などの表示の有効期限．
+# なお「NewArticleDisplayLifeDate=0」は エラー となりますので ご注意 下さい．
+# ▼掲示板の新規投稿記事 日付の装飾は、下記"html_head_inner.cfg"仮想ファイル内の"BOARD_new-article_time-stamp_decoration"で設定されます。
+
+# ▼省略･表示用の コメント･タイトル の フォント･ピッチ数･制限．
+OmitUserCommentTitlePitchQuantity=128
+# ▼省略･表示用の ハンドル･ネーム の フォント･ピッチ数･制限．
+OmitUserHandleNamePitchQuantity=32
+# ↑これら「OmitUserCommentTitlePitchQuantity,OmitUserHandleNamePitchQuantity」のピッチ数は固定･ピッチを想定し，半角が１，全角が２とカウントされる．
+
+# ChoiceBox．
+# ▼１ページ内のスレッド数･最大値のチョイス･ボックス･コンポーネント内の初期･番号（チョイス･ボックスのデフォルト値，通常は０）．
+PageThreadMax_CBInitialize=0
+# ▼１ページ内のスレッド数･最大値のチョイス･ボックス･コンポーネント内の初項．
+PageThreadMax_CBFirst=10
+# ▼１ページ内のスレッド数･最大値のチョイス･ボックス･コンポーネント内の増分．
+PageThreadMax_CBStride=10
+# ▼１ページ内のスレッド数･最大値のチョイス･ボックス･コンポーネント内の末項．
+PageThreadMax_CBLast=50
+# ↑１ページ内の表示スレッド数を，あまり増やすと（「表示用･配列の要素数の増加、表示処理の増加」などにより）パフォーマンスが低下する恐れがあるので、ご注意 下さい．
+# なお、プロバイダーにインストールされている Perl バージョンによってはブロック表示用･配列の要素数（$#html_blocks__suc）が激しく増加してしまう場合もあるようなので、ご注意 下さい（恐らく Perl のバグ）．
+# もし、表示用･配列の要素数が激しく増加ししていたとしても Report ファイルの「&express__html_body( ) : $#html__templet__suc」の値が"3000"程度なら、パフォーマンス的に それほど影響はないと思われます（チェックする場合には「１ページ内の表示スレッド数」以上のブロック･データが必要）．
+
+# ▼タブを空白に変換した時の数．
+TabBlankQuantity=4
+
+# ▼クッキーの有効期限（日）．
+CookieLifeDate=90
+
+# ▼アップロード可能な画像「縦･横」サイズの最大値．
+FUploadImageWidthMax=-1
+FUploadImageHeightMax=-1
+# ↑この『アップロード可能な画像「縦･横」サイズの最大値』を「FUploadImageWidthMax=-1、FUploadImageHeightMax=-1」と指定した場合は無指定となります、"0"は設定できません．
+
+############################################################
+
+# 過去･ログ･ボリュム に対する連続･アクセス･最大値．
+VolumeSeriesAccessMax=8
+# ↑「VolumeSeriesAccessMax<=0」の値は エラー となりますので ご注意 下さい．
+
+# 過去･ログ･ボリュム に対する管理者による検索の許可．
+HistoryAdministraSearch=
+
+############################################################
+
+# ▼管理･モード時の管理者･リスト表示．
+AdministraMember=Hide
+## Show,Hide
+# ↑この AdministraMember は セキュリティー 上，必ず「Hide」にして下さい．
+
+############################################################
+
+-------------------- <&&popular.cfg&&> --------------------
+
+
+
+-------------------- <&&html_head_inner.cfg&&> --------------------
+
+=EndOfSetting=
+
+<!--
+◆ここで<head>…</head>タグ内の記述が可能。
+
+<title>…</title>タグで Title は記述しないで下さい。
+<meta http-equiv='Content-Type' content='text/html; charset=…'>タグで Charset は記述しないで下さい。
+<meta name="robots" content="…">は"smt.cgi"内の"$search_engine__define__str"で設定して下さい。
+<meta name="keywords" content="…">用の"検索用･キーワード"は各掲示板ごとに"personal.cfg"内の"HTMLContentKeywords"で設定して下さい。
+<meta name="description" content="…">用の"検索用･紹介文"は各掲示板ごとに"personal.cfg"内の"HTMLContentDescription"で設定して下さい。
+-->
+
+<!--
+サイトのトップ･ページ
+<link rel="index" href="…">
+
+ヘルプ･ページ
+<link rel="help" href="…">
+
+サイト･マップが掲載されているページ
+<link rel="contents" href="…">
+
+検索エンジンに登録して欲しい URL
+<link rel="canonical" href="…">
+
+bookmark ブックマーク
+<link rel="bookmark" href="…">
+
+何ページかに わたって記事がある場合の最初のページ
+<link rel="start" href="…">
+
+次のページ
+<link rel="next" href="…">
+
+前のページ
+<link rel="prev" href="…">
+
+上位のページ
+<link rel="parent" href="…">
+
+相対パスの場合は"smt.cgi"からの相対パスとなる。
+下記の変数も使用可（";"（セミコロン）は省略可）．
+*&$SiteResourceLocation&;　サイト 資源･URLアドレス（論理的なサイトのトップ）．
+*&$CardinalResourceLocation&;　基点 資源･URLアドレス．
+*&$LocalResourceLocation&;　ローカル 資源･URLアドレス．
+*&$EmployResourceLocation&;　使役 資源･URLアドレス．
+*&$InformStageResourceLocation&;　インフォーム･ステージ 資源･URLアドレス．
+*&$ReferenceResourceLocation&;　リファレンス 資源･URLアドレス．
+*&$ProgramName&;　プログラム･ネーム
+*&$HelpFileName&;　ヘルプ･ファイル･ネーム
+-->
+
+<link rel="index" href="*&$SiteResourceLocation&;index.htm">
+<link rel="index" href="*&$SiteResourceLocation&;index.html">
+<link rel="canonical" href="*&$SiteResourceLocation&;index.htm">
+<link rel="canonical" href="*&$SiteResourceLocation&;index.html">
+<link rel="canonical" href="*&$ProgramName&;">
+<link rel="help" href="*&$InformStageResourceLocation&;*&$HelpFileName&;">
+
+<style type='text/css'>
+<!--
+
+/* ▼外部スタイル･シート ファイル参照
+
+@import url( ～.css );
+
+下記の変数も使用可（";"（セミコロン）は省略可）．
+*&$SiteResourceLocation&;　サイト 資源･URLアドレス（論理的なサイトのトップ）．
+*&$CardinalResourceLocation&;　基点 資源･URLアドレス．
+*&$LocalResourceLocation&;　ローカル 資源･URLアドレス．
+*&$EmployResourceLocation&;　使役 資源･URLアドレス．
+*&$InformStageResourceLocation&;　インフォーム･ステージ 資源･URLアドレス．
+*&$ReferenceResourceLocation&;　リファレンス 資源･URLアドレス．
+
+例．@import url( *&$SiteResourceLocation&;X-FILE.css );
+*/
+
+/* ▼HTML の スタイル･シート */
+
+/* テキスト･カラー． */
+body { color: #000000; }
+
+/* .html-body_blue_decoration { background: #8f9fff; } */
+
+.html-body_yellow-green_decoration { background: #d3e7cb; }
+
+.html-body_light-blue_decoration { background: #bfc7ef; }
+
+.html-body_light-violet_decoration { background: #dbd7f3; }
+
+.html-body_violet_decoration { background: #cbb7e7; }
+
+.html-body_light-brown_decoration { background: #cbc7b3; }
+
+/* a:link：未訪問のリンク･テキスト･カラー． */
+a:link { color: #004bff; }
+
+/* a:visited：訪問済みのリンク･テキスト･カラー． */
+a:visited { color: #a300a3; }
+
+/* a:active：選択中のリンク･テキスト･カラー． */
+a:active { color: #00ffff; }
+
+/* a:hover：マウス･カーソル が リンク 上に来た場合の リンク･テキスト･カラー． */
+a:hover { color: #ff2f5f; }
+
+/* 引用文の装飾． */
+.quotation_decoration{ color: #4f33ff; }
+
+/* アイ･キャッチの装飾． */
+.eye-catching_decoration { color: #ff2f5f; font-weight: bold; }
+/* font-weight: lighter, normal, bold, bolder; */
+
+/* 掲示板用 ハンドルネームの装飾． */
+.BOARD_handle-name_decoration { color: #7347ff; font-weight: bolder; }
+/* font-weight: lighter, normal, bold, bolder; */
+
+/* 掲示板用 コメント･タイトルの装飾． */
+.BOARD_comment-title_decoration { color: #0083ff; font-weight: bold; }
+/* font-weight: lighter, normal, bold, bolder; */
+
+/* 掲示板の検索･モード「真のスレッド」の装飾． */
+.BOARD_search_true-thread_decoration { background: #d3e7cb; }
+
+/* 掲示板の検索･モード「偽のスレッド」の装飾． */
+.BOARD_search_false-thread_decoration {  }
+
+/* 掲示板の新規投稿記事 日付の装飾． */
+.BOARD_new-article_time-stamp_decoration { color: #ff0000; }
+
+/* 掲示板用 管理者 アイ･キャッチの装飾． */
+.BOARD_administra_eye-catching_decoration { color: #9f1fe7; }
+
+/* 掲示板用 記事･Index の装飾． */
+.BOARD_article-index_decoration {  }
+
+/* 掲示板用 記事･Index ハンドルネーム の装飾． */
+.BOARD_article-index_handle-name_decoration {  }
+
+/* 掲示板用 記事･Index コメント･タイトル の装飾． */
+.BOARD_article-index_comment-title_decoration {  }
+
+
+.border_default-outer {
+   border-color: #ffffff #7f7f7f #7f7f7f #ffffff;
+   border-style: solid solid solid solid;
+   border-width: 1px 1px 1px 1px;
+}
+.border_default-inner {
+   border-color: #7f7f7f #ffffff #ffffff #7f7f7f;
+   border-style: solid solid solid solid;
+   border-width: 1px 1px 1px 1px;
+}
+
+.pop-up_container {
+   display: inline; /* inline で表示 */
+}
+.pop-up_display_area {
+}
+a:hover.pop-up_link { /* マウスが乗った場合　リンク */
+   /* position: relative; */
+   text-decoration: none;
+}
+a:hover .pop-up_balloon { /* マウスが乗った場合　吹き出し */
+   display: block; /* block で表示 */
+   /* top: 0px; */
+   /* left: 0px; */
+   z-index: 1;
+   border: #000000 solid 1px; /* ボーダー(境界線) */
+   background-color: #ffffe1; /* 背景色 */
+   padding: 1px 2px 0px 3px; /* 内側の余白 */
+   color: #000000; /* 文字色 */
+}
+.pop-up_balloon { /*吹き出し　デフォルト*/
+   display: none; /* 非表示 */
+   position: absolute;
+}
+
+-->
+</style>
+
+-------------------- <&&html_head_inner.cfg&&> --------------------
+
+
+
+-------------------- <&&board_title_container.tmp&&> --------------------
+
+Element_FixArticleIndex=<a href='JavaScript: void SubmitFixArticleIndexAction( );' style='text-decoration: none; ' >
+Element_NonArticleIndex=<a href='JavaScript: void SubmitNonArticleIndexAction( );' style='text-decoration: none; ' >
+
+=EndOfSetting=
+
+      <table width='100%' cellspacing='0' cellpadding='0' border=0 >
+         <tr>
+            <td>
+*&$HTMLBoardTitle&
+            </td>
+         </tr>
+      
+      <form name='FormSubmitFixArticleIndex' method='POST' action='*&$ProgramName&?*&$FixArticleIndexMode_Option&' style='display: inline; '>
+         <input type='hidden' name='Execution' value='Express'>
+         <input type="hidden" name="BoardMode" value="*&$Mode&">
+         <!--
+         <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+         // -->
+         <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+         <!--
+         <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+         <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+         <input type="hidden" name="ThreadSerialNumber" value="*&$ThreadSerialNumber&">
+         <input type="hidden" name="BlockTimeStamp" value="*&$BlockTimeStamp&">
+         <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+         // -->
+         <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+         <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+         <input type='hidden' name='Dummy'>
+      </form>
+      
+      <form name='FormSubmitNonArticleIndex' method='POST' action='*&$ProgramName&?*&$NonArticleIndexMode_Option&' style='display: inline; '>
+         <input type='hidden' name='Execution' value='Express'>
+         <input type='hidden' name='BlockIdentity' value=''>
+         <input type="hidden" name="ThreadSerialNumber" value="">
+         <input type="hidden" name="BlockAddress" value="">
+         <input type="hidden" name="BlockTimeStamp" value="">
+         <input type="hidden" name="BoardMode" value="*&$Mode&">
+         <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+         <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+         <!--
+         <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+         // -->
+         <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+         <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+         <input type='hidden' name='Dummy'>
+      </form>
+      
+      </table>
+      
+      <script language='JavaScript'>
+         <!--
+         function SubmitFixArticleIndexAction(sTarget){
+            if( (typeof sTarget)=='undefined' ){
+               sTarget = '';
+            }
+            document.FormSubmitFixArticleIndex.target = sTarget;
+            document.FormSubmitFixArticleIndex.submit( );
+         }
+         function SubmitNonArticleIndexAction(sTarget, sSeparator, sBTS_Operator, sBlockTimeStamp, sBID_Operator, sBlockIdentity, sTSN_Operator, sSerialNumber, sBAD_Operator, sBlockAddress){
+            var sSearchMode,sSearchCondition;
+            if( (typeof sTarget)=='undefined' ){
+               sTarget = '';
+            }
+            sSearchMode = document.FormSubmitNonArticleIndex.SearchMode.value;
+            sSearchCondition = document.FormSubmitNonArticleIndex.SearchCondition.value;
+            if( sTarget=="_blank" ){
+               document.FormSubmitNonArticleIndex.SearchMode.value = '';
+               document.FormSubmitNonArticleIndex.SearchCondition.value = '';
+            }
+            document.FormSubmitNonArticleIndex.target = sTarget;
+            document.FormSubmitNonArticleIndex.Execution.value = 'Express';
+            document.FormSubmitNonArticleIndex.BlockTimeStamp.value = '';
+            document.FormSubmitNonArticleIndex.BlockIdentity.value = '';
+            document.FormSubmitNonArticleIndex.ThreadSerialNumber.value = '';
+            document.FormSubmitNonArticleIndex.BlockAddress.value = '';
+            if( (typeof sBlockTimeStamp)=='undefined' ){
+               sBlockTimeStamp = '';
+            }
+            if( (typeof sBlockIdentity)=='undefined' ){
+               sBlockIdentity = '';
+            }
+            if( (typeof sSerialNumber)=='undefined' ){
+               sSerialNumber = '';
+            }
+            if( (typeof sBlockAddress)=='undefined' ){
+               sBlockAddress = '';
+            }
+            if( sBlockIdentity!='' ){
+               document.FormSubmitNonArticleIndex.Execution.value = 'JumpIdentity';
+               document.FormSubmitNonArticleIndex.BlockIdentity.value = sBlockIdentity;
+               document.FormSubmitNonArticleIndex.action = document.FormSubmitNonArticleIndex.action+sBID_Operator+sBlockIdentity+sSeparator;
+            }
+            if( (sBlockIdentity!='') && (sSerialNumber!='') ){
+               document.FormSubmitNonArticleIndex.Execution.value = 'JumpThread';
+               document.FormSubmitNonArticleIndex.ThreadSerialNumber.value = sSerialNumber;
+               document.FormSubmitNonArticleIndex.action = document.FormSubmitNonArticleIndex.action+sTSN_Operator+sSerialNumber+sSeparator;
+            }
+            if( sBlockAddress!='' ){
+               document.FormSubmitNonArticleIndex.BlockAddress.value = sBlockAddress;
+               document.FormSubmitNonArticleIndex.action = document.FormSubmitNonArticleIndex.action+sBAD_Operator+sBlockAddress+sSeparator;
+            }
+            if( sBlockTimeStamp!='' ){
+               document.FormSubmitNonArticleIndex.BlockTimeStamp.value = escape(sBlockTimeStamp);
+               document.FormSubmitNonArticleIndex.action = document.FormSubmitNonArticleIndex.action+sBTS_Operator+sBlockTimeStamp+sSeparator;
+            }
+            if( sTarget=="_blank" ){
+               document.FormSubmitNonArticleIndex.submit( );
+               document.FormSubmitNonArticleIndex.SearchMode.value = sSearchMode;
+               document.FormSubmitNonArticleIndex.SearchCondition.value = sSearchCondition;
+            }
+            else{ // if( sTarget!="_blank" )
+               document.FormSubmitNonArticleIndex.submit( );
+            }
+         }
+         // -->
+      </script>
+      
+
+-------------------- <&&board_title_container.tmp&&> --------------------
+
+
+
+-------------------- <&&underout.tmp&&> --------------------
+
+=EndOfSetting=
+
+      <table cellpadding="0" cellspacing="0" border=0 class="border_none">
+
+         <tr>
+            <td>
+
+     <form name="FormUnderout" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+         <&=(Underout):<input type="button" name="ButtonSubmitMostOld" value="最古ページ" onClick="SubmitExpressPage(this.form,'ExpressMostOld')">=&><br>
+         <input type="hidden" name="Execution">
+         <input type="hidden" name="BoardMode" value="*&$Mode&">
+         <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+         <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+         <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+         <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+         <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+         <input type="hidden" name="Dummy">
+
+      </form>
+
+            </td>
+         </tr>
+
+      </table>
+
+<&=前の画面に戻りたい場合は，このボタンで最古ページを表示して下さい．<br>=&>
+
+-------------------- <&&underout.tmp&&> --------------------
+
+
+
+-------------------- <&&overout.tmp&&> --------------------
+
+=EndOfSetting=
+
+      <table cellpadding="0" cellspacing="0" border=0 class="border_none">
+
+         <tr>
+            <td>
+
+               <form name="FormOverout" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                  <&=(Overout):<input type="button" name="ButtonSubmitMostNew" value="最新ページ" onClick="SubmitExpressPage(this.form,'ExpressMostNew')">=&><br>
+                  <input type="hidden" name="Execution">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+         </tr>
+
+      </table>
+
+<&=前の画面に戻りたい場合は，このボタンで最新ページを表示して下さい．<br>=&>
+
+-------------------- <&&overout.tmp&&> --------------------
+
+
+
+-------------------- <&&display.tmp&&> --------------------
+
+Title=Display Article
+OnLoad=OnLoad_Display( );
+Finalize=Finalize_Display( );
+
+=EndOfSetting=
+
+<!-- Display Article（記事） Templet -->
+
+      <script language="JavaScript">
+         <!--
+         
+         lDebug = lDebug || ( ( *&$DebugSwitch& + 0 ) != 0 );
+         // false; // true //
+         
+         if( lDebug ){
+            
+            document.write("■Display Article（記事） Templet．"+"<br>");
+            document.write("<br>");
+            document.write("DebugSwitch = '*&$DebugSwitch&'．"+"<br>");
+            document.write("CodecVersion = '*&$CodecVersion&'．"+"<br>");
+            document.write("<br>");
+         }
+         
+         // sJumpLocation = sGet_Search_Item("@Jump");
+         
+         sLabelNumber = "*&$LabelNumber&";
+         
+         if(sLabelNumber != ""){
+            
+            sJumpLocation = "Thread_"+sLabelNumber;
+            
+         }else{
+            
+            // sJumpLocation = sLHash;
+            
+         }
+         
+         if(sJumpLocation != ""){
+            
+            location.hash = sJumpLocation;
+            
+         }
+         
+         function Finalize_Display( ){
+            
+            if(sJumpLocation != ""){
+               
+               if( ! ( (navigator.appName == sNetscapeNavigator) && (vVerCompatible < 5) ) ){
+                  // InternetExplorer
+                  
+                  location.hash = sJumpLocation;
+                  
+               }
+               
+               else{
+                  // Netscape
+                  
+                  // location = sSelfName+"#"+sJumpLocation;
+                  
+               }
+               
+            }
+            
+         }
+         
+         function OnLoad_Display( ){
+            
+            if(sJumpLocation != ""){
+               
+               if( (navigator.appName == sNetscapeNavigator) && (vVerCompatible < 5) ){
+                  // Netscape
+                  
+                  location.hash = sJumpLocation;
+                  
+               }
+               
+            }
+            
+         }
+         
+         // -->
+      </script>
+
+            <a href="*&$SiteResourceLocation&" target="_top">
+               <&=<img src="*&$EmployResourceLocation&;b4link6.gif" border="0" alt="トップ･ページの表示">=&></a>
+            <a target="_blank" href="*&$InformStageResourceLocation&;*&$HelpFileName&">
+               <&=<img border="0" src="*&$EmployResourceLocation&;b4link9.gif" alt="注意書きの表示">=&>
+<&=掲示板に書き込む前に必ず この ”注意書き”を お読み下さい．<br>=&></a>
+<br>
+
+*&@Delegate_BoardTitle&
+
+*&@HTMLRemark&
+
+*&@Delegate_Search&
+
+*&@Delegate_ArticleIndex&
+
+<!-- @ Input @ -->
+
+      <table align="center" cellpadding="0" border=0 class="border_none">
+
+         <tr>
+            <td width="0">
+
+*&@Delegate_RequestArticleInput&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+&nbsp;　&nbsp;
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_OpenIconEntryWindow&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_RequestSwitchIconEntry&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+&nbsp;　&nbsp;
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_RequestSwitchSearch&
+
+            </td>
+
+         </tr>
+
+      </table>
+
+<br>
+
+      <table align="center" cellpadding="10" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <form name="FormPageCondition" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Page Condition):ページの表示順：｛=&>
+                  <input type="radio"  name="PageConditOrder" value="New" *&$PageConditOrderNew& ><&=(Page Condition):新しい順／=&>
+                  <input type="radio"  name="PageConditOrder" value="Old" *&$PageConditOrderOld& ><&=(Page Condition):古い順｝．<br>=&>
+
+<&=(Page Condition):初期･ページの表示･位置：｛=&>
+                  <input type="radio"  name="PageConditInitialize" value="Head" *&$PageConditInitHead& ><&=(Page Condition):先頭ページ／=&>
+                  <input type="radio"  name="PageConditInitialize" value="Tail" *&$PageConditInitTail& ><&=(Page Condition):末尾ページ｝．<br>=&>
+                  
+<!--
+※なお，この初期･ページの表示はページの表示順が"新しい順"の場合は"先頭ページ"が"最新ページ"に，"末尾ページ"が"最古ページ"になり，ページの表示順が"古い順"の場合は"先頭ページ"が"最古ページ"に，"末尾ページ"が"最新ページ"になります．<br>
+-->
+
+<&=(Page Condition):１ページ内のスレッド表示数：=&>
+*&@PageThreadMaxChoiceBox&
+
+                  <&=(PageCondition:Entry):<input type="submit" value="登録" >=&><br>
+                  <input type="hidden" name="Execution" value="SetPageCondition" >
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&" >
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&" >
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy" >
+
+               </form>
+               
+            </td>
+            
+         </tr>
+
+      </table>
+
+<br>
+
+*&@Delegate_ExposeBlock&
+
+      <a name="Thread_Begin"></a>
+
+*&@Warning&
+
+*&@Delegate_MultiDelete&
+
+*&@Delegate_TargetArticle&
+
+*&@Delegate_MultiDelete&
+
+*&@Delegate_ExposeBlock&
+
+      <table align="center" cellpadding="10" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <form name="FormPageCondition" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Page Condition):ページの表示順：｛=&>
+                  <input type="radio"  name="PageConditOrder" value="New" *&$PageConditOrderNew& ><&=(Page Condition):新しい順／=&>
+                  <input type="radio"  name="PageConditOrder" value="Old" *&$PageConditOrderOld& ><&=(Page Condition):古い順｝．<br>=&>
+
+<&=(Page Condition):初期･ページの表示･位置：｛=&>
+                  <input type="radio"  name="PageConditInitialize" value="Head" *&$PageConditInitHead& ><&=(Page Condition):先頭ページ／=&>
+                  <input type="radio"  name="PageConditInitialize" value="Tail" *&$PageConditInitTail& ><&=(Page Condition):末尾ページ｝．<br>=&>
+                  
+<!--
+※なお，この初期･ページの表示はページの表示順が"新しい順"の場合は"先頭ページ"が"最新ページ"に，"末尾ページ"が"最古ページ"になり，ページの表示順が"古い順"の場合は"先頭ページ"が"最古ページ"に，"末尾ページ"が"最新ページ"になります．<br>
+-->
+
+１ページ内のスレッド表示数：
+*&@PageThreadMaxChoiceBox&
+
+                  <&=(PageCondition:Entry):<input type="submit"  value="登録">=&><br>
+                  <input type="hidden" name="Execution" value="SetPageCondition">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <!--
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  -->
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+               
+            </td>
+            
+         </tr>
+
+      </table>
+<br>
+      <table align="center" cellpadding="0" border=0 class="border_none">
+
+         <tr>
+            <td width="0">
+
+*&@Delegate_RequestArticleInput&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+&nbsp;　&nbsp;
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_OpenIconEntryWindow&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_RequestSwitchIconEntry&
+
+            </td>
+
+            <td width="0" class="border_none">
+
+&nbsp;　&nbsp;
+
+            </td>
+
+            <td width="0" class="border_none">
+
+*&@Delegate_RequestSwitchSearch&
+
+            </td>
+
+         </tr>
+
+      </table>
+
+<br>
+
+*&@Delegate_Administra&
+
+-------------------- <&&display.tmp&&> --------------------
+
+
+
+-------------------- <&&article_index_appointment.tmp&&> --------------------
+
+Title=Display Article Index Appointment
+
+=EndOfSetting=
+
+<!-- Display Article Index Appointment Templet -->
+
+            <a href="*&$SiteResourceLocation&" target="_top">
+               <&=<img src="*&$EmployResourceLocation&;b4link6.gif" border="0" alt="トップ･ページの表示">=&></a>
+            <a target="_blank" href="*&$InformStageResourceLocation&;*&$HelpFileName&">
+               <&=<img border="0" src="*&$EmployResourceLocation&;b4link9.gif" alt="注意書きの表示">=&>
+<&=掲示板に書き込む前に必ず この ”注意書き”を お読み下さい．<br>=&></a>
+<br>
+
+*&@Delegate_BoardTitle&
+
+*&@Delegate_ArticleIndex&
+
+*&@Delegate_Administra&
+
+-------------------- <&&article_index_appointment.tmp&&> --------------------
+
+
+
+-------------------- <&&request_article_input.tmp&&> --------------------
+
+Element_RequestArticleInput_Disable=<&=(Request Article Input:Dummy Space Z5):<input type="button" value="　　　　　" style="font-family: Terminal; ">=&>
+
+Element_RequestArticleInput_Default=<&=(RequestArticleInput:Default):<input type="submit" name="ButtonSubmit" value="記事･入力">=&>
+
+Element_RequestArticleInput_Reset=<&=(RequestArticleInput:Reset):<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">=&>
+
+=EndOfSetting=
+
+                  <form name="FormRequestArticleInput" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                     *&$Element_RequestArticleInput&
+                     <input type="hidden" name="Execution" value="RequestArticleInput">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="UserCheckCommentTitle" value="">
+                     <input type="hidden" name="UserCheckHandleName" value="">
+                     <input type="hidden" name="UserMaintHandleName" value="">
+                     <input type="hidden" name="UserCheckPassword" value="">
+                     <input type="hidden" name="FontPitch" value="">
+                     <input type="hidden" name="FontPitchSetting" value="">
+                     <input type="hidden" name="IconSelect" value="">
+                     <input type="hidden" name="IconSelectSetting" value="">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_article_input.tmp&&> --------------------
+
+
+
+-------------------- <&&request_article_edit.tmp&&> --------------------
+
+Element_RequestArticleEdit_Default=<&=(RequestArticleEdit:Default):<input type="submit" value="編集" style="float: right; ">=&>
+
+Element_RequestArticleEdit_Reset=<&=(RequestArticleEdit_Reset):<input type="submit" name="ButtonSubmit" value="Reset">=&>
+
+=EndOfSetting=
+
+                  <form name="FormBlock_*&$BlockAddress&_RequestArticleEdit" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline;">
+                     *&$Element_RequestArticleEdit&<br>
+                     <input type="hidden" name="Execution" value="CallArticleEdit">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="BlockTimeStamp" value="*&$BlockTimeStamp&">
+                     <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+                     <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+                     <input type="hidden" name="ThreadSerialNumber" value="*&$ThreadSerialNumber&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="UserCheckCommentTitle" value="">
+                     <input type="hidden" name="UserCheckHandleName" value="">
+                     <input type="hidden" name="UserMaintHandleName" value="">
+                     <input type="hidden" name="UserCheckPassword" value="">
+                     <input type="hidden" name="FontPitch" value="">
+                     <input type="hidden" name="FontPitchSetting" value="">
+                     <input type="hidden" name="IconSelect" value="">
+                     <input type="hidden" name="IconSelectSetting" value="">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_article_edit.tmp&&> --------------------
+
+
+
+-------------------- <&&request_article_append.tmp&&> --------------------
+
+Element_RequestArticleAppend_Disable=<font style="float: right; *&$WarningFontStyle& "><&=(RequestArticleAppend:Disable):スレッドの上限=&></font>
+
+Element_RequestArticleAppend_Default=<&=(RequestArticleAppend:Default):<input type="submit" value="追加" style="float: right; ">=&>
+
+Element_RequestArticleAppend_Reset=<&=(RequestArticleAppend:Reset):<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">=&>
+
+=EndOfSetting=
+
+                  <form name="FormBlock_*&$BlockAddress&_RequestArticleAppend" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline;">
+                     *&$Element_RequestArticleAppend&
+                     <input type="hidden" name="Execution" value="CallArticleAppend">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+                     <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="UserCheckCommentTitle" value="">
+                     <input type="hidden" name="UserCheckHandleName" value="">
+                     <input type="hidden" name="UserMaintHandleName" value="">
+                     <input type="hidden" name="UserCheckPassword" value="">
+                     <input type="hidden" name="FontPitch" value="">
+                     <input type="hidden" name="FontPitchSetting" value="">
+                     <input type="hidden" name="IconSelect" value="">
+                     <input type="hidden" name="IconSelectSetting" value="">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_article_append.tmp&&> --------------------
+
+
+
+-------------------- <&&request_switch_search.tmp&&> --------------------
+
+Element_RequestSwitchSearch_Disable=<&=(RequestArticleInput:DummySpace Z5):<input type='button' value='　　　　　' style='font-family: Terminal; '>=&>
+
+Element_RequestSwitchSearch_On=<&=(RequestSwitchSearch:On):<input type='submit' name="ButtonSubmit" value='検索･モード'>=&>
+
+Element_RequestSwitchSearch_Off=<&=(RequestSwitchSearch:Off):<input type='submit' name="ButtonSubmit" value='標準･モード'>=&>
+
+=EndOfSetting=
+
+                  <form name="FormRequestSwitchSearch" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                     *&$Element_RequestSwitchSearch&
+                     <input type="hidden" name="Execution" value="RequestSwitchSearch">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_switch_search.tmp&&> --------------------
+
+
+
+-------------------- <&&open_icon_entry_window.tmp&&> --------------------
+
+=EndOfSetting=
+
+                  <form name="FormOpenIconEntryWindow" method="POST" target="_blank" action="*&$SwitchIcon_ProgramName&?*&$SwitchIcon_Option&" style="display: inline; ">
+                     <&=(OpenIconEntryWindow):<input type="submit" name="ButtonSubmit" value="&#x274F;" style='margin-right: 0; margin-left: 0; '>=&>
+                     <input type="hidden" name="Execution" value="Express">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&open_icon_entry_window.tmp&&> --------------------
+
+
+
+-------------------- <&&request_switch_icon_entry.tmp&&> --------------------
+
+Element_RequestSwitchIconEntry_Disable=<&=(RequestSwitchIconEntry:DummySpace Z4):<input type='button' value='　　　　' style='font-family: Terminal; '>=&>
+
+Element_RequestSwitchIconEntry_On=<&=(RequestSwitchIconEntry:On):<input type='submit' name="ButtonSubmit" value='Icon 登録'>=&>
+
+Element_RequestSwitchIconEntry_Off=<&=(RequestSwitchIconEntry:Off):<input type='submit' name="ButtonSubmit" value='Primary'>=&>
+
+=EndOfSetting=
+
+                  <form name="FormRequestSwitchIconEntry" method="POST" action="*&$SwitchIcon_ProgramName&?*&$SwitchIcon_Option&" style="display: inline; ">
+                     *&$Element_RequestSwitchIconEntry&
+                     <input type="hidden" name="Execution" value="Express">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_switch_icon_entry.tmp&&> --------------------
+
+
+
+-------------------- <&&request_delete.tmp&&> --------------------
+
+Element_RequestDelete_Checkbox=<input type="checkbox" name="CheckDeleteThread" *&$OnClickHandler_RequestDelete& style="float: right; ">
+
+Element_RequestDelete_Button=<&=(RequestDelete):<input type='submit' name="ButtonSubmit" value="削除" style="float: right; ">=&>
+
+=EndOfSetting=
+
+                  <form name="FormThread_*&$ThreadSerialNumber&_Delete" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                     *&$Element_RequestDelete&<br>
+                     <input type="hidden" name="Execution" value="CallDelete">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+                     <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+                     <input type="hidden" name="ThreadSerialNumber" value="*&$ThreadSerialNumber&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="BlockTimeStamp" value="*&$BlockTimeStamp&">
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+-------------------- <&&request_delete.tmp&&> --------------------
+
+
+
+-------------------- <&&multi_delete.tmp&&> --------------------
+
+=EndOfSetting=
+
+                  <form name="FormMultiDelete" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                     <div align="center">
+                        <&=(MultiDelete):<input type="button" name="ButtonMultiDelete" value="削除" onClick="SubmitMultiDelete(this.form)">=&><br>
+                     </div>
+                     <input type="hidden" name="Execution" value="MultiDelete">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                     <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                     <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                     <input type="hidden" name="MultiDeleteList" >
+                     <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                     <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+<br>
+
+-------------------- <&&multi_delete.tmp&&> --------------------
+
+
+
+-------------------- <&&expose_block__ascending.tmp&&> --------------------
+
+=EndOfSetting=
+
+<!-- Ascending : 昇順(小さい順、1, 2, 3) -->
+
+      <table align="center" cellpadding="7" border=0 class="border_none">
+
+         <tr>
+            <td class="border_none">
+
+               <form name="FormExposeBlock_MostNew" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:MostNew):<input type='submit' name="ButtonSubmit" value="最新ページ">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressMostNew">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td class="border_none">
+
+               <form name="FormExposeBlock_New" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:New):<input type='submit' name="ButtonSubmit" value="新しいページ">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressNew">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td class="border_none">
+
+               <form name="FormExposeBlock_Old" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:Old):<input type='submit' name="ButtonSubmit" value="古いページ">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressOld">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td class="border_none">
+
+               <form name="FormExposeBlock_MostOld" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:MostOld):<input type='submit' name="ButtonSubmit" value="最古ページ">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressMostOld">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+         </tr>
+
+      </table>
+
+<br>
+
+-------------------- <&&expose_block__ascending.tmp&&> --------------------
+
+
+
+-------------------- <&&expose_block__descending.tmp&&> --------------------
+
+=EndOfSetting=
+
+<!-- Descending : 降順(大きい順、3, 2, 1) -->
+
+      <table align="center" cellpadding="7">
+
+         <tr>
+            <td>
+
+               <form name="FormExposeBlock_MostOld" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:MostOld):<input type='button' name="ButtonSubmit" value="最古ページ" onClick="SubmitAction(this.form)">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressMostOld">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td>
+
+               <form name="FormExposeBlock_Old" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:Old):<input type='button' name="ButtonSubmit" value="古いページ" onClick="SubmitAction(this.form)">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressOld">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td>
+
+               <form name="FormExposeBlock_New" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:New):<input type='button' name="ButtonSubmit" value="新しいページ" onClick="SubmitAction(this.form)">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressNew">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+
+            <td>
+
+               <form name="FormExposeBlock_MostNew" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+                  
+                  <&=(ExposeBlock:MostNew):<input type='button' name="ButtonSubmit" value="最新ページ" onClick="SubmitAction(this.form)">=&><br>
+                  <input type="hidden" name="Execution" value="ExpressMostNew">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+         </tr>
+
+      </table>
+
+<br>
+
+-------------------- <&&expose_block__descending.tmp&&> --------------------
+
+
+
+-------------------- <&&block.tmp&&> --------------------
+
+# Title=Display Article Block
+# OnLoad=DArticleBlock_OnLoad();
+
+BlockSeparator=
+# BlockSeparator=<br>
+# BlockSeparator=<hr>
+
+=EndOfSetting=
+
+<!-- Display Article（記事） Block Templet -->
+
+      <a name="Block_*&$BlockIdentity&"></a>
+
+      <table align="center" width="100%" cellpadding="5" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <table align="center" width="100%" cellpadding="0" cellspacing="0" border=0 class="border_none">
+
+*&@Delegate_ExposeThread&
+
+                  <tr>
+                     <td>
+
+*&@Delegate_ThreadArticle&
+<br>
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td>
+
+*&@Delegate_RequestArticleAppend&
+
+                        <div style="float: left;">
+
+<font style="color:#00678f;">Block( *&$BlockAddressMsg&;Identity *&$LinkBlockIdentity&;*&$BlockIconRankMsg& )</font>
+
+                        </div>
+
+                     </td>
+                  </tr>
+
+*&@Delegate_ExposeThread&
+
+               </table>
+
+            </td>
+         </tr>
+
+      </table>
+
+<br>
+
+-------------------- <&&block.tmp&&> --------------------
+
+
+
+-------------------- <&&expose_thread.tmp&&> --------------------
+
+# Element_Default_Disable
+
+# Element_ExposeThread_Disable=<tt><input type="button" value="          " style="font-family: Terminal; "></tt>
+# Element_ExposeThread_Disable=<tt><input type="button" value="　　　　　　" style="font-family: Terminal; "></tt>
+Element_ExposeThread_Disable=<&=(ExposeThread:DummySpace H16):<input type="button" value="                ">=&>
+
+Element_ExposeThread_Old=<&=(ExposeThread:Old):<input type="button" name='ButtonSubmitOld' value="古いスレッド" onClick="SubmitExpressBlock(this.form,'ExpressOld')">=&>
+
+Element_ExposeThread_New=<&=(ExposeThread:New):<input type="button" name='ButtonSubmitNew' value="新しいスレッド" onClick="SubmitExpressBlock(this.form,'ExpressNew')">=&>
+
+=EndOfSetting=
+
+      <tr>
+         <td class="border_none">
+
+            <form name="FormExposeThread_*&$BlockIdentity&" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+               <table align="center" cellpadding="7" border=0 class="border_none" >
+
+                  <tr>
+                     <td class="border_none">
+
+                        <&=(ExposeThread:MostOld):<input type="button" name='ButtonSubmitMostOld' value="最古スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostOld')">=&><br>
+
+                     </td>
+
+                     <td class="border_none">
+
+                        *&$Element_ExposeThread_Old&;<br>
+
+                     </td>
+
+                     <td class="border_none">
+
+                        *&$Element_ExposeThread_New&;<br>
+
+                     </td>
+
+                     <td class="border_none">
+
+                        <&=(ExposeThread:MostNew):<input type="button" name='ButtonSubmitMostNew' value="最新スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostNew')">=&><br>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+               <input type="hidden" name="Execution" value="ExpressBlock">
+               <input type="hidden" name="BoardMode" value="*&$Mode&">
+               <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+               <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+               <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+               <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+               <input type='hidden' name='BlockTimeStamp' value='*&$BlockTimeStamp&'>
+               <input type="hidden" name="ExecutionThread">
+               <input type="hidden" name="ExpressThreadScope" value="*&$ExpressThreadScope&">
+               <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+               <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+               <input type="hidden" name="Dummy">
+
+            </form>
+
+         </td>
+      </tr>
+
+-------------------- <&&expose_thread.tmp&&> --------------------
+
+
+
+-------------------- <&&thread.tmp&&> --------------------
+
+# Title=Display Article Block
+# OnLoad=DArticleBlock_OnLoad();
+
+ThreadSeparator=<hr>
+AuxiliaryThreadSeparator=<hr width="50%">
+
+=EndOfSetting=
+
+<!-- Display Article（記事） Thread Templet -->
+
+               <a name="Thread_*&$ThreadSerialNumber&"></a>
+
+               <table align="center" cellpadding="0" cellspacing="0" border=0 class="border_none *&$CSS-Class_Search_Thread_Decoration&" style="width: 100%; " >
+
+                  <tr>
+                     <td>
+
+               <table align="center" cellpadding="0" cellspacing="0" border=0 class="border_none" style="width: 100%; " >
+
+                  <tr>
+                     <td style="width: 0%; vertical-align: middle; " >
+
+*&@Delegate_IconContainer&
+
+                     </td>
+
+                     <td style="word-break: break-all; vertical-align: middle; width: 100%; padding: 0% 5px 0% 3px; " >
+
+&lt;Number&gt;:&nbsp;[*&$LinkThreadSerialNumber&]　
+&lt;Date&gt;:&nbsp;*&$ThreadTimeStamp&<br>
+
+                        <font  style=' clear: both; '>
+&lt;Title&gt;:&nbsp;*&$ThreadCommentTitle&<br>
+&lt;Name&gt;:&nbsp;*&$ThreadHandleName&<br>
+*&@Delegate_ThreadTelecomInform&
+                        </font>
+
+                     </td>
+
+                     <td style="vertical-align: top; width: 0%; " >
+*&@Delegate_RequestDelete&
+*&@Delegate_RequestArticleEdit&
+                     </td>
+                  </tr>
+
+               </table>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td>
+
+<br>
+
+                        <table align="center" border=0 class="border_none" style="width: 100%; " >
+                           <tr>
+                              <td style="padding: 0% 5px 0% 3px; word-wrap: break-word; word-break: break-all; " *&$CommentTableCellStyle& >
+
+*&@ThreadComment&
+
+*&@ThreadAppendixDatas&
+                              </td>
+                           </tr>
+                        </table>
+
+*&@ThreadAppendixImages&
+
+                     </td>
+                  </tr>
+
+               </table>
+
+
+-------------------- <&&thread.tmp&&> --------------------
+
+
+
+-------------------- <&&display_image.tmp&&> --------------------
+
+Title=Display Image
+
+=EndOfSetting=
+
+<!-- Display Image Thread Templet -->
+
+               <table align="center" cellpadding="0" cellspacing="0" border=0 class="border_none" style="width: 100%; " >
+
+                  <tr>
+                     <td>
+
+               <table align="center" cellpadding="0" cellspacing="0" border=0 class="border_none" style="width: 100%; " >
+
+                  <tr>
+                     <td style="word-break: break-all; vertical-align: middle; width: 100%; padding: 0% 5px 0% 3px; " >
+
+<font style="color:#00678f;">Thread( Number <a target='_blank' href='*&$ProgramName&?*&$Option&*&$Earmark_ThreadLink&'>*&$ThreadSerialNumber&</a> )</font>　
+&lt;Date&gt;:&nbsp;*&$ThreadTimeStamp&<br>
+
+                        <font  style=' clear: both; '>
+*&@Delegate_ThreadTelecomInform&
+                        </font>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td>
+<br>
+*&@ThreadAppendixImages&
+
+                     </td>
+                  </tr>
+
+               </table>
+
+-------------------- <&&display_image.tmp&&> --------------------
+
+
+
+
+
+
+-------------------- <&&icon_container.tmp&&> --------------------
+
+=EndOfSetting=
+
+               <table align="center" cellpadding="0" cellspacing="1" border=1 style="width: 3em; height: 3.5em; border: 2px solid #ff8787; " ><tr><td valign="middle" style="padding: 2px; text-align: center; border: 1px solid #ff8787; " >
+
+*&@ThreadIcon&
+
+               </td></tr></table>
+
+-------------------- <&&icon_container.tmp&&> --------------------
+
+
+
+-------------------- <&&administra.tmp&&> --------------------
+
+Title=Administra
+# OnLoad=Administra_OnLoad();
+
+=EndOfSetting=
+
+<!-- Administra Templet -->
+
+      <script language="JavaScript">
+         <!--
+         
+         function SubmitAdministraAction(oForm){
+            var vPasswordLengthMax = 64;
+            if(
+             (document.FormAdministra==oForm) ||
+             (document.FormAdministraEntry==oForm) ||
+             (document.FormAdministraDelete==oForm)
+            ){
+               if(
+                ("*&$AdministraButtonVisible&"!="hidden") && 
+                (document.FormAdministraPassword.Password.value.length==0)
+               ){
+                  sProgramErrorMessage = sProgramErrorMessage+<&=(Administra):"★Passwordが入力されていません．"=&>+"\n";
+               }
+            }
+            if( vPasswordLengthMax<vGetStringByte(document.FormAdministraPassword.Password.value) ){
+               sProgramErrorMessage = sProgramErrorMessage+<&=(Administra):"★Passwordが その長さの上限の "+vPasswordLengthMax+" バイトを超えています．"=&>+"\n";
+            }
+            lProgramError = false; // true;
+            if( ( *&$CodecVersion&+0 ) == 3 ){
+               oForm.PasswordEncode.value = 
+                EncodePassword_V3(document.FormAdministraPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+            }
+            else if( ( *&$CodecVersion&+0 ) == 4 ){
+               oForm.PasswordEncode.value = 
+                EncodePassword_V4(document.FormAdministraPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+            }
+            if( lProgramError ){
+               document.FormAdministraPassword.Password.value = "";
+               sProgramErrorMessage = sProgramErrorMessage+<&=(Administra):"★Passwordには｛半角のカナ，全角文字｝は使用できません．"=&>+"\n";
+            }
+            if( 0 < sProgramErrorMessage.length ){
+               alert(sProgramErrorMessage);
+               sProgramErrorMessage = "";
+            }
+            else{
+               if(
+                (document.FormAdministraPassword.Password.value.length!=0) ||
+                (document.FormBoardSwitch==oForm)
+               ){
+                  oForm.submit( );
+               }
+            }
+         }
+         // -->
+      </script>
+
+      <table align="center" width="100%" cellpadding="7" border=1  class="border_default-outer ">
+
+         <tr>
+            <td nowrap class="border_default-inner ">
+
+               <table cellpadding="0" cellspacing="0" border=0 class="border_none">
+
+                  <tr>
+                     <td nowrap class="border_none">
+
+
+               <!-- div style="float:left;right;" -->
+
+
+               <form name="FormAdministraPassword" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Administra):管理者用 Password：=&>
+                  <input type="password" name="Password" SIZE="15" value=""><br>
+
+                  <input type="hidden" name="UserCheckPassword" checked>
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+
+                     </td>
+                  </tr>
+
+               </table>
+
+               <table align="left" cellpadding="0" cellspacing="0" border=0 class="border_none">
+
+                  <tr>
+                     <td nowrap class="border_none">
+
+                        <form name="FormAdministra" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                           <&=(Administra):<input type="button"  name="ButtonSubmit" value="Administra" onClick="SubmitAdministraAction(this.form)">=&><br>
+
+                           <input type="hidden" name="Execution" value="CallAdministra">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           <input type="hidden" name="PasswordEncode" >
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                      </td>
+
+                  </tr>
+
+               </table>
+
+               <table align="right" border=0 class="border_none">
+
+                  <tr>
+
+                     <td nowrap class="border_none">
+
+                        <form name="FormBoardSwitch" method="POST" action="*&$ProgramName&?*&$NonArticleIndexMode_Option&" style="display: inline; ">
+
+                           <input type="*&$AdministraButtonVisible&" name="ButtonSubmit" value="Switch" onClick="SubmitAdministraAction(this.form)">
+*&$BoardSwitch&;&nbsp;&nbsp;<br>
+                           <input type="hidden" name="Execution" value="BoardSwitch">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <!--
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           -->
+                           <input type="hidden" name="PasswordEncode" >
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+
+                     <td nowrap class="border_none">
+
+                        <form name="FormExpressCurrent" method="POST" action="*&$ProgramName&?*&$NonArticleIndexMode_Option&" style="display: inline; ">
+
+                           <input type="*&$AdministraSubmitVisible&" value="Public"><br>
+                           <input type="hidden" name="Execution" value="CallPublic">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <!--
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           -->
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <!--
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           -->
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+               <table align="center" border=0 class="border_none">
+
+                  <tr>
+                     <td nowrap class="border_none">
+
+                        <form name="FormAdministraEntry" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                           <&=(Administra:Entry):<input type="*&$AdministraButtonVisible&" name="ButtonSubmit" value="Entry" onClick="SubmitAdministraAction(this.form)">=&><br>
+
+                           <input type="hidden" name="Execution" value="AdministraEntry">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           <input type="hidden" name="PasswordEncode" >
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+
+                     <td nowrap class="border_none">
+
+                        <form name="FormAdministraDelete" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                           <input type="*&$AdministraButtonVisible&" name="ButtonSubmit" value="Delete" onClick="SubmitAdministraAction(this.form)"><br>
+
+                           <input type="hidden" name="Execution" value="AdministraDelete">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           <input type="hidden" name="PasswordEncode" >
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+            </td>
+         </tr>
+
+      </table>
+
+<br>
+
+*&@Delegate_AdministraMessage&
+
+-------------------- <&&administra.tmp&&> --------------------
+
+
+
+-------------------- <&&search.tmp&&> --------------------
+
+Title=Search Article
+# OnLoad=Search_OnLoad();
+
+=EndOfSetting=
+
+<!-- Search Article（記事） Templet -->
+
+      <script language="JavaScript">
+         <!--
+         
+         //Initialize.
+         
+         dRadioButton[vRadioButton_SearchExpress] = "*&$SearchExpress&";
+         
+         function Search_OnLoad(){
+            // document.FormSearchCondition.AffirmOr.value =  unescape("*&$AffirmOrEsc&");
+            // document.FormSearchCondition.AffirmAnd.value =  unescape("*&$AffirmAndEsc&");
+            // document.FormSearchCondition.DenialOr.value =  unescape("*&$DenialOrEsc&");
+            // document.FormSearchCondition.DenialAnd.value =  unescape("*&$DenialAndEsc&");
+         }
+         
+         function SubmitSearch(oForm){
+            if( 
+             (oForm.AffirmOr.value=="") &&
+             (oForm.AffirmAnd.value=="") &&
+             (oForm.DenialOr.value=="") &&
+             (oForm.DenialAnd.value=="")
+            ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★検索･条件：｛肯定｛OR／AND｝；否定｛OR／AND｝｝の いずれにも条件が入力されていません．"=&>+"\n";
+            }
+            if( 
+             (oForm.AffirmOr.value!="") &&
+             (oForm.AffirmAnd.value!="")
+            ){
+               if(dRadioButton[vRadioButton_AffirmCondition]==""){
+                  // sProgramErrorMessage = sProgramErrorMessage+<&="★肯定の OR と AND の条件が入力されていません．"=&>+"\n";
+               }
+            }
+            if( 
+             (oForm.DenialOr.value!="") &&
+             (oForm.DenialAnd.value!="")
+            ){
+               if(dRadioButton[vRadioButton_DenialCondition]==""){
+                  // sProgramErrorMessage = sProgramErrorMessage+<&="★否定の OR と AND の条件が入力されていません．"=&>+"\n";
+               }
+            }
+            if( 
+             (
+              (oForm.AffirmOr.value!="") ||
+              (oForm.AffirmAnd.value!="")
+             ) && (
+              (oForm.DenialOr.value!="") ||
+              (oForm.DenialAnd.value!="")
+             )
+            ){
+               if(dRadioButton[vRadioButton_AffirmCondition]==""){
+                  // sProgramErrorMessage = sProgramErrorMessage+<&="★肯定と否定の条件が入力されていません．"=&>+"\n";
+               }
+            }
+            if( dRadioButton[vRadioButton_SearchExpress] == "" ){
+               sProgramErrorMessage = sProgramErrorMessage+<&=(Search):"★表示･単位が入力されていません．"=&>+"\n";
+            }
+            if( 0 < sProgramErrorMessage.length ){
+               alert(sProgramErrorMessage);
+               sProgramErrorMessage = "";
+            }
+            else{
+               oForm.submit( );
+            }
+         }
+         
+         // -->
+      </script>
+
+      <table align="center" cellpadding="7" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <form name="FormSearchCondition" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(SearchCondition):検索･条件：=&>
+
+            </td>
+         </tr>
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <table border=1 cellpadding="7" class="border_default-outer ">
+
+                  <tr>
+                     <td nowrap rowspan="3" valign="middle" class="border_default-inner ">
+
+<&=(SearchCondition):肯<br><br>定<br>=&>
+
+                     </td>
+
+                     <td nowrap class="border_default-inner ">
+
+<&=(SearchCondition):OR：<br>=&>
+
+                     </td>
+
+                     <td nowrap width="100%" class="border_default-inner ">
+
+                  <input type="text" size="40" name="AffirmOr" value="*&$AffirmOr&"><br>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td nowrap colspan="2" class="border_default-inner "><!-- colspan rowspan -->
+
+<&=(SearchCondition):この｛OR と AND｝の条件：{=&>
+                  <&=(Search:AffirmOR):<input type="radio" name="AffirmCondition" value="Or" *&$AffirmCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">OR=&>／
+                  <&=(Search:AffirmAND):<input type="radio" name="AffirmCondition" value="And" *&$AffirmCondit_And& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">AND=&>｝．<br>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td nowrap class="border_default-inner ">
+
+<&=(SearchCondition):AND：<br>=&>
+
+                     </td>
+
+                     <td nowrap width="100%" class="border_default-inner ">
+
+                  <input type="text" size="40" name="AffirmAnd" value="*&$AffirmAnd&"><br>
+
+                     </td>
+
+                  </tr>
+
+               </table>
+
+            </td>
+         </tr>
+
+         <tr>
+            <td class="border_default-inner ">
+
+<&=(SearchCondition):肯定と否定の条件：{=&>
+                  <&=(Search:AffirmDenialOR):<input type="radio" name="AffirmDenialCondition" value="Or" *&$AffirmDenialCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">OR=&>／
+                  <&=(Search:AffirmDenialAND):<input type="radio" name="AffirmDenialCondition" value="And" *&$AffirmDenialCondit_And& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">AND=&>｝．<br>
+
+            </td>
+         </tr>
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <table border=1 cellpadding="7" class="border_default-outer ">
+
+                  <tr>
+                     <td nowrap rowspan="3" class="border_default-inner ">
+
+<&=(SearchCondition):否<br><br>定<br>=&>
+
+                     </td>
+
+                     <td nowrap class="border_default-inner ">
+
+<&=(SearchCondition):OR：<br>=&>
+
+                     </td>
+
+                     <td nowrap width="100%" class="border_default-inner ">
+
+                  <input type="text" size="40" name="DenialOr" value="*&$DenialOr&"><br>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td nowrap colspan="2" class="border_default-inner "><!-- colspan rowspan -->
+
+<&=(SearchCondition):この｛OR と AND｝の条件：{=&>
+                  <&=(Search:DenialOR):<input type="radio" name="DenialCondition" value="Or" *&$DenialCondit_Or& onClick="SetRadioButton(vRadioButton_DenialCondition,this)">OR=&>／
+                  <input type="radio" name="DenialCondition" value="And" *&$DenialCondit_And& onClick="SetRadioButton(vRadioButton_DenialCondition,this)">AND｝．<br>
+
+                     </td>
+                  </tr>
+
+                  <tr>
+                     <td nowrap class="border_default-inner ">
+
+<&=(SearchCondition):AND：<br>=&>
+
+                     </td>
+
+                     <td nowrap width="100%" class="border_default-inner ">
+
+                  <input type="text" size="40" name="DenialAnd" value="*&$DenialAnd&"><br>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+                  <input type="hidden" name="Execution" value="Search">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <!--
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  -->
+
+            </td>
+         </tr>
+
+         <tr>
+            <td class="border_default-inner ">
+
+<&=(SearchCondition):表示･単位：{=&>
+                  <&=(Search:ExpressBlock):<input type="radio" name="SearchExpress" value="Block" *&$SearchExpress_Block& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Block=&>／
+                  <&=(Search:ExpressThread):<input type="radio" name="SearchExpress" value="Thread" *&$SearchExpress_Thread& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Thread=&>｝．<br>
+
+                  <&=(Search):<input type="button" name="ButtonSubmit" value="検索" onClick="SubmitSearch(this.form)">=&><br>
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+
+               </form>
+
+            </td>
+         </tr>
+
+      </table>
+
+<br>
+
+-------------------- <&&search.tmp&&> --------------------
+
+
+
+-------------------- <&&input.tmp&&> --------------------
+
+Title=Input Article
+# OnLoad=Input_OnLoad();
+
+=EndOfSetting=
+
+<!-- Input Article（記事） Templet -->
+
+      <script language="JavaScript">
+         <!--
+         
+         //Initialize.
+         
+         dRadioButton[vRadioButton_FontPitch] = "*&$FontPitch&";
+         dRadioButton[vRadioButton_FontPitchSetting] = "*&$FontPitchSetting&";
+         // dRadioButton[vRadioButton_IconSelect] = "*&$IconSelect&";
+         dRadioButton[vRadioButton_IconSelectSetting] = "*&$IconSelectSetting&";
+
+         function Input_OnLoad(){
+            
+         }
+
+         function SubmitContribution( ){
+            if( 
+             document.FormContribution.UserCheckCommentTitle.checked && 
+             ( document.FormContribution.CommentTitle.value.length==0 ) 
+            ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Title\"が入力されていません．"=&>+"\n";
+            }
+            if( *&$UserCommentTitleLengthMax&<vGetStringByte(document.FormContribution.CommentTitle.value) ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Title\"が その長さの上限の *&$UserCommentTitleLengthMax& バイトを超えています．"=&>+"\n";
+            }
+            if( 
+             document.FormContribution.UserCheckHandleName.checked && 
+             ( document.FormContribution.UserHandleName.value.length==0 ) 
+            ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"HandleName\"が入力されていません．"=&>+"\n";
+            }
+            
+            if( *&$UserHandleNameLengthMax&<vGetStringByte(document.FormContribution.UserHandleName.value) ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"HandleName\"が その長さの上限の *&$UserHandleNameLengthMax& バイトを超えています．"=&>+"\n";
+            }
+            if( document.FormContribution.Comment.value.length==0 ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Comment\"が入力されていません．"=&>+"\n";
+            }
+            
+            if(
+             (*&$AdministraMode&+0)==1 &&
+             0<(*&$AdministraCommentCharLengthMax&+0)
+            ){
+               if( *&$AdministraCommentCharLengthMax&<document.FormContribution.Comment.value.length ){
+                  sProgramErrorMessage = sProgramErrorMessage+<&="★\"Comment\"が その文字数の上限の *&$AdministraCommentCharLengthMax& 文字を超えています．"=&>+"\n";
+               }
+            }
+            else{
+               if( *&$UserCommentLengthMax&<vGetStringByte(document.FormContribution.Comment.value) ){
+                  sProgramErrorMessage = sProgramErrorMessage+<&="★\"Comment\"が その長さの上限の *&$UserCommentLengthMax& バイトを超えています．"=&>+"\n";
+               }
+            }
+            document.FormContribution.FontPitchSetting.value =
+             dRadioButton[vRadioButton_FontPitchSetting];
+            if( dRadioButton[vRadioButton_FontPitchSetting]=="" ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★「フォント･ピッチ･スイッチの設定」が入力されていません．"=&>+"\n";
+            }
+            else if( 
+             (
+              ( dRadioButton[vRadioButton_FontPitchSetting]=="Check" ) ||
+              ( dRadioButton[vRadioButton_FontPitchSetting]=="Cookie" )
+             ) &&
+             ( dRadioButton[vRadioButton_FontPitch]=="" ) 
+            ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★「フォント･ピッチ」が入力されていません．"=&>+"\n";
+            }
+//            alert(
+//            "dRadioButton[vRadioButton_IconSelectSetting]="+dRadioButton[vRadioButton_IconSelectSetting]+";\n"+
+//            "document.FormContribution.IconSelect.value="+document.FormContribution.IconSelect.value+";\n"+
+//            "");
+            if( typeof document.FormContribution.IconSelect!="undefined" ){
+               document.FormContribution.IconSelectSetting.value =
+                dRadioButton[vRadioButton_IconSelectSetting];
+               if( dRadioButton[vRadioButton_IconSelectSetting]=="" ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★「Icon 選択の設定」が入力されていません．"=&>+"\n";
+               }
+               else if( 
+                (
+                 ( dRadioButton[vRadioButton_IconSelectSetting]=="Check" ) ||
+                 ( dRadioButton[vRadioButton_IconSelectSetting]=="Cookie" )
+                ) &&
+                ( document.FormContribution.IconSelect.value<=" " ) 
+               ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Icon\"が選択されていません．"=&>+"\n";
+               }
+            }
+            if( 
+             ( document.getElementById("PasswordComponent").style.display!="none" ) &&
+             document.FormPassword.UserCheckPassword.checked && 
+             ( document.FormPassword.Password.value=="" ) 
+            ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Password\"が入力されていません．"=&>+"\n";
+            }
+            if( *&$UserPasswordLengthMax&<vGetStringByte(document.FormPassword.Password.value) ){
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Password\"が その長さの上限の *&$UserPasswordLengthMax& バイトを超えています．"=&>+"\n";
+            }
+            // document.FormContribution.PasswordEncode.value = "";
+            lProgramError = false; // true;
+            if(
+             ( document.getElementById("PasswordComponent").style.display!="none" ) &&
+             ( document.FormPassword.Password.value!="" )
+            ){
+               if( ( *&$CodecVersion&+0 ) == 3 ){
+                  document.FormContribution.PasswordEncode.value = 
+                   EncodePassword_V3(document.FormPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+               }
+               else if( ( *&$CodecVersion&+0 ) == 4 ){
+                  document.FormContribution.PasswordEncode.value = 
+                   EncodePassword_V4(document.FormPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+               }
+            }
+            // alert(document.FormContribution.PasswordEncode.value);
+            if( lProgramError ){
+               document.FormPassword.Password.value = "";
+               sProgramErrorMessage = sProgramErrorMessage+<&="★\"Password\"には｛半角のカナ，全角文字｝は使用できません．"=&>+"\n";
+            }
+            
+            if( document.FormPassword.UserCheckPassword.checked ){
+               document.FormContribution.UserCheckPassword.value = 
+                document.FormPassword.UserCheckPassword.value;
+            }
+            if( document.FormPassword.UserMaintHandleName.checked ){
+               document.FormContribution.UserMaintHandleName.value = 
+                document.FormPassword.UserMaintHandleName.value;
+            }
+            if( 0 < sProgramErrorMessage.length ){
+               alert(sProgramErrorMessage);
+               sProgramErrorMessage = "";
+            }
+            else{
+               if(sSubmitMessage!=""){
+                  alert(sSubmitMessage);
+               }
+               else{
+                  sSubmitMessage = <&="記事･投稿の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"=&>;
+                  document.FormContribution.submit( );
+               }
+            }
+         }
+
+         function ResetContribution(oForm){
+            if(sSubmitMessage!=""){
+               alert(sSubmitMessage);
+            }
+            else{
+               oForm.UserCheckCommentTitle.value = "off";
+               if(document.FormContribution.UserCheckCommentTitle.checked){
+                  oForm.UserCheckCommentTitle.value = document.FormContribution.UserCheckCommentTitle.value;
+               }
+               oForm.UserCheckHandleName.value = "off";
+               if(document.FormContribution.UserCheckHandleName.checked){
+                  oForm.UserCheckHandleName.value = document.FormContribution.UserCheckHandleName.value;
+               }
+               oForm.UserMaintHandleName.value = "off";
+               if(document.FormContribution.UserMaintHandleName.checked){
+                  oForm.UserMaintHandleName.value = document.FormContribution.UserMaintHandleName.value;
+               }
+               oForm.UserCheckPassword.value = "off";
+               if(document.FormContribution.UserCheckPassword.checked){
+                  oForm.UserCheckPassword.value = document.FormContribution.UserCheckPassword.value;
+               }
+               oForm.FontPitch.value = dRadioButton[vRadioButton_FontPitch];
+               oForm.FontPitchSetting.value = dRadioButton[vRadioButton_FontPitchSetting];
+               oForm.IconSelect.value = document.FormContribution.IconSelect.value;
+               oForm.IconSelectSetting.value = dRadioButton[vRadioButton_IconSelectSetting];
+               // alert("oForm.IconSelectSetting.value="+oForm.IconSelectSetting.value);
+               oForm.submit( );
+            }
+         }
+         // -->
+      </script>
+
+*&@Delegate_TargetArticle&
+
+<br>
+
+*&@Warning&
+
+      <table align="center" cellpadding="10" border=1 class="border_default-outer ">
+         <tr>
+            <td class="border_default-inner ">
+
+               <table cellpadding="0" cellspacing="0" border=0 class="border_none" style="left:0px">
+               <form name="FormContribution" method="POST" action="*&$ProgramName&?*&$Option&" enctype="multipart/form-data" style="display: inline; ">
+               <tr><td>
+
+<&=(Contribution):Title：=&>
+                  <input type="text" size="40" name="CommentTitle">
+
+                  <input type="checkbox" name="UserCheckCommentTitle" *&$UserCheckCommentTitle&>
+<&=(Contribution):：未入力をチェック．<br>=&>
+
+<&=(Contribution):HandleName：=&>
+                  <input type="text" size="40" name="UserHandleName" value="*&$UserHandleName&">
+
+                  <input type="checkbox" name="UserCheckHandleName" *&$UserCheckHandleName&>
+<&=(Contribution):：未入力をチェック．<br>=&>
+
+<&=(Contribution):Comment：<br>=&>
+
+                  <!--
+                  <&=(Contribution:Entry):<input type='button' name="ButtonSubmit" value="登録" onClick="SubmitAction(this.form)">=&><br>
+                  <input type="reset" value="<&=(Contribution):消去=&>"><br>
+                  <textarea rows=25 cols=60 name="Comment"></textarea>
+                  <textarea rows=40 cols=100 name="Comment"></textarea>
+                  -->
+
+                  <textarea rows=20 cols=60 name="Comment"></textarea><br>
+<&=Comment のフォント･ピッチ：｛ <input type="radio" name="FontPitch" value="Default" *&$FontPitch_Default& onClick="SetRadioButton(vRadioButton_FontPitch,this)" >Default／ <input type="radio" name="FontPitch" value="Fixed" *&$FontPitch_Fixed& onClick="SetRadioButton(vRadioButton_FontPitch,this)">Fixed｝．<br>=&>
+                  <input type="hidden" name="FontPitchSetting" value="">
+
+
+
+<!-- align="left" "center"  -->
+
+  <script language="JavaScript">
+    <!--
+    
+    if( 0<(*&$FUploadAppendixQuantityMax&+0) ){
+      
+      sInputWidth = '55';
+      
+      if( navigator.appName==sInternetExplorer ){
+        Explorer_Make_FUpload_Input( 'Appendix', 'width: '+sInputWidth+'ex; ', *&$FUploadAppendixQuantityMax&+0 );
+      // 「form などの名前の Prefix、ファイル名 入力用 Input テキスト･フィールドの CSS、ファイル名 入力用 Input テキスト･フィールドの最大個数」を指定。
+      }
+      else{
+        Gecko_Make_FUpload_Input( 'Appendix', '', *&$FUploadAppendixQuantityMax&+0 );
+      }
+      
+    }
+    
+    function Gecko_Make_FUpload_Input( sPrefix, sInputCSS, vInputQuantity ){
+      var sOnChange, sOnChangeParam0, sOnChangeParam1, sDisplay, sOnClick, sOnClickParam0, vCount, sMessage, vAppendixSizeMax;
+      if( 0<vInputQuantity ){
+        document.write('<table cellpadding="0" cellspacing="0" border=0 class="border_none" style="width: 0%; left:0px"><tr><td nowrap>');
+        document.write('<input id="'+sPrefix+'/Setting/InputQuantity" type="hidden" value="'+vInputQuantity+'" >');
+        document.write('<input id="'+sPrefix+'/Setting/InputCSS" type="hidden" value="'+sInputCSS+'" >');
+        sDisplay = '';
+        for(vCount = 0; vCount<vInputQuantity; vCount++){
+          document.write('<div id="'+sPrefix+'/FUpload/DHTML/ID.'+vCount+'" style="'+sDisplay+'" >');
+          // sOnClickParam0 = "'"+sPrefix+"/FUpload/DHTML/ID."+vCount+"'";
+          sOnClickParam0 = " this, '"+sPrefix+"/FUpload/Input/ID."+vCount+"' ";
+          document.write('<input type="checkbox" checked onClick="Switch_InputFile('+sOnClickParam0+');"> ');
+          
+          sOnChangeParam0 = "'"+sPrefix+"'";
+          // sOnChangeParam2 = "'"+sInputCSS+"'";
+          sOnChange = 'Add_InputFile('+sOnChangeParam0+','+(vCount+1)+');';
+          document.write('<input id="'+sPrefix+'/FUpload/Input/ID.'+vCount+'" name="'+sPrefix+'/FUpload/Input" type="file" multiple style="'+sInputCSS+'" '+' onChange="'+sOnChange+'" >');
+          document.write('<br>');
+          document.write('</div>');
+          sDisplay = ' display: none; ';
+        }
+        document.write('<div id="'+sPrefix+'/FUpload/DHTML/ID.'+vInputQuantity+'" align="center" style="color: #ff0000; font-weight: bold; background-color: #00ff00; display: none; " >End Of Input.<br></div>');
+        document.write('</td></tr></table>');
+      }
+      
+      sMessage = "<&=※ Input File の 行頭のチェックボックスを Off にすることにより、その行のファイルのアップロードをキャンセルすることができます．<br>=&>";
+      document.write(sMessage);
+    }
+    
+    function Add_InputFile( sPrefix, vCount ){
+      var sOnChange, sOnChangeParam0, sOnChangeParam1, sDisplay, sOnClick, sOnClickParam0, sMatch;
+      // var oFUpload_Form = document.forms[ sPrefix+'/FUpload/Form' ];
+      var oInputQuantity = document.getElementById( sPrefix+'/Setting/InputQuantity' );
+      var oInputCSS = document.getElementById( sPrefix+'/Setting/InputCSS' );
+      var vInputQuantity = parseFloat( oInputQuantity.value );
+      var sInputCSS = oInputCSS.value;
+      var oFUpload_DHTML = document.getElementById( sPrefix+'/FUpload/DHTML/ID.'+vCount );
+      // sMatch =  oFUpload_DHTML.innerHTML.match( /^display: none;$/i );
+      if( oFUpload_DHTML.style.display=='none' ){
+        if( vCount<vInputQuantity ){
+          oFUpload_DHTML.style.display = 'block';
+        }
+        else{
+          if( 1<vInputQuantity ){
+            oFUpload_DHTML.style.display = 'block';
+          }
+        }
+      }
+      
+    }
+    
+    function Explorer_Make_FUpload_Input( sPrefix, sInputCSS, vInputQuantity ){
+      var sOnChange, sOnChangeParam0, sOnChangeParam1, sDisplay, sOnClick, sOnClickParam0, vCount, sMessage, vAppendixSizeMax;
+      if( 0<vInputQuantity ){
+        document.write('<table cellpadding="0" cellspacing="0" border=0 class="border_none" style="width: 0%; left:0px"><tr><td nowrap>');
+        document.write('<input id="'+sPrefix+'/Setting/InputQuantity" type="hidden" value="'+vInputQuantity+'" >');
+        document.write('<input id="'+sPrefix+'/Setting/InputCSS" type="hidden" value="'+sInputCSS+'" >');
+        sDisplay = '';
+        for(vCount = 0; vCount<vInputQuantity; vCount++){
+          if( vCount==0 ){
+          document.write('<div id="'+sPrefix+'/FUpload/DHTML/ID.'+vCount+'" style="'+sDisplay+'" >');
+            sOnClickParam0 = "'"+sPrefix+"/FUpload/DHTML/ID."+vCount+"'";
+            document.write('<&=(Contribution:FUpload:Erase):<input type="button" value="消去" onClick="Reset_InputFile('+sOnClickParam0+');">=&> ');
+            
+            sOnChangeParam0 = "'"+sPrefix+"'";
+            // sOnChangeParam2 = "'"+sInputCSS+"'";
+            sOnChange = 'Explorer_Add_InputFile('+sOnChangeParam0+','+(vCount+1)+');';
+            document.write('<input id="'+sPrefix+'/FUpload/Input/ID.'+vCount+'" name="'+sPrefix+'/FUpload/Input" type="file" multiple style="'+sInputCSS+'" '+sDisplay+' onChange="'+sOnChange+'" >');
+            document.write('<br>');
+            document.write('</div>');
+          }
+          else{
+            document.write('<div id="'+sPrefix+'/FUpload/DHTML/ID.'+vCount+'" style="'+sDisplay+'" >');
+            // document.write('<input type=hidden name=Dummy>');
+            document.write('</div>');
+          }
+          sDisplay = ' display: none; ';
+        }
+        document.write('<div id="'+sPrefix+'/FUpload/DHTML/ID.'+vInputQuantity+'" align="center" style="color: #ff0000; font-weight: bold; background-color: #00ff00; '+sDisplay+'" >');
+        // document.write('<input type=hidden name=Dummy>');
+        document.write('</div>');
+        document.write('</td></tr></table>');
+      }
+      // document.write("FUploadAppendixSizeMax=*&$FUploadAppendixSizeMax&");
+      // vAppendixSizeMax = ( *&$FUploadAppendixSizeMax&+0 )/1024;
+      // sMessage = "<&=※ファイル･サイズは <STRIKE>&$FUploadAppendixSizeMax</STRIKE> までアップロード可能です．<br>=&>";
+      // sMessage = sMessage.replace(/<STRIKE>\&\$FUploadAppendixSizeMax<\/STRIKE>/g, (""+vAppendixSizeMax+"kByte") );
+      // document.write(sMessage);
+    }
+    
+    function Explorer_Add_InputFile( sPrefix, vCount ){
+      var sOnChange, sOnChangeParam0, sOnChangeParam1, sDisplay, sOnClick, sOnClickParam0, sMatch;
+      // var oFUpload_Form = document.forms[ sPrefix+'/FUpload/Form' ];
+      var oInputQuantity = document.getElementById( sPrefix+'/Setting/InputQuantity' );
+      var oInputCSS = document.getElementById( sPrefix+'/Setting/InputCSS' );
+      var vInputQuantity = parseFloat( oInputQuantity.value );
+      var sInputCSS = oInputCSS.value;
+      var oFUpload_DHTML = document.getElementById( sPrefix+'/FUpload/DHTML/ID.'+vCount );
+      // sMatch =  oFUpload_DHTML.innerHTML.match( /^<input type=hidden name=Dummy>$/i );
+      if( oFUpload_DHTML.style.display=='none' ){
+        if( vCount<vInputQuantity ){
+          sDisplay = '';
+          sOnChangeParam0 = "'"+sPrefix+"'";
+          sOnChangeParam2 = "'"+sInputCSS+"'";
+          sOnChange = 'Explorer_Add_InputFile('+sOnChangeParam0+','+(vCount+1)+','+sOnChangeParam2+','+vInputQuantity+');';
+          sOnClickParam0 = "'"+sPrefix+"/FUpload/DHTML/ID."+vCount+"'";
+          oFUpload_DHTML.innerHTML = 
+           '<&=(Contribution:FUpload:Erase):<input type="button" value="消去" onClick="Reset_InputFile('+sOnClickParam0+');">=&> '+
+           '<input id="'+sPrefix+'/FUpload/Input/ID.'+vCount+'" name="'+sPrefix+'/FUpload/Input" type="file" multiple style="'+sInputCSS+'" '+sDisplay+' onChange="'+sOnChange+'" >'+
+          '<br>';
+          oFUpload_DHTML.style.display = 'block';
+        }
+        else{
+          if( 1<vInputQuantity ){
+            oFUpload_DHTML.innerHTML = 'End Of Input.<br>';
+            oFUpload_DHTML.style.display = 'block';
+          }
+        }
+      }
+    }
+    
+    function Switch_InputFile( oCheckbox, sIFile ){
+      var oIFile = document.getElementById(sIFile);
+      // oIFile.disabled = false; // true; //
+      oIFile.disabled = ! oCheckbox.checked;
+    }
+    function Reset_InputFile( sIFile ){
+      var oIFile = document.getElementById(sIFile);
+      oIFile.innerHTML = oIFile.innerHTML;
+    }
+    // -->
+  </script>
+
+*&$Message_FUploadImage&
+*&$Delegate_IconSelect&
+                  <input type="hidden" name="IconSelectSetting" value="">
+
+                  <!-- Contribution : 投稿 -->
+                  <input type="hidden" name="Execution" value="Contribution">
+                  <input type="hidden" name="BoardMode" value="*&$Mode&">
+                  <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                  <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                  <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                  <input type="hidden" name="BlockTimeStamp" value="*&$BlockTimeStamp&">
+                  <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+                  <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+                  <input type="hidden" name="ThreadSerialNumber" value="*&$ThreadSerialNumber&">
+                  <input type="hidden" name="UserMaintHandleName">
+                  <input type="hidden" name="UserCheckPassword">
+                  <input type="hidden" name="PasswordEncode" value="*&$ParticularityPasswordEncode&">
+                  <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                  <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                  <input type="hidden" name="Dummy">
+               
+               </td></tr>
+               </form>
+               </table>
+<br>
+ <!-- align="left"  -->
+               <table align="center" width="100%" cellpadding="0" cellspacing="0" border=0 class="border_none">
+               <form name="FormPassword" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+               <tr><td>
+
+               <div id="PasswordComponent" style="*&$PasswordComponentStyle&">
+
+<&=(Contribution):Password：=&>
+                  <!--
+                  <input type="text" name="Password" SIZE="15" value="">
+                  -->
+                  <input type="password" name="Password" SIZE="15" value="">
+                  <input type="checkbox" name="UserCheckPassword" *&$UserCheckPassword&>
+<&=(Contribution):：未入力をチェック．<br>=&>
+
+               </div>
+
+<&=＊"HandleName"の設定：｛ <input type="checkbox" name="UserMaintHandleName" *&$UserMaintHandleName& *&$ConstraintParts_UserMaintHandleName&> "Cookie"に記憶 ｝．<br>=&>
+<&=＊Comment のフォント･ピッチ･スイッチの設定：｛ <input type="radio" name="FontPitchSetting" value="NonCheck" *&$FontPitchSetting_NonCheck& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェックしない／ <input type="radio" name="FontPitchSetting" value="Check" *&$FontPitchSetting_Check& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェック／ <input type="radio" name="FontPitchSetting" value="Cookie" *&$FontPitchSetting_Cookie& *&$ConstraintParts_FontPitchSetting& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >"Cookie"に記憶 ｝．<br>=&>
+
+*&$Delegate_IconSelectSetting&
+
+                  <input type="hidden" name="Dummy">
+
+               </td></tr>
+               </form>
+               </table>
+
+               <table align="center" width="100%" border=0 class="border_none">
+
+                  <tr>
+                     <td nowrap width="100%" class="border_none">
+
+                        <form name="FormAction" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                           <&=(Contribution:Write):<input type="button" name="ButtonSubmit" value="書き込み" onClick="SubmitContribution( )">=&>
+                           <input type="hidden" name="Dummy">
+                        </form>
+
+*&@Delegate_RequestArticleReset&<br>
+
+                     </td>
+
+                     <td nowrap class="border_none">
+
+                        <form name="FormExpressPage" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Article):掲示板へ戻る：=&>
+
+                           <&=(ArticleCurrent):<input type="button" name="ButtonSubmitCurrent" value="現時点" onClick="SubmitExpressPage(this.form,'ExpressCurrent','*&$CurrentAddress&')">=&>
+
+                           <&=(ArticleBegin):<input type="button" name="ButtonSubmitDefault" value="初期･位置" onClick="SubmitExpressPage(this.form,'','')">=&><br>
+
+                           <input type="hidden" name="Execution">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress">
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+            </td>
+         </tr>
+
+                  <form name="FormOpenIconEntryWindow" method="POST" target='_blank' action="*&$SwitchIcon_ProgramName&?*&$SwitchIcon_Option&" style="display: inline; ">
+                     <!--
+                     <&=(OpenIconEntryWindow):<input type="button" name="ButtonSubmit" value='Icon 登録' onClick="SubmitAction(this.form)">=&>
+                     -->
+                     <input type="hidden" name="Execution" value="Express">
+                     <input type="hidden" name="BoardMode" value="*&$Mode&">
+                     <input type="hidden" name="Dummy">
+                  </form>
+
+      </table>
+
+<br>
+
+-------------------- <&&input.tmp&&> --------------------
+
+
+
+-------------------- <&&input_password.tmp&&> --------------------
+
+Title=Input Password
+# OnLoad=InputPassword_OnLoad();
+
+Element_RequestArticleDelete=<input type="button"  name="ButtonSubmit" value="削除"  onClick="Submit_InputPassword()"><br>
+Element_RequestArticleEdit=<input type="button"  name="ButtonSubmit" value="編集"  onClick="Submit_InputPassword()"><br>
+Element_RequestArticleAppend=<input type="button"  name="ButtonSubmit" value="追加"  onClick="Submit_InputPassword()"><br>
+
+=EndOfSetting=
+
+<!-- InputPassword Templet -->
+
+      <script language="JavaScript">
+         <!--
+         
+         //Initialize.
+         
+         function InputPassword_OnLoad(){
+            // alert("InputPassword_OnLoad()が実行された"+"\n");
+         }
+         
+         function Submit_InputPassword(){
+            lProgramError = false; // true;
+            // "="++";\n"+
+            // alert("Submit_InputPassword():\n"+"document.FormPassword.Password.value="+document.FormPassword.Password.value+";\n"+"");
+            if( ( *&$CodecVersion&+0 ) == 3 ){
+               document.FormInputPassword.PasswordEncode.value = 
+                EncodePassword_V3(document.FormPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+            }
+            else if( ( *&$CodecVersion&+0 ) == 4 ){
+               document.FormInputPassword.PasswordEncode.value = 
+                EncodePassword_V4(document.FormPassword.Password.value,*&$Cipher_DiffiHellman_Factor&);
+            }
+            if( lProgramError ){
+               alert(<&=(InputPassword):"Passwordには｛半角のカナ，全角文字｝は使用できません"=&>+"\n");
+               document.FormPassword.Password.value = "";
+            }
+            else{
+               document.FormInputPassword.submit( );
+            }
+         }
+         // -->
+      </script>
+
+*&@Delegate_TargetArticle&
+
+<br>
+
+*&@Warning&
+
+      <table align="center"  width="100%" cellpadding="10" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+               <div style="float:left;">
+               <!-- float:left;right; -->
+
+                  <form name="FormPassword" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+Password：
+
+                     <input type="password" name="Password" SIZE="15" value=""><br>
+                     <input type="hidden" name="UserCheckPassword" checked>
+                     <input type="hidden" name="Dummy">
+
+                  </form>
+
+               </div>
+
+               <table align="center" width="100%" border=0 class="border_none">
+
+                  <tr>
+                     <td width="100%" class="border_none">
+
+                        <form name="FormInputPassword" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+                           *&$Element_RequestArticleOperation&
+
+                           <input type="hidden" name="Execution" value="*&$ParticularityExecution&">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress" value="*&$CurrentAddress&">
+                           <input type="hidden" name="BlockAddress" value="*&$BlockAddress&">
+                           <input type="hidden" name="BlockIdentity" value="*&$BlockIdentity&">
+                           <input type="hidden" name="ThreadSerialNumber" value="*&$ThreadSerialNumber&">
+                           <input type="hidden" name="PasswordEncode" >
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+
+                     <td nowrap class="border_none">
+
+                        <form name="FormExpressPage" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Article):掲示板へ戻る：=&>
+
+                           <&=(ArticleCurrent):<input type="button" name="ButtonSubmitCurrent" value="現時点" onClick="SubmitExpressPage(this.form,'ExpressCurrent','*&$CurrentAddress&')">=&>
+
+                           <&=(ArticleBegin):<input type="button" name="ButtonSubmitDefault" value="初期･位置" onClick="SubmitExpressPage(this.form,'','')">=&><br>
+
+                           <input type="hidden" name="Execution">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress">
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+
+                     </td>
+                  </tr>
+
+               </table>
+
+            </td>
+         </tr>
+
+      </table>
+<br>
+
+-------------------- <&&input_password.tmp&&> --------------------
+
+
+
+-------------------- <&&cancel.tmp&&> --------------------
+
+Title=Cancel Article
+# OnLoad=CancelArticle_OnLoad();
+
+=EndOfSetting=
+
+<!-- Cancel Article（記事） Templet -->
+
+*&@Warning&
+
+      <table align="center" width="100%" cellpadding="5" border=1 class="border_default-outer ">
+
+         <tr>
+            <td class="border_default-inner ">
+
+&lt;Title&gt;:&nbsp;*&$ThreadCommentTitle&　
+&lt;Name&gt;:&nbsp;*&$ThreadHandleName&<br>
+<br>
+
+               <table align="center" cellpadding="5" border=0 class="border_none" style="width: 100%; " >
+
+                  <tr>
+                     <td style="word-break: break-all;" *&$CommentTableCellStyle& class="border_none">
+
+*&@ThreadComment&
+
+                     </td>
+                  </tr>
+
+               </table>
+
+               <table align="center" width="100%" border=0 class="border_none">
+
+                  <tr>
+
+                     <td width="100%" class="border_none">
+
+                     </td>
+
+                     <td nowrap class="border_none">
+                        
+                        <form name="FormExpressPage" method="POST" action="*&$ProgramName&?*&$Option&" style="display: inline; ">
+
+<&=(Article):掲示板へ戻る：=&>
+
+                           <&=(ArticleCurrent):<input type="button" name="ButtonSubmitCurrent" value="現時点" onClick="SubmitExpressPage(this.form,'ExpressCurrent','*&$CurrentAddress&')">=&>
+
+                           <&=(ArticleBegin):<input type="button" name="ButtonSubmitDefault" value="初期･位置" onClick="SubmitExpressPage(this.form,'','')">=&><br>
+
+                           <input type="hidden" name="Execution">
+                           <input type="hidden" name="BoardMode" value="*&$Mode&">
+                           <input type="hidden" name="SearchMode" value="*&$SearchMode&">
+                           <input type="hidden" name="SearchCondition" value="*&$SearchCondition&">
+                           <input type="hidden" name="CurrentAddress">
+                           <input type="hidden" name="ReturnProgramLocation" value="*&$ReturnProgramLocation&">
+                           <input type="hidden" name="ReturnModeOption" value="*&$ReturnModeOption&">
+                           <input type="hidden" name="Dummy">
+
+                        </form>
+                        
+                     </td>
+                     
+                  </tr>
+
+               </table>
+
+            </td>
+         </tr>
+
+      </table>
+<br>
+
+-------------------- <&&cancel.tmp&&> --------------------
+
+__END__
+
+# 下記のメッセージに意図的に'\n'（carriage returm）を記述したい場合は'*&\n'．
+
+-------------------- <&&document_message_dictionary.def&&> --------------------
+<&=リンク･ページの表示=&>
+リンク･ページの表示
+<&="Fix「記事･Index」表示の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"=&>
+"Fix「記事･Index」表示の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"
+<&=(Underout):<input type="button" name="ButtonSubmitMostOld" value="最古ページ" onClick="SubmitExpressPage(this.form,'ExpressMostOld')">=&>
+<input type="button" name="ButtonSubmitMostOld" value="最古ページ" onClick="SubmitExpressPage(this.form,'ExpressMostOld')">
+<&=前の画面に戻りたい場合は，このボタンで最古ページを表示して下さい．<br>=&>
+前の画面に戻りたい場合は，このボタンで最古ページを表示して下さい．<br>
+<&=(Overout):<input type="button" name="ButtonSubmitMostNew" value="最新ページ" onClick="SubmitExpressPage(this.form,'ExpressMostNew')">=&>
+<input type="button" name="ButtonSubmitMostNew" value="最新ページ" onClick="SubmitExpressPage(this.form,'ExpressMostNew')">
+<&=前の画面に戻りたい場合は，このボタンで最新ページを表示して下さい．<br>=&>
+前の画面に戻りたい場合は，このボタンで最新ページを表示して下さい．<br>
+<&=<img src="*&$EmployResourceLocation&;b4link6.gif" border="0" alt="トップ･ページの表示">=&>
+<img src="*&$EmployResourceLocation&;b4link6.gif" border="0" alt="トップ･ページの表示">
+<&=<img border="0" src="*&$EmployResourceLocation&;b4link9.gif" alt="注意書きの表示">=&>
+<img border="0" src="*&$EmployResourceLocation&;b4link9.gif" alt="注意書きの表示">
+<&=掲示板に書き込む前に必ず この ”注意書き”を お読み下さい．<br>=&>
+掲示板に書き込む前に必ず この ”注意書き”を お読み下さい．<br>
+<&=(Page Condition):ページの表示順：｛=&>
+ページの表示順：｛
+<&=(Page Condition):新しい順／=&>
+新しい順／
+<&=(Page Condition):古い順｝．<br>=&>
+古い順｝．<br>
+<&=(Page Condition):初期･ページの表示･位置：｛=&>
+初期･ページの表示･位置：｛
+<&=(Page Condition):先頭ページ／=&>
+先頭ページ／
+<&=(Page Condition):末尾ページ｝．<br>=&>
+末尾ページ｝．<br>
+<&=(Page Condition):１ページ内のスレッド表示数：=&>
+１ページ内のスレッド表示数：
+<&=(PageCondition:Entry):<input type="submit" value="登録" >=&>
+<input type="submit" value="登録" >
+<&=(PageCondition:Entry):<input type="submit"  value="登録">=&>
+<input type="submit"  value="登録">
+<&=(Request Article Input:Dummy Space Z5):<input type="button" value="　　　　　" style="font-family: Terminal; ">=&>
+<input type="button" value="　　　　　" style="font-family: Terminal; ">
+<&=(RequestArticleInput:Default):<input type="submit" name="ButtonSubmit" value="記事･入力">=&>
+<input type="submit" name="ButtonSubmit" value="記事･入力">
+<&=(RequestArticleInput:Reset):<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">=&>
+<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">
+<&=(RequestArticleEdit:Default):<input type="submit" value="編集" style="float: right; ">=&>
+<input type="submit" value="編集" style="float: right; ">
+<&=(RequestArticleEdit_Reset):<input type="submit" name="ButtonSubmit" value="Reset">=&>
+<input type="submit" name="ButtonSubmit" value="Reset">
+<&=(RequestArticleAppend:Disable):スレッドの上限=&>
+スレッドの上限
+<&=(RequestArticleAppend:Default):<input type="submit" value="追加" style="float: right; ">=&>
+<input type="submit" value="追加" style="float: right; ">
+<&=(RequestArticleAppend:Reset):<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">=&>
+<input type="button" name="ButtonSubmit" value="Reset" onClick="ResetContribution(this.form)">
+<&=(RequestArticleInput:DummySpace Z5):<input type='button' value='　　　　　' style='font-family: Terminal; '>=&>
+<input type='button' value='　　　　　' style='font-family: Terminal; '>
+<&=(RequestSwitchSearch:On):<input type='submit' name="ButtonSubmit" value='検索･モード'>=&>
+<input type='submit' name="ButtonSubmit" value='検索･モード'>
+<&=(RequestSwitchSearch:Off):<input type='submit' name="ButtonSubmit" value='標準･モード'>=&>
+<input type='submit' name="ButtonSubmit" value='標準･モード'>
+<&=(OpenIconEntryWindow):<input type="submit" name="ButtonSubmit" value="&#x274F;" style='margin-right: 0; margin-left: 0; '>=&>
+<input type="submit" name="ButtonSubmit" value="&#x274F;" style='margin-right: 0; margin-left: 0; '>
+<&=(RequestSwitchIconEntry:DummySpace Z4):<input type='button' value='　　　　' style='font-family: Terminal; '>=&>
+<input type='button' value='　　　　' style='font-family: Terminal; '>
+<&=(RequestSwitchIconEntry:On):<input type='submit' name="ButtonSubmit" value='Icon 登録'>=&>
+<input type='submit' name="ButtonSubmit" value='Icon 登録'>
+<&=(RequestSwitchIconEntry:Off):<input type='submit' name="ButtonSubmit" value='Primary'>=&>
+<input type='submit' name="ButtonSubmit" value='Primary'>
+<&=(RequestDelete):<input type='submit' name="ButtonSubmit" value="削除" style="float: right; ">=&>
+<input type='submit' name="ButtonSubmit" value="削除" style="float: right; ">
+<&=(MultiDelete):<input type="button" name="ButtonMultiDelete" value="削除" onClick="SubmitMultiDelete(this.form)">=&>
+<input type="button" name="ButtonMultiDelete" value="削除" onClick="SubmitMultiDelete(this.form)">
+<&=(ExposeBlock:MostNew):<input type='submit' name="ButtonSubmit" value="最新ページ">=&>
+<input type='submit' name="ButtonSubmit" value="最新ページ">
+<&=(ExposeBlock:New):<input type='submit' name="ButtonSubmit" value="新しいページ">=&>
+<input type='submit' name="ButtonSubmit" value="新しいページ">
+<&=(ExposeBlock:Old):<input type='submit' name="ButtonSubmit" value="古いページ">=&>
+<input type='submit' name="ButtonSubmit" value="古いページ">
+<&=(ExposeBlock:MostOld):<input type='submit' name="ButtonSubmit" value="最古ページ">=&>
+<input type='submit' name="ButtonSubmit" value="最古ページ">
+<&=(ExposeBlock:MostOld):<input type='button' name="ButtonSubmit" value="最古ページ" onClick="SubmitAction(this.form)">=&>
+<input type='button' name="ButtonSubmit" value="最古ページ" onClick="SubmitAction(this.form)">
+<&=(ExposeBlock:Old):<input type='button' name="ButtonSubmit" value="古いページ" onClick="SubmitAction(this.form)">=&>
+<input type='button' name="ButtonSubmit" value="古いページ" onClick="SubmitAction(this.form)">
+<&=(ExposeBlock:New):<input type='button' name="ButtonSubmit" value="新しいページ" onClick="SubmitAction(this.form)">=&>
+<input type='button' name="ButtonSubmit" value="新しいページ" onClick="SubmitAction(this.form)">
+<&=(ExposeBlock:MostNew):<input type='button' name="ButtonSubmit" value="最新ページ" onClick="SubmitAction(this.form)">=&>
+<input type='button' name="ButtonSubmit" value="最新ページ" onClick="SubmitAction(this.form)">
+<&=(ExposeThread:DummySpace H16):<input type="button" value="                ">=&>
+<input type="button" value="                ">
+<&=(ExposeThread:Old):<input type="button" name='ButtonSubmitOld' value="古いスレッド" onClick="SubmitExpressBlock(this.form,'ExpressOld')">=&>
+<input type="button" name='ButtonSubmitOld' value="古いスレッド" onClick="SubmitExpressBlock(this.form,'ExpressOld')">
+<&=(ExposeThread:New):<input type="button" name='ButtonSubmitNew' value="新しいスレッド" onClick="SubmitExpressBlock(this.form,'ExpressNew')">=&>
+<input type="button" name='ButtonSubmitNew' value="新しいスレッド" onClick="SubmitExpressBlock(this.form,'ExpressNew')">
+<&=(ExposeThread:MostOld):<input type="button" name='ButtonSubmitMostOld' value="最古スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostOld')">=&>
+<input type="button" name='ButtonSubmitMostOld' value="最古スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostOld')">
+<&=(ExposeThread:MostNew):<input type="button" name='ButtonSubmitMostNew' value="最新スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostNew')">=&>
+<input type="button" name='ButtonSubmitMostNew' value="最新スレッド" onClick="SubmitExpressBlock(this.form,'ExpressMostNew')">
+<&=(Administra):"★Passwordが入力されていません．"=&>
+"★Passwordが入力されていません．"
+<&=(Administra):"★Passwordが その長さの上限の "+vPasswordLengthMax+" バイトを超えています．"=&>
+"★Passwordが その長さの上限の "+vPasswordLengthMax+" バイトを超えています．"
+<&=(Administra):"★Passwordには｛半角のカナ，全角文字｝は使用できません．"=&>
+"★Passwordには｛半角のカナ，全角文字｝は使用できません．"
+<&=(Administra):管理者用 Password：=&>
+管理者用 Password：
+<&=(Administra):<input type="button"  name="ButtonSubmit" value="Administra" onClick="SubmitAdministraAction(this.form)">=&>
+<input type="button"  name="ButtonSubmit" value="Administra" onClick="SubmitAdministraAction(this.form)">
+<&=(Administra:Entry):<input type="*&$AdministraButtonVisible&" name="ButtonSubmit" value="Entry" onClick="SubmitAdministraAction(this.form)">=&>
+<input type="*&$AdministraButtonVisible&" name="ButtonSubmit" value="Entry" onClick="SubmitAdministraAction(this.form)">
+<&="★検索･条件：｛肯定｛OR／AND｝；否定｛OR／AND｝｝の いずれにも条件が入力されていません．"=&>
+"★検索･条件：｛肯定｛OR／AND｝；否定｛OR／AND｝｝の いずれにも条件が入力されていません．"
+<&="★肯定の OR と AND の条件が入力されていません．"=&>
+"★肯定の OR と AND の条件が入力されていません．"
+<&="★否定の OR と AND の条件が入力されていません．"=&>
+"★否定の OR と AND の条件が入力されていません．"
+<&="★肯定と否定の条件が入力されていません．"=&>
+"★肯定と否定の条件が入力されていません．"
+<&=(Search):"★表示･単位が入力されていません．"=&>
+"★表示･単位が入力されていません．"
+<&="検索･条件の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"=&>
+"検索･条件の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"
+<&=(SearchCondition):検索･条件：=&>
+検索･条件：
+<&=(SearchCondition):肯<br><br>定<br>=&>
+肯<br><br>定<br>
+<&=(SearchCondition):OR：<br>=&>
+OR：<br>
+<&=(SearchCondition):この｛OR と AND｝の条件：{=&>
+この｛OR と AND｝の条件：{
+<&=(Search:AffirmOR):<input type="radio" name="AffirmCondition" value="Or" *&$AffirmCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">OR=&>
+<input type="radio" name="AffirmCondition" value="Or" *&$AffirmCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">OR
+<&=(Search:AffirmAND):<input type="radio" name="AffirmCondition" value="And" *&$AffirmCondit_And& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">AND=&>
+<input type="radio" name="AffirmCondition" value="And" *&$AffirmCondit_And& onClick="SetRadioButton(vRadioButton_AffirmCondition,this)">AND
+<&=(SearchCondition):AND：<br>=&>
+AND：<br>
+<&=(SearchCondition):肯定と否定の条件：{=&>
+肯定と否定の条件：{
+<&=(Search:AffirmDenialOR):<input type="radio" name="AffirmDenialCondition" value="Or" *&$AffirmDenialCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">OR=&>
+<input type="radio" name="AffirmDenialCondition" value="Or" *&$AffirmDenialCondit_Or& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">OR
+<&=(Search:AffirmDenialAND):<input type="radio" name="AffirmDenialCondition" value="And" *&$AffirmDenialCondit_And& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">AND=&>
+<input type="radio" name="AffirmDenialCondition" value="And" *&$AffirmDenialCondit_And& onClick="SetRadioButton(vRadioButton_AffirmDenialCondition,this)">AND
+<&=(SearchCondition):否<br><br>定<br>=&>
+否<br><br>定<br>
+<&=(Search:DenialOR):<input type="radio" name="DenialCondition" value="Or" *&$DenialCondit_Or& onClick="SetRadioButton(vRadioButton_DenialCondition,this)">OR=&>
+<input type="radio" name="DenialCondition" value="Or" *&$DenialCondit_Or& onClick="SetRadioButton(vRadioButton_DenialCondition,this)">OR
+<&=(SearchCondition):表示･単位：{=&>
+表示･単位：{
+<&=(Search:ExpressBlock):<input type="radio" name="SearchExpress" value="Block" *&$SearchExpress_Block& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Block=&>
+<input type="radio" name="SearchExpress" value="Block" *&$SearchExpress_Block& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Block
+<&=(Search:ExpressThread):<input type="radio" name="SearchExpress" value="Thread" *&$SearchExpress_Thread& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Thread=&>
+<input type="radio" name="SearchExpress" value="Thread" *&$SearchExpress_Thread& onClick="SetRadioButton(vRadioButton_SearchExpress,this)">Thread
+<&=(Search):<input type="button" name="ButtonSubmit" value="検索" onClick="SubmitSearch(this.form)">=&>
+<input type="button" name="ButtonSubmit" value="検索" onClick="SubmitSearch(this.form)">
+<&="★\"Title\"が入力されていません．"=&>
+"★\"Title\"が入力されていません．"
+<&="★\"Title\"が その長さの上限の *&$UserCommentTitleLengthMax& バイトを超えています．"=&>
+"★\"Title\"が その長さの上限の *&$UserCommentTitleLengthMax& バイトを超えています．"
+<&="★\"HandleName\"が入力されていません．"=&>
+"★\"HandleName\"が入力されていません．"
+<&="★\"HandleName\"が その長さの上限の *&$UserHandleNameLengthMax& バイトを超えています．"=&>
+"★\"HandleName\"が その長さの上限の *&$UserHandleNameLengthMax& バイトを超えています．"
+<&="★\"Comment\"が入力されていません．"=&>
+"★\"Comment\"が入力されていません．"
+<&="★\"Comment\"が その長さの上限の *&$UserCommentLengthMax& バイトを超えています．"=&>
+"★\"Comment\"が その長さの上限の *&$UserCommentLengthMax& バイトを超えています．"
+<&="★「フォント･ピッチ･スイッチの設定」が入力されていません．"=&>
+"★「フォント･ピッチ･スイッチの設定」が入力されていません．"
+<&="★「フォント･ピッチ」が入力されていません．"=&>
+"★「フォント･ピッチ」が入力されていません．"
+<&="★「Icon 選択の設定」が入力されていません．"=&>
+"★「Icon 選択の設定」が入力されていません．"
+<&="★\"Icon\"が選択されていません．"=&>
+"★\"Icon\"が選択されていません．"
+<&="★\"Password\"が入力されていません．"=&>
+"★\"Password\"が入力されていません．"
+<&="★\"Password\"が その長さの上限の *&$UserPasswordLengthMax& バイトを超えています．"=&>
+"★\"Password\"が その長さの上限の *&$UserPasswordLengthMax& バイトを超えています．"
+<&="★\"Password\"には｛半角のカナ，全角文字｝は使用できません．"=&>
+"★\"Password\"には｛半角のカナ，全角文字｝は使用できません．"
+<&="記事･投稿の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"=&>
+"記事･投稿の｛コマンド；データ｝の送信中ですので しばらく お待ち下さい．"
+<&=(Contribution):Title：=&>
+Title：
+<&=(Contribution):：未入力をチェック．<br>=&>
+：未入力をチェック．<br>
+<&=(Contribution):HandleName：=&>
+HandleName：
+<&=(Contribution):Comment：<br>=&>
+Comment：<br>
+<&=(Contribution:Entry):<input type='button' name="ButtonSubmit" value="登録" onClick="SubmitAction(this.form)">=&>
+<input type='button' name="ButtonSubmit" value="登録" onClick="SubmitAction(this.form)">
+<&=(Contribution):消去=&>
+消去
+<&=Comment のフォント･ピッチ：｛ <input type="radio" name="FontPitch" value="Default" *&$FontPitch_Default& onClick="SetRadioButton(vRadioButton_FontPitch,this)" >Default／ <input type="radio" name="FontPitch" value="Fixed" *&$FontPitch_Fixed& onClick="SetRadioButton(vRadioButton_FontPitch,this)">Fixed｝．<br>=&>
+Comment のフォント･ピッチ：｛ <input type="radio" name="FontPitch" value="Default" *&$FontPitch_Default& onClick="SetRadioButton(vRadioButton_FontPitch,this)" >Default／ <input type="radio" name="FontPitch" value="Fixed" *&$FontPitch_Fixed& onClick="SetRadioButton(vRadioButton_FontPitch,this)">Fixed｝．<br>
+<&=※ Input File の 行頭のチェックボックスを Off にすることにより、その行のファイルのアップロードをキャンセルすることができます．<br>=&>
+※ Input File の 行頭のチェックボックスを Off にすることにより、その行のファイルのアップロードをキャンセルすることができます．<br>
+<&=(Contribution:FUpload:Erase):<input type="button" value="消去" onClick="Reset_InputFile('+sOnClickParam0+');">=&>
+<input type="button" value="消去" onClick="Reset_InputFile('+sOnClickParam0+');">
+<&=※ファイル･サイズは <STRIKE>&$FUploadAppendixSizeMax</STRIKE> までアップロード可能です．<br>=&>
+※ファイル･サイズは <STRIKE>&$FUploadAppendixSizeMax</STRIKE> までアップロード可能です．<br>
+<&=(Contribution):Password：=&>
+Password：
+<&=＊"HandleName"の設定：｛ <input type="checkbox" name="UserMaintHandleName" *&$UserMaintHandleName& *&$ConstraintParts_UserMaintHandleName&> "Cookie"に記憶 ｝．<br>=&>
+＊"HandleName"の設定：｛ <input type="checkbox" name="UserMaintHandleName" *&$UserMaintHandleName& *&$ConstraintParts_UserMaintHandleName&> "Cookie"に記憶 ｝．<br>
+<&=＊Comment のフォント･ピッチ･スイッチの設定：｛ <input type="radio" name="FontPitchSetting" value="NonCheck" *&$FontPitchSetting_NonCheck& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェックしない／ <input type="radio" name="FontPitchSetting" value="Check" *&$FontPitchSetting_Check& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェック／ <input type="radio" name="FontPitchSetting" value="Cookie" *&$FontPitchSetting_Cookie& *&$ConstraintParts_FontPitchSetting& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >"Cookie"に記憶 ｝．<br>=&>
+＊Comment のフォント･ピッチ･スイッチの設定：｛ <input type="radio" name="FontPitchSetting" value="NonCheck" *&$FontPitchSetting_NonCheck& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェックしない／ <input type="radio" name="FontPitchSetting" value="Check" *&$FontPitchSetting_Check& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >未入力をチェック／ <input type="radio" name="FontPitchSetting" value="Cookie" *&$FontPitchSetting_Cookie& *&$ConstraintParts_FontPitchSetting& onClick="SetRadioButton(vRadioButton_FontPitchSetting,this)" >"Cookie"に記憶 ｝．<br>
+<&=(Contribution:Write):<input type="button" name="ButtonSubmit" value="書き込み" onClick="SubmitContribution( )">=&>
+<input type="button" name="ButtonSubmit" value="書き込み" onClick="SubmitContribution( )">
+<&=(Article):掲示板へ戻る：=&>
+掲示板へ戻る：
+<&=(ArticleCurrent):<input type="button" name="ButtonSubmitCurrent" value="現時点" onClick="SubmitExpressPage(this.form,'ExpressCurrent','*&$CurrentAddress&')">=&>
+<input type="button" name="ButtonSubmitCurrent" value="現時点" onClick="SubmitExpressPage(this.form,'ExpressCurrent','*&$CurrentAddress&')">
+<&=(ArticleBegin):<input type="button" name="ButtonSubmitDefault" value="初期･位置" onClick="SubmitExpressPage(this.form,'','')">=&>
+<input type="button" name="ButtonSubmitDefault" value="初期･位置" onClick="SubmitExpressPage(this.form,'','')">
+<&=(OpenIconEntryWindow):<input type="button" name="ButtonSubmit" value='Icon 登録' onClick="SubmitAction(this.form)">=&>
+<input type="button" name="ButtonSubmit" value='Icon 登録' onClick="SubmitAction(this.form)">
+<&=(InputPassword):"Passwordには｛半角のカナ，全角文字｝は使用できません"=&>
+"Passwordには｛半角のカナ，全角文字｝は使用できません"
+<&="★\"Comment\"が その文字数の上限の *&$AdministraCommentCharLengthMax& 文字を超えています．"=&>
+"★\"Comment\"が その文字数の上限の *&$AdministraCommentCharLengthMax& 文字を超えています．"
+-------------------- <&&document_message_dictionary.def&&> --------------------
+
+
+
