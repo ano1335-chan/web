@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>images.png 再現レイアウト</title>
+    <style>
+        /* 全体のリセットと基準設定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            font-family: sans-serif;
+            background-color: #ffffff;
+            padding: 2vw;
+        }
+
+        /* 上部の薄紫のヘッダーエリア */
+        .header-banner {
+            width: 96vw;
+            background-color: #e6e6fa; /* 薄紫 */
+            color: #4a4a4a;
+            font-size: 2.2vw;
+            padding: 2vw;
+            margin-bottom: 3vw;
+            line-height: 1.4;
+        }
+
+        .header-banner span {
+            color: #ff0000; /* align-content: stretch: の赤字部分 */
+            font-weight: bold;
+        }
+
+        /* メインのグリッドコンテナ（外側の薄い枠線） */
+        .grid-container {
+            width: 96vw;
+            border: 0.1vw solid #d3d3d3;
+            border-radius: 0.8vw;
+            padding: 2vw;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3列等分割 */
+            gap: 2vw; /* 列間の隙間 */
+        }
+
+        /* 各列のコンテナ（縦方向の要素を均等にstretch配置するためflexを使用） */
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2vw; /* 行間の隙間 */
+        }
+
+        /* ピンク色の各div要素 */
+        .box {
+            background-color: #ffc0cb; /* 薄ピンク */
+            border: 0.1vw solid #ffb6c1;
+            border-radius: 1.5vw;
+            padding: 1vw 1.5vw;
+            font-size: 2vw;
+            color: #333333;
+            font-weight: bold;
+            flex: 1; /* 高さを自動調整（stretch）して均等配分 */
+        }
+
+        /* 各ボックスの具体的な高さ比率を調整（画像に近づけるため） */
+        .col-1 .box:nth-child(1) { flex: 1.4; }
+        .col-1 .box:nth-child(2) { flex: 1; }
+
+        .col-2 .box:nth-child(1) { flex: 1; }
+        .col-2 .box:nth-child(2) { flex: 1; }
+        .col-2 .box:nth-child(3) { flex: 0.8; }
+
+        .col-3 .box { flex: 1; }
+
+    </style>
+</head>
+<body>
+
+    <!-- 上部テキストエリア -->
+    <div class="header-banner">
+        <span>align-content: stretch:</span> で各 div タグの高さを自動調整で均等に<br>配分した例。
+    </div>
+
+    <!-- メインのカードレイアウトエリア -->
+    <div class="grid-container">
+        
+        <!-- 左列 (1列目) -->
+        <div class="column col-1">
+            <div class="box">div11</div>
+            <div class="box">div12</div>
+        </div>
+
+        <!-- 中央列 (2列目) -->
+        <div class="column col-2">
+            <div class="box">div21</div>
+            <div class="box">div22</div>
+            <div class="box">div23</div>
+        </div>
+
+        <!-- 右列 (3列目) -->
+        <div class="column col-3">
+            <div class="box">div31</div>
+            <div class="box">div32</div>
+            <div class="box">div33</div>
+            <div class="box">div34</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
