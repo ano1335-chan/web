@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Responsive Layout</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    width:100vw;
+    background:#ffffff;
+    font-family:sans-serif;
+
+}
+
+.container{
+
+    width:100vw;
+
+    display:grid;
+
+    gap:1vw;
+
+    padding:2vw;
+
+}
+
+/*=========================
+PC
+992px以上
+=========================*/
+
+.container{
+
+    grid-template-columns:35vw 12vw;
+
+    grid-template-areas:
+
+    "header header"
+    "mainimage menu"
+    "contents menu"
+    "sub1 sub2"
+    "footer footer";
+
+    justify-content:center;
+
+}
+
+.header{
+
+    grid-area:header;
+
+    background:#1ea7e1;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:1.2vw;
+
+}
+
+.mainimage{
+
+    grid-area:mainimage;
+
+    background:#f68b1f;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:2vw;
+
+}
+
+.contents{
+
+    grid-area:contents;
+
+    background:#ff7773;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:5vw;
+
+}
+
+.menu{
+
+    grid-area:menu;
+
+    background:#148c99;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:6vw 1vw;
+
+}
+
+.sub1{
+
+    grid-area:sub1;
+
+    background:#99d400;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:1vw;
+
+}
+
+.sub2{
+
+    grid-area:sub2;
+
+    background:#f2c232;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:1vw;
+
+}
+
+.footer{
+
+    grid-area:footer;
+
+    background:#86c8ca;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:1vw;
+
+}
+
+/*=========================
+Tablet
+991px以下
+=========================*/
+
+@media (max-width:991px){
+
+.container{
+
+    grid-template-columns:35vw 12vw;
+
+    grid-template-areas:
+
+    "header header"
+    "mainimage mainimage"
+    "contents contents"
+    "sub1 sub2"
+    "menu menu"
+    "footer footer";
+
+}
+
+}
+
+/*=========================
+Smart Phone
+575px以下
+=========================*/
+
+@media (max-width:575px){
+
+.container{
+
+    grid-template-columns:60vw;
+
+    grid-template-areas:
+
+    "header"
+    "mainimage"
+    "contents"
+    "sub1"
+    "sub2"
+    "menu"
+    "footer";
+
+    justify-content:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        header
+    </header>
+
+    <section class="mainimage">
+        main image
+    </section>
+
+    <main class="contents">
+        contents
+    </main>
+
+    <aside class="menu">
+        menu
+    </aside>
+
+    <section class="sub1">
+        sub1
+    </section>
+
+    <section class="sub2">
+        sub2
+    </section>
+
+    <footer class="footer">
+        footer
+    </footer>
+
+</div>
+
+</body>
+
+</html>
