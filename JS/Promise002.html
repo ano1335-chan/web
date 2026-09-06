@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise タイマーデモ</title>
+</head>
+<body>
+    <h1>Promise タイマーデモ</h1>
+<br>
+    <button id="startButton">処理開始</button><br>
+<br>
+<textarea id="tarea" rows="15" cols="40"></textarea>
+
+<script>
+    const txarea = document.getElementById("tarea");
+
+function txlog(text) {
+    txarea.value += text+"\n";
+}
+
+// Promiseサブルーチン
+function processTask() {
+new Promise((resolve, reject) => {
+        txlog("Promise処理");
+        // 1秒後に結果を返す
+        setTimeout(() => {
+            // ランダムに「成功、 失敗」を生成
+            if (0.5<Math.random() ) {
+                // 成功
+                resolve("成功しました");
+            } else {
+                // 失敗
+                reject("失敗です");
+            }
+        }, 1000); // 1秒
+    })
+    // 成功処理
+    .then((result) => {
+        txlog("then処理:"+result);
+    })
+    // 失敗処理
+    .catch((error) => {
+        txlog("catch処理:"+error);
+    })
+    // 成功・失敗のどちらでも最後に実行
+    .finally(() => {
+        txlog("finally処理");
+        txlog("");
+    });
+}
+
+// ボタンが押された処理
+    document.getElementById("startButton")
+            .addEventListener("click", 
+                processTask
+            );
+
+    </script>
+
+</body>
+</html>
