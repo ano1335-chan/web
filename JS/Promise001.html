@@ -18,8 +18,8 @@ function txlog(text) {
     txarea.value += text+"\n";
 }
 
-// Promiseインスタンス
-iprocess = 
+// Promiseサブルーチン
+processTask = function() {
 new Promise((resolve, reject) => {
         txlog("Promise処理");
         // 1秒後に結果を返す
@@ -47,12 +47,12 @@ new Promise((resolve, reject) => {
         txlog("finally処理");
         txlog("");
     });
-
+}
 
 // ボタンが押された処理
     document.getElementById("startButton")
             .addEventListener("click", 
-                iprocess
+                processTask
             );
 
     </script>
