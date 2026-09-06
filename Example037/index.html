@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            width: 100vw;
+            overflow-x: hidden;
+            padding: 2vw;
+            background-color: #ffffff;
+        }
+
+        /* 全体コンテナ */
+        .container {
+            display: grid;
+            width: 100%;
+            gap: 1.5vw;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        /* 共通コンポーネントの基本スタイル（背景色・文字装飾） */
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 2.5vw;
+            padding: 3vw 1vw;
+            border-radius: 0.5vw;
+            min-height: 8vw;
+        }
+
+        .header { background-color: #00b0ff; grid-column: span 12; }
+        .main-image { background-color: #ff8f1f; }
+        .contents { background-color: #ff7663; }
+        .menu { background-color: #118f99; }
+        .sub1 { background-color: #9cd817; }
+        .sub2 { background-color: #f7ca22; }
+        .footer { background-color: #7bc4c4; grid-column: span 12; }
+
+        /* ==========================================================================
+           1. PC スタイル (デフォルト: 992px 以上)
+           ========================================================================== */
+        .container {
+            grid-template-rows: auto auto auto auto auto;
+        }
+        
+        .main-image {
+            grid-column: span 9;
+            grid-row: 2;
+        }
+        
+        .contents {
+            grid-column: span 9;
+            grid-row: 3;
+            min-height: 20vw;
+        }
+        
+        .menu {
+            grid-column: span 3;
+            grid-row: 2 / span 2; /* main-image と contents の横にまたがる */
+        }
+        
+        .sub1 {
+            grid-column: span 4;
+            grid-row: 4;
+        }
+        
+        .sub2 {
+            grid-column: span 5;
+            grid-row: 4;
+        }
+
+        /* ==========================================================================
+           2. タブレット スタイル (992px 未満 = 991px 以下)
+           ========================================================================== */
+        @media (max-width: 991px) {
+            .box {
+                font-size: 3.5vw;
+                padding: 4vw 1vw;
+            }
+            
+            .main-image {
+                grid-column: span 12;
+                grid-row: 2;
+            }
+            
+            .contents {
+                grid-column: span 12;
+                grid-row: 3;
+                min-height: 25vw;
+            }
+            
+            .sub1 {
+                grid-column: span 6;
+                grid-row: 4;
+            }
+            
+            .sub2 {
+                grid-column: span 6;
+                grid-row: 4;
+            }
+            
+            .menu {
+                grid-column: span 12;
+                grid-row: 5;
+                min-height: 12vw;
+            }
+            
+            .footer {
+                grid-row: 6;
+            }
+        }
+
+        /* ==========================================================================
+           3. スマートフォン スタイル (576px 未満 = 575px 以下)
+           ========================================================================== */
+        @media (max-width: 575px) {
+            .box {
+                font-size: 4.5vw;
+                padding: 6vw 1vw;
+            }
+            
+            .main-image {
+                grid-column: span 12;
+                grid-row: 2;
+            }
+            
+            .contents {
+                grid-column: span 12;
+                grid-row: 3;
+                min-height: 40vw;
+            }
+            
+            .sub1 {
+                grid-column: span 12;
+                grid-row: 4;
+            }
+            
+            .sub2 {
+                grid-column: span 12;
+                grid-row: 5;
+            }
+            
+            .menu {
+                grid-column: span 12;
+                grid-row: 6;
+                min-height: 25vw;
+            }
+            
+            .footer {
+                grid-row: 7;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box header">header</div>
+        <div class="box main-image">main image</div>
+        <div class="box contents">contents</div>
+        <div class="box menu">menu</div>
+        <div class="box sub1">sub1</div>
+        <div class="box sub2">sub2</div>
+        <div class="box footer">footer</div>
+    </div>
+
+</body>
+</html>
