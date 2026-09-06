@@ -18,10 +18,10 @@ function txlog(text) {
     txarea.value += text+"\n";
 }
 
-// Promiseサブルーチン
-processTask = function() {
+// Promiseインスタンス
+iprocess = 
 new Promise((resolve, reject) => {
-       txlog("Promise処理");
+        txlog("Promise処理");
         // 1秒後に結果を返す
         setTimeout(() => {
             // ランダムに「成功、 失敗」を生成
@@ -40,21 +40,20 @@ new Promise((resolve, reject) => {
     })
     // 失敗処理
     .catch((error) => {
-       txlog("catch処理:"+error);
+        txlog("catch処理:"+error);
     })
     // 成功・失敗のどちらでも最後に実行
     .finally(() => {
         txlog("finally処理");
         txlog("");
     });
-}
+
 
 // ボタンが押された処理
- document.getElementById("startButton")
+    document.getElementById("startButton")
             .addEventListener("click", 
-                processTask
+                iprocess
             );
-
 
     </script>
 
